@@ -9,7 +9,7 @@
         background-color:#FAFAFA;  
         padding: 1px;  
 
-}  
+}  main_stackedWidget
   
 .QMenu::item{  
         background-color:transparent;  
@@ -42,7 +42,7 @@ QPushButton:pressed{
 	background-color:#44474D;  
 }
 #main_stackedWidget{
-	background-color:#44474D;  
+	background-color:#383B43;  
 }
 	
  QScrollBar:vertical {

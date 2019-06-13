@@ -96,4 +96,7 @@
       <Filter>CustomCtrl</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="style.css" />
+  </ItemGroup>
 </Project>

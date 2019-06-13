@@ -1,6 +1,7 @@
 #pragma once
 #include "QtCustomBaseWnd.h"
 #include "ui_ChuangfengDesktop.h"
+#include "QNavButton.h"
 
 class ChuangfengDesktop :  public MoveableFramelessWindow
 {
@@ -13,13 +14,26 @@ public:
 	virtual void mouseDoubleClickEvent(QMouseEvent *event);
 	void paintEvent(QPaintEvent *event);
 private:
-	QWidget*getDragnWidget();
+	virtual QWidget*getDragnWidget();
+private:
 	bool nativeEvent(const QByteArray &eventType, void *message, long *result);
+	void initMainOption();
+	void initSysLayoutOption();
+	void initFinancialLayoutOption();
+	void initReportLayoutOption();
 signals:
 	void CloseMainWidgetSingnal();
 public slots:
 	void updateMaximize();
+	void SlotOptionClick();
+	void SlotSysLayoutOptionClick();
+	void SlotFinancialLayoutOptionClick();
+	void SlotReportLayoutOptionClick();
 private:
 	Ui::ChuangfengDesktopClass*ui;
 	int m_nBorderWidth; //m_nBorder表示鼠标位于边框缩放范围的宽度
+	QList< NavButton*> mNavButtonList;
+	QList< NavButton*> m_SysLayoutNavButtonList;
+	QList< NavButton*> m_FinancialLayoutNavButtonList;
+	QList< NavButton*> m_ReportLayoutNavButtonList;
 };

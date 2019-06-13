@@ -16,7 +16,7 @@ IconHelper *IconHelper::Instance()
 
 IconHelper::IconHelper(QObject *) : QObject(qApp)
 {
-	int fontId = QFontDatabase::addApplicationFont(":/QtYxAvVehicle/Resources/fontawesome-webfont.ttf");
+	int fontId = QFontDatabase::addApplicationFont(":/ChuangfengDesktop/Resources/fontawesome-webfont.ttf");
 	QStringList fontName = QFontDatabase::applicationFontFamilies(fontId);
 
 	if (fontName.count() > 0) {
