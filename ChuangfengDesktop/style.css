@@ -1,0 +1,334 @@
+/*定义全局字体*/
+*{
+	font-family: "Microsoft YaHei";
+	font-size:14px;
+	color: #303030;
+}
+
+.QMenu{  
+        background-color:#FAFAFA;  
+        padding: 1px;  
+
+}  
+  
+.QMenu::item{  
+        background-color:transparent;  
+}  
+  
+.QMenu::item:selected{  
+        background-color:#E1E1E1;  
+        color: black;  
+}  
+
+QPushButton{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/button_normal.png);
+}
+QPushButton:hover{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/button_hover.png);
+}
+QPushButton:pressed{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/button_pushed.png);
+}
+
+
+/*定义全局滚动条样式*/
+#ChuangfengDesktopClass,#main_title_widget{
+	 background-color:#383B43;  
+}
+#optlayout{
+	background-color:#44474D;  
+}
+#main_stackedWidget{
+	background-color:#44474D;  
+}
+	
+ QScrollBar:vertical {
+     width: 10px;
+	 border: 0px;
+ }
+ 
+  QScrollBar:vertical:hover {
+	 background: rgb(221,225,228);
+ }
+
+
+ QScrollBar::handle:vertical {
+    background: rgb(198,201,203);
+    border-radius:5px;
+ }
+
+
+ QScrollBar::add-line:vertical {
+     border: 0px;
+     height: 0px;
+ }
+
+ QScrollBar::sub-line:vertical {
+     border:0px;
+     height: 0px;
+ }
+
+ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+     border: 0px;
+	 
+ }
+
+ QScrollBar::add-page:vertical{
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+ }
+
+QScrollBar::sub-page:vertical {
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+ }
+
+ QScrollBar::add-page:vertical:hover, QScrollBar::sub-page:vertical:hover {
+	background: rgb(221,225,228);
+ }
+
+/********************************/
+ 
+ QScrollBar:horizontal {
+     border: 0px;
+     height: 10px;
+ }
+
+
+ QScrollBar::handle:horizontal {
+     background: rgba(69,124,216,150);
+ }
+
+ 
+ QScrollBar::add-line:horizontal {
+     border: 0px;
+     width: 0px;
+ }
+
+ QScrollBar::sub-line:horizontal {
+     border:0px;
+     width: 0px;
+ }
+ QScrollBar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal {
+     border: 0px;
+ }
+
+ QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+     background: rgba(0,0,0,0);
+ }
+
+
+ 
+/*滚动条样式定义结束*/
+
+
+
+#main_title QPushButton#minBtn{
+	border-image: url(:/ChuangfengDesktop/Resources/btn_mini_normal.png);
+}
+#main_title QPushButton#minBtn:hover{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/btn_mini_highlight.png);
+}
+#main_title QPushButton#minBtn:pressed{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/btn_mini_down.png);
+}
+ QPushButton#close_Btn{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/btn_close_normal.png);
+}
+ QPushButton#close_Btn:hover{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/btn_close_highlight.png);
+}
+ QPushButton#close_Btn:pressed{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/btn_close_down.png);
+}
+
+#main_title QPushButton#appset_btn{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/btn_menu_normal.png);
+}
+#main_title QPushButton#appset_btn:hover{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/btn_menu_highlight.png);
+}
+#main_title QPushButton#appset_btn:pressed{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/btn_menu_down.png);
+}
+
+#main_title QTableView#log_tableView{
+selection-background-color:#C1E3FF;
+}
+
+/*设置窗口样式*/
+
+
+#option_widget{
+	background-color: #E0F2FE;
+}
+#option_widget  QPushButton{
+	border:none;
+}
+#option_widget QPushButton:hover{
+	border:none;
+	background-color: #5AAFF7;
+}
+.QComboBox{
+	border:1px solid #242424;
+	border-radius:3px;
+	padding:2px;
+	background:none;
+	selection-background-color:#484848;
+	selection-color:#DCDCDC;
+}
+
+
+.QComboBox::down-arrow{
+	image:url(:/ChuangfengDesktop/Resources/add_bottom.png);
+	width:10px;
+	height:10px;
+	right:2px;
+}
+
+.QComboBox::drop-down{
+	subcontrol-origin:padding;
+	subcontrol-position:top right;
+	width:15px;
+	border-left-width:0px;
+	border-left-style:solid;
+	border-top-right-radius:3px;
+	border-bottom-right-radius:3px;
+	border-left-color:#242424;
+}
+
+.QComboBox::drop-down:on{
+	top:1px;
+}
+.QComboBox QAbstractItemView::item{
+	min-height:20px;
+	min-width:10px;
+}
+
+/*变提篮及背景样式*/
+
+#login_title,#login_work{
+	background-color: #ffffff;
+}
+
+
+#login_logo{
+	border-image: url(:/ChuangfengDesktop/Resources/logo.jpg);
+}
+
+
+
+#login_title QPushButton#login_close_btn{
+	background-color: none;
+		border-image: url(:/ChuangfengDesktop/Resources/chat_list_close_link.png);
+	
+}
+#login_title QPushButton#login_close_btn:hover{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/chat_list_close_hover.png);
+}
+#login_title QPushButton#login_close_btn:pressed{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/chat_list_close_active.png);
+}
+
+
+
+#login_title QPushButton#servce_set_btn{
+	background-color: none;
+		border-image: url(:/ChuangfengDesktop/Resources/enter_link.png);
+	
+}
+#login_title QPushButton#servce_set_btn:hover{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/enter_hover.png);
+}
+#login_title QPushButton#servce_set_btn:pressed{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/enter_active.png);
+}
+
+ QPushButton#login_btn,QPushButton#config_ok_btn{
+	background-color: none;
+		border-image: url(:/ChuangfengDesktop/Resources/logins_link.png);
+		color: #ffffff;
+	
+}
+ QPushButton#login_btn:hover,QPushButton#config_ok_btn:hover{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/logins_hover.png);
+	color: #ffffff;
+}
+QPushButton#login_btn:pressed,QPushButton#config_ok_btn:pressed{
+	background-color: none;
+	border-image: url(:/ChuangfengDesktop/Resources/logins_active.png);
+	color: #ffffff;
+}
+
+ #main_wnd_ctrl_widget QPushButton#min_btn{ 
+	border-image: url(:/ChuangfengDesktop/Resources/min.png)0 60 0 0;
+}
+ #main_wnd_ctrl_widget QPushButton#min_btn:hover{ 
+	border-image: url(:/ChuangfengDesktop/Resources/min.png)0 30 0 30;
+}
+ #main_wnd_ctrl_widget QPushButton#min_btn:pressed{ 
+	border-image: url(:/ChuangfengDesktop/Resources/min.png)0 0 0 60;
+}
+
+ #main_wnd_ctrl_widget QPushButton#close_btn{ 
+	border-image: url(:/ChuangfengDesktop/Resources/main_close.png)0 60 0 0;
+}
+ #main_wnd_ctrl_widget QPushButton#close_btn:hover{ 
+	border-image: url(:/ChuangfengDesktop/Resources/main_close.png)0 30 0 30;
+}
+ #main_wnd_ctrl_widget QPushButton#close_btn:pressed{ 
+	border-image: url(:/ChuangfengDesktop/Resources/main_close.png)0 0 0 60;
+}
+
+
+#main_wnd_ctrl_widget QPushButton#max_restore_btn[maximizeProperty="maximize"]
+{
+	border-image: url(:/ChuangfengDesktop/Resources/max.png)0 60 0 0;
+}
+#main_wnd_ctrl_widget QPushButton#max_restore_btn[maximizeProperty="maximize"]:hover
+{
+	border-image: url(:/ChuangfengDesktop/Resources/max.png)0 30 0 30;
+}
+#main_wnd_ctrl_widget QPushButton#max_restore_btn[maximizeProperty="maximize"]:pressed
+{
+	border-image: url(:/ChuangfengDesktop/Resources/max.png)0 0 0 60;
+}
+
+
+
+#main_wnd_ctrl_widget QPushButton#max_restore_btn[maximizeProperty="restore"]{
+
+border-image: url(:/ChuangfengDesktop/Resources/restore.png)0 60 0 0;
+}
+#main_wnd_ctrl_widget QPushButton#max_restore_btn[maximizeProperty="restore"]:hover
+{
+
+border-image: url(:/ChuangfengDesktop/Resources/restore.png)0 30 0 30;
+}
+#main_wnd_ctrl_widget QPushButton#max_restore_btn[maximizeProperty="restore"]:pressed{
+
+border-image: url(:/ChuangfengDesktop/Resources/restore.png)0 0 0 60;
+}
+
+
+
+
+
+
+
