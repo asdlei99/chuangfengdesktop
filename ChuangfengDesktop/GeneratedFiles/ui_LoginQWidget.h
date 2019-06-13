@@ -129,6 +129,9 @@ public:
     {
         QtLoginWidget->setWindowTitle(QApplication::translate("QtLoginWidget", "\347\231\273\345\275\225", Q_NULLPTR));
         label->setText(QApplication::translate("QtLoginWidget", "\345\210\233\344\270\260\345\205\273\346\256\226", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        login_close_btn->setToolTip(QApplication::translate("QtLoginWidget", "\345\205\263\351\227\255", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
         login_close_btn->setText(QString());
         login_logo->setText(QString());
         label_2->setText(QString());
@@ -137,6 +140,9 @@ public:
         label_4->setText(QString());
         label_5->setText(QString());
         config_ok_btn->setText(QApplication::translate("QtLoginWidget", "\347\241\256\345\256\232", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        servce_set_btn->setToolTip(QApplication::translate("QtLoginWidget", "\350\256\276\347\275\256", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
         servce_set_btn->setText(QString());
     } // retranslateUi
 

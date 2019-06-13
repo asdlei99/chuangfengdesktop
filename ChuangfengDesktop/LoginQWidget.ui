@@ -56,6 +56,9 @@
         <height>16</height>
        </rect>
       </property>
+      <property name="toolTip">
+       <string>关闭</string>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -228,6 +231,9 @@
         <width>16</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>设置</string>
       </property>
       <property name="text">
        <string/>
