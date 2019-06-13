@@ -21,9 +21,6 @@
         <file>Resources/chat_list_close_active.png</file>
         <file>Resources/chat_list_close_hover.png</file>
         <file>Resources/chat_list_close_link.png</file>
-        <file>Resources/enter_active.png</file>
-        <file>Resources/enter_hover.png</file>
-        <file>Resources/enter_link.png</file>
         <file>Resources/logins_active.png</file>
         <file>Resources/logins_hover.png</file>
         <file>Resources/logins_link.png</file>
@@ -31,5 +28,6 @@
         <file>Resources/max.png</file>
         <file>Resources/restore.png</file>
         <file>Resources/main_close.png</file>
+        <file>Resources/btn_manager_set.png</file>
     </qresource>
 </RCC>

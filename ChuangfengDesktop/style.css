@@ -247,16 +247,16 @@ selection-background-color:#C1E3FF;
 
 #login_title QPushButton#servce_set_btn{
 	background-color: none;
-		border-image: url(:/ChuangfengDesktop/Resources/enter_link.png);
+		border-image: url(:/ChuangfengDesktop/Resources/btn_manager_set.png)0 44 0 0;;
 	
 }
 #login_title QPushButton#servce_set_btn:hover{
 	background-color: none;
-	border-image: url(:/ChuangfengDesktop/Resources/enter_hover.png);
+	border-image: url(:/ChuangfengDesktop/Resources/btn_manager_set.png)0 22 0 22;;
 }
 #login_title QPushButton#servce_set_btn:pressed{
 	background-color: none;
-	border-image: url(:/ChuangfengDesktop/Resources/enter_active.png);
+	border-image: url(:/ChuangfengDesktop/Resources/btn_manager_set.png)0 0 0 44;;
 }
 
  QPushButton#login_btn,QPushButton#config_ok_btn{

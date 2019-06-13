@@ -112,7 +112,7 @@ public:
         stackedWidget->addWidget(page_2);
         servce_set_btn = new QPushButton(login_title);
         servce_set_btn->setObjectName(QStringLiteral("servce_set_btn"));
-        servce_set_btn->setGeometry(QRect(220, 10, 18, 18));
+        servce_set_btn->setGeometry(QRect(220, 10, 16, 16));
 
         verticalLayout->addWidget(login_title);
 
