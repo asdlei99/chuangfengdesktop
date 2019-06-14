@@ -13,6 +13,7 @@
 #include <QPen>
 #include <QtMath>
 #include "iconhelper.h"
+#include "commomdef.h"
 ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
 	:MoveableFramelessWindow(parent)
 	,ui(new Ui::ChuangfengDesktopClass)
@@ -127,7 +128,7 @@ void ChuangfengDesktop::initMainOption()
 {
 	mNavButtonList << ui->opt_finance_mgr << ui->opt_store << ui->opt_feed_mgr << ui->opt_report << ui->opt_sysset;
 	QList<QChar> pixChar;
-	pixChar << 0xf0ac << 0xf0ca << 0xf03d << 0xf1b9 << 0xf1b9;
+	pixChar << 0xf653 << 0xf54e << 0xf48e << 0xf1c3 << 0xf085;
 	QColor normalBgColor = QColor("#383B43");
 	QColor hoverBgColor = QColor("#478CB6");
 	QColor checkBgColor = QColor("#478CB6");
@@ -150,14 +151,14 @@ void ChuangfengDesktop::initMainOption()
 		mNavButtonList.at(i)->setShowTriangle(true);
 
 		mNavButtonList.at(i)->setShowIcon(true);
-		mNavButtonList.at(i)->setIconSpace(10);
-		mNavButtonList.at(i)->setIconSize(QSize(22, 22));
+		mNavButtonList.at(i)->setIconSpace(ICOSPACE);
+		mNavButtonList.at(i)->setIconSize(QSize(ICONSIZE, ICONSIZE));
 
 		//分开设置图标
 		QChar icon = pixChar.at(i);
-		QPixmap iconNormal = IconHelper::Instance()->getPixmap(normalTextColor.name(), icon, 15, 30, 30);
-		QPixmap iconHover = IconHelper::Instance()->getPixmap(hoverTextColor.name(), icon, 15, 30, 30);
-		QPixmap iconCheck = IconHelper::Instance()->getPixmap(checkTextColor.name(), icon, 15, 30, 30);
+		QPixmap iconNormal = IconHelper::Instance()->getPixmap(normalTextColor.name(), icon, ICONFONTSIZE, PIXMAPSIZE, PIXMAPSIZE);
+		QPixmap iconHover = IconHelper::Instance()->getPixmap(hoverTextColor.name(), icon, ICONFONTSIZE, PIXMAPSIZE, PIXMAPSIZE);
+		QPixmap iconCheck = IconHelper::Instance()->getPixmap(checkTextColor.name(), icon, ICONFONTSIZE, PIXMAPSIZE, PIXMAPSIZE);
 
 		mNavButtonList.at(i)->setIconNormal(iconNormal);
 		mNavButtonList.at(i)->setIconHover(iconHover);
@@ -179,7 +180,7 @@ void ChuangfengDesktop::initSysLayoutOption()
 {
 	m_SysLayoutNavButtonList << ui->set_opt_person << ui->set_opt_account << ui->set_opt_area << ui->set_opt_supplier << ui->set_opt_task;
 	QList<QChar> pixChar;
-	pixChar << 0xf0ac << 0xf0ca << 0xf03d << 0xf1b9 << 0xf1b9;
+	pixChar << 0xf509 << 0xf571 << 0xf1fe << 0xf2a3 << 0xf0ae;
 	QColor normalBgColor = QColor("#44474D");
 	QColor hoverBgColor = QColor("#478CB6");
 	QColor checkBgColor = QColor("#478CB6");
@@ -202,14 +203,14 @@ void ChuangfengDesktop::initSysLayoutOption()
 		m_SysLayoutNavButtonList.at(i)->setShowTriangle(true);
 
 		m_SysLayoutNavButtonList.at(i)->setShowIcon(true);
-		m_SysLayoutNavButtonList.at(i)->setIconSpace(10);
-		m_SysLayoutNavButtonList.at(i)->setIconSize(QSize(22, 22));
+		m_SysLayoutNavButtonList.at(i)->setIconSpace(ICOSPACE);
+		m_SysLayoutNavButtonList.at(i)->setIconSize(QSize(ICONSIZE, ICONSIZE));
 
 		//分开设置图标
 		QChar icon = pixChar.at(i);
-		QPixmap iconNormal = IconHelper::Instance()->getPixmap(normalTextColor.name(), icon, 15, 30, 30);
-		QPixmap iconHover = IconHelper::Instance()->getPixmap(hoverTextColor.name(), icon, 15, 30, 30);
-		QPixmap iconCheck = IconHelper::Instance()->getPixmap(checkTextColor.name(), icon, 15, 30, 30);
+		QPixmap iconNormal = IconHelper::Instance()->getPixmap(normalTextColor.name(), icon, ICONFONTSIZE, PIXMAPSIZE, PIXMAPSIZE);
+		QPixmap iconHover = IconHelper::Instance()->getPixmap(hoverTextColor.name(), icon, ICONFONTSIZE, PIXMAPSIZE, PIXMAPSIZE);
+		QPixmap iconCheck = IconHelper::Instance()->getPixmap(checkTextColor.name(), icon, ICONFONTSIZE, PIXMAPSIZE, PIXMAPSIZE);
 
 		m_SysLayoutNavButtonList.at(i)->setIconNormal(iconNormal);
 		m_SysLayoutNavButtonList.at(i)->setIconHover(iconHover);
@@ -231,7 +232,7 @@ void ChuangfengDesktop::initFinancialLayoutOption()
 {
 	m_FinancialLayoutNavButtonList << ui->financial_opt_totalpay << ui->financial_opt_imprest << ui->financial_opt_payable ;
 	QList<QChar> pixChar;
-	pixChar << 0xf0ac << 0xf0ca << 0xf03d ;
+	pixChar << 0xf53d << 0xf157 << 0xf571;
 	QColor normalBgColor = QColor("#44474D");
 	QColor hoverBgColor = QColor("#478CB6");
 	QColor checkBgColor = QColor("#478CB6");
@@ -252,14 +253,14 @@ void ChuangfengDesktop::initFinancialLayoutOption()
 		m_FinancialLayoutNavButtonList.at(i)->setShowTriangle(true);
 
 		m_FinancialLayoutNavButtonList.at(i)->setShowIcon(true);
-		m_FinancialLayoutNavButtonList.at(i)->setIconSpace(10);
-		m_FinancialLayoutNavButtonList.at(i)->setIconSize(QSize(22, 22));
+		m_FinancialLayoutNavButtonList.at(i)->setIconSpace(ICOSPACE);
+		m_FinancialLayoutNavButtonList.at(i)->setIconSize(QSize(ICONSIZE, ICONSIZE));
 
 		//分开设置图标
 		QChar icon = pixChar.at(i);
-		QPixmap iconNormal = IconHelper::Instance()->getPixmap(normalTextColor.name(), icon, 15, 30, 30);
-		QPixmap iconHover = IconHelper::Instance()->getPixmap(hoverTextColor.name(), icon, 15, 30, 30);
-		QPixmap iconCheck = IconHelper::Instance()->getPixmap(checkTextColor.name(), icon, 15, 30, 30);
+		QPixmap iconNormal = IconHelper::Instance()->getPixmap(normalTextColor.name(), icon, ICONFONTSIZE, PIXMAPSIZE, PIXMAPSIZE);
+		QPixmap iconHover = IconHelper::Instance()->getPixmap(hoverTextColor.name(), icon, ICONFONTSIZE, PIXMAPSIZE, PIXMAPSIZE);
+		QPixmap iconCheck = IconHelper::Instance()->getPixmap(checkTextColor.name(), icon, ICONFONTSIZE, PIXMAPSIZE, PIXMAPSIZE);
 
 		m_FinancialLayoutNavButtonList.at(i)->setIconNormal(iconNormal);
 		m_FinancialLayoutNavButtonList.at(i)->setIconHover(iconHover);
@@ -283,7 +284,7 @@ void ChuangfengDesktop::initReportLayoutOption()
 		ui->report_opt_share << ui->report_opt_signal << ui->report_opt_materiel <<
 		ui->report_opt_fix << ui->report_opt_totalfeed << ui->report_opt_materials_use;
 	QList<QChar> pixChar;
-	pixChar << 0xf0ac << 0xf0ca << 0xf03d << 0xf0ca << 0xf03d << 0xf0ca << 0xf03d << 0xf03d;
+	pixChar << 0xf570 << 0xf3d1 << 0xf0b2 << 0xf1e1 << 0xf55f << 0xf0e9 << 0xf54f << 0xf466;
 	QColor normalBgColor = QColor("#44474D");
 	QColor hoverBgColor = QColor("#478CB6");
 	QColor checkBgColor = QColor("#478CB6");
@@ -304,14 +305,14 @@ void ChuangfengDesktop::initReportLayoutOption()
 		m_ReportLayoutNavButtonList.at(i)->setShowTriangle(true);
 
 		m_ReportLayoutNavButtonList.at(i)->setShowIcon(true);
-		m_ReportLayoutNavButtonList.at(i)->setIconSpace(10);
-		m_ReportLayoutNavButtonList.at(i)->setIconSize(QSize(22, 22));
+		m_ReportLayoutNavButtonList.at(i)->setIconSpace(ICOSPACE);
+		m_ReportLayoutNavButtonList.at(i)->setIconSize(QSize(ICONSIZE, ICONSIZE));
 
 		//分开设置图标
 		QChar icon = pixChar.at(i);
-		QPixmap iconNormal = IconHelper::Instance()->getPixmap(normalTextColor.name(), icon, 15, 30, 30);
-		QPixmap iconHover = IconHelper::Instance()->getPixmap(hoverTextColor.name(), icon, 15, 30, 30);
-		QPixmap iconCheck = IconHelper::Instance()->getPixmap(checkTextColor.name(), icon, 15, 30, 30);
+		QPixmap iconNormal = IconHelper::Instance()->getPixmap(normalTextColor.name(), icon, ICONFONTSIZE, PIXMAPSIZE, PIXMAPSIZE);
+		QPixmap iconHover = IconHelper::Instance()->getPixmap(hoverTextColor.name(), icon, ICONFONTSIZE, PIXMAPSIZE, PIXMAPSIZE);
+		QPixmap iconCheck = IconHelper::Instance()->getPixmap(checkTextColor.name(), icon, ICONFONTSIZE, PIXMAPSIZE, PIXMAPSIZE);
 
 		m_ReportLayoutNavButtonList.at(i)->setIconNormal(iconNormal);
 		m_ReportLayoutNavButtonList.at(i)->setIconHover(iconHover);

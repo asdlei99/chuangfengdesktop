@@ -30,7 +30,7 @@ class Ui_ChuangfengDesktopClass
 {
 public:
     QVBoxLayout *verticalLayout_4;
-    QHBoxLayout *horizontalLayout;
+    QHBoxLayout *title_Layout;
     QWidget *main_title_widget;
     QHBoxLayout *horizontalLayout_5;
     QHBoxLayout *horizontalLayout_2;
@@ -52,7 +52,7 @@ public:
     QPushButton *min_btn;
     QPushButton *max_restore_btn;
     QPushButton *close_btn;
-    QHBoxLayout *horizontalLayout_6;
+    QHBoxLayout *work_Layout;
     QStackedWidget *main_stackedWidget;
     QWidget *page;
     QWidget *widget_4;
@@ -123,9 +123,9 @@ public:
         verticalLayout_4->setContentsMargins(11, 11, 11, 11);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(2, 2, 2, 2);
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        title_Layout = new QHBoxLayout();
+        title_Layout->setSpacing(6);
+        title_Layout->setObjectName(QStringLiteral("title_Layout"));
         main_title_widget = new QWidget(ChuangfengDesktopClass);
         main_title_widget->setObjectName(QStringLiteral("main_title_widget"));
         main_title_widget->setMinimumSize(QSize(0, 82));
@@ -242,14 +242,14 @@ public:
         horizontalLayout_5->addLayout(horizontalLayout_4);
 
 
-        horizontalLayout->addWidget(main_title_widget);
+        title_Layout->addWidget(main_title_widget);
 
 
-        verticalLayout_4->addLayout(horizontalLayout);
+        verticalLayout_4->addLayout(title_Layout);
 
-        horizontalLayout_6 = new QHBoxLayout();
-        horizontalLayout_6->setSpacing(6);
-        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        work_Layout = new QHBoxLayout();
+        work_Layout->setSpacing(6);
+        work_Layout->setObjectName(QStringLiteral("work_Layout"));
         main_stackedWidget = new QStackedWidget(ChuangfengDesktopClass);
         main_stackedWidget->setObjectName(QStringLiteral("main_stackedWidget"));
         page = new QWidget();
@@ -458,15 +458,15 @@ public:
         sysLayout_StackedWidget->addWidget(page_10);
         main_stackedWidget->addWidget(page_5);
 
-        horizontalLayout_6->addWidget(main_stackedWidget);
+        work_Layout->addWidget(main_stackedWidget);
 
 
-        verticalLayout_4->addLayout(horizontalLayout_6);
+        verticalLayout_4->addLayout(work_Layout);
 
 
         retranslateUi(ChuangfengDesktopClass);
 
-        main_stackedWidget->setCurrentIndex(3);
+        main_stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(ChuangfengDesktopClass);
