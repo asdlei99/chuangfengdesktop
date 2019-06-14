@@ -176,46 +176,64 @@ selection-background-color:#C1E3FF;
 /*登录关闭按钮样式*/
 #login_title QPushButton#login_close_btn
 {
-	border-image: url(:/ChuangfengDesktop/Resources/chat_list_close_link.png);
+	border-image: url(:/ChuangfengDesktop/Resources/loginclose.png)0 32 0 0;
 }
 #login_title QPushButton#login_close_btn:hover
 {
-	border-image: url(:/ChuangfengDesktop/Resources/chat_list_close_hover.png);
+	border-image: url(:/ChuangfengDesktop/Resources/loginclose.png)0 16 0 16;
 }
 #login_title QPushButton#login_close_btn:pressed
 {
-	border-image: url(:/ChuangfengDesktop/Resources/chat_list_close_active.png);
+	border-image: url(:/ChuangfengDesktop/Resources/loginclose.png)0 0 0 32;
 }
 
 
-/**登录设置按钮样式*/
-#login_title QPushButton#servce_set_btn
+
+
+/**动态设置按钮*/
+#login_title QPushButton#servce_set_btn[loginProperty="login"]
 {
-	border-image: url(:/ChuangfengDesktop/Resources/btn_manager_set.png)0 44 0 0;;
+border-image: url(:/ChuangfengDesktop/Resources/btn_manager_set.png)0 44 0 0;
 }
-#login_title QPushButton#servce_set_btn:hover
+#login_title QPushButton#servce_set_btn[loginProperty="login"]:hover
 {
-	border-image: url(:/ChuangfengDesktop/Resources/btn_manager_set.png)0 22 0 22;;
+	border-image: url(:/ChuangfengDesktop/Resources/btn_manager_set.png)0 22 0 22;
 }
-#login_title QPushButton#servce_set_btn:pressed
+#login_title QPushButton#servce_set_btn[loginProperty="login"]:pressed
 {
-	border-image: url(:/ChuangfengDesktop/Resources/btn_manager_set.png)0 0 0 44;;
+	border-image: url(:/ChuangfengDesktop/Resources/btn_manager_set.png)0 0 0 44;
 }
+
+#login_title QPushButton#servce_set_btn[loginProperty="set"]{
+
+border-image: url(:/ChuangfengDesktop/Resources/account.png)0 32 0 0;
+}
+#login_title QPushButton#servce_set_btn[loginProperty="set"]:hover
+{
+	border-image: url(:/ChuangfengDesktop/Resources/account.png)0 16 0 16;
+}
+#login_title QPushButton#servce_set_btn[loginProperty="set"]:pressed{
+
+	border-image: url(:/ChuangfengDesktop/Resources/account.png)0 0 0 32;
+}
+
+
+
+
 /**登录登录按钮样式*/
-QPushButton#login_btn,QPushButton#config_ok_btn
+QPushButton#login_btn
  {
 	border-image: url(:/ChuangfengDesktop/Resources/logins_link.png);
 	color: #ffffff;
 }
 
-QPushButton#login_btn:hover,QPushButton#config_ok_btn
- :hover
+QPushButton#login_btn:hover
+
  {
 	border-image: url(:/ChuangfengDesktop/Resources/logins_hover.png);
 	color: #ffffff;
 }
-QPushButton#login_btn:pressed,QPushButton#config_ok_btn
-:pressed{
+QPushButton#login_btn:pressed{
 	border-image: url(:/ChuangfengDesktop/Resources/logins_active.png);
 	color: #ffffff;
 }

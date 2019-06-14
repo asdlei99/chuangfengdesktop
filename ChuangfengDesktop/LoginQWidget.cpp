@@ -7,6 +7,7 @@ LoginQWidget::LoginQWidget(QWidget *parent)
 	:
 	MoveableFramelessWindow(parent),
 	ui(new Ui::QtLoginWidget)
+	, m_bIsLoginLayout(true)
 {
 	ui->setupUi(this);
 	ui->user_Edit->setPlaceholderText(QStringLiteral("ÓÃ»§Ãû"));
@@ -20,14 +21,24 @@ LoginQWidget::LoginQWidget(QWidget *parent)
 
 	ui->port_Edit->setStyleSheet("background:transparent;border-width:0;border-style:outset");
 
-	connect(ui->servce_set_btn, &QPushButton::clicked, this, [&]()->void {
-		ui->stackedWidget->setCurrentIndex(1);
-		ui->servce_set_btn->setVisible(false);
+	ui->servce_set_btn->setProperty("loginProperty", "login");
+	ui->servce_set_btn->setStyle(QApplication::style());
+
+	connect(ui->servce_set_btn, &QPushButton::clicked, this, [&]()->void {	
+		m_bIsLoginLayout = !m_bIsLoginLayout;
+		if (m_bIsLoginLayout)
+		{
+			ui->stackedWidget->setCurrentIndex(0);
+			ui->servce_set_btn->setProperty("loginProperty", "login");
+			ui->servce_set_btn->setStyle(QApplication::style());
+		}
+		else {
+			ui->servce_set_btn->setProperty("loginProperty", "set");
+			ui->servce_set_btn->setStyle(QApplication::style());
+			ui->stackedWidget->setCurrentIndex(1);
+		}	
 	});
-	connect(ui->config_ok_btn, &QPushButton::clicked, this, [&]()->void {
-		ui->stackedWidget->setCurrentIndex(0);
-		ui->servce_set_btn->setVisible(true);
-	});
+	
 	connect(ui->login_close_btn, &QPushButton::clicked, this, [&]()->void {
 		QWidget::close();
 	});

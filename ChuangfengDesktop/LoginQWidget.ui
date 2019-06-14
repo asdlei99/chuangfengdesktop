@@ -208,19 +208,6 @@
          <string/>
         </property>
        </widget>
-       <widget class="QPushButton" name="config_ok_btn">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>190</y>
-          <width>100</width>
-          <height>26</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>确定</string>
-        </property>
-       </widget>
       </widget>
      </widget>
      <widget class="QPushButton" name="servce_set_btn">

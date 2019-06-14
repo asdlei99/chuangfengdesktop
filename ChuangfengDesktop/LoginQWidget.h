@@ -15,5 +15,6 @@ private:
 
 private:
 	Ui::QtLoginWidget* ui;
+	bool m_bIsLoginLayout;
 };
 

@@ -43,7 +43,6 @@ public:
     QLineEdit *servce_ip;
     QLabel *label_4;
     QLabel *label_5;
-    QPushButton *config_ok_btn;
     QPushButton *servce_set_btn;
 
     void setupUi(QWidget *QtLoginWidget)
@@ -106,9 +105,6 @@ public:
         label_5->setObjectName(QStringLiteral("label_5"));
         label_5->setGeometry(QRect(36, 150, 180, 1));
         label_5->setStyleSheet(QStringLiteral("background-color: rgb(240, 240, 240);"));
-        config_ok_btn = new QPushButton(page_2);
-        config_ok_btn->setObjectName(QStringLiteral("config_ok_btn"));
-        config_ok_btn->setGeometry(QRect(70, 190, 100, 26));
         stackedWidget->addWidget(page_2);
         servce_set_btn = new QPushButton(login_title);
         servce_set_btn->setObjectName(QStringLiteral("servce_set_btn"));
@@ -139,7 +135,6 @@ public:
         login_btn->setText(QApplication::translate("QtLoginWidget", "\347\231\273\345\275\225", Q_NULLPTR));
         label_4->setText(QString());
         label_5->setText(QString());
-        config_ok_btn->setText(QApplication::translate("QtLoginWidget", "\347\241\256\345\256\232", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
         servce_set_btn->setToolTip(QApplication::translate("QtLoginWidget", "\350\256\276\347\275\256", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP

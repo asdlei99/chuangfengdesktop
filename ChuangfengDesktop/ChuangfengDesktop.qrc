@@ -1,9 +1,11 @@
 <RCC>
     <qresource prefix="/ChuangfengDesktop">
+        <file>Resources/account.png</file>
         <file>Resources/add_bottom.png</file>
         <file>Resources/btn_close_down.png</file>
         <file>Resources/btn_close_highlight.png</file>
         <file>Resources/btn_close_normal.png</file>
+        <file>Resources/btn_manager_set.png</file>
         <file>Resources/btn_mini_down.png</file>
         <file>Resources/btn_mini_highlight.png</file>
         <file>Resources/btn_mini_normal.png</file>
@@ -13,18 +15,15 @@
         <file>Resources/combo1.png</file>
         <file>Resources/fontawesome-webfont.ttf</file>
         <file>Resources/icon1.ico</file>
-        <file>Resources/title.png</file>
-        <file>Resources/logo.jpg</file>
-        <file>Resources/chat_list_close_active.png</file>
-        <file>Resources/chat_list_close_hover.png</file>
-        <file>Resources/chat_list_close_link.png</file>
+        <file>Resources/loginclose.png</file>
         <file>Resources/logins_active.png</file>
         <file>Resources/logins_hover.png</file>
         <file>Resources/logins_link.png</file>
-        <file>Resources/min.png</file>
-        <file>Resources/max.png</file>
-        <file>Resources/restore.png</file>
+        <file>Resources/logo.jpg</file>
         <file>Resources/main_close.png</file>
-        <file>Resources/btn_manager_set.png</file>
+        <file>Resources/max.png</file>
+        <file>Resources/min.png</file>
+        <file>Resources/restore.png</file>
+        <file>Resources/title.png</file>
     </qresource>
 </RCC>

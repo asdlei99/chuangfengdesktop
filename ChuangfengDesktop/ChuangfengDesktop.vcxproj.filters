@@ -79,10 +79,10 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="ChuangfengDesktop.ui">
+    <QtUic Include="LoginQWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="LoginQWidget.ui">
+    <QtUic Include="ChuangfengDesktop.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
