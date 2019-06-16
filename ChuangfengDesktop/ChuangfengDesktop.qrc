@@ -25,5 +25,6 @@
         <file>Resources/restore.png</file>
         <file>Resources/title.png</file>
         <file>Resources/fontawesome-webfont.ttf</file>
+        <file>Resources/test.png</file>
     </qresource>
 </RCC>

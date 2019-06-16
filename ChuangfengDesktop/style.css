@@ -171,7 +171,7 @@ selection-background-color:#C1E3FF;
 /*登录窗口logo*/
 #login_logo
 {
-	border-image: url(:/ChuangfengDesktop/Resources/logo.jpg);
+	border-image: url(:/ChuangfengDesktop/Resources/test.png);
 }
 /*登录关闭按钮样式*/
 #login_title QPushButton#login_close_btn

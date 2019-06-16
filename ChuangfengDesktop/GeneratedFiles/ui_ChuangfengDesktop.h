@@ -146,7 +146,7 @@ public:
         label = new QLabel(widget_2);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 20, 50, 50));
-        label->setStyleSheet(QStringLiteral("border-image: url(:/ChuangfengDesktop/Resources/logo.jpg);"));
+        label->setStyleSheet(QStringLiteral("border-image: url(:/ChuangfengDesktop/Resources/test.png);"));
 
         horizontalLayout_2->addWidget(widget_2);
 
