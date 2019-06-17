@@ -57,6 +57,15 @@
     <ClCompile Include="CustomCtrl\QtCustomBaseWnd.cpp">
       <Filter>CustomCtrl</Filter>
     </ClCompile>
+    <ClCompile Include="QExcel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StatementObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="non_paymentObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ChuangfengDesktop.h">
@@ -75,6 +84,15 @@
       <Filter>CustomCtrl</Filter>
     </QtMoc>
     <QtMoc Include="LoginQWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QExcel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="StatementObject.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="non_paymentObject.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
