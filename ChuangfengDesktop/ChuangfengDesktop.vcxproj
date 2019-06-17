@@ -114,6 +114,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ChuangfengDesktop.cpp" />
+    <ClCompile Include="costShareObject.cpp" />
     <ClCompile Include="CustomCtrl\CCheckBoxHeaderView.cpp" />
     <ClCompile Include="CustomCtrl\IconHelper.cpp" />
     <ClCompile Include="CustomCtrl\NoFocusDelegate.cpp" />
@@ -123,6 +124,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="non_paymentObject.cpp" />
     <ClCompile Include="QExcel.cpp" />
+    <ClCompile Include="singleAreaShare.cpp" />
     <ClCompile Include="StatementObject.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -137,7 +139,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="commomdef.h" />
+    <QtMoc Include="costShareObject.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt</IncludePath>
+    </QtMoc>
     <ClInclude Include="CustomCtrl\NoFocusDelegate.h" />
+    <QtMoc Include="singleAreaShare.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt</IncludePath>
+    </QtMoc>
     <ClInclude Include="ThreadPool.hpp" />
     <QtMoc Include="non_paymentObject.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt</IncludePath>
