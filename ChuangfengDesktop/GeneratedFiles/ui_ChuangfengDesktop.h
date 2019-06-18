@@ -702,10 +702,10 @@ public:
         financial_opt_payable->setText(QApplication::translate("ChuangfengDesktopClass", "\345\272\224\344\273\230\346\254\276", Q_NULLPTR));
         label_5->setText(QApplication::translate("ChuangfengDesktopClass", "\347\273\223\346\235\237\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
         label_4->setText(QApplication::translate("ChuangfengDesktopClass", "\345\274\200\345\247\213\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
-        general_search_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\346\237\245\350\257\242", Q_NULLPTR));
-        general_add_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\346\226\260\345\242\236", Q_NULLPTR));
-        general_del_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\210\240\351\231\244", Q_NULLPTR));
-        general_export_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\257\274\345\207\272", Q_NULLPTR));
+        general_search_btn->setText(QString());
+        general_add_btn->setText(QString());
+        general_del_btn->setText(QString());
+        general_export_btn->setText(QString());
         bak_del_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\210\240\351\231\244", Q_NULLPTR));
         bak_export_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\257\274\345\207\272", Q_NULLPTR));
         bak_add_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\346\226\260\345\242\236", Q_NULLPTR));

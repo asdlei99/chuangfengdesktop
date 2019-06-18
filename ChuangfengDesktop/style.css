@@ -314,13 +314,46 @@ border-color: rgb(100,100,100);
 spacing: 5px;
 }
 
-QDateEdit::drop-down {
-width: 50px;                   /*//宽度（高度随控件）*/
-border-left-width: 1px;   /*//加左边框线（可以不要，下同）*/
-border-left-style: solid; /* //左边框线类型*/
-border-left-color: gray;  /*//左边框线颜色*/
+
+
+
+
+  QPushButton#general_search_btn{ 
+	border-image: url(:/ChuangfengDesktop/Resources/search_btn.png)0 160 0 0;
+}
+ QPushButton#general_search_btn:hover{ 
+	border-image: url(:/ChuangfengDesktop/Resources/search_btn.png)0 80 0 80;
+}
+ QPushButton#general_search_btn:pressed{ 
+	border-image: url(:/ChuangfengDesktop/Resources/search_btn.png)0 0 0 160;
 }
 
+QPushButton#general_add_btn{ 
+	border-image: url(:/ChuangfengDesktop/Resources/detail_add_btn.png)0 160 0 0;
+}
+ QPushButton#general_add_btn:hover{ 
+	border-image: url(:/ChuangfengDesktop/Resources/detail_add_btn.png)0 80 0 80;
+}
+ QPushButton#general_add_btn:pressed{ 
+	border-image: url(:/ChuangfengDesktop/Resources/detail_add_btn.png)0 0 0 160;
+}
 
+QPushButton#general_del_btn{ 
+	border-image: url(:/ChuangfengDesktop/Resources/detail_del_btn.png)0 160 0 0;
+}
+ QPushButton#general_del_btn:hover{ 
+	border-image: url(:/ChuangfengDesktop/Resources/detail_del_btn.png)0 80 0 80;
+}
+ QPushButton#general_del_btn:pressed{ 
+	border-image: url(:/ChuangfengDesktop/Resources/detail_del_btn.png)0 0 0 160;
+}
 
-
+QPushButton#general_export_btn{ 
+	border-image: url(:/ChuangfengDesktop/Resources/detail_export_btn.png)0 160 0 0;
+}
+ QPushButton#general_export_btn:hover{ 
+	border-image: url(:/ChuangfengDesktop/Resources/detail_export_btn.png)0 80 0 80;
+}
+ QPushButton#general_export_btn:pressed{ 
+	border-image: url(:/ChuangfengDesktop/Resources/detail_export_btn.png)0 0 0 160;
+}

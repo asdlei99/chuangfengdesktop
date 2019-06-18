@@ -512,7 +512,7 @@
                  </rect>
                 </property>
                 <property name="text">
-                 <string>查询</string>
+                 <string/>
                 </property>
                </widget>
                <widget class="QPushButton" name="general_add_btn">
@@ -525,7 +525,7 @@
                  </rect>
                 </property>
                 <property name="text">
-                 <string>新增</string>
+                 <string/>
                 </property>
                </widget>
                <widget class="QPushButton" name="general_del_btn">
@@ -538,7 +538,7 @@
                  </rect>
                 </property>
                 <property name="text">
-                 <string>删除</string>
+                 <string/>
                 </property>
                </widget>
                <widget class="QPushButton" name="general_export_btn">
@@ -551,7 +551,7 @@
                  </rect>
                 </property>
                 <property name="text">
-                 <string>导出</string>
+                 <string/>
                 </property>
                </widget>
               </widget>
