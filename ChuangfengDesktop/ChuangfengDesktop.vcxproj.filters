@@ -31,6 +31,9 @@
     <Filter Include="CustomCtrl">
       <UniqueIdentifier>{0f85271a-6e3a-448b-8434-ff1ec1ed8f91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TableObject">
+      <UniqueIdentifier>{55042d7e-9ca5-4d41-91b6-42a66f1c8063}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -57,20 +60,26 @@
     <ClCompile Include="CustomCtrl\QtCustomBaseWnd.cpp">
       <Filter>CustomCtrl</Filter>
     </ClCompile>
-    <ClCompile Include="QExcel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StatementObject.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="costShareObject.cpp">
+      <Filter>TableObject</Filter>
     </ClCompile>
     <ClCompile Include="non_paymentObject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>TableObject</Filter>
     </ClCompile>
-    <ClCompile Include="costShareObject.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="QExcel.cpp">
+      <Filter>TableObject</Filter>
+    </ClCompile>
+    <ClCompile Include="StatementObject.cpp">
+      <Filter>TableObject</Filter>
+    </ClCompile>
+    <ClCompile Include="WarehouseObject.cpp">
+      <Filter>TableObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MatterObject.cpp">
+      <Filter>TableObject</Filter>
     </ClCompile>
     <ClCompile Include="singleAreaShare.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>TableObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,20 +101,26 @@
     <QtMoc Include="LoginQWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="QExcel.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="StatementObject.h">
-      <Filter>Header Files</Filter>
+    <QtMoc Include="costShareObject.h">
+      <Filter>TableObject</Filter>
     </QtMoc>
     <QtMoc Include="non_paymentObject.h">
-      <Filter>Header Files</Filter>
+      <Filter>TableObject</Filter>
     </QtMoc>
-    <QtMoc Include="costShareObject.h">
-      <Filter>Header Files</Filter>
+    <QtMoc Include="StatementObject.h">
+      <Filter>TableObject</Filter>
+    </QtMoc>
+    <QtMoc Include="QExcel.h">
+      <Filter>TableObject</Filter>
+    </QtMoc>
+    <QtMoc Include="WarehouseObject.h">
+      <Filter>TableObject</Filter>
+    </QtMoc>
+    <QtMoc Include="MatterObject.h">
+      <Filter>TableObject</Filter>
     </QtMoc>
     <QtMoc Include="singleAreaShare.h">
-      <Filter>Header Files</Filter>
+      <Filter>TableObject</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
