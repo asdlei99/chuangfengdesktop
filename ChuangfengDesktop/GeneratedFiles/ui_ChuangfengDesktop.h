@@ -19,6 +19,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -102,7 +103,10 @@ public:
     NavButton *set_opt_task;
     QStackedWidget *sysLayout_StackedWidget;
     QWidget *page_6;
-    QPushButton *pushButton_3;
+    QPushButton *user_search_btn;
+    QTableView *user_table_view;
+    QPushButton *user_add_btn;
+    QPushButton *user_remove_btn;
     QWidget *page_7;
     QPushButton *pushButton_4;
     QWidget *page_8;
@@ -428,9 +432,19 @@ public:
         page_6 = new QWidget();
         page_6->setObjectName(QStringLiteral("page_6"));
         page_6->setStyleSheet(QStringLiteral(""));
-        pushButton_3 = new QPushButton(page_6);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(230, 160, 75, 23));
+        user_search_btn = new QPushButton(page_6);
+        user_search_btn->setObjectName(QStringLiteral("user_search_btn"));
+        user_search_btn->setGeometry(QRect(30, 10, 80, 28));
+        user_table_view = new QTableView(page_6);
+        user_table_view->setObjectName(QStringLiteral("user_table_view"));
+        user_table_view->setEnabled(true);
+        user_table_view->setGeometry(QRect(20, 50, 16777215, 16777215));
+        user_add_btn = new QPushButton(page_6);
+        user_add_btn->setObjectName(QStringLiteral("user_add_btn"));
+        user_add_btn->setGeometry(QRect(130, 10, 80, 28));
+        user_remove_btn = new QPushButton(page_6);
+        user_remove_btn->setObjectName(QStringLiteral("user_remove_btn"));
+        user_remove_btn->setGeometry(QRect(230, 10, 80, 28));
         sysLayout_StackedWidget->addWidget(page_6);
         page_7 = new QWidget();
         page_7->setObjectName(QStringLiteral("page_7"));
@@ -466,7 +480,7 @@ public:
 
         retranslateUi(ChuangfengDesktopClass);
 
-        main_stackedWidget->setCurrentIndex(0);
+        main_stackedWidget->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(ChuangfengDesktopClass);
@@ -517,7 +531,9 @@ public:
         set_opt_area->setText(QApplication::translate("ChuangfengDesktopClass", "\345\205\273\346\256\226\345\214\272\345\237\237", Q_NULLPTR));
         set_opt_supplier->setText(QApplication::translate("ChuangfengDesktopClass", "\344\276\233\345\272\224\345\225\206", Q_NULLPTR));
         set_opt_task->setText(QApplication::translate("ChuangfengDesktopClass", "\350\264\271\347\224\250\347\261\273\347\233\256", Q_NULLPTR));
-        pushButton_3->setText(QApplication::translate("ChuangfengDesktopClass", "1", Q_NULLPTR));
+        user_search_btn->setText(QString());
+        user_add_btn->setText(QString());
+        user_remove_btn->setText(QString());
         pushButton_4->setText(QApplication::translate("ChuangfengDesktopClass", "2", Q_NULLPTR));
         pushButton_5->setText(QApplication::translate("ChuangfengDesktopClass", "3", Q_NULLPTR));
         pushButton_6->setText(QApplication::translate("ChuangfengDesktopClass", "4", Q_NULLPTR));

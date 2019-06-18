@@ -286,8 +286,22 @@ border-image: url(:/ChuangfengDesktop/Resources/restore.png)0 30 0 30;
 border-image: url(:/ChuangfengDesktop/Resources/restore.png)0 0 0 60;
 }
 
+QTableView QHeaderView::section { background-color:#478CB6 ;color: #ffffff;}
 
 
+
+QTableView {
+    color: white;  
+	 selection-background-color:#478CB6;        /*选中区域的背景色*//*表格内文字颜色*/
+   /* gridline-color: black;          */                    /*表格内框颜色*/
+    /* background-color: rgb(108, 108, 108);    */           /*表格内背景色*/
+    /* alternate-background-color: rgb(64, 64, 64);*/
+     selection-color: white;                            /*选中区域的文字颜色*/
+   
+    /* border: 2px groove gray;*/
+   /*  border-radius: 0px;*/
+   /*  padding: 2px 4px;*/
+}
 
 
 

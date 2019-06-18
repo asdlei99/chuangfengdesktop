@@ -1,7 +1,10 @@
 #pragma once
+#include <memory>
 #include "QtCustomBaseWnd.h"
 #include "ui_ChuangfengDesktop.h"
 #include "QNavButton.h"
+#include "UserLayoutManger.h"
+using namespace  std;
 
 class ChuangfengDesktop :  public MoveableFramelessWindow
 {
@@ -36,4 +39,5 @@ private:
 	QList< NavButton*> m_SysLayoutNavButtonList;
 	QList< NavButton*> m_FinancialLayoutNavButtonList;
 	QList< NavButton*> m_ReportLayoutNavButtonList;
+	shared_ptr<UserLayoutManger> m_ptrUserLayoutManger;
 };

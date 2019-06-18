@@ -81,6 +81,12 @@
     <ClCompile Include="singleAreaShare.cpp">
       <Filter>TableObject</Filter>
     </ClCompile>
+    <ClCompile Include="BaseLayoutManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserLayoutManger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ChuangfengDesktop.h">
@@ -121,6 +127,12 @@
     </QtMoc>
     <QtMoc Include="singleAreaShare.h">
       <Filter>TableObject</Filter>
+    </QtMoc>
+    <QtMoc Include="BaseLayoutManager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="UserLayoutManger.h">
+      <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

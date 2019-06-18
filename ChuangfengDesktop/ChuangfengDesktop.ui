@@ -334,7 +334,7 @@
      <item>
       <widget class="QStackedWidget" name="main_stackedWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>4</number>
        </property>
        <widget class="QWidget" name="page">
         <widget class="QWidget" name="widget_4" native="true">
@@ -877,17 +877,56 @@
           <property name="styleSheet">
            <string notr="true"/>
           </property>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="user_search_btn">
            <property name="geometry">
             <rect>
-             <x>230</x>
-             <y>160</y>
-             <width>75</width>
-             <height>23</height>
+             <x>30</x>
+             <y>10</y>
+             <width>80</width>
+             <height>28</height>
             </rect>
            </property>
            <property name="text">
-            <string>1</string>
+            <string/>
+           </property>
+          </widget>
+          <widget class="QTableView" name="user_table_view">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>50</y>
+             <width>16777215</width>
+             <height>16777215</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="user_add_btn">
+           <property name="geometry">
+            <rect>
+             <x>130</x>
+             <y>10</y>
+             <width>80</width>
+             <height>28</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="user_remove_btn">
+           <property name="geometry">
+            <rect>
+             <x>230</x>
+             <y>10</y>
+             <width>80</width>
+             <height>28</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string/>
            </property>
           </widget>
          </widget>

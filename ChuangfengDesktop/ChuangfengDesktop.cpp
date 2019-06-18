@@ -32,6 +32,8 @@ ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
 	initSysLayoutOption();//初始化系统设置导航栏
 	initFinancialLayoutOption();
 	initReportLayoutOption();
+	m_ptrUserLayoutManger = make_shared<UserLayoutManger>(ui);
+	m_ptrUserLayoutManger->InitLayout();
 }
 
 void ChuangfengDesktop::close()
