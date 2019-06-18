@@ -27,7 +27,7 @@ void UserLayoutManger::InitLayout()
 	onSetTableAttribute(m_pUi->user_table_view, 4);
 
 	int nCount = 0;
-	for (auto i =0;i<10;i++)
+	for (auto i =0;i<100;i++)
 	{
 		m_pUserMangerViewModel->setItem(i, 0, new QStandardItem(""));
 		m_pUserMangerViewModel->item(i, 0)->setCheckable(true);

@@ -34,6 +34,7 @@ ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
 	initReportLayoutOption();
 	m_ptrUserLayoutManger = make_shared<UserLayoutManger>(ui);
 	m_ptrUserLayoutManger->InitLayout();
+	ui->bak_enddateEdit->setCalendarPopup(true);
 }
 
 void ChuangfengDesktop::close()

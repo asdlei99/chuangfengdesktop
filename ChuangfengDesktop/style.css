@@ -304,5 +304,23 @@ QTableView {
 }
 
 
+QDateEdit
+{
+font-size: 16px;
+background-color: white;
+border-style: solid;
+border-width: 1px;
+border-color: rgb(100,100,100);
+spacing: 5px;
+}
+
+QDateEdit::drop-down {
+width: 50px;                   //宽度（高度随控件）
+border-left-width: 1px;   //加左边框线（可以不要，下同）
+border-left-style: solid;  //左边框线类型
+border-left-color: gray;  //左边框线颜色
+}
+
+
 
 
