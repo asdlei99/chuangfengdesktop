@@ -1,13 +1,12 @@
 #pragma once
 #include "BaseLayoutManager.h"
-
-class UserLayoutManger :
+class NoPayLayoutManager :
 	public BaseLayoutManager
 {
-	Q_OBJECT
 public:
-	UserLayoutManger(Ui::ChuangfengDesktopClass*ui);
-	~UserLayoutManger();
+	NoPayLayoutManager(Ui::ChuangfengDesktopClass*ui);
+	~NoPayLayoutManager();
+public:
 	virtual void InitLayout();
 };
 

@@ -34,7 +34,12 @@ ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
 	initReportLayoutOption();
 	m_ptrUserLayoutManger = make_shared<UserLayoutManger>(ui);
 	m_ptrUserLayoutManger->InitLayout();
-	ui->bak_enddateEdit->setCalendarPopup(true);
+	m_ptrGeneralLayoutManger = make_shared<GeneralLayoutManger>(ui);
+	m_ptrGeneralLayoutManger->InitLayout();
+	m_ptrBakLayoutManager = make_shared<BakLayoutManager>(ui);
+	m_ptrBakLayoutManager->InitLayout();
+	m_ptrNoPayLayoutManager = make_shared<NoPayLayoutManager>(ui);
+	m_ptrNoPayLayoutManager->InitLayout();
 }
 
 void ChuangfengDesktop::close()
@@ -285,9 +290,9 @@ void ChuangfengDesktop::initReportLayoutOption()
 {
 	m_ReportLayoutNavButtonList << ui->report_opt_totaltask << ui->report_opt_payable << 
 		ui->report_opt_share << ui->report_opt_signal << ui->report_opt_materiel <<
-		ui->report_opt_fix << ui->report_opt_totalfeed << ui->report_opt_materials_use;
+		 ui->report_opt_totalfeed ;
 	QList<QChar> pixChar;
-	pixChar << 0xf570 << 0xf3d1 << 0xf0b2 << 0xf1e1 << 0xf55f << 0xf0e9 << 0xf54f << 0xf466;
+	pixChar << 0xf570 << 0xf3d1 << 0xf0b2 << 0xf1e1 << 0xf55f << 0xf54f ;
 	QColor normalBgColor = QColor("#44474D");
 	QColor hoverBgColor = QColor("#478CB6");
 	QColor checkBgColor = QColor("#478CB6");

@@ -4,6 +4,9 @@
 #include "ui_ChuangfengDesktop.h"
 #include "QNavButton.h"
 #include "UserLayoutManger.h"
+#include "GeneralLayoutManger.h"
+#include "BakLayoutManager.h"
+#include "NoPayLayoutManager.h"
 using namespace  std;
 
 class ChuangfengDesktop :  public MoveableFramelessWindow
@@ -40,4 +43,7 @@ private:
 	QList< NavButton*> m_FinancialLayoutNavButtonList;
 	QList< NavButton*> m_ReportLayoutNavButtonList;
 	shared_ptr<UserLayoutManger> m_ptrUserLayoutManger;
+	shared_ptr<BakLayoutManager> m_ptrBakLayoutManager;
+	shared_ptr<GeneralLayoutManger> m_ptrGeneralLayoutManger;
+	shared_ptr<NoPayLayoutManager> m_ptrNoPayLayoutManager;
 };

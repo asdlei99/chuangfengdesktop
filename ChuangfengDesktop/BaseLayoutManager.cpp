@@ -36,3 +36,15 @@ void BaseLayoutManager::onSetTableAttribute(QTableView *pTableView, const int cl
 	//点击表时不对表头行光亮（获取焦点） 
 	pTableView->horizontalHeader()->setHighlightSections(false);	
 }
+
+void BaseLayoutManager::slotCheckBoxStateChanged(bool status)
+{
+	if (status) {
+		for (int i = 0; i < m_pViewModel->rowCount(); ++i)
+			m_pViewModel->item(i, 0)->setCheckState(Qt::Checked);
+	}
+	else {
+		for (int i = 0; i < m_pViewModel->rowCount(); ++i)
+			m_pViewModel->item(i, 0)->setCheckState(Qt::Unchecked);
+	}
+}

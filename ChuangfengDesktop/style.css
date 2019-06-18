@@ -315,10 +315,10 @@ spacing: 5px;
 }
 
 QDateEdit::drop-down {
-width: 50px;                   //宽度（高度随控件）
-border-left-width: 1px;   //加左边框线（可以不要，下同）
-border-left-style: solid;  //左边框线类型
-border-left-color: gray;  //左边框线颜色
+width: 50px;                   /*//宽度（高度随控件）*/
+border-left-width: 1px;   /*//加左边框线（可以不要，下同）*/
+border-left-style: solid; /* //左边框线类型*/
+border-left-color: gray;  /*//左边框线颜色*/
 }
 
 
