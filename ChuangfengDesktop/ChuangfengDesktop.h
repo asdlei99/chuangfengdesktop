@@ -7,6 +7,10 @@
 #include "GeneralLayoutManger.h"
 #include "BakLayoutManager.h"
 #include "NoPayLayoutManager.h"
+#include "CategoryLayoutManager.h"
+#include "AreaLayoutManager.h"
+#include "SupplierLayoutManager.h"
+#include "ShareItemLayoutManager.h"
 using namespace  std;
 
 class ChuangfengDesktop :  public MoveableFramelessWindow
@@ -46,4 +50,8 @@ private:
 	shared_ptr<BakLayoutManager> m_ptrBakLayoutManager;
 	shared_ptr<GeneralLayoutManger> m_ptrGeneralLayoutManger;
 	shared_ptr<NoPayLayoutManager> m_ptrNoPayLayoutManager;
+	shared_ptr<CategoryLayoutManager> m_ptrCategoryLayoutManager;
+	shared_ptr<AreaLayoutManager> m_ptrAreaLayoutManager;
+	shared_ptr<SupplierLayoutManager> m_ptrSupplierLayoutManager;
+	shared_ptr<ShareItemLayoutManager> m_ptrShareItemLayoutManager;
 };

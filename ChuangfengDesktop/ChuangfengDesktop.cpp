@@ -40,6 +40,14 @@ ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
 	m_ptrBakLayoutManager->InitLayout();
 	m_ptrNoPayLayoutManager = make_shared<NoPayLayoutManager>(ui);
 	m_ptrNoPayLayoutManager->InitLayout();
+	m_ptrCategoryLayoutManager = make_shared<CategoryLayoutManager>(ui);
+	m_ptrCategoryLayoutManager->InitLayout();
+	m_ptrAreaLayoutManager = make_shared<AreaLayoutManager>(ui);
+	m_ptrAreaLayoutManager->InitLayout();
+	m_ptrSupplierLayoutManager = make_shared<SupplierLayoutManager>(ui);
+	m_ptrSupplierLayoutManager->InitLayout();
+	m_ptrShareItemLayoutManager = make_shared<ShareItemLayoutManager>(ui);
+	m_ptrShareItemLayoutManager->InitLayout();
 }
 
 void ChuangfengDesktop::close()
@@ -186,9 +194,9 @@ void ChuangfengDesktop::initMainOption()
 
 void ChuangfengDesktop::initSysLayoutOption()
 {
-	m_SysLayoutNavButtonList << ui->set_opt_person << ui->set_opt_account << ui->set_opt_area << ui->set_opt_supplier << ui->set_opt_task;
+	m_SysLayoutNavButtonList << ui->set_opt_person << ui->set_opt_account << ui->set_opt_area << ui->set_opt_supplier << ui->set_opt_task << ui->set_opt_detail_area;
 	QList<QChar> pixChar;
-	pixChar << 0xf509 << 0xf571 << 0xf1fe << 0xf2a3 << 0xf0ae;
+	pixChar << 0xf509 << 0xf571 << 0xf1fe << 0xf2a3 << 0xf0ae << 0xf1fe;
 	QColor normalBgColor = QColor("#44474D");
 	QColor hoverBgColor = QColor("#478CB6");
 	QColor checkBgColor = QColor("#478CB6");

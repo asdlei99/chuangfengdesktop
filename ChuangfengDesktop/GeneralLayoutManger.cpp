@@ -17,15 +17,16 @@ void GeneralLayoutManger::InitLayout()
 	connect(m_pViewHeadDeleagte, SIGNAL(sig_AllChecked(bool)), this, SLOT(slotCheckBoxStateChanged(bool)));
 	m_pViewModel = new QStandardItemModel();
 	m_pUi->general_table_view->setModel(m_pViewModel);
-	m_pViewModel->setColumnCount(7);
+	m_pViewModel->setColumnCount(8);
 	m_pViewModel->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit(""));
 	m_pViewModel->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("日期"));
 	m_pViewModel->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("摘要"));
 	m_pViewModel->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("借方"));
 	m_pViewModel->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("贷方"));
 	m_pViewModel->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("结余"));
-	m_pViewModel->setHeaderData(6, Qt::Horizontal, QString::fromLocal8Bit("备注"));
-	onSetTableAttribute(m_pUi->general_table_view, 7);
+	m_pViewModel->setHeaderData(6, Qt::Horizontal, QString::fromLocal8Bit("项目"));
+	m_pViewModel->setHeaderData(7, Qt::Horizontal, QString::fromLocal8Bit("费用分摊"));
+	onSetTableAttribute(m_pUi->general_table_view, 8);
 
 	int nCount = 0;
 	for (auto i = 0; i < 10; i++)

@@ -334,7 +334,7 @@
      <item>
       <widget class="QStackedWidget" name="main_stackedWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>4</number>
        </property>
        <widget class="QWidget" name="page">
         <layout class="QHBoxLayout" name="horizontalLayout">
@@ -591,7 +591,7 @@
                  </rect>
                 </property>
                 <property name="text">
-                 <string>删除</string>
+                 <string/>
                 </property>
                </widget>
                <widget class="QPushButton" name="bak_export_btn">
@@ -604,7 +604,7 @@
                  </rect>
                 </property>
                 <property name="text">
-                 <string>导出</string>
+                 <string/>
                 </property>
                </widget>
                <widget class="QPushButton" name="bak_add_btn">
@@ -617,7 +617,7 @@
                  </rect>
                 </property>
                 <property name="text">
-                 <string>新增</string>
+                 <string/>
                 </property>
                </widget>
                <widget class="QDateEdit" name="bak_enddateEdit">
@@ -688,7 +688,7 @@
                  </rect>
                 </property>
                 <property name="text">
-                 <string>查询</string>
+                 <string/>
                 </property>
                </widget>
               </widget>
@@ -753,7 +753,7 @@
                  </rect>
                 </property>
                 <property name="text">
-                 <string>查询</string>
+                 <string/>
                 </property>
                </widget>
                <widget class="QPushButton" name="nopay_add_btn">
@@ -766,7 +766,7 @@
                  </rect>
                 </property>
                 <property name="text">
-                 <string>新增</string>
+                 <string/>
                 </property>
                </widget>
                <widget class="QPushButton" name="nopay_export_btn">
@@ -779,7 +779,7 @@
                  </rect>
                 </property>
                 <property name="text">
-                 <string>导出</string>
+                 <string/>
                 </property>
                </widget>
                <widget class="QDateEdit" name="nopay_startdateEdit">
@@ -821,7 +821,7 @@
                  </rect>
                 </property>
                 <property name="text">
-                 <string>删除</string>
+                 <string/>
                 </property>
                </widget>
               </widget>
@@ -1104,11 +1104,11 @@
              <string>账目管理</string>
             </property>
            </widget>
-           <widget class="NavButton" name="set_opt_area">
+           <widget class="NavButton" name="set_opt_detail_area">
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>150</y>
+              <y>300</y>
               <width>140</width>
               <height>35</height>
              </rect>
@@ -1117,7 +1117,7 @@
              <string notr="true">font: 75 11pt &quot;微软雅黑&quot;;</string>
             </property>
             <property name="text">
-             <string>养殖区域</string>
+             <string>养殖塘口</string>
             </property>
            </widget>
            <widget class="NavButton" name="set_opt_supplier">
@@ -1149,7 +1149,23 @@
              <string notr="true">font: 75 11pt &quot;微软雅黑&quot;;</string>
             </property>
             <property name="text">
-             <string>费用类目</string>
+             <string>费用分摊类目</string>
+            </property>
+           </widget>
+           <widget class="NavButton" name="set_opt_area">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>150</y>
+              <width>140</width>
+              <height>35</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 75 11pt &quot;微软雅黑&quot;;</string>
+            </property>
+            <property name="text">
+             <string>区域管理</string>
             </property>
            </widget>
           </widget>
@@ -1191,43 +1207,30 @@
                  <height>40</height>
                 </size>
                </property>
-               <widget class="QPushButton" name="user_search_btn">
-                <property name="geometry">
-                 <rect>
-                  <x>0</x>
-                  <y>0</y>
-                  <width>80</width>
-                  <height>28</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string>搜索</string>
-                </property>
-               </widget>
                <widget class="QPushButton" name="user_add_btn">
                 <property name="geometry">
                  <rect>
-                  <x>90</x>
-                  <y>0</y>
+                  <x>0</x>
+                  <y>10</y>
                   <width>80</width>
                   <height>28</height>
                  </rect>
                 </property>
                 <property name="text">
-                 <string>新增</string>
+                 <string/>
                 </property>
                </widget>
                <widget class="QPushButton" name="user_remove_btn">
                 <property name="geometry">
                  <rect>
-                  <x>180</x>
-                  <y>0</y>
+                  <x>90</x>
+                  <y>10</y>
                   <width>80</width>
                   <height>28</height>
                  </rect>
                 </property>
                 <property name="text">
-                 <string>移除</string>
+                 <string/>
                 </property>
                </widget>
               </widget>
@@ -1235,46 +1238,247 @@
             </layout>
            </widget>
            <widget class="QWidget" name="page_7">
-            <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <layout class="QVBoxLayout" name="verticalLayout_7">
              <item>
-              <widget class="QPushButton" name="pushButton_4">
-               <property name="text">
-                <string>2</string>
+              <widget class="QWidget" name="widget_10" native="true">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
                </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <widget class="QPushButton" name="category_remove_btn">
+                <property name="geometry">
+                 <rect>
+                  <x>90</x>
+                  <y>10</y>
+                  <width>80</width>
+                  <height>28</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="category_add_btn">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>10</y>
+                  <width>80</width>
+                  <height>28</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
               </widget>
+             </item>
+             <item>
+              <widget class="QTableView" name="category_tableView"/>
              </item>
             </layout>
            </widget>
            <widget class="QWidget" name="page_8">
-            <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <layout class="QVBoxLayout" name="verticalLayout_8">
              <item>
-              <widget class="QPushButton" name="pushButton_5">
-               <property name="text">
-                <string>3</string>
+              <widget class="QWidget" name="widget_11" native="true">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
                </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <widget class="QPushButton" name="area_remove_btn">
+                <property name="geometry">
+                 <rect>
+                  <x>90</x>
+                  <y>10</y>
+                  <width>80</width>
+                  <height>28</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="area_add_btn">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>10</y>
+                  <width>80</width>
+                  <height>28</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
               </widget>
+             </item>
+             <item>
+              <widget class="QTableView" name="area_tableView"/>
              </item>
             </layout>
            </widget>
            <widget class="QWidget" name="page_9">
-            <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <layout class="QVBoxLayout" name="verticalLayout_9">
              <item>
-              <widget class="QPushButton" name="pushButton_6">
-               <property name="text">
-                <string>4</string>
+              <widget class="QWidget" name="widget_12" native="true">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
                </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <widget class="QPushButton" name="supplier_remove_btn">
+                <property name="geometry">
+                 <rect>
+                  <x>90</x>
+                  <y>10</y>
+                  <width>80</width>
+                  <height>28</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="supplier_add_btn">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>10</y>
+                  <width>80</width>
+                  <height>28</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
               </widget>
+             </item>
+             <item>
+              <widget class="QTableView" name="supplier_tableView"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="page_17">
+            <layout class="QVBoxLayout" name="verticalLayout_10">
+             <item>
+              <widget class="QWidget" name="widget_13" native="true">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <widget class="QPushButton" name="shareitem_remove_btn">
+                <property name="geometry">
+                 <rect>
+                  <x>90</x>
+                  <y>10</y>
+                  <width>80</width>
+                  <height>28</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="shareitem_add_btn">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>10</y>
+                  <width>80</width>
+                  <height>28</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableView" name="shareitem_tableView"/>
              </item>
             </layout>
            </widget>
            <widget class="QWidget" name="page_10">
             <layout class="QVBoxLayout" name="verticalLayout">
              <item>
-              <widget class="QToolButton" name="toolButton">
-               <property name="text">
-                <string>5</string>
+              <widget class="QWidget" name="widget_14" native="true">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
                </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <widget class="QPushButton" name="detailarea_add_btn">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>10</y>
+                  <width>80</width>
+                  <height>28</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="detailarea_remove_btn">
+                <property name="geometry">
+                 <rect>
+                  <x>90</x>
+                  <y>10</y>
+                  <width>80</width>
+                  <height>28</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
               </widget>
+             </item>
+             <item>
+              <widget class="QTableView" name="detailarea_tableView"/>
              </item>
             </layout>
            </widget>

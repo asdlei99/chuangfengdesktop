@@ -318,42 +318,58 @@ spacing: 5px;
 
 
 
-  QPushButton#general_search_btn{ 
+QPushButton#general_search_btn,QPushButton#bak_search_btn,QPushButton#nopay_search_btn{ 
 	border-image: url(:/ChuangfengDesktop/Resources/search_btn.png)0 160 0 0;
 }
- QPushButton#general_search_btn:hover{ 
+ QPushButton#general_search_btn:hover,QPushButton#bak_search_btn:hover,
+ QPushButton#nopay_search_btn:hover{ 
 	border-image: url(:/ChuangfengDesktop/Resources/search_btn.png)0 80 0 80;
 }
- QPushButton#general_search_btn:pressed{ 
+ QPushButton#general_search_btn:pressed,QPushButton#bak_search_btn:pressed,
+ QPushButton#nopay_search_btn:pressed{ 
 	border-image: url(:/ChuangfengDesktop/Resources/search_btn.png)0 0 0 160;
 }
 
-QPushButton#general_add_btn{ 
+QPushButton#general_add_btn,QPushButton#bak_add_btn,QPushButton#nopay_add_btn,QPushButton#user_add_btn
+,QPushButton#category_add_btn,QPushButton#area_add_btn,QPushButton#supplier_add_btn,
+QPushButton#shareitem_add_btn,QPushButton#detailarea_add_btn{ 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_add_btn.png)0 160 0 0;
 }
- QPushButton#general_add_btn:hover{ 
+ QPushButton#general_add_btn:hover,QPushButton#bak_add_btn:hover,QPushButton#nopay_add_btn:hover
+ ,QPushButton#user_add_btn:hover,QPushButton#category_add_btn:hover,QPushButton#area_add_btn:hover,
+ QPushButton#supplier_add_btn:hover,QPushButton#shareitem_add_btn:hover,QPushButton#detailarea_add_btn:hover{ 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_add_btn.png)0 80 0 80;
 }
- QPushButton#general_add_btn:pressed{ 
+ QPushButton#general_add_btn:pressed,QPushButton#bak_add_btn:pressed,QPushButton#nopay_add_btn:pressed
+ ,QPushButton#user_add_btn:pressed,QPushButton#category_add_btn:pressed,QPushButton#area_add_btn:pressed,
+ QPushButton#supplier_add_btn:pressed,QPushButton#shareitem_add_btn:pressed,QPushButton#detailarea_add_btn:pressed{ 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_add_btn.png)0 0 0 160;
 }
 
-QPushButton#general_del_btn{ 
+QPushButton#general_del_btn,QPushButton#bak_del_btn,QPushButton#nopay_del_btn,
+QPushButton#user_remove_btn,QPushButton#category_remove_btn,QPushButton#area_remove_btn,QPushButton#supplier_remove_btn,
+QPushButton#shareitem_remove_btn,QPushButton#detailarea_remove_btn{ 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_del_btn.png)0 160 0 0;
 }
- QPushButton#general_del_btn:hover{ 
+ QPushButton#general_del_btn:hover,QPushButton#bak_del_btn:hover,QPushButton#nopay_del_btn:hover,
+ QPushButton#user_remove_btn:hover,QPushButton#category_remove_btn:hover,QPushButton#area_remove_btn:hover,
+ QPushButton#supplier_remove_btn:hover,QPushButton#shareitem_remove_btn:hover,QPushButton#detailarea_remove_btn:hover{ 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_del_btn.png)0 80 0 80;
 }
- QPushButton#general_del_btn:pressed{ 
+ QPushButton#general_del_btn:pressed,QPushButton#bak_del_btn:pressed,QPushButton#nopay_del_btn:pressed,
+ QPushButton#user_remove_btn:pressed,QPushButton#category_remove_btn:pressed,QPushButton#area_remove_btn:pressed,
+ QPushButton#supplier_remove_btn:pressed,QPushButton#shareitem_remove_btn:pressed,QPushButton#detailarea_remove_btn:pressed{ 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_del_btn.png)0 0 0 160;
 }
 
-QPushButton#general_export_btn{ 
+QPushButton#general_export_btn,QPushButton#bak_export_btn,QPushButton#nopay_export_btn{ 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_export_btn.png)0 160 0 0;
 }
- QPushButton#general_export_btn:hover{ 
+ QPushButton#general_export_btn:hover,QPushButton#bak_export_btn:hover,QPushButton#nopay_export_btn:hover
+ { 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_export_btn.png)0 80 0 80;
 }
- QPushButton#general_export_btn:pressed{ 
+ QPushButton#general_export_btn:pressed,QPushButton#bak_export_btn:pressed,QPushButton#nopay_export_btn:pressed
+ { 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_export_btn.png)0 0 0 160;
 }

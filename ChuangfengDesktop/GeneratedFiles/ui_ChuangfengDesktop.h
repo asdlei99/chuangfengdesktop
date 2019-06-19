@@ -22,7 +22,6 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTableView>
-#include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include <qnavbutton.h>
@@ -126,29 +125,47 @@ public:
     QWidget *widget_3;
     NavButton *set_opt_person;
     NavButton *set_opt_account;
-    NavButton *set_opt_area;
+    NavButton *set_opt_detail_area;
     NavButton *set_opt_supplier;
     NavButton *set_opt_task;
+    NavButton *set_opt_area;
     QStackedWidget *sysLayout_StackedWidget;
     QWidget *page_6;
     QGridLayout *gridLayout;
     QTableView *user_table_view;
     QWidget *widget_6;
-    QPushButton *user_search_btn;
     QPushButton *user_add_btn;
     QPushButton *user_remove_btn;
     QWidget *page_7;
-    QHBoxLayout *horizontalLayout_6;
-    QPushButton *pushButton_4;
+    QVBoxLayout *verticalLayout_7;
+    QWidget *widget_10;
+    QPushButton *category_remove_btn;
+    QPushButton *category_add_btn;
+    QTableView *category_tableView;
     QWidget *page_8;
-    QHBoxLayout *horizontalLayout_7;
-    QPushButton *pushButton_5;
+    QVBoxLayout *verticalLayout_8;
+    QWidget *widget_11;
+    QPushButton *area_remove_btn;
+    QPushButton *area_add_btn;
+    QTableView *area_tableView;
     QWidget *page_9;
-    QHBoxLayout *horizontalLayout_8;
-    QPushButton *pushButton_6;
+    QVBoxLayout *verticalLayout_9;
+    QWidget *widget_12;
+    QPushButton *supplier_remove_btn;
+    QPushButton *supplier_add_btn;
+    QTableView *supplier_tableView;
+    QWidget *page_17;
+    QVBoxLayout *verticalLayout_10;
+    QWidget *widget_13;
+    QPushButton *shareitem_remove_btn;
+    QPushButton *shareitem_add_btn;
+    QTableView *shareitem_tableView;
     QWidget *page_10;
     QVBoxLayout *verticalLayout;
-    QToolButton *toolButton;
+    QWidget *widget_14;
+    QPushButton *detailarea_add_btn;
+    QPushButton *detailarea_remove_btn;
+    QTableView *detailarea_tableView;
 
     void setupUi(QWidget *ChuangfengDesktopClass)
     {
@@ -561,10 +578,10 @@ public:
         set_opt_account->setObjectName(QStringLiteral("set_opt_account"));
         set_opt_account->setGeometry(QRect(10, 100, 140, 35));
         set_opt_account->setStyleSheet(QString::fromUtf8("font: 75 11pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
-        set_opt_area = new NavButton(widget_3);
-        set_opt_area->setObjectName(QStringLiteral("set_opt_area"));
-        set_opt_area->setGeometry(QRect(10, 150, 140, 35));
-        set_opt_area->setStyleSheet(QString::fromUtf8("font: 75 11pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+        set_opt_detail_area = new NavButton(widget_3);
+        set_opt_detail_area->setObjectName(QStringLiteral("set_opt_detail_area"));
+        set_opt_detail_area->setGeometry(QRect(10, 300, 140, 35));
+        set_opt_detail_area->setStyleSheet(QString::fromUtf8("font: 75 11pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         set_opt_supplier = new NavButton(widget_3);
         set_opt_supplier->setObjectName(QStringLiteral("set_opt_supplier"));
         set_opt_supplier->setGeometry(QRect(10, 200, 140, 35));
@@ -573,6 +590,10 @@ public:
         set_opt_task->setObjectName(QStringLiteral("set_opt_task"));
         set_opt_task->setGeometry(QRect(10, 250, 140, 35));
         set_opt_task->setStyleSheet(QString::fromUtf8("font: 75 11pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+        set_opt_area = new NavButton(widget_3);
+        set_opt_area->setObjectName(QStringLiteral("set_opt_area"));
+        set_opt_area->setGeometry(QRect(10, 150, 140, 35));
+        set_opt_area->setStyleSheet(QString::fromUtf8("font: 75 11pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
 
         horizontalLayout_9->addWidget(widget_3);
 
@@ -597,65 +618,139 @@ public:
         widget_6 = new QWidget(page_6);
         widget_6->setObjectName(QStringLiteral("widget_6"));
         widget_6->setMinimumSize(QSize(0, 40));
-        user_search_btn = new QPushButton(widget_6);
-        user_search_btn->setObjectName(QStringLiteral("user_search_btn"));
-        user_search_btn->setGeometry(QRect(0, 0, 80, 28));
         user_add_btn = new QPushButton(widget_6);
         user_add_btn->setObjectName(QStringLiteral("user_add_btn"));
-        user_add_btn->setGeometry(QRect(90, 0, 80, 28));
+        user_add_btn->setGeometry(QRect(0, 10, 80, 28));
         user_remove_btn = new QPushButton(widget_6);
         user_remove_btn->setObjectName(QStringLiteral("user_remove_btn"));
-        user_remove_btn->setGeometry(QRect(180, 0, 80, 28));
+        user_remove_btn->setGeometry(QRect(90, 10, 80, 28));
 
         gridLayout->addWidget(widget_6, 0, 0, 1, 1);
 
         sysLayout_StackedWidget->addWidget(page_6);
         page_7 = new QWidget();
         page_7->setObjectName(QStringLiteral("page_7"));
-        horizontalLayout_6 = new QHBoxLayout(page_7);
-        horizontalLayout_6->setSpacing(6);
-        horizontalLayout_6->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        pushButton_4 = new QPushButton(page_7);
-        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        verticalLayout_7 = new QVBoxLayout(page_7);
+        verticalLayout_7->setSpacing(6);
+        verticalLayout_7->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
+        widget_10 = new QWidget(page_7);
+        widget_10->setObjectName(QStringLiteral("widget_10"));
+        widget_10->setMinimumSize(QSize(0, 40));
+        widget_10->setMaximumSize(QSize(16777215, 40));
+        category_remove_btn = new QPushButton(widget_10);
+        category_remove_btn->setObjectName(QStringLiteral("category_remove_btn"));
+        category_remove_btn->setGeometry(QRect(90, 10, 80, 28));
+        category_add_btn = new QPushButton(widget_10);
+        category_add_btn->setObjectName(QStringLiteral("category_add_btn"));
+        category_add_btn->setGeometry(QRect(0, 10, 80, 28));
 
-        horizontalLayout_6->addWidget(pushButton_4);
+        verticalLayout_7->addWidget(widget_10);
+
+        category_tableView = new QTableView(page_7);
+        category_tableView->setObjectName(QStringLiteral("category_tableView"));
+
+        verticalLayout_7->addWidget(category_tableView);
 
         sysLayout_StackedWidget->addWidget(page_7);
         page_8 = new QWidget();
         page_8->setObjectName(QStringLiteral("page_8"));
-        horizontalLayout_7 = new QHBoxLayout(page_8);
-        horizontalLayout_7->setSpacing(6);
-        horizontalLayout_7->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
-        pushButton_5 = new QPushButton(page_8);
-        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        verticalLayout_8 = new QVBoxLayout(page_8);
+        verticalLayout_8->setSpacing(6);
+        verticalLayout_8->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
+        widget_11 = new QWidget(page_8);
+        widget_11->setObjectName(QStringLiteral("widget_11"));
+        widget_11->setMinimumSize(QSize(0, 40));
+        widget_11->setMaximumSize(QSize(16777215, 40));
+        area_remove_btn = new QPushButton(widget_11);
+        area_remove_btn->setObjectName(QStringLiteral("area_remove_btn"));
+        area_remove_btn->setGeometry(QRect(90, 10, 80, 28));
+        area_add_btn = new QPushButton(widget_11);
+        area_add_btn->setObjectName(QStringLiteral("area_add_btn"));
+        area_add_btn->setGeometry(QRect(0, 10, 80, 28));
 
-        horizontalLayout_7->addWidget(pushButton_5);
+        verticalLayout_8->addWidget(widget_11);
+
+        area_tableView = new QTableView(page_8);
+        area_tableView->setObjectName(QStringLiteral("area_tableView"));
+
+        verticalLayout_8->addWidget(area_tableView);
 
         sysLayout_StackedWidget->addWidget(page_8);
         page_9 = new QWidget();
         page_9->setObjectName(QStringLiteral("page_9"));
-        horizontalLayout_8 = new QHBoxLayout(page_9);
-        horizontalLayout_8->setSpacing(6);
-        horizontalLayout_8->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
-        pushButton_6 = new QPushButton(page_9);
-        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        verticalLayout_9 = new QVBoxLayout(page_9);
+        verticalLayout_9->setSpacing(6);
+        verticalLayout_9->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
+        widget_12 = new QWidget(page_9);
+        widget_12->setObjectName(QStringLiteral("widget_12"));
+        widget_12->setMinimumSize(QSize(0, 40));
+        widget_12->setMaximumSize(QSize(16777215, 40));
+        supplier_remove_btn = new QPushButton(widget_12);
+        supplier_remove_btn->setObjectName(QStringLiteral("supplier_remove_btn"));
+        supplier_remove_btn->setGeometry(QRect(90, 10, 80, 28));
+        supplier_add_btn = new QPushButton(widget_12);
+        supplier_add_btn->setObjectName(QStringLiteral("supplier_add_btn"));
+        supplier_add_btn->setGeometry(QRect(0, 10, 80, 28));
 
-        horizontalLayout_8->addWidget(pushButton_6);
+        verticalLayout_9->addWidget(widget_12);
+
+        supplier_tableView = new QTableView(page_9);
+        supplier_tableView->setObjectName(QStringLiteral("supplier_tableView"));
+
+        verticalLayout_9->addWidget(supplier_tableView);
 
         sysLayout_StackedWidget->addWidget(page_9);
+        page_17 = new QWidget();
+        page_17->setObjectName(QStringLiteral("page_17"));
+        verticalLayout_10 = new QVBoxLayout(page_17);
+        verticalLayout_10->setSpacing(6);
+        verticalLayout_10->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_10->setObjectName(QStringLiteral("verticalLayout_10"));
+        widget_13 = new QWidget(page_17);
+        widget_13->setObjectName(QStringLiteral("widget_13"));
+        widget_13->setMinimumSize(QSize(0, 40));
+        widget_13->setMaximumSize(QSize(16777215, 40));
+        shareitem_remove_btn = new QPushButton(widget_13);
+        shareitem_remove_btn->setObjectName(QStringLiteral("shareitem_remove_btn"));
+        shareitem_remove_btn->setGeometry(QRect(90, 10, 80, 28));
+        shareitem_add_btn = new QPushButton(widget_13);
+        shareitem_add_btn->setObjectName(QStringLiteral("shareitem_add_btn"));
+        shareitem_add_btn->setGeometry(QRect(0, 10, 80, 28));
+
+        verticalLayout_10->addWidget(widget_13);
+
+        shareitem_tableView = new QTableView(page_17);
+        shareitem_tableView->setObjectName(QStringLiteral("shareitem_tableView"));
+
+        verticalLayout_10->addWidget(shareitem_tableView);
+
+        sysLayout_StackedWidget->addWidget(page_17);
         page_10 = new QWidget();
         page_10->setObjectName(QStringLiteral("page_10"));
         verticalLayout = new QVBoxLayout(page_10);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        toolButton = new QToolButton(page_10);
-        toolButton->setObjectName(QStringLiteral("toolButton"));
+        widget_14 = new QWidget(page_10);
+        widget_14->setObjectName(QStringLiteral("widget_14"));
+        widget_14->setMinimumSize(QSize(0, 40));
+        widget_14->setMaximumSize(QSize(16777215, 40));
+        detailarea_add_btn = new QPushButton(widget_14);
+        detailarea_add_btn->setObjectName(QStringLiteral("detailarea_add_btn"));
+        detailarea_add_btn->setGeometry(QRect(0, 10, 80, 28));
+        detailarea_remove_btn = new QPushButton(widget_14);
+        detailarea_remove_btn->setObjectName(QStringLiteral("detailarea_remove_btn"));
+        detailarea_remove_btn->setGeometry(QRect(90, 10, 80, 28));
 
-        verticalLayout->addWidget(toolButton);
+        verticalLayout->addWidget(widget_14);
+
+        detailarea_tableView = new QTableView(page_10);
+        detailarea_tableView->setObjectName(QStringLiteral("detailarea_tableView"));
+
+        verticalLayout->addWidget(detailarea_tableView);
 
         sysLayout_StackedWidget->addWidget(page_10);
 
@@ -671,7 +766,7 @@ public:
 
         retranslateUi(ChuangfengDesktopClass);
 
-        main_stackedWidget->setCurrentIndex(0);
+        main_stackedWidget->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(ChuangfengDesktopClass);
@@ -706,18 +801,18 @@ public:
         general_add_btn->setText(QString());
         general_del_btn->setText(QString());
         general_export_btn->setText(QString());
-        bak_del_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\210\240\351\231\244", Q_NULLPTR));
-        bak_export_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\257\274\345\207\272", Q_NULLPTR));
-        bak_add_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\346\226\260\345\242\236", Q_NULLPTR));
+        bak_del_btn->setText(QString());
+        bak_export_btn->setText(QString());
+        bak_add_btn->setText(QString());
         label_6->setText(QApplication::translate("ChuangfengDesktopClass", "\347\273\223\346\235\237\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
         label_7->setText(QApplication::translate("ChuangfengDesktopClass", "\345\274\200\345\247\213\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
-        bak_search_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\346\237\245\350\257\242", Q_NULLPTR));
+        bak_search_btn->setText(QString());
         label_8->setText(QApplication::translate("ChuangfengDesktopClass", "\345\274\200\345\247\213\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
-        nopay_search_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\346\237\245\350\257\242", Q_NULLPTR));
-        nopay_add_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\346\226\260\345\242\236", Q_NULLPTR));
-        nopay_export_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\257\274\345\207\272", Q_NULLPTR));
+        nopay_search_btn->setText(QString());
+        nopay_add_btn->setText(QString());
+        nopay_export_btn->setText(QString());
         label_9->setText(QApplication::translate("ChuangfengDesktopClass", "\347\273\223\346\235\237\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
-        nopay_del_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\210\240\351\231\244", Q_NULLPTR));
+        nopay_del_btn->setText(QString());
         pushButton_2->setText(QApplication::translate("ChuangfengDesktopClass", "PushButton", Q_NULLPTR));
         report_opt_totaltask->setText(QApplication::translate("ChuangfengDesktopClass", "\346\200\273\346\224\266\346\224\257\350\241\250", Q_NULLPTR));
         report_opt_payable->setText(QApplication::translate("ChuangfengDesktopClass", "\345\272\224\344\273\230\346\254\276\350\241\250", Q_NULLPTR));
@@ -730,16 +825,22 @@ public:
         pushButton_11->setText(QApplication::translate("ChuangfengDesktopClass", "3", Q_NULLPTR));
         set_opt_person->setText(QApplication::translate("ChuangfengDesktopClass", "\344\272\272\345\221\230\347\256\241\347\220\206", Q_NULLPTR));
         set_opt_account->setText(QApplication::translate("ChuangfengDesktopClass", "\350\264\246\347\233\256\347\256\241\347\220\206", Q_NULLPTR));
-        set_opt_area->setText(QApplication::translate("ChuangfengDesktopClass", "\345\205\273\346\256\226\345\214\272\345\237\237", Q_NULLPTR));
+        set_opt_detail_area->setText(QApplication::translate("ChuangfengDesktopClass", "\345\205\273\346\256\226\345\241\230\345\217\243", Q_NULLPTR));
         set_opt_supplier->setText(QApplication::translate("ChuangfengDesktopClass", "\344\276\233\345\272\224\345\225\206", Q_NULLPTR));
-        set_opt_task->setText(QApplication::translate("ChuangfengDesktopClass", "\350\264\271\347\224\250\347\261\273\347\233\256", Q_NULLPTR));
-        user_search_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\346\220\234\347\264\242", Q_NULLPTR));
-        user_add_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\346\226\260\345\242\236", Q_NULLPTR));
-        user_remove_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\347\247\273\351\231\244", Q_NULLPTR));
-        pushButton_4->setText(QApplication::translate("ChuangfengDesktopClass", "2", Q_NULLPTR));
-        pushButton_5->setText(QApplication::translate("ChuangfengDesktopClass", "3", Q_NULLPTR));
-        pushButton_6->setText(QApplication::translate("ChuangfengDesktopClass", "4", Q_NULLPTR));
-        toolButton->setText(QApplication::translate("ChuangfengDesktopClass", "5", Q_NULLPTR));
+        set_opt_task->setText(QApplication::translate("ChuangfengDesktopClass", "\350\264\271\347\224\250\345\210\206\346\221\212\347\261\273\347\233\256", Q_NULLPTR));
+        set_opt_area->setText(QApplication::translate("ChuangfengDesktopClass", "\345\214\272\345\237\237\347\256\241\347\220\206", Q_NULLPTR));
+        user_add_btn->setText(QString());
+        user_remove_btn->setText(QString());
+        category_remove_btn->setText(QString());
+        category_add_btn->setText(QString());
+        area_remove_btn->setText(QString());
+        area_add_btn->setText(QString());
+        supplier_remove_btn->setText(QString());
+        supplier_add_btn->setText(QString());
+        shareitem_remove_btn->setText(QString());
+        shareitem_add_btn->setText(QString());
+        detailarea_add_btn->setText(QString());
+        detailarea_remove_btn->setText(QString());
     } // retranslateUi
 
 };
