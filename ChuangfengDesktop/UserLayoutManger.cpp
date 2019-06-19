@@ -3,6 +3,7 @@
 UserLayoutManger::UserLayoutManger(Ui::ChuangfengDesktopClass*ui)
 	:BaseLayoutManager(ui)
 {
+	InitLayout();
 }
 
 UserLayoutManger::~UserLayoutManger()

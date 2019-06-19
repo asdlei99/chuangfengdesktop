@@ -6,7 +6,7 @@ class BakLayoutManager :
 public:
 	BakLayoutManager(Ui::ChuangfengDesktopClass*ui);
 	~BakLayoutManager();
-public:
+private:
 	virtual void InitLayout();
 };
 

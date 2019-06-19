@@ -5,6 +5,7 @@
 BaseLayoutManager::BaseLayoutManager(Ui::ChuangfengDesktopClass*ui)
 	:m_pUi(ui)
 {
+	
 }
 
 
@@ -12,10 +13,7 @@ BaseLayoutManager::~BaseLayoutManager()
 {
 }
 
-void BaseLayoutManager::InitLayout()
-{
 
-}
 
 void BaseLayoutManager::onSetTableAttribute(QTableView *pTableView, const int cloum)
 {

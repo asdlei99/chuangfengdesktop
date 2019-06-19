@@ -6,7 +6,7 @@ class ShareItemLayoutManager :
 public:
 	ShareItemLayoutManager(Ui::ChuangfengDesktopClass*ui);
 	~ShareItemLayoutManager();
-public:
+private:
 	virtual void InitLayout();
 };
 

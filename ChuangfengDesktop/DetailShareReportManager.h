@@ -1,11 +1,11 @@
 #pragma once
 #include "BaseLayoutManager.h"
-class CategoryLayoutManager :
+class DetailShareReportManager :
 	public BaseLayoutManager
 {
 public:
-	CategoryLayoutManager(Ui::ChuangfengDesktopClass*ui);
-	~CategoryLayoutManager();
+	DetailShareReportManager(Ui::ChuangfengDesktopClass*ui);
+	~DetailShareReportManager();
 private:
 	virtual void InitLayout();
 };

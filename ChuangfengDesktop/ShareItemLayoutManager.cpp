@@ -1,12 +1,10 @@
 #include "ShareItemLayoutManager.h"
 
-
-
 ShareItemLayoutManager::ShareItemLayoutManager(Ui::ChuangfengDesktopClass*ui)
 	:BaseLayoutManager(ui)
 {
+	InitLayout();
 }
-
 
 ShareItemLayoutManager::~ShareItemLayoutManager()
 {

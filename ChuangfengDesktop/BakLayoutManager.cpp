@@ -5,6 +5,7 @@
 BakLayoutManager::BakLayoutManager(Ui::ChuangfengDesktopClass*ui) 
 	:BaseLayoutManager(ui)
 {
+	InitLayout();
 }
 
 

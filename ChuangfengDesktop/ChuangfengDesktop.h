@@ -11,6 +11,13 @@
 #include "AreaLayoutManager.h"
 #include "SupplierLayoutManager.h"
 #include "ShareItemLayoutManager.h"
+#include "DetailAreaLayoutManager.h"
+#include "TotalReportManager.h"
+#include "NopayReportManger.h"
+#include "ShareReportManager.h"
+#include "DetailShareReportManager.h"
+#include "MaterielReportManger.h"
+#include "StoreReportManager.h"
 using namespace  std;
 
 class ChuangfengDesktop :  public MoveableFramelessWindow
@@ -54,4 +61,11 @@ private:
 	shared_ptr<AreaLayoutManager> m_ptrAreaLayoutManager;
 	shared_ptr<SupplierLayoutManager> m_ptrSupplierLayoutManager;
 	shared_ptr<ShareItemLayoutManager> m_ptrShareItemLayoutManager;
+	shared_ptr<DetailAreaLayoutManager> m_ptrDetailAreaLayoutManager;
+	shared_ptr<TotalReportManager> m_ptrTotalReportManager;
+	shared_ptr<NopayReportManger> m_ptrNopayReportManger;
+	shared_ptr<ShareReportManager> m_ptrShareReportManager;
+	shared_ptr<DetailShareReportManager> m_ptrDetailShareReportManager;
+	shared_ptr<MaterielReportManger> m_ptrMaterielReportManger;
+	shared_ptr<StoreReportManager> m_ptrStoreReportManager;
 };

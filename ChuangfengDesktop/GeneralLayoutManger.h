@@ -8,6 +8,7 @@ class GeneralLayoutManger
 public:
 	GeneralLayoutManger(Ui::ChuangfengDesktopClass*ui);
 	~GeneralLayoutManger();
+private:
 	virtual void InitLayout();
 };
 

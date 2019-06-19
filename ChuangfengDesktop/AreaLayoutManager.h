@@ -6,7 +6,7 @@ class AreaLayoutManager :
 public:
 	AreaLayoutManager(Ui::ChuangfengDesktopClass*ui);
 	~AreaLayoutManager();
-public:
+private:
 	virtual void InitLayout();
 };
 

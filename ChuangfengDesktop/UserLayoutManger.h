@@ -8,6 +8,7 @@ class UserLayoutManger :
 public:
 	UserLayoutManger(Ui::ChuangfengDesktopClass*ui);
 	~UserLayoutManger();
+private:
 	virtual void InitLayout();
 };
 

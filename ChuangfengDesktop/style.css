@@ -318,58 +318,77 @@ spacing: 5px;
 
 
 
-QPushButton#general_search_btn,QPushButton#bak_search_btn,QPushButton#nopay_search_btn{ 
+#general_search_btn,#bak_search_btn,#nopay_search_btn,#totalreport_search_btn,#nopay_report_search_btn
+,#share_report_search_btn,#detaishare_report_search_btn,#materielreport_search_btn,#storereport_search_btn
+{ 
 	border-image: url(:/ChuangfengDesktop/Resources/search_btn.png)0 160 0 0;
 }
- QPushButton#general_search_btn:hover,QPushButton#bak_search_btn:hover,
- QPushButton#nopay_search_btn:hover{ 
+ #general_search_btn:hover,#bak_search_btn:hover,#nopay_search_btn:hover,#totalreport_search_btn:hover
+ ,#nopay_report_search_btn:hover,#share_report_search_btn:hover,#detaishare_report_search_btn:hover
+ ,#materielreport_search_btn:hover,#storereport_search_btn:hover
+ { 
 	border-image: url(:/ChuangfengDesktop/Resources/search_btn.png)0 80 0 80;
 }
- QPushButton#general_search_btn:pressed,QPushButton#bak_search_btn:pressed,
- QPushButton#nopay_search_btn:pressed{ 
+ #general_search_btn:pressed,#bak_search_btn:pressed,#nopay_search_btn:pressed,#totalreport_search_btn:pressed
+ ,#nopay_report_search_btn:pressed,#share_report_search_btn:pressed,#detaishare_report_search_btn:pressed
+ ,#materielreport_search_btn:pressed ,#storereport_search_btn:pressed
+ { 
 	border-image: url(:/ChuangfengDesktop/Resources/search_btn.png)0 0 0 160;
 }
 
-QPushButton#general_add_btn,QPushButton#bak_add_btn,QPushButton#nopay_add_btn,QPushButton#user_add_btn
-,QPushButton#category_add_btn,QPushButton#area_add_btn,QPushButton#supplier_add_btn,
-QPushButton#shareitem_add_btn,QPushButton#detailarea_add_btn{ 
+#general_add_btn,#bak_add_btn,#nopay_add_btn,#user_add_btn,#category_add_btn,#area_add_btn,
+#supplier_add_btn,#shareitem_add_btn,#detailarea_add_btn
+{ 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_add_btn.png)0 160 0 0;
 }
- QPushButton#general_add_btn:hover,QPushButton#bak_add_btn:hover,QPushButton#nopay_add_btn:hover
- ,QPushButton#user_add_btn:hover,QPushButton#category_add_btn:hover,QPushButton#area_add_btn:hover,
- QPushButton#supplier_add_btn:hover,QPushButton#shareitem_add_btn:hover,QPushButton#detailarea_add_btn:hover{ 
+
+#general_add_btn:hover,#bak_add_btn:hover,#nopay_add_btn:hover,#user_add_btn:hover,#category_add_btn:hover,
+#area_add_btn:hover,#supplier_add_btn:hover,#shareitem_add_btn:hover,#detailarea_add_btn:hover
+{ 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_add_btn.png)0 80 0 80;
 }
- QPushButton#general_add_btn:pressed,QPushButton#bak_add_btn:pressed,QPushButton#nopay_add_btn:pressed
- ,QPushButton#user_add_btn:pressed,QPushButton#category_add_btn:pressed,QPushButton#area_add_btn:pressed,
- QPushButton#supplier_add_btn:pressed,QPushButton#shareitem_add_btn:pressed,QPushButton#detailarea_add_btn:pressed{ 
+
+#general_add_btn:pressed,#bak_add_btn:pressed,#nopay_add_btn:pressed,#user_add_btn:pressed,
+#category_add_btn:pressed,#area_add_btn:pressed,#supplier_add_btn:pressed,#shareitem_add_btn:pressed,
+#detailarea_add_btn:pressed
+{ 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_add_btn.png)0 0 0 160;
 }
 
-QPushButton#general_del_btn,QPushButton#bak_del_btn,QPushButton#nopay_del_btn,
-QPushButton#user_remove_btn,QPushButton#category_remove_btn,QPushButton#area_remove_btn,QPushButton#supplier_remove_btn,
-QPushButton#shareitem_remove_btn,QPushButton#detailarea_remove_btn{ 
+
+#general_del_btn,#bak_del_btn,#nopay_del_btn,#user_remove_btn,#category_remove_btn,#area_remove_btn,
+#supplier_remove_btn,#shareitem_remove_btn,#detailarea_remove_btn
+{ 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_del_btn.png)0 160 0 0;
 }
- QPushButton#general_del_btn:hover,QPushButton#bak_del_btn:hover,QPushButton#nopay_del_btn:hover,
- QPushButton#user_remove_btn:hover,QPushButton#category_remove_btn:hover,QPushButton#area_remove_btn:hover,
- QPushButton#supplier_remove_btn:hover,QPushButton#shareitem_remove_btn:hover,QPushButton#detailarea_remove_btn:hover{ 
+
+#general_del_btn:hover,#bak_del_btn:hover,#nopay_del_btn:hover,#user_remove_btn:hover,
+#category_remove_btn:hover,#area_remove_btn:hover,#supplier_remove_btn:hover,#shareitem_remove_btn:hover,
+#detailarea_remove_btn:hover
+{ 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_del_btn.png)0 80 0 80;
 }
- QPushButton#general_del_btn:pressed,QPushButton#bak_del_btn:pressed,QPushButton#nopay_del_btn:pressed,
- QPushButton#user_remove_btn:pressed,QPushButton#category_remove_btn:pressed,QPushButton#area_remove_btn:pressed,
- QPushButton#supplier_remove_btn:pressed,QPushButton#shareitem_remove_btn:pressed,QPushButton#detailarea_remove_btn:pressed{ 
+#general_del_btn:pressed,#bak_del_btn:pressed,#nopay_del_btn:pressed,#user_remove_btn:pressed,
+#category_remove_btn:pressed,#area_remove_btn:pressed,#supplier_remove_btn:pressed,
+#shareitem_remove_btn:pressed,#detailarea_remove_btn:pressed
+{ 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_del_btn.png)0 0 0 160;
 }
 
-QPushButton#general_export_btn,QPushButton#bak_export_btn,QPushButton#nopay_export_btn{ 
+#general_export_btn,#bak_export_btn,#nopay_export_btn,#totalreport_export_btn,#nopay_report_export_btn,
+#sharereport_export_btn,#detailsharereport_export_btn,#materielreport_export_btn,#storereport_export_btn
+{ 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_export_btn.png)0 160 0 0;
 }
- QPushButton#general_export_btn:hover,QPushButton#bak_export_btn:hover,QPushButton#nopay_export_btn:hover
- { 
+#general_export_btn:hover,#bak_export_btn:hover,#nopay_export_btn:hover,#totalreport_export_btn:hover
+,#nopay_report_export_btn:hover,#sharereport_export_btn:hover,#detailsharereport_export_btn:hover
+,#materielreport_export_btn:hover,#storereport_export_btn:hover
+{ 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_export_btn.png)0 80 0 80;
 }
- QPushButton#general_export_btn:pressed,QPushButton#bak_export_btn:pressed,QPushButton#nopay_export_btn:pressed
- { 
+#general_export_btn:pressed,#bak_export_btn:pressed,#nopay_export_btn:pressed,#totalreport_export_btn:pressed
+,#nopay_report_export_btn:pressed,#sharereport_export_btn:pressed,#detailsharereport_export_btn:pressed
+,#materielreport_export_btn:pressed,#storereport_export_btn:pressed
+{ 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_export_btn.png)0 0 0 160;
 }

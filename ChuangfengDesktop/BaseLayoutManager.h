@@ -8,8 +8,9 @@ class BaseLayoutManager:public QObject
 public:
 	BaseLayoutManager(Ui::ChuangfengDesktopClass*ui);
 	~BaseLayoutManager();
-public:
-	virtual void InitLayout();
+private:
+	virtual void InitLayout() =0;
+protected:
 	virtual void onSetTableAttribute(QTableView *pTableView, const int cloum);
 protected slots:
 	void slotCheckBoxStateChanged(bool status);

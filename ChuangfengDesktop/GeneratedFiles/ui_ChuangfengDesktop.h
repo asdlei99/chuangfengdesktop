@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
@@ -103,6 +104,7 @@ public:
     QPushButton *pushButton_2;
     QWidget *page_3;
     QWidget *page_4;
+    QHBoxLayout *horizontalLayout_6;
     QWidget *widget_5;
     NavButton *report_opt_totaltask;
     NavButton *report_opt_payable;
@@ -112,14 +114,73 @@ public:
     NavButton *report_opt_totalfeed;
     QStackedWidget *Report_StackedWidget;
     QWidget *page_14;
-    QPushButton *pushButton_9;
+    QVBoxLayout *verticalLayout_11;
+    QWidget *widget_15;
+    QDateEdit *totalreport_startdateEdit;
+    QLabel *label_10;
+    QDateEdit *total_report_enddateEdit;
+    QLabel *label_11;
+    QPushButton *totalreport_search_btn;
+    QLabel *label_12;
+    QLabel *label_13;
+    QPushButton *totalreport_export_btn;
+    QTableView *total_reporttableView;
     QWidget *page_19;
+    QVBoxLayout *verticalLayout_12;
+    QWidget *widget_16;
+    QLabel *label_14;
+    QLabel *label_15;
+    QDateEdit *nopay_report_startdateEdit;
+    QPushButton *nopay_report_search_btn;
+    QDateEdit *nopay_report_enddateEdit;
+    QPushButton *nopay_report_export_btn;
+    QTableView *nopayreport_tableView;
     QWidget *page_20;
+    QVBoxLayout *verticalLayout_13;
+    QWidget *widget_17;
+    QPushButton *share_report_search_btn;
+    QPushButton *sharereport_export_btn;
+    QDateEdit *share_report_startdateEdit;
+    QLabel *label_16;
+    QLabel *label_17;
+    QDateEdit *share_report_enddateEdit;
+    QTableView *share_report_tableview;
     QWidget *page_21;
+    QVBoxLayout *verticalLayout_14;
+    QWidget *widget_18;
+    QDateEdit *detailshare_report_enddateEdit;
+    QDateEdit *detailshare_report_startdateEdit;
+    QLabel *label_18;
+    QPushButton *detaishare_report_search_btn;
+    QPushButton *detailsharereport_export_btn;
+    QLabel *label_19;
+    QLabel *label_20;
+    QComboBox *area_combox;
+    QTableView *detailshare_report_tableview;
     QWidget *page_15;
-    QPushButton *pushButton_10;
+    QVBoxLayout *verticalLayout_15;
+    QWidget *widget_19;
+    QLabel *label_21;
+    QLabel *label_22;
+    QLabel *label_23;
+    QLabel *label_24;
+    QDateEdit *materielreport_startdateEdit;
+    QPushButton *materielreport_search_btn;
+    QDateEdit *materiel_report_enddateEdit;
+    QPushButton *materielreport_export_btn;
+    QTableView *materiel_report_tableView;
     QWidget *page_16;
-    QPushButton *pushButton_11;
+    QVBoxLayout *verticalLayout_16;
+    QWidget *widget_20;
+    QDateEdit *store_report_enddateEdit;
+    QLabel *label_25;
+    QLabel *label_26;
+    QDateEdit *storereport_startdateEdit;
+    QPushButton *storereport_export_btn;
+    QLabel *label_27;
+    QPushButton *storereport_search_btn;
+    QLabel *label_28;
+    QTableView *store_report_tableView;
     QWidget *page_5;
     QHBoxLayout *horizontalLayout_9;
     QWidget *widget_3;
@@ -200,7 +261,7 @@ public:
         widget_2->setMaximumSize(QSize(90, 16777215));
         label = new QLabel(widget_2);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(20, 20, 50, 50));
+        label->setGeometry(QRect(20, 0, 50, 50));
         label->setStyleSheet(QStringLiteral("border-image: url(:/ChuangfengDesktop/Resources/test.png);"));
 
         horizontalLayout_2->addWidget(widget_2);
@@ -495,9 +556,13 @@ public:
         main_stackedWidget->addWidget(page_3);
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
+        horizontalLayout_6 = new QHBoxLayout(page_4);
+        horizontalLayout_6->setSpacing(1);
+        horizontalLayout_6->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
         widget_5 = new QWidget(page_4);
         widget_5->setObjectName(QStringLiteral("widget_5"));
-        widget_5->setGeometry(QRect(0, 0, 160, 16777215));
         widget_5->setMinimumSize(QSize(160, 0));
         widget_5->setStyleSheet(QStringLiteral("background-color:#44474D;  "));
         report_opt_totaltask = new NavButton(widget_5);
@@ -524,45 +589,306 @@ public:
         report_opt_totalfeed->setObjectName(QStringLiteral("report_opt_totalfeed"));
         report_opt_totalfeed->setGeometry(QRect(10, 300, 140, 35));
         report_opt_totalfeed->setStyleSheet(QString::fromUtf8("font: 75 11pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+
+        horizontalLayout_6->addWidget(widget_5);
+
         Report_StackedWidget = new QStackedWidget(page_4);
         Report_StackedWidget->setObjectName(QStringLiteral("Report_StackedWidget"));
-        Report_StackedWidget->setGeometry(QRect(161, 0, 16777215, 16777215));
         Report_StackedWidget->setMinimumSize(QSize(925, 491));
         Report_StackedWidget->setMaximumSize(QSize(16777215, 16777215));
         Report_StackedWidget->setStyleSheet(QStringLiteral("background-color:#44474D;  "));
         page_14 = new QWidget();
         page_14->setObjectName(QStringLiteral("page_14"));
         page_14->setStyleSheet(QStringLiteral(""));
-        pushButton_9 = new QPushButton(page_14);
-        pushButton_9->setObjectName(QStringLiteral("pushButton_9"));
-        pushButton_9->setGeometry(QRect(230, 160, 75, 23));
+        verticalLayout_11 = new QVBoxLayout(page_14);
+        verticalLayout_11->setSpacing(6);
+        verticalLayout_11->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_11->setObjectName(QStringLiteral("verticalLayout_11"));
+        widget_15 = new QWidget(page_14);
+        widget_15->setObjectName(QStringLiteral("widget_15"));
+        widget_15->setMinimumSize(QSize(0, 60));
+        widget_15->setMaximumSize(QSize(16777215, 60));
+        totalreport_startdateEdit = new QDateEdit(widget_15);
+        totalreport_startdateEdit->setObjectName(QStringLiteral("totalreport_startdateEdit"));
+        totalreport_startdateEdit->setGeometry(QRect(70, 0, 110, 28));
+        totalreport_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_10 = new QLabel(widget_15);
+        label_10->setObjectName(QStringLiteral("label_10"));
+        label_10->setGeometry(QRect(190, 0, 60, 28));
+        label_10->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        total_report_enddateEdit = new QDateEdit(widget_15);
+        total_report_enddateEdit->setObjectName(QStringLiteral("total_report_enddateEdit"));
+        total_report_enddateEdit->setGeometry(QRect(260, 0, 110, 28));
+        total_report_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_11 = new QLabel(widget_15);
+        label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setGeometry(QRect(0, 0, 60, 28));
+        label_11->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        totalreport_search_btn = new QPushButton(widget_15);
+        totalreport_search_btn->setObjectName(QStringLiteral("totalreport_search_btn"));
+        totalreport_search_btn->setGeometry(QRect(380, 0, 80, 28));
+        label_12 = new QLabel(widget_15);
+        label_12->setObjectName(QStringLiteral("label_12"));
+        label_12->setGeometry(QRect(110, 30, 191, 31));
+        label_12->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
+"font: 75 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+        label_13 = new QLabel(widget_15);
+        label_13->setObjectName(QStringLiteral("label_13"));
+        label_13->setGeometry(QRect(530, 30, 191, 31));
+        label_13->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
+"font: 75 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+        totalreport_export_btn = new QPushButton(widget_15);
+        totalreport_export_btn->setObjectName(QStringLiteral("totalreport_export_btn"));
+        totalreport_export_btn->setGeometry(QRect(480, 0, 80, 28));
+
+        verticalLayout_11->addWidget(widget_15);
+
+        total_reporttableView = new QTableView(page_14);
+        total_reporttableView->setObjectName(QStringLiteral("total_reporttableView"));
+
+        verticalLayout_11->addWidget(total_reporttableView);
+
         Report_StackedWidget->addWidget(page_14);
         page_19 = new QWidget();
         page_19->setObjectName(QStringLiteral("page_19"));
+        verticalLayout_12 = new QVBoxLayout(page_19);
+        verticalLayout_12->setSpacing(6);
+        verticalLayout_12->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
+        widget_16 = new QWidget(page_19);
+        widget_16->setObjectName(QStringLiteral("widget_16"));
+        widget_16->setMinimumSize(QSize(0, 40));
+        widget_16->setMaximumSize(QSize(16777215, 40));
+        label_14 = new QLabel(widget_16);
+        label_14->setObjectName(QStringLiteral("label_14"));
+        label_14->setGeometry(QRect(0, 10, 60, 28));
+        label_14->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_15 = new QLabel(widget_16);
+        label_15->setObjectName(QStringLiteral("label_15"));
+        label_15->setGeometry(QRect(190, 10, 60, 28));
+        label_15->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        nopay_report_startdateEdit = new QDateEdit(widget_16);
+        nopay_report_startdateEdit->setObjectName(QStringLiteral("nopay_report_startdateEdit"));
+        nopay_report_startdateEdit->setGeometry(QRect(70, 10, 110, 28));
+        nopay_report_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        nopay_report_search_btn = new QPushButton(widget_16);
+        nopay_report_search_btn->setObjectName(QStringLiteral("nopay_report_search_btn"));
+        nopay_report_search_btn->setGeometry(QRect(380, 10, 80, 28));
+        nopay_report_enddateEdit = new QDateEdit(widget_16);
+        nopay_report_enddateEdit->setObjectName(QStringLiteral("nopay_report_enddateEdit"));
+        nopay_report_enddateEdit->setGeometry(QRect(260, 10, 110, 28));
+        nopay_report_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        nopay_report_export_btn = new QPushButton(widget_16);
+        nopay_report_export_btn->setObjectName(QStringLiteral("nopay_report_export_btn"));
+        nopay_report_export_btn->setGeometry(QRect(480, 10, 80, 28));
+
+        verticalLayout_12->addWidget(widget_16);
+
+        nopayreport_tableView = new QTableView(page_19);
+        nopayreport_tableView->setObjectName(QStringLiteral("nopayreport_tableView"));
+
+        verticalLayout_12->addWidget(nopayreport_tableView);
+
         Report_StackedWidget->addWidget(page_19);
         page_20 = new QWidget();
         page_20->setObjectName(QStringLiteral("page_20"));
+        verticalLayout_13 = new QVBoxLayout(page_20);
+        verticalLayout_13->setSpacing(6);
+        verticalLayout_13->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_13->setObjectName(QStringLiteral("verticalLayout_13"));
+        widget_17 = new QWidget(page_20);
+        widget_17->setObjectName(QStringLiteral("widget_17"));
+        widget_17->setMinimumSize(QSize(0, 40));
+        widget_17->setMaximumSize(QSize(16777215, 40));
+        share_report_search_btn = new QPushButton(widget_17);
+        share_report_search_btn->setObjectName(QStringLiteral("share_report_search_btn"));
+        share_report_search_btn->setGeometry(QRect(380, 10, 80, 28));
+        sharereport_export_btn = new QPushButton(widget_17);
+        sharereport_export_btn->setObjectName(QStringLiteral("sharereport_export_btn"));
+        sharereport_export_btn->setGeometry(QRect(480, 10, 80, 28));
+        share_report_startdateEdit = new QDateEdit(widget_17);
+        share_report_startdateEdit->setObjectName(QStringLiteral("share_report_startdateEdit"));
+        share_report_startdateEdit->setGeometry(QRect(70, 10, 110, 28));
+        share_report_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_16 = new QLabel(widget_17);
+        label_16->setObjectName(QStringLiteral("label_16"));
+        label_16->setGeometry(QRect(190, 10, 60, 28));
+        label_16->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_17 = new QLabel(widget_17);
+        label_17->setObjectName(QStringLiteral("label_17"));
+        label_17->setGeometry(QRect(0, 10, 60, 28));
+        label_17->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        share_report_enddateEdit = new QDateEdit(widget_17);
+        share_report_enddateEdit->setObjectName(QStringLiteral("share_report_enddateEdit"));
+        share_report_enddateEdit->setGeometry(QRect(260, 10, 110, 28));
+        share_report_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+
+        verticalLayout_13->addWidget(widget_17);
+
+        share_report_tableview = new QTableView(page_20);
+        share_report_tableview->setObjectName(QStringLiteral("share_report_tableview"));
+
+        verticalLayout_13->addWidget(share_report_tableview);
+
         Report_StackedWidget->addWidget(page_20);
         page_21 = new QWidget();
         page_21->setObjectName(QStringLiteral("page_21"));
+        verticalLayout_14 = new QVBoxLayout(page_21);
+        verticalLayout_14->setSpacing(6);
+        verticalLayout_14->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_14->setObjectName(QStringLiteral("verticalLayout_14"));
+        widget_18 = new QWidget(page_21);
+        widget_18->setObjectName(QStringLiteral("widget_18"));
+        widget_18->setMinimumSize(QSize(0, 40));
+        widget_18->setMaximumSize(QSize(16777215, 40));
+        detailshare_report_enddateEdit = new QDateEdit(widget_18);
+        detailshare_report_enddateEdit->setObjectName(QStringLiteral("detailshare_report_enddateEdit"));
+        detailshare_report_enddateEdit->setGeometry(QRect(260, 10, 110, 28));
+        detailshare_report_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        detailshare_report_startdateEdit = new QDateEdit(widget_18);
+        detailshare_report_startdateEdit->setObjectName(QStringLiteral("detailshare_report_startdateEdit"));
+        detailshare_report_startdateEdit->setGeometry(QRect(70, 10, 110, 28));
+        detailshare_report_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_18 = new QLabel(widget_18);
+        label_18->setObjectName(QStringLiteral("label_18"));
+        label_18->setGeometry(QRect(190, 10, 60, 28));
+        label_18->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        detaishare_report_search_btn = new QPushButton(widget_18);
+        detaishare_report_search_btn->setObjectName(QStringLiteral("detaishare_report_search_btn"));
+        detaishare_report_search_btn->setGeometry(QRect(540, 10, 80, 28));
+        detailsharereport_export_btn = new QPushButton(widget_18);
+        detailsharereport_export_btn->setObjectName(QStringLiteral("detailsharereport_export_btn"));
+        detailsharereport_export_btn->setGeometry(QRect(640, 10, 80, 28));
+        label_19 = new QLabel(widget_18);
+        label_19->setObjectName(QStringLiteral("label_19"));
+        label_19->setGeometry(QRect(0, 10, 60, 28));
+        label_19->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_20 = new QLabel(widget_18);
+        label_20->setObjectName(QStringLiteral("label_20"));
+        label_20->setGeometry(QRect(380, 10, 60, 28));
+        label_20->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        area_combox = new QComboBox(widget_18);
+        area_combox->setObjectName(QStringLiteral("area_combox"));
+        area_combox->setGeometry(QRect(440, 10, 80, 28));
+
+        verticalLayout_14->addWidget(widget_18);
+
+        detailshare_report_tableview = new QTableView(page_21);
+        detailshare_report_tableview->setObjectName(QStringLiteral("detailshare_report_tableview"));
+
+        verticalLayout_14->addWidget(detailshare_report_tableview);
+
         Report_StackedWidget->addWidget(page_21);
         page_15 = new QWidget();
         page_15->setObjectName(QStringLiteral("page_15"));
-        pushButton_10 = new QPushButton(page_15);
-        pushButton_10->setObjectName(QStringLiteral("pushButton_10"));
-        pushButton_10->setGeometry(QRect(220, 160, 75, 23));
+        verticalLayout_15 = new QVBoxLayout(page_15);
+        verticalLayout_15->setSpacing(6);
+        verticalLayout_15->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_15->setObjectName(QStringLiteral("verticalLayout_15"));
+        widget_19 = new QWidget(page_15);
+        widget_19->setObjectName(QStringLiteral("widget_19"));
+        widget_19->setMinimumSize(QSize(0, 60));
+        widget_19->setMaximumSize(QSize(16777215, 60));
+        label_21 = new QLabel(widget_19);
+        label_21->setObjectName(QStringLiteral("label_21"));
+        label_21->setGeometry(QRect(10, 0, 60, 28));
+        label_21->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_22 = new QLabel(widget_19);
+        label_22->setObjectName(QStringLiteral("label_22"));
+        label_22->setGeometry(QRect(200, 0, 60, 28));
+        label_22->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_23 = new QLabel(widget_19);
+        label_23->setObjectName(QStringLiteral("label_23"));
+        label_23->setGeometry(QRect(540, 30, 191, 31));
+        label_23->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
+"font: 75 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+        label_24 = new QLabel(widget_19);
+        label_24->setObjectName(QStringLiteral("label_24"));
+        label_24->setGeometry(QRect(120, 30, 191, 31));
+        label_24->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
+"font: 75 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+        materielreport_startdateEdit = new QDateEdit(widget_19);
+        materielreport_startdateEdit->setObjectName(QStringLiteral("materielreport_startdateEdit"));
+        materielreport_startdateEdit->setGeometry(QRect(80, 0, 110, 28));
+        materielreport_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        materielreport_search_btn = new QPushButton(widget_19);
+        materielreport_search_btn->setObjectName(QStringLiteral("materielreport_search_btn"));
+        materielreport_search_btn->setGeometry(QRect(390, 0, 80, 28));
+        materiel_report_enddateEdit = new QDateEdit(widget_19);
+        materiel_report_enddateEdit->setObjectName(QStringLiteral("materiel_report_enddateEdit"));
+        materiel_report_enddateEdit->setGeometry(QRect(270, 0, 110, 28));
+        materiel_report_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        materielreport_export_btn = new QPushButton(widget_19);
+        materielreport_export_btn->setObjectName(QStringLiteral("materielreport_export_btn"));
+        materielreport_export_btn->setGeometry(QRect(490, 0, 80, 28));
+
+        verticalLayout_15->addWidget(widget_19);
+
+        materiel_report_tableView = new QTableView(page_15);
+        materiel_report_tableView->setObjectName(QStringLiteral("materiel_report_tableView"));
+
+        verticalLayout_15->addWidget(materiel_report_tableView);
+
         Report_StackedWidget->addWidget(page_15);
         page_16 = new QWidget();
         page_16->setObjectName(QStringLiteral("page_16"));
-        pushButton_11 = new QPushButton(page_16);
-        pushButton_11->setObjectName(QStringLiteral("pushButton_11"));
-        pushButton_11->setGeometry(QRect(110, 170, 75, 23));
+        verticalLayout_16 = new QVBoxLayout(page_16);
+        verticalLayout_16->setSpacing(6);
+        verticalLayout_16->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_16->setObjectName(QStringLiteral("verticalLayout_16"));
+        widget_20 = new QWidget(page_16);
+        widget_20->setObjectName(QStringLiteral("widget_20"));
+        widget_20->setMinimumSize(QSize(0, 60));
+        widget_20->setMaximumSize(QSize(16777215, 60));
+        store_report_enddateEdit = new QDateEdit(widget_20);
+        store_report_enddateEdit->setObjectName(QStringLiteral("store_report_enddateEdit"));
+        store_report_enddateEdit->setGeometry(QRect(270, 0, 110, 28));
+        store_report_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_25 = new QLabel(widget_20);
+        label_25->setObjectName(QStringLiteral("label_25"));
+        label_25->setGeometry(QRect(120, 30, 261, 31));
+        label_25->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
+"font: 75 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+        label_26 = new QLabel(widget_20);
+        label_26->setObjectName(QStringLiteral("label_26"));
+        label_26->setGeometry(QRect(10, 0, 60, 28));
+        label_26->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        storereport_startdateEdit = new QDateEdit(widget_20);
+        storereport_startdateEdit->setObjectName(QStringLiteral("storereport_startdateEdit"));
+        storereport_startdateEdit->setGeometry(QRect(80, 0, 110, 28));
+        storereport_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        storereport_export_btn = new QPushButton(widget_20);
+        storereport_export_btn->setObjectName(QStringLiteral("storereport_export_btn"));
+        storereport_export_btn->setGeometry(QRect(490, 0, 80, 28));
+        label_27 = new QLabel(widget_20);
+        label_27->setObjectName(QStringLiteral("label_27"));
+        label_27->setGeometry(QRect(540, 30, 191, 31));
+        label_27->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
+"font: 75 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+        storereport_search_btn = new QPushButton(widget_20);
+        storereport_search_btn->setObjectName(QStringLiteral("storereport_search_btn"));
+        storereport_search_btn->setGeometry(QRect(390, 0, 80, 28));
+        label_28 = new QLabel(widget_20);
+        label_28->setObjectName(QStringLiteral("label_28"));
+        label_28->setGeometry(QRect(200, 0, 60, 28));
+        label_28->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+
+        verticalLayout_16->addWidget(widget_20);
+
+        store_report_tableView = new QTableView(page_16);
+        store_report_tableView->setObjectName(QStringLiteral("store_report_tableView"));
+
+        verticalLayout_16->addWidget(store_report_tableView);
+
         Report_StackedWidget->addWidget(page_16);
+
+        horizontalLayout_6->addWidget(Report_StackedWidget);
+
         main_stackedWidget->addWidget(page_4);
         page_5 = new QWidget();
         page_5->setObjectName(QStringLiteral("page_5"));
         horizontalLayout_9 = new QHBoxLayout(page_5);
-        horizontalLayout_9->setSpacing(0);
+        horizontalLayout_9->setSpacing(1);
         horizontalLayout_9->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
         horizontalLayout_9->setContentsMargins(0, 0, 0, 0);
@@ -766,7 +1092,7 @@ public:
 
         retranslateUi(ChuangfengDesktopClass);
 
-        main_stackedWidget->setCurrentIndex(4);
+        main_stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(ChuangfengDesktopClass);
@@ -820,9 +1146,37 @@ public:
         report_opt_signal->setText(QApplication::translate("ChuangfengDesktopClass", "\345\215\225\345\241\230\345\210\206\346\221\212\346\230\216\347\273\206", Q_NULLPTR));
         report_opt_materiel->setText(QApplication::translate("ChuangfengDesktopClass", "\347\211\251\346\226\231\351\242\206\347\224\250\346\261\207\346\200\273", Q_NULLPTR));
         report_opt_totalfeed->setText(QApplication::translate("ChuangfengDesktopClass", "\344\273\223\345\272\223\351\242\206\347\224\250\346\261\207\346\200\273", Q_NULLPTR));
-        pushButton_9->setText(QApplication::translate("ChuangfengDesktopClass", "1", Q_NULLPTR));
-        pushButton_10->setText(QApplication::translate("ChuangfengDesktopClass", "2", Q_NULLPTR));
-        pushButton_11->setText(QApplication::translate("ChuangfengDesktopClass", "3", Q_NULLPTR));
+        label_10->setText(QApplication::translate("ChuangfengDesktopClass", "\347\273\223\346\235\237\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
+        label_11->setText(QApplication::translate("ChuangfengDesktopClass", "\345\274\200\345\247\213\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
+        totalreport_search_btn->setText(QString());
+        label_12->setText(QApplication::translate("ChuangfengDesktopClass", "\346\200\273\350\264\246\346\224\266\346\224\257", Q_NULLPTR));
+        label_13->setText(QApplication::translate("ChuangfengDesktopClass", "\345\244\207\347\224\250\351\207\221\346\224\266\346\224\257", Q_NULLPTR));
+        totalreport_export_btn->setText(QString());
+        label_14->setText(QApplication::translate("ChuangfengDesktopClass", "\345\274\200\345\247\213\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
+        label_15->setText(QApplication::translate("ChuangfengDesktopClass", "\347\273\223\346\235\237\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
+        nopay_report_search_btn->setText(QString());
+        nopay_report_export_btn->setText(QString());
+        share_report_search_btn->setText(QString());
+        sharereport_export_btn->setText(QString());
+        label_16->setText(QApplication::translate("ChuangfengDesktopClass", "\347\273\223\346\235\237\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
+        label_17->setText(QApplication::translate("ChuangfengDesktopClass", "\345\274\200\345\247\213\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
+        label_18->setText(QApplication::translate("ChuangfengDesktopClass", "\347\273\223\346\235\237\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
+        detaishare_report_search_btn->setText(QString());
+        detailsharereport_export_btn->setText(QString());
+        label_19->setText(QApplication::translate("ChuangfengDesktopClass", "\345\274\200\345\247\213\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
+        label_20->setText(QApplication::translate("ChuangfengDesktopClass", "\345\205\273\346\256\226\345\214\272\345\237\237", Q_NULLPTR));
+        label_21->setText(QApplication::translate("ChuangfengDesktopClass", "\345\274\200\345\247\213\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
+        label_22->setText(QApplication::translate("ChuangfengDesktopClass", "\347\273\223\346\235\237\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
+        label_23->setText(QApplication::translate("ChuangfengDesktopClass", "\345\233\272\350\265\204\345\210\206\346\221\212\346\203\205\345\206\265\350\241\250", Q_NULLPTR));
+        label_24->setText(QApplication::translate("ChuangfengDesktopClass", "\347\211\251\346\226\231\351\242\206\347\224\250\346\261\207\346\200\273\350\241\250", Q_NULLPTR));
+        materielreport_search_btn->setText(QString());
+        materielreport_export_btn->setText(QString());
+        label_25->setText(QApplication::translate("ChuangfengDesktopClass", "\346\200\273\345\272\223\351\245\262\346\226\231\350\215\257\345\223\201\345\207\272\345\205\245\345\272\223\346\261\207\346\200\273", Q_NULLPTR));
+        label_26->setText(QApplication::translate("ChuangfengDesktopClass", "\346\200\273\345\272\223\351\245\262\346\226\231\350\215\257\345\223\201\345\207\272\345\205\245\345\272\223\346\261\207\346\200\273", Q_NULLPTR));
+        storereport_export_btn->setText(QString());
+        label_27->setText(QApplication::translate("ChuangfengDesktopClass", "\345\210\206\345\272\223\351\245\262\346\226\231\350\215\257\345\223\201\347\224\250\346\226\231\346\261\207\346\200\273", Q_NULLPTR));
+        storereport_search_btn->setText(QString());
+        label_28->setText(QApplication::translate("ChuangfengDesktopClass", "\346\200\273\345\272\223\351\245\262\346\226\231\350\215\257\345\223\201\345\207\272\345\205\245\345\272\223\346\261\207\346\200\273", Q_NULLPTR));
         set_opt_person->setText(QApplication::translate("ChuangfengDesktopClass", "\344\272\272\345\221\230\347\256\241\347\220\206", Q_NULLPTR));
         set_opt_account->setText(QApplication::translate("ChuangfengDesktopClass", "\350\264\246\347\233\256\347\256\241\347\220\206", Q_NULLPTR));
         set_opt_detail_area->setText(QApplication::translate("ChuangfengDesktopClass", "\345\205\273\346\256\226\345\241\230\345\217\243", Q_NULLPTR));

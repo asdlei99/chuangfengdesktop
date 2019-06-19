@@ -5,6 +5,7 @@
 SupplierLayoutManager::SupplierLayoutManager(Ui::ChuangfengDesktopClass*ui)
 	:BaseLayoutManager(ui)
 {
+	InitLayout();
 }
 
 

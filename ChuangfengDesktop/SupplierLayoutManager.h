@@ -6,7 +6,7 @@ class SupplierLayoutManager :
 public:
 	SupplierLayoutManager(Ui::ChuangfengDesktopClass*ui);
 	~SupplierLayoutManager();
-public:
+private:
 	virtual void InitLayout();
 };
 

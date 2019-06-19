@@ -5,6 +5,7 @@
 NoPayLayoutManager::NoPayLayoutManager(Ui::ChuangfengDesktopClass*ui)
 	:BaseLayoutManager(ui)
 {
+	InitLayout();
 }
 
 

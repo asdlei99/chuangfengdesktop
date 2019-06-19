@@ -33,21 +33,20 @@ ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
 	initFinancialLayoutOption();
 	initReportLayoutOption();
 	m_ptrUserLayoutManger = make_shared<UserLayoutManger>(ui);
-	m_ptrUserLayoutManger->InitLayout();
 	m_ptrGeneralLayoutManger = make_shared<GeneralLayoutManger>(ui);
-	m_ptrGeneralLayoutManger->InitLayout();
 	m_ptrBakLayoutManager = make_shared<BakLayoutManager>(ui);
-	m_ptrBakLayoutManager->InitLayout();
-	m_ptrNoPayLayoutManager = make_shared<NoPayLayoutManager>(ui);
-	m_ptrNoPayLayoutManager->InitLayout();
+	m_ptrNoPayLayoutManager = make_shared<NoPayLayoutManager>(ui);	
 	m_ptrCategoryLayoutManager = make_shared<CategoryLayoutManager>(ui);
-	m_ptrCategoryLayoutManager->InitLayout();
-	m_ptrAreaLayoutManager = make_shared<AreaLayoutManager>(ui);
-	m_ptrAreaLayoutManager->InitLayout();
+	m_ptrAreaLayoutManager = make_shared<AreaLayoutManager>(ui);	
 	m_ptrSupplierLayoutManager = make_shared<SupplierLayoutManager>(ui);
-	m_ptrSupplierLayoutManager->InitLayout();
 	m_ptrShareItemLayoutManager = make_shared<ShareItemLayoutManager>(ui);
-	m_ptrShareItemLayoutManager->InitLayout();
+	m_ptrDetailAreaLayoutManager = make_shared<DetailAreaLayoutManager>(ui);
+	m_ptrTotalReportManager = make_shared<TotalReportManager>(ui);
+	m_ptrNopayReportManger = make_shared<NopayReportManger>(ui);
+	m_ptrShareReportManager = make_shared<ShareReportManager>(ui);
+	m_ptrDetailShareReportManager = make_shared<DetailShareReportManager>(ui);
+	m_ptrMaterielReportManger = make_shared<MaterielReportManger>(ui);
+	m_ptrStoreReportManager = make_shared<StoreReportManager>(ui);
 }
 
 void ChuangfengDesktop::close()

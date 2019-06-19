@@ -5,6 +5,7 @@
 AreaLayoutManager::AreaLayoutManager(Ui::ChuangfengDesktopClass*ui)
 	:BaseLayoutManager(ui)
 {
+	InitLayout();
 }
 
 

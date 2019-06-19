@@ -124,17 +124,24 @@
     <ClCompile Include="CustomCtrl\NoFocusDelegate.cpp" />
     <ClCompile Include="CustomCtrl\QNavButton.cpp" />
     <ClCompile Include="CustomCtrl\QtCustomBaseWnd.cpp" />
+    <ClCompile Include="DetailAreaLayoutManager.cpp" />
+    <ClCompile Include="DetailShareReportManager.cpp" />
     <ClCompile Include="GeneralLayoutManger.cpp" />
     <ClCompile Include="LoginQWidget.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MaterielReportManger.cpp" />
     <ClCompile Include="MatterObject.cpp" />
     <ClCompile Include="non_paymentObject.cpp" />
     <ClCompile Include="NoPayLayoutManager.cpp" />
+    <ClCompile Include="NopayReportManger.cpp" />
     <ClCompile Include="QExcel.cpp" />
     <ClCompile Include="ShareItemLayoutManager.cpp" />
+    <ClCompile Include="ShareReportManager.cpp" />
     <ClCompile Include="singleAreaShare.cpp" />
     <ClCompile Include="StatementObject.cpp" />
+    <ClCompile Include="StoreReportManager.cpp" />
     <ClCompile Include="SupplierLayoutManager.cpp" />
+    <ClCompile Include="TotalReportManager.cpp" />
     <ClCompile Include="UserLayoutManger.cpp" />
     <ClCompile Include="WarehouseObject.cpp" />
   </ItemGroup>
@@ -149,6 +156,12 @@
     <QtRcc Include="ChuangfengDesktop.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DetailShareReportManager.h" />
+    <ClInclude Include="MaterielReportManger.h" />
+    <ClInclude Include="NopayReportManger.h" />
+    <ClInclude Include="ShareReportManager.h" />
+    <ClInclude Include="StoreReportManager.h" />
+    <ClInclude Include="TotalReportManager.h" />
     <QtMoc Include="BaseLayoutManager.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt</IncludePath>
@@ -182,6 +195,7 @@
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt</IncludePath>
     </QtMoc>
+    <ClInclude Include="DetailAreaLayoutManager.h" />
     <ClInclude Include="NoPayLayoutManager.h" />
     <ClInclude Include="ShareItemLayoutManager.h" />
     <ClInclude Include="SupplierLayoutManager.h" />

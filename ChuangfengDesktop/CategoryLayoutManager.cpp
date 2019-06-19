@@ -5,6 +5,7 @@
 CategoryLayoutManager::CategoryLayoutManager(Ui::ChuangfengDesktopClass*ui) 
 	:BaseLayoutManager(ui)
 {
+	InitLayout();
 }
 
 
