@@ -13,6 +13,10 @@
 #include "commomdef.h"
 #include "MaterialManagerWidget.h"
 #include "FeedStoreManagerWdiget.h"
+#include "GeneralLayoutManger.h"
+#include "BakLayoutManager.h"
+#include "NoPayLayoutManager.h"
+#include "TotalReportManager.h"
 ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
 	:MoveableFramelessWindow(parent)
 	,ui(new Ui::ChuangfengDesktopClass)
@@ -35,30 +39,45 @@ ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
 		pQtWidget->setWindowModality(Qt::ApplicationModal);
 		pQtWidget->show();
 	});
+	connect(ui->general_btn, &QPushButton::clicked, this, [this]()->void {
+		GeneralLayoutManger*pQtWidget = new GeneralLayoutManger();
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
 
+	connect(ui->bak_btn, &QPushButton::clicked, this, [this]()->void {
+		BakLayoutManager*pQtWidget = new BakLayoutManager();
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
+
+	connect(ui->nopay_btn, &QPushButton::clicked, this, [this]()->void {
+		NoPayLayoutManager*pQtWidget = new NoPayLayoutManager();
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
+	connect(ui->TotalReport_btn, &QPushButton::clicked, this, [this]()->void {
+		TotalReportManager*pQtWidget = new TotalReportManager();
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
 	ui->max_restore_btn->setToolTip(QString::fromLocal8Bit("最大化"));
 	//设置按钮的属性名为"maximizeProperty"
 	ui->max_restore_btn->setProperty("maximizeProperty", "maximize");
 	ui->max_restore_btn->setStyle(QApplication::style());
 	initMainOption();
 	initSysLayoutOption();//初始化系统设置导航栏
-	
 
 	m_ptrUserLayoutManger = make_shared<UserLayoutManger>(ui);
-// 	m_ptrGeneralLayoutManger = make_shared<GeneralLayoutManger>(ui);
-// 	m_ptrBakLayoutManager = make_shared<BakLayoutManager>(ui);
-// 	m_ptrNoPayLayoutManager = make_shared<NoPayLayoutManager>(ui);
 	m_ptrCategoryLayoutManager = make_shared<CategoryLayoutManager>(ui);
 	m_ptrAreaLayoutManager = make_shared<AreaLayoutManager>(ui);
 	m_ptrSupplierLayoutManager = make_shared<SupplierLayoutManager>(ui);
 	m_ptrShareItemLayoutManager = make_shared<ShareItemLayoutManager>(ui);
 	m_ptrDetailAreaLayoutManager = make_shared<DetailAreaLayoutManager>(ui);
-// 	m_ptrTotalReportManager = make_shared<TotalReportManager>(ui);
-// 	m_ptrNopayReportManger = make_shared<NopayReportManger>(ui);
-// 	m_ptrShareReportManager = make_shared<ShareReportManager>(ui);
-// 	m_ptrDetailShareReportManager = make_shared<DetailShareReportManager>(ui);
-// 	m_ptrMaterielReportManger = make_shared<MaterielReportManger>(ui);
-// 	m_ptrStoreReportManager = make_shared<StoreReportManager>(ui);
 }
 
 void ChuangfengDesktop::close()

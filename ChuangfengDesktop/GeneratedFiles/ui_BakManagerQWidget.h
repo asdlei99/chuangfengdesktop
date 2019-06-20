@@ -14,9 +14,11 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDateEdit>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -27,6 +29,12 @@ class Ui_BakManager
 {
 public:
     QVBoxLayout *verticalLayout;
+    QWidget *bak_title;
+    QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *bak_min_btn;
+    QPushButton *bak_max_restore_btn;
+    QPushButton *bak_cose_btn;
     QWidget *widget_8;
     QPushButton *bak_del_btn;
     QPushButton *bak_export_btn;
@@ -42,13 +50,49 @@ public:
     {
         if (BakManager->objectName().isEmpty())
             BakManager->setObjectName(QStringLiteral("BakManager"));
-        BakManager->resize(750, 636);
+        BakManager->resize(845, 636);
         verticalLayout = new QVBoxLayout(BakManager);
+        verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(1, 1, 1, 1);
+        bak_title = new QWidget(BakManager);
+        bak_title->setObjectName(QStringLiteral("bak_title"));
+        bak_title->setMinimumSize(QSize(0, 40));
+        bak_title->setStyleSheet(QStringLiteral("background-color: rgb(56, 59, 67);"));
+        horizontalLayout = new QHBoxLayout(bak_title);
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer_2 = new QSpacerItem(744, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
+        bak_min_btn = new QPushButton(bak_title);
+        bak_min_btn->setObjectName(QStringLiteral("bak_min_btn"));
+        bak_min_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(bak_min_btn);
+
+        bak_max_restore_btn = new QPushButton(bak_title);
+        bak_max_restore_btn->setObjectName(QStringLiteral("bak_max_restore_btn"));
+        bak_max_restore_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(bak_max_restore_btn);
+
+        bak_cose_btn = new QPushButton(bak_title);
+        bak_cose_btn->setObjectName(QStringLiteral("bak_cose_btn"));
+        bak_cose_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(bak_cose_btn);
+
+
+        verticalLayout->addWidget(bak_title);
+
         widget_8 = new QWidget(BakManager);
         widget_8->setObjectName(QStringLiteral("widget_8"));
         widget_8->setMinimumSize(QSize(0, 40));
         widget_8->setMaximumSize(QSize(16777215, 40));
+        widget_8->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
         bak_del_btn = new QPushButton(widget_8);
         bak_del_btn->setObjectName(QStringLiteral("bak_del_btn"));
         bak_del_btn->setGeometry(QRect(560, 10, 80, 28));
@@ -82,6 +126,7 @@ public:
 
         bak_tableView = new QTableView(BakManager);
         bak_tableView->setObjectName(QStringLiteral("bak_tableView"));
+        bak_tableView->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
 
         verticalLayout->addWidget(bak_tableView);
 
@@ -94,6 +139,9 @@ public:
     void retranslateUi(QWidget *BakManager)
     {
         BakManager->setWindowTitle(QApplication::translate("BakManager", "Form", Q_NULLPTR));
+        bak_min_btn->setText(QString());
+        bak_max_restore_btn->setText(QString());
+        bak_cose_btn->setText(QString());
         bak_del_btn->setText(QString());
         bak_export_btn->setText(QString());
         bak_add_btn->setText(QString());

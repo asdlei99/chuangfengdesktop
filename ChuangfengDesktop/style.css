@@ -238,23 +238,35 @@ QPushButton#login_btn:pressed{
 	color: #ffffff;
 }
 
- #main_wnd_ctrl_widget #min_btn,#material_min_btn,#feedstore_min_btn{ 
+ #main_wnd_ctrl_widget #min_btn,#material_min_btn,#feedstore_min_btn,#general_min_btn
+ ,#bak_min_btn,#min_btn
+ { 
 	border-image: url(:/ChuangfengDesktop/Resources/min.png)0 60 0 0;
 }
-#main_wnd_ctrl_widget #min_btn:hover,#material_min_btn:hover,#feedstore_min_btn:hover{ 
+#main_wnd_ctrl_widget #min_btn:hover,#material_min_btn:hover,#feedstore_min_btn:hover
+,#general_min_btn:hover,#bak_min_btn:hover,#min_btn:hover
+{ 
 	border-image: url(:/ChuangfengDesktop/Resources/min.png)0 30 0 30;
 }
- #main_wnd_ctrl_widget #min_btn:pressed,#material_min_btn:pressed,#feedstore_min_btn:pressed{ 
+ #main_wnd_ctrl_widget #min_btn:pressed,#material_min_btn:pressed,#feedstore_min_btn:pressed
+ ,#general_min_btn:pressed ,#bak_min_btn:pressed,#min_btn:pressed
+ { 
 	border-image: url(:/ChuangfengDesktop/Resources/min.png)0 0 0 60;
 }
 
- #main_wnd_ctrl_widget QPushButton#close_btn,#material_cose_btn,#feedstore_cose_btn{ 
+ #main_wnd_ctrl_widget QPushButton#close_btn,#material_cose_btn,#feedstore_cose_btn
+,#general_cose_btn,#bak_cose_btn,#close_btn
+{ 
 	border-image: url(:/ChuangfengDesktop/Resources/main_close.png)0 60 0 0;
 }
- #main_wnd_ctrl_widget QPushButton#close_btn:hover,#material_cose_btn:hover,#feedstore_cose_btn:hover{ 
+ #main_wnd_ctrl_widget QPushButton#close_btn:hover,#material_cose_btn:hover,#feedstore_cose_btn:hover
+ ,#general_cose_btn:hover ,#bak_cose_btn:hover,#close_btn:hover
+ { 
 	border-image: url(:/ChuangfengDesktop/Resources/main_close.png)0 30 0 30;
 }
- #main_wnd_ctrl_widget QPushButton#close_btn:pressed,#material_cose_btn:pressed,#feedstore_cose_btn:pressed{ 
+ #main_wnd_ctrl_widget QPushButton#close_btn:pressed,#material_cose_btn:pressed,#feedstore_cose_btn:pressed
+ ,#general_cose_btn:pressed ,#bak_cose_btn:pressed,#close_btn:pressed
+ { 
 	border-image: url(:/ChuangfengDesktop/Resources/main_close.png)0 0 0 60;
 }
 
@@ -262,39 +274,57 @@ QPushButton#login_btn:pressed{
 #main_wnd_ctrl_widget QPushButton#max_restore_btn[maximizeProperty="maximize"]
 ,#material_max_restore_btn[maximizeProperty="maximize"]
 ,#feedstore_max_restore_btn[maximizeProperty="maximize"]
+,#general_max_restore_btn[maximizeProperty="maximize"]
+,#bak_max_restore_btn[maximizeProperty="maximize"]
+,#max_restore_btn[maximizeProperty="maximize"]
 {
 	border-image: url(:/ChuangfengDesktop/Resources/max.png)0 60 0 0;
 }
 #main_wnd_ctrl_widget QPushButton#max_restore_btn[maximizeProperty="maximize"]:hover,
 #material_max_restore_btn[maximizeProperty="maximize"]:hover,
-#feedstore_max_restore_btn[maximizeProperty="maximize"]:hover
+#feedstore_max_restore_btn[maximizeProperty="maximize"]:hover,
+#general_max_restore_btn[maximizeProperty="maximize"]:hover,
+#bak_max_restore_btn[maximizeProperty="maximize"]:hover
+,#max_restore_btn[maximizeProperty="maximize"]:hover
 {
 	border-image: url(:/ChuangfengDesktop/Resources/max.png)0 30 0 30;
 }
 #main_wnd_ctrl_widget QPushButton#max_restore_btn[maximizeProperty="maximize"]:pressed,
 #material_max_restore_btn[maximizeProperty="maximize"]:pressed,
 #feedstore_max_restore_btn[maximizeProperty="maximize"]:pressed
+,#general_max_restore_btn[maximizeProperty="maximize"]:pressed
+,#bak_max_restore_btn[maximizeProperty="maximize"]:pressed
+,#max_restore_btn[maximizeProperty="maximize"]:pressed
 {
 	border-image: url(:/ChuangfengDesktop/Resources/max.png)0 0 0 60;
 }
 
 #main_wnd_ctrl_widget QPushButton#max_restore_btn[maximizeProperty="restore"],
 #material_max_restore_btn[maximizeProperty="restore"],
-#feedstore_max_restore_btn[maximizeProperty="restore"]
+#feedstore_max_restore_btn[maximizeProperty="restore"],
+#general_max_restore_btn[maximizeProperty="restore"],
+#bak_max_restore_btn[maximizeProperty="restore"],
+#max_restore_btn[maximizeProperty="restore"]
 {
 
 border-image: url(:/ChuangfengDesktop/Resources/restore.png)0 60 0 0;
 }
 #main_wnd_ctrl_widget QPushButton#max_restore_btn[maximizeProperty="restore"]:hover,
 #material_max_restore_btn[maximizeProperty="restore"]:hover,
-#feedstore_max_restore_btn[maximizeProperty="restore"]:hover
+#feedstore_max_restore_btn[maximizeProperty="restore"]:hover,
+#general_max_restore_btn[maximizeProperty="restore"]:hover,
+#bak_max_restore_btn[maximizeProperty="restore"]:hover,
+#max_restore_btn[maximizeProperty="restore"]:hover
 {
 
 border-image: url(:/ChuangfengDesktop/Resources/restore.png)0 30 0 30;
 }
 #main_wnd_ctrl_widget QPushButton#max_restore_btn[maximizeProperty="restore"]:pressed
 ,#material_max_restore_btn[maximizeProperty="restore"]:pressed
-,#feedstore_max_restore_btn[maximizeProperty="restore"]:pressed
+,#feedstore_max_restore_btn[maximizeProperty="restore"]:pressed,
+#general_max_restore_btn[maximizeProperty="restore"]:pressed,
+#bak_max_restore_btn[maximizeProperty="restore"]:pressed,
+#max_restore_btn[maximizeProperty="restore"]:pressed
 {
 
 border-image: url(:/ChuangfengDesktop/Resources/restore.png)0 0 0 60;

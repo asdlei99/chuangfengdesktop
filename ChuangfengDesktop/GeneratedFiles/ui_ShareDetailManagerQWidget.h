@@ -43,7 +43,7 @@ public:
     {
         if (detailsharereport->objectName().isEmpty())
             detailsharereport->setObjectName(QStringLiteral("detailsharereport"));
-        detailsharereport->resize(654, 300);
+        detailsharereport->resize(654, 434);
         verticalLayout = new QVBoxLayout(detailsharereport);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         widget_18 = new QWidget(detailsharereport);

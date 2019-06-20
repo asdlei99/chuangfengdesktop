@@ -55,7 +55,7 @@ public:
     {
         if (Material->objectName().isEmpty())
             Material->setObjectName(QStringLiteral("Material"));
-        Material->resize(960, 647);
+        Material->resize(960, 646);
         verticalLayout = new QVBoxLayout(Material);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

@@ -191,6 +191,15 @@
     <QtMoc Include="FeedStoreManagerWdiget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="BakLayoutManager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="NoPayLayoutManager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="TotalReportManager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginQWidget.ui">
@@ -248,12 +257,6 @@
     <ClInclude Include="ThreadPool.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BakLayoutManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NoPayLayoutManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CategoryLayoutManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -267,9 +270,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DetailAreaLayoutManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TotalReportManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NopayReportManger.h">

@@ -14,9 +14,11 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDateEdit>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -27,6 +29,12 @@ class Ui_totalreportmanager
 {
 public:
     QVBoxLayout *verticalLayout;
+    QWidget *totalreport_title;
+    QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *min_btn;
+    QPushButton *max_restore_btn;
+    QPushButton *close_btn;
     QWidget *widget_15;
     QDateEdit *totalreport_startdateEdit;
     QLabel *label_10;
@@ -44,11 +52,47 @@ public:
             totalreportmanager->setObjectName(QStringLiteral("totalreportmanager"));
         totalreportmanager->resize(933, 423);
         verticalLayout = new QVBoxLayout(totalreportmanager);
+        verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(1, 1, 1, 1);
+        totalreport_title = new QWidget(totalreportmanager);
+        totalreport_title->setObjectName(QStringLiteral("totalreport_title"));
+        totalreport_title->setMinimumSize(QSize(0, 40));
+        totalreport_title->setStyleSheet(QStringLiteral("background-color: rgb(56, 59, 67);"));
+        horizontalLayout = new QHBoxLayout(totalreport_title);
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer_2 = new QSpacerItem(832, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
+        min_btn = new QPushButton(totalreport_title);
+        min_btn->setObjectName(QStringLiteral("min_btn"));
+        min_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(min_btn);
+
+        max_restore_btn = new QPushButton(totalreport_title);
+        max_restore_btn->setObjectName(QStringLiteral("max_restore_btn"));
+        max_restore_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(max_restore_btn);
+
+        close_btn = new QPushButton(totalreport_title);
+        close_btn->setObjectName(QStringLiteral("close_btn"));
+        close_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(close_btn);
+
+
+        verticalLayout->addWidget(totalreport_title);
+
         widget_15 = new QWidget(totalreportmanager);
         widget_15->setObjectName(QStringLiteral("widget_15"));
         widget_15->setMinimumSize(QSize(0, 60));
         widget_15->setMaximumSize(QSize(16777215, 60));
+        widget_15->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
         totalreport_startdateEdit = new QDateEdit(widget_15);
         totalreport_startdateEdit->setObjectName(QStringLiteral("totalreport_startdateEdit"));
         totalreport_startdateEdit->setGeometry(QRect(70, 0, 110, 28));
@@ -86,6 +130,7 @@ public:
 
         total_reporttableView = new QTableView(totalreportmanager);
         total_reporttableView->setObjectName(QStringLiteral("total_reporttableView"));
+        total_reporttableView->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
 
         verticalLayout->addWidget(total_reporttableView);
 
@@ -98,6 +143,9 @@ public:
     void retranslateUi(QWidget *totalreportmanager)
     {
         totalreportmanager->setWindowTitle(QApplication::translate("totalreportmanager", "Form", Q_NULLPTR));
+        min_btn->setText(QString());
+        max_restore_btn->setText(QString());
+        close_btn->setText(QString());
         label_10->setText(QApplication::translate("totalreportmanager", "\347\273\223\346\235\237\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
         label_11->setText(QApplication::translate("totalreportmanager", "\345\274\200\345\247\213\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
         totalreport_search_btn->setText(QString());

@@ -14,9 +14,11 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDateEdit>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -27,6 +29,12 @@ class Ui_nopayManager
 {
 public:
     QVBoxLayout *verticalLayout;
+    QWidget *nopay_title;
+    QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *min_btn;
+    QPushButton *max_restore_btn;
+    QPushButton *close_btn;
     QWidget *widget_9;
     QDateEdit *nopay_enddateEdit;
     QLabel *label_8;
@@ -44,11 +52,47 @@ public:
             nopayManager->setObjectName(QStringLiteral("nopayManager"));
         nopayManager->resize(831, 479);
         verticalLayout = new QVBoxLayout(nopayManager);
+        verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(1, 1, 1, 1);
+        nopay_title = new QWidget(nopayManager);
+        nopay_title->setObjectName(QStringLiteral("nopay_title"));
+        nopay_title->setMinimumSize(QSize(0, 40));
+        nopay_title->setStyleSheet(QStringLiteral("background-color: rgb(56, 59, 67);"));
+        horizontalLayout = new QHBoxLayout(nopay_title);
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer_2 = new QSpacerItem(730, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
+        min_btn = new QPushButton(nopay_title);
+        min_btn->setObjectName(QStringLiteral("min_btn"));
+        min_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(min_btn);
+
+        max_restore_btn = new QPushButton(nopay_title);
+        max_restore_btn->setObjectName(QStringLiteral("max_restore_btn"));
+        max_restore_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(max_restore_btn);
+
+        close_btn = new QPushButton(nopay_title);
+        close_btn->setObjectName(QStringLiteral("close_btn"));
+        close_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(close_btn);
+
+
+        verticalLayout->addWidget(nopay_title);
+
         widget_9 = new QWidget(nopayManager);
         widget_9->setObjectName(QStringLiteral("widget_9"));
         widget_9->setMinimumSize(QSize(0, 40));
         widget_9->setMaximumSize(QSize(16777215, 40));
+        widget_9->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
         nopay_enddateEdit = new QDateEdit(widget_9);
         nopay_enddateEdit->setObjectName(QStringLiteral("nopay_enddateEdit"));
         nopay_enddateEdit->setGeometry(QRect(260, 10, 110, 28));
@@ -82,6 +126,7 @@ public:
 
         nopay_tableView = new QTableView(nopayManager);
         nopay_tableView->setObjectName(QStringLiteral("nopay_tableView"));
+        nopay_tableView->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
 
         verticalLayout->addWidget(nopay_tableView);
 
@@ -94,6 +139,9 @@ public:
     void retranslateUi(QWidget *nopayManager)
     {
         nopayManager->setWindowTitle(QApplication::translate("nopayManager", "Form", Q_NULLPTR));
+        min_btn->setText(QString());
+        max_restore_btn->setText(QString());
+        close_btn->setText(QString());
         label_8->setText(QApplication::translate("nopayManager", "\345\274\200\345\247\213\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
         nopay_search_btn->setText(QString());
         nopay_add_btn->setText(QString());

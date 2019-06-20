@@ -4,9 +4,6 @@
 #include "ui_ChuangfengDesktop.h"
 #include "QNavButton.h"
 #include "UserLayoutManger.h"
-// #include "GeneralLayoutManger.h"
-// #include "BakLayoutManager.h"
-// #include "NoPayLayoutManager.h"
 #include "CategoryLayoutManager.h"
 #include "AreaLayoutManager.h"
 #include "SupplierLayoutManager.h"
@@ -44,26 +41,14 @@ public slots:
 	void updateMaximize();
 	void SlotOptionClick();
 	void SlotSysLayoutOptionClick();
-	//void SlotReportLayoutOptionClick();
-
 private:
 	Ui::ChuangfengDesktopClass*ui;
 	QList< NavButton*> mNavButtonList;
 	QList< NavButton*> m_SysLayoutNavButtonList;
-	//QList< NavButton*> m_ReportLayoutNavButtonList;
 	shared_ptr<UserLayoutManger> m_ptrUserLayoutManger;
-// 	shared_ptr<BakLayoutManager> m_ptrBakLayoutManager;
-// 	shared_ptr<GeneralLayoutManger> m_ptrGeneralLayoutManger;
-// 	shared_ptr<NoPayLayoutManager> m_ptrNoPayLayoutManager;
 	shared_ptr<CategoryLayoutManager> m_ptrCategoryLayoutManager;
 	shared_ptr<AreaLayoutManager> m_ptrAreaLayoutManager;
 	shared_ptr<SupplierLayoutManager> m_ptrSupplierLayoutManager;
 	shared_ptr<ShareItemLayoutManager> m_ptrShareItemLayoutManager;
 	shared_ptr<DetailAreaLayoutManager> m_ptrDetailAreaLayoutManager;
-	//shared_ptr<TotalReportManager> m_ptrTotalReportManager;
-	//shared_ptr<NopayReportManger> m_ptrNopayReportManger;
-	//shared_ptr<ShareReportManager> m_ptrShareReportManager;
-	//shared_ptr<DetailShareReportManager> m_ptrDetailShareReportManager;
-	//shared_ptr<MaterielReportManger> m_ptrMaterielReportManger;
-	//shared_ptr<StoreReportManager> m_ptrStoreReportManager;
 };
