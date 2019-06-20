@@ -55,13 +55,12 @@ protected:
 	/**
 	* @brief 鼠标按下去的点
 	*/
+	bool nativeEvent(const QByteArray &eventType, void *message, long *result);
 	QPoint pressedPoint;
-	protected slots:
+protected slots:
 	//主题改变
 	virtual void onThemeColorChange(QString colorStr) {}
 	virtual void onSetTableAttribute(QTableView *pTableView,const int cloum);
-signals:
-
-	public slots :
-
+protected:
+	int m_nBorderWidth; //m_nBorder表示鼠标位于边框缩放范围的宽度
 };

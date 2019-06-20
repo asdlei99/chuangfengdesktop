@@ -126,9 +126,11 @@
     <ClCompile Include="CustomCtrl\QtCustomBaseWnd.cpp" />
     <ClCompile Include="DetailAreaLayoutManager.cpp" />
     <ClCompile Include="DetailShareReportManager.cpp" />
+    <ClCompile Include="FeedStoreManagerWdiget.cpp" />
     <ClCompile Include="GeneralLayoutManger.cpp" />
     <ClCompile Include="LoginQWidget.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MaterialManagerWidget.cpp" />
     <ClCompile Include="MaterielReportManger.cpp" />
     <ClCompile Include="MatterObject.cpp" />
     <ClCompile Include="non_paymentObject.cpp" />
@@ -149,14 +151,33 @@
     <QtMoc Include="ChuangfengDesktop.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="BakManagerQWidget.ui" />
     <QtUic Include="ChuangfengDesktop.ui" />
+    <QtUic Include="FeedStoreQwidget.ui" />
+    <QtUic Include="GeneralManagerQWidget.ui" />
     <QtUic Include="LoginQWidget.ui" />
+    <QtUic Include="MaterialQWidget.ui" />
+    <QtUic Include="MaterielReportManagerQWidget.ui" />
+    <QtUic Include="NopayManagerQWidget.ui" />
+    <QtUic Include="NoPayReportManagerQWidget.ui" />
+    <QtUic Include="ShareDetailManagerQWidget.ui" />
+    <QtUic Include="ShareReportManagerQWidget.ui" />
+    <QtUic Include="StoreReportManagerQWidget.ui" />
+    <QtUic Include="TotalReportManagerQWidget.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="ChuangfengDesktop.qrc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DetailShareReportManager.h" />
+    <QtMoc Include="MaterialManagerWidget.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt</IncludePath>
+    </QtMoc>
+    <QtMoc Include="FeedStoreManagerWdiget.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt</IncludePath>
+    </QtMoc>
     <ClInclude Include="MaterielReportManger.h" />
     <ClInclude Include="NopayReportManger.h" />
     <ClInclude Include="ShareReportManager.h" />

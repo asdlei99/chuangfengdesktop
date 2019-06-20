@@ -45,12 +45,13 @@ LoginQWidget::LoginQWidget(QWidget *parent)
 	});
 
 	connect(ui->login_btn, &QPushButton::clicked, this, [&]()->void {
+		this->hide();
 		ChuangfengDesktop*pQtWidget = new ChuangfengDesktop();
 		connect(pQtWidget, SIGNAL(CloseMainWidgetSingnal()), this, SLOT(SlotCloseMainWidget()));
 		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
 		pQtWidget->setWindowModality(Qt::ApplicationModal);
 		pQtWidget->show();
-		this->hide();
+		
 	});
 }
 

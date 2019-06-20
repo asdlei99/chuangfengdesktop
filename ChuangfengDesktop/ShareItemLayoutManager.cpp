@@ -25,7 +25,7 @@ void ShareItemLayoutManager::InitLayout()
 	onSetTableAttribute(m_pUi->shareitem_tableView, 4);
 
 	int nCount = 0;
-	for (auto i = 0; i < 10; i++)
+	for (auto i = 0; i < 1; i++)
 	{
 		m_pViewModel->setItem(i, 0, new QStandardItem(""));
 		m_pViewModel->item(i, 0)->setCheckable(true);

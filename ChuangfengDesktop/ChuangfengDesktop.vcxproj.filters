@@ -129,6 +129,12 @@
     <ClCompile Include="StoreReportManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MaterialManagerWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FeedStoreManagerWdiget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ChuangfengDesktop.h">
@@ -179,12 +185,51 @@
     <QtMoc Include="GeneralLayoutManger.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="MaterialManagerWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="FeedStoreManagerWdiget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginQWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="ChuangfengDesktop.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="MaterialQWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="FeedStoreQwidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="BakManagerQWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="GeneralManagerQWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="MaterielReportManagerQWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="NopayManagerQWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="NoPayReportManagerQWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="ShareDetailManagerQWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="ShareReportManagerQWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="StoreReportManagerQWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="TotalReportManagerQWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
