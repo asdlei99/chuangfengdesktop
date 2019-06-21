@@ -56,20 +56,46 @@ public:
     QHBoxLayout *work_Layout;
     QStackedWidget *main_stackedWidget;
     QWidget *page;
+    QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer_6;
+    QSpacerItem *horizontalSpacer_7;
     QPushButton *general_btn;
+    QSpacerItem *horizontalSpacer;
     QPushButton *bak_btn;
+    QSpacerItem *horizontalSpacer_2;
     QPushButton *nopay_btn;
+    QSpacerItem *horizontalSpacer_4;
+    QSpacerItem *horizontalSpacer_5;
     QWidget *page_2;
+    QHBoxLayout *horizontalLayout_6;
+    QSpacerItem *horizontalSpacer_11;
+    QSpacerItem *horizontalSpacer_8;
     QPushButton *store_material_mgr_btn;
+    QSpacerItem *horizontalSpacer_9;
     QPushButton *store_feed_mgr_btn;
+    QSpacerItem *horizontalSpacer_12;
+    QSpacerItem *horizontalSpacer_10;
     QWidget *page_3;
+    QGridLayout *gridLayout_3;
+    QPushButton *feed_btn;
+    QPushButton *feedsum_btn;
+    QSpacerItem *horizontalSpacer_21;
+    QSpacerItem *horizontalSpacer_17;
+    QSpacerItem *horizontalSpacer_18;
+    QSpacerItem *horizontalSpacer_20;
+    QSpacerItem *horizontalSpacer_19;
     QWidget *page_4;
+    QGridLayout *gridLayout_2;
+    QSpacerItem *horizontalSpacer_13;
     QPushButton *TotalReport_btn;
-    QPushButton *NoPayReport_btn;
-    QPushButton *ShareReport_btn;
     QPushButton *ShareDetail_btn;
-    QPushButton *MaterielReport_btn;
+    QSpacerItem *horizontalSpacer_16;
+    QSpacerItem *horizontalSpacer_15;
+    QSpacerItem *horizontalSpacer_14;
     QPushButton *StoreReport_btn;
+    QPushButton *MaterielReport_btn;
+    QPushButton *ShareReport_btn;
+    QPushButton *NoPayReport_btn;
     QWidget *page_5;
     QHBoxLayout *horizontalLayout_9;
     QWidget *widget_3;
@@ -260,49 +286,190 @@ public:
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
         page->setStyleSheet(QStringLiteral("background-color:#44474D;  "));
+        horizontalLayout = new QHBoxLayout(page);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_6);
+
+        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_7);
+
         general_btn = new QPushButton(page);
         general_btn->setObjectName(QStringLiteral("general_btn"));
-        general_btn->setGeometry(QRect(150, 60, 101, 61));
+        general_btn->setMinimumSize(QSize(128, 128));
+
+        horizontalLayout->addWidget(general_btn);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
         bak_btn = new QPushButton(page);
         bak_btn->setObjectName(QStringLiteral("bak_btn"));
-        bak_btn->setGeometry(QRect(380, 60, 101, 61));
+        bak_btn->setMinimumSize(QSize(128, 128));
+
+        horizontalLayout->addWidget(bak_btn);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
         nopay_btn = new QPushButton(page);
         nopay_btn->setObjectName(QStringLiteral("nopay_btn"));
-        nopay_btn->setGeometry(QRect(560, 70, 101, 61));
+        nopay_btn->setMinimumSize(QSize(128, 128));
+
+        horizontalLayout->addWidget(nopay_btn);
+
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_4);
+
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_5);
+
         main_stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
         page_2->setStyleSheet(QStringLiteral("background-color:#44474D;  "));
+        horizontalLayout_6 = new QHBoxLayout(page_2);
+        horizontalLayout_6->setSpacing(6);
+        horizontalLayout_6->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        horizontalSpacer_11 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_11);
+
+        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_8);
+
         store_material_mgr_btn = new QPushButton(page_2);
         store_material_mgr_btn->setObjectName(QStringLiteral("store_material_mgr_btn"));
-        store_material_mgr_btn->setGeometry(QRect(70, 30, 141, 101));
+        store_material_mgr_btn->setMinimumSize(QSize(128, 128));
+
+        horizontalLayout_6->addWidget(store_material_mgr_btn);
+
+        horizontalSpacer_9 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_9);
+
         store_feed_mgr_btn = new QPushButton(page_2);
         store_feed_mgr_btn->setObjectName(QStringLiteral("store_feed_mgr_btn"));
-        store_feed_mgr_btn->setGeometry(QRect(310, 30, 141, 101));
+        store_feed_mgr_btn->setMinimumSize(QSize(128, 128));
+
+        horizontalLayout_6->addWidget(store_feed_mgr_btn);
+
+        horizontalSpacer_12 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_12);
+
+        horizontalSpacer_10 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_10);
+
         main_stackedWidget->addWidget(page_2);
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
+        gridLayout_3 = new QGridLayout(page_3);
+        gridLayout_3->setSpacing(6);
+        gridLayout_3->setContentsMargins(11, 11, 11, 11);
+        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
+        feed_btn = new QPushButton(page_3);
+        feed_btn->setObjectName(QStringLiteral("feed_btn"));
+        feed_btn->setMinimumSize(QSize(128, 128));
+
+        gridLayout_3->addWidget(feed_btn, 0, 2, 1, 1);
+
+        feedsum_btn = new QPushButton(page_3);
+        feedsum_btn->setObjectName(QStringLiteral("feedsum_btn"));
+        feedsum_btn->setMinimumSize(QSize(128, 128));
+
+        gridLayout_3->addWidget(feedsum_btn, 0, 4, 1, 1);
+
+        horizontalSpacer_21 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_3->addItem(horizontalSpacer_21, 0, 5, 1, 1);
+
+        horizontalSpacer_17 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_3->addItem(horizontalSpacer_17, 0, 3, 1, 1);
+
+        horizontalSpacer_18 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_3->addItem(horizontalSpacer_18, 0, 1, 1, 1);
+
+        horizontalSpacer_20 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_3->addItem(horizontalSpacer_20, 0, 0, 1, 1);
+
+        horizontalSpacer_19 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_3->addItem(horizontalSpacer_19, 0, 6, 1, 1);
+
         main_stackedWidget->addWidget(page_3);
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
+        gridLayout_2 = new QGridLayout(page_4);
+        gridLayout_2->setSpacing(6);
+        gridLayout_2->setContentsMargins(11, 11, 11, 11);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        horizontalSpacer_13 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_2->addItem(horizontalSpacer_13, 0, 0, 1, 1);
+
         TotalReport_btn = new QPushButton(page_4);
         TotalReport_btn->setObjectName(QStringLiteral("TotalReport_btn"));
-        TotalReport_btn->setGeometry(QRect(200, 60, 91, 101));
-        NoPayReport_btn = new QPushButton(page_4);
-        NoPayReport_btn->setObjectName(QStringLiteral("NoPayReport_btn"));
-        NoPayReport_btn->setGeometry(QRect(340, 70, 91, 101));
-        ShareReport_btn = new QPushButton(page_4);
-        ShareReport_btn->setObjectName(QStringLiteral("ShareReport_btn"));
-        ShareReport_btn->setGeometry(QRect(490, 70, 91, 101));
+        TotalReport_btn->setMinimumSize(QSize(128, 128));
+
+        gridLayout_2->addWidget(TotalReport_btn, 0, 4, 1, 1);
+
         ShareDetail_btn = new QPushButton(page_4);
         ShareDetail_btn->setObjectName(QStringLiteral("ShareDetail_btn"));
-        ShareDetail_btn->setGeometry(QRect(630, 70, 91, 101));
-        MaterielReport_btn = new QPushButton(page_4);
-        MaterielReport_btn->setObjectName(QStringLiteral("MaterielReport_btn"));
-        MaterielReport_btn->setGeometry(QRect(790, 80, 91, 101));
+        ShareDetail_btn->setMinimumSize(QSize(128, 128));
+
+        gridLayout_2->addWidget(ShareDetail_btn, 2, 7, 1, 1);
+
+        horizontalSpacer_16 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_2->addItem(horizontalSpacer_16, 0, 10, 1, 1);
+
+        horizontalSpacer_15 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_2->addItem(horizontalSpacer_15, 0, 8, 1, 1);
+
+        horizontalSpacer_14 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_2->addItem(horizontalSpacer_14, 0, 5, 1, 1);
+
         StoreReport_btn = new QPushButton(page_4);
         StoreReport_btn->setObjectName(QStringLiteral("StoreReport_btn"));
-        StoreReport_btn->setGeometry(QRect(910, 90, 91, 101));
+        StoreReport_btn->setMinimumSize(QSize(128, 128));
+
+        gridLayout_2->addWidget(StoreReport_btn, 2, 9, 1, 1);
+
+        MaterielReport_btn = new QPushButton(page_4);
+        MaterielReport_btn->setObjectName(QStringLiteral("MaterielReport_btn"));
+        MaterielReport_btn->setMinimumSize(QSize(128, 128));
+
+        gridLayout_2->addWidget(MaterielReport_btn, 2, 4, 1, 1);
+
+        ShareReport_btn = new QPushButton(page_4);
+        ShareReport_btn->setObjectName(QStringLiteral("ShareReport_btn"));
+        ShareReport_btn->setMinimumSize(QSize(128, 128));
+
+        gridLayout_2->addWidget(ShareReport_btn, 0, 9, 1, 1);
+
+        NoPayReport_btn = new QPushButton(page_4);
+        NoPayReport_btn->setObjectName(QStringLiteral("NoPayReport_btn"));
+        NoPayReport_btn->setMinimumSize(QSize(128, 128));
+
+        gridLayout_2->addWidget(NoPayReport_btn, 0, 7, 1, 1);
+
         main_stackedWidget->addWidget(page_4);
         page_5 = new QWidget();
         page_5->setObjectName(QStringLiteral("page_5"));
@@ -511,7 +678,7 @@ public:
 
         retranslateUi(ChuangfengDesktopClass);
 
-        main_stackedWidget->setCurrentIndex(3);
+        main_stackedWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(ChuangfengDesktopClass);
@@ -542,12 +709,14 @@ public:
         nopay_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\272\224\344\273\230\346\254\276\346\230\216\347\273\206", Q_NULLPTR));
         store_material_mgr_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\347\211\251\346\226\231\347\256\241\347\220\206", Q_NULLPTR));
         store_feed_mgr_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\351\245\262\346\226\231\350\215\257\345\223\201\347\256\241\347\220\206", Q_NULLPTR));
+        feed_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\226\202\346\226\231", Q_NULLPTR));
+        feedsum_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\226\202\346\226\231\346\261\207\346\200\273", Q_NULLPTR));
         TotalReport_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\346\200\273\346\224\266\346\224\257\350\241\250", Q_NULLPTR));
-        NoPayReport_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\272\224\344\273\230\346\254\276\350\241\250", Q_NULLPTR));
-        ShareReport_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\210\206\346\221\212\350\241\250", Q_NULLPTR));
         ShareDetail_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\214\272\345\237\237\345\210\206\346\221\212\350\241\250", Q_NULLPTR));
-        MaterielReport_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\347\211\251\346\226\231\350\241\250", Q_NULLPTR));
         StoreReport_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\344\273\223\345\272\223\350\241\250", Q_NULLPTR));
+        MaterielReport_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\347\211\251\346\226\231\350\241\250", Q_NULLPTR));
+        ShareReport_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\210\206\346\221\212\350\241\250", Q_NULLPTR));
+        NoPayReport_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\272\224\344\273\230\346\254\276\350\241\250", Q_NULLPTR));
         set_opt_person->setText(QApplication::translate("ChuangfengDesktopClass", "\344\272\272\345\221\230\347\256\241\347\220\206", Q_NULLPTR));
         set_opt_account->setText(QApplication::translate("ChuangfengDesktopClass", "\350\264\246\347\233\256\347\256\241\347\220\206", Q_NULLPTR));
         set_opt_detail_area->setText(QApplication::translate("ChuangfengDesktopClass", "\345\205\273\346\256\226\345\241\230\345\217\243", Q_NULLPTR));
