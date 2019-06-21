@@ -14,9 +14,11 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDateEdit>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -27,6 +29,12 @@ class Ui_storereport
 {
 public:
     QVBoxLayout *verticalLayout;
+    QWidget *widget_title;
+    QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *min_btn;
+    QPushButton *max_restore_btn;
+    QPushButton *close_btn;
     QWidget *widget_20;
     QDateEdit *store_report_enddateEdit;
     QLabel *label_25;
@@ -42,9 +50,45 @@ public:
     {
         if (storereport->objectName().isEmpty())
             storereport->setObjectName(QStringLiteral("storereport"));
-        storereport->resize(606, 300);
+        storereport->resize(846, 664);
+        storereport->setMinimumSize(QSize(846, 664));
         verticalLayout = new QVBoxLayout(storereport);
+        verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(1, 1, 1, 1);
+        widget_title = new QWidget(storereport);
+        widget_title->setObjectName(QStringLiteral("widget_title"));
+        widget_title->setMinimumSize(QSize(0, 40));
+        widget_title->setStyleSheet(QStringLiteral("background-color: rgb(56, 59, 67);"));
+        horizontalLayout = new QHBoxLayout(widget_title);
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer_2 = new QSpacerItem(745, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
+        min_btn = new QPushButton(widget_title);
+        min_btn->setObjectName(QStringLiteral("min_btn"));
+        min_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(min_btn);
+
+        max_restore_btn = new QPushButton(widget_title);
+        max_restore_btn->setObjectName(QStringLiteral("max_restore_btn"));
+        max_restore_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(max_restore_btn);
+
+        close_btn = new QPushButton(widget_title);
+        close_btn->setObjectName(QStringLiteral("close_btn"));
+        close_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(close_btn);
+
+
+        verticalLayout->addWidget(widget_title);
+
         widget_20 = new QWidget(storereport);
         widget_20->setObjectName(QStringLiteral("widget_20"));
         widget_20->setMinimumSize(QSize(0, 60));
@@ -98,6 +142,9 @@ public:
     void retranslateUi(QWidget *storereport)
     {
         storereport->setWindowTitle(QApplication::translate("storereport", "Form", Q_NULLPTR));
+        min_btn->setText(QString());
+        max_restore_btn->setText(QString());
+        close_btn->setText(QString());
         label_25->setText(QApplication::translate("storereport", "\346\200\273\345\272\223\351\245\262\346\226\231\350\215\257\345\223\201\345\207\272\345\205\245\345\272\223\346\261\207\346\200\273", Q_NULLPTR));
         label_26->setText(QApplication::translate("storereport", "\346\200\273\345\272\223\351\245\262\346\226\231\350\215\257\345\223\201\345\207\272\345\205\245\345\272\223\346\261\207\346\200\273", Q_NULLPTR));
         storereport_export_btn->setText(QString());

@@ -15,9 +15,11 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -28,6 +30,12 @@ class Ui_detailsharereport
 {
 public:
     QVBoxLayout *verticalLayout;
+    QWidget *widget_title;
+    QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *min_btn;
+    QPushButton *max_restore_btn;
+    QPushButton *close_btn;
     QWidget *widget_18;
     QDateEdit *detailshare_report_enddateEdit;
     QDateEdit *detailshare_report_startdateEdit;
@@ -43,9 +51,44 @@ public:
     {
         if (detailsharereport->objectName().isEmpty())
             detailsharereport->setObjectName(QStringLiteral("detailsharereport"));
-        detailsharereport->resize(654, 434);
+        detailsharereport->resize(842, 672);
         verticalLayout = new QVBoxLayout(detailsharereport);
+        verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(1, 1, 1, 1);
+        widget_title = new QWidget(detailsharereport);
+        widget_title->setObjectName(QStringLiteral("widget_title"));
+        widget_title->setMinimumSize(QSize(0, 40));
+        widget_title->setStyleSheet(QStringLiteral("background-color: rgb(56, 59, 67);"));
+        horizontalLayout = new QHBoxLayout(widget_title);
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer_2 = new QSpacerItem(741, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
+        min_btn = new QPushButton(widget_title);
+        min_btn->setObjectName(QStringLiteral("min_btn"));
+        min_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(min_btn);
+
+        max_restore_btn = new QPushButton(widget_title);
+        max_restore_btn->setObjectName(QStringLiteral("max_restore_btn"));
+        max_restore_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(max_restore_btn);
+
+        close_btn = new QPushButton(widget_title);
+        close_btn->setObjectName(QStringLiteral("close_btn"));
+        close_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(close_btn);
+
+
+        verticalLayout->addWidget(widget_title);
+
         widget_18 = new QWidget(detailsharereport);
         widget_18->setObjectName(QStringLiteral("widget_18"));
         widget_18->setMinimumSize(QSize(0, 40));
@@ -84,6 +127,7 @@ public:
 
         detailshare_report_tableview = new QTableView(detailsharereport);
         detailshare_report_tableview->setObjectName(QStringLiteral("detailshare_report_tableview"));
+        detailshare_report_tableview->setMinimumSize(QSize(823, 562));
 
         verticalLayout->addWidget(detailshare_report_tableview);
 
@@ -96,6 +140,9 @@ public:
     void retranslateUi(QWidget *detailsharereport)
     {
         detailsharereport->setWindowTitle(QApplication::translate("detailsharereport", "Form", Q_NULLPTR));
+        min_btn->setText(QString());
+        max_restore_btn->setText(QString());
+        close_btn->setText(QString());
         label_18->setText(QApplication::translate("detailsharereport", "\347\273\223\346\235\237\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
         detaishare_report_search_btn->setText(QString());
         detailsharereport_export_btn->setText(QString());

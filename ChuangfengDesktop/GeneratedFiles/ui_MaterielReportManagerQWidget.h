@@ -14,9 +14,11 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDateEdit>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -27,6 +29,12 @@ class Ui_materielreport
 {
 public:
     QVBoxLayout *verticalLayout;
+    QWidget *widget_title;
+    QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *min_btn;
+    QPushButton *max_restore_btn;
+    QPushButton *close_btn;
     QWidget *widget_19;
     QLabel *label_21;
     QLabel *label_22;
@@ -42,9 +50,45 @@ public:
     {
         if (materielreport->objectName().isEmpty())
             materielreport->setObjectName(QStringLiteral("materielreport"));
-        materielreport->resize(719, 300);
+        materielreport->resize(848, 669);
+        materielreport->setMinimumSize(QSize(848, 669));
         verticalLayout = new QVBoxLayout(materielreport);
+        verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(1, 1, 1, 1);
+        widget_title = new QWidget(materielreport);
+        widget_title->setObjectName(QStringLiteral("widget_title"));
+        widget_title->setMinimumSize(QSize(0, 40));
+        widget_title->setStyleSheet(QStringLiteral("background-color: rgb(56, 59, 67);"));
+        horizontalLayout = new QHBoxLayout(widget_title);
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer_2 = new QSpacerItem(747, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
+        min_btn = new QPushButton(widget_title);
+        min_btn->setObjectName(QStringLiteral("min_btn"));
+        min_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(min_btn);
+
+        max_restore_btn = new QPushButton(widget_title);
+        max_restore_btn->setObjectName(QStringLiteral("max_restore_btn"));
+        max_restore_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(max_restore_btn);
+
+        close_btn = new QPushButton(widget_title);
+        close_btn->setObjectName(QStringLiteral("close_btn"));
+        close_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(close_btn);
+
+
+        verticalLayout->addWidget(widget_title);
+
         widget_19 = new QWidget(materielreport);
         widget_19->setObjectName(QStringLiteral("widget_19"));
         widget_19->setMinimumSize(QSize(0, 60));
@@ -98,6 +142,9 @@ public:
     void retranslateUi(QWidget *materielreport)
     {
         materielreport->setWindowTitle(QApplication::translate("materielreport", "Form", Q_NULLPTR));
+        min_btn->setText(QString());
+        max_restore_btn->setText(QString());
+        close_btn->setText(QString());
         label_21->setText(QApplication::translate("materielreport", "\345\274\200\345\247\213\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
         label_22->setText(QApplication::translate("materielreport", "\347\273\223\346\235\237\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
         label_23->setText(QApplication::translate("materielreport", "\345\233\272\350\265\204\345\210\206\346\221\212\346\203\205\345\206\265\350\241\250", Q_NULLPTR));

@@ -200,6 +200,21 @@
     <QtMoc Include="TotalReportManager.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="NopayReportManger.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ShareReportManager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="DetailShareReportManager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MaterielReportManger.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="StoreReportManager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginQWidget.ui">
@@ -270,21 +285,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DetailAreaLayoutManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NopayReportManger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShareReportManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DetailShareReportManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MaterielReportManger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StoreReportManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

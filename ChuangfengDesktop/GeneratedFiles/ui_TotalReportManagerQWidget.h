@@ -50,7 +50,8 @@ public:
     {
         if (totalreportmanager->objectName().isEmpty())
             totalreportmanager->setObjectName(QStringLiteral("totalreportmanager"));
-        totalreportmanager->resize(933, 423);
+        totalreportmanager->resize(845, 635);
+        totalreportmanager->setMinimumSize(QSize(845, 635));
         verticalLayout = new QVBoxLayout(totalreportmanager);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

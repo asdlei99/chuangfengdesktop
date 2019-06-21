@@ -14,9 +14,11 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDateEdit>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -27,6 +29,12 @@ class Ui_shareReport
 {
 public:
     QVBoxLayout *verticalLayout;
+    QWidget *widget_title;
+    QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *min_btn;
+    QPushButton *max_restore_btn;
+    QPushButton *close_btn;
     QWidget *widget_17;
     QPushButton *share_report_search_btn;
     QPushButton *sharereport_export_btn;
@@ -40,9 +48,45 @@ public:
     {
         if (shareReport->objectName().isEmpty())
             shareReport->setObjectName(QStringLiteral("shareReport"));
-        shareReport->resize(726, 365);
+        shareReport->resize(842, 628);
+        shareReport->setMinimumSize(QSize(842, 628));
         verticalLayout = new QVBoxLayout(shareReport);
+        verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(1, 1, 1, 1);
+        widget_title = new QWidget(shareReport);
+        widget_title->setObjectName(QStringLiteral("widget_title"));
+        widget_title->setMinimumSize(QSize(0, 40));
+        widget_title->setStyleSheet(QStringLiteral("background-color: rgb(56, 59, 67);"));
+        horizontalLayout = new QHBoxLayout(widget_title);
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer_2 = new QSpacerItem(741, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
+        min_btn = new QPushButton(widget_title);
+        min_btn->setObjectName(QStringLiteral("min_btn"));
+        min_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(min_btn);
+
+        max_restore_btn = new QPushButton(widget_title);
+        max_restore_btn->setObjectName(QStringLiteral("max_restore_btn"));
+        max_restore_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(max_restore_btn);
+
+        close_btn = new QPushButton(widget_title);
+        close_btn->setObjectName(QStringLiteral("close_btn"));
+        close_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(close_btn);
+
+
+        verticalLayout->addWidget(widget_title);
+
         widget_17 = new QWidget(shareReport);
         widget_17->setObjectName(QStringLiteral("widget_17"));
         widget_17->setMinimumSize(QSize(0, 40));
@@ -86,6 +130,9 @@ public:
     void retranslateUi(QWidget *shareReport)
     {
         shareReport->setWindowTitle(QApplication::translate("shareReport", "Form", Q_NULLPTR));
+        min_btn->setText(QString());
+        max_restore_btn->setText(QString());
+        close_btn->setText(QString());
         share_report_search_btn->setText(QString());
         sharereport_export_btn->setText(QString());
         label_16->setText(QApplication::translate("shareReport", "\347\273\223\346\235\237\346\227\266\351\227\264\357\274\232", Q_NULLPTR));

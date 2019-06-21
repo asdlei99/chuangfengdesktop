@@ -17,6 +17,11 @@
 #include "BakLayoutManager.h"
 #include "NoPayLayoutManager.h"
 #include "TotalReportManager.h"
+#include "NopayReportManger.h"
+#include "ShareReportManager.h"
+#include "DetailShareReportManager.h"
+#include "MaterielReportManger.h"
+#include "StoreReportManager.h"
 ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
 	:MoveableFramelessWindow(parent)
 	,ui(new Ui::ChuangfengDesktopClass)
@@ -61,6 +66,36 @@ ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
 	});
 	connect(ui->TotalReport_btn, &QPushButton::clicked, this, [this]()->void {
 		TotalReportManager*pQtWidget = new TotalReportManager();
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
+	connect(ui->NoPayReport_btn, &QPushButton::clicked, this, [this]()->void {
+		NopayReportManger*pQtWidget = new NopayReportManger();
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
+	connect(ui->ShareReport_btn, &QPushButton::clicked, this, [this]()->void {
+		ShareReportManager*pQtWidget = new ShareReportManager();
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
+	connect(ui->ShareDetail_btn, &QPushButton::clicked, this, [this]()->void {
+		DetailShareReportManager*pQtWidget = new DetailShareReportManager();
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
+	connect(ui->MaterielReport_btn, &QPushButton::clicked, this, [this]()->void {
+		MaterielReportManger*pQtWidget = new MaterielReportManger();
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
+	connect(ui->StoreReport_btn, &QPushButton::clicked, this, [this]()->void {
+		StoreReportManager*pQtWidget = new StoreReportManager();
 		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
 		pQtWidget->setWindowModality(Qt::ApplicationModal);
 		pQtWidget->show();

@@ -14,9 +14,11 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDateEdit>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -27,6 +29,12 @@ class Ui_noPayReportMannger
 {
 public:
     QVBoxLayout *verticalLayout;
+    QWidget *nopayreport_title;
+    QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *min_btn;
+    QPushButton *max_restore_btn;
+    QPushButton *close_btn;
     QWidget *widget_16;
     QLabel *label_14;
     QLabel *label_15;
@@ -40,13 +48,50 @@ public:
     {
         if (noPayReportMannger->objectName().isEmpty())
             noPayReportMannger->setObjectName(QStringLiteral("noPayReportMannger"));
-        noPayReportMannger->resize(704, 385);
+        noPayReportMannger->resize(845, 631);
+        noPayReportMannger->setMinimumSize(QSize(845, 631));
         verticalLayout = new QVBoxLayout(noPayReportMannger);
+        verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(1, 1, 1, 1);
+        nopayreport_title = new QWidget(noPayReportMannger);
+        nopayreport_title->setObjectName(QStringLiteral("nopayreport_title"));
+        nopayreport_title->setMinimumSize(QSize(0, 40));
+        nopayreport_title->setStyleSheet(QStringLiteral("background-color: rgb(56, 59, 67);"));
+        horizontalLayout = new QHBoxLayout(nopayreport_title);
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer_2 = new QSpacerItem(744, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
+        min_btn = new QPushButton(nopayreport_title);
+        min_btn->setObjectName(QStringLiteral("min_btn"));
+        min_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(min_btn);
+
+        max_restore_btn = new QPushButton(nopayreport_title);
+        max_restore_btn->setObjectName(QStringLiteral("max_restore_btn"));
+        max_restore_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(max_restore_btn);
+
+        close_btn = new QPushButton(nopayreport_title);
+        close_btn->setObjectName(QStringLiteral("close_btn"));
+        close_btn->setMinimumSize(QSize(32, 23));
+
+        horizontalLayout->addWidget(close_btn);
+
+
+        verticalLayout->addWidget(nopayreport_title);
+
         widget_16 = new QWidget(noPayReportMannger);
         widget_16->setObjectName(QStringLiteral("widget_16"));
         widget_16->setMinimumSize(QSize(0, 40));
         widget_16->setMaximumSize(QSize(16777215, 40));
+        widget_16->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
         label_14 = new QLabel(widget_16);
         label_14->setObjectName(QStringLiteral("label_14"));
         label_14->setGeometry(QRect(0, 10, 60, 28));
@@ -74,6 +119,7 @@ public:
 
         nopayreport_tableView = new QTableView(noPayReportMannger);
         nopayreport_tableView->setObjectName(QStringLiteral("nopayreport_tableView"));
+        nopayreport_tableView->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
 
         verticalLayout->addWidget(nopayreport_tableView);
 
@@ -86,6 +132,9 @@ public:
     void retranslateUi(QWidget *noPayReportMannger)
     {
         noPayReportMannger->setWindowTitle(QApplication::translate("noPayReportMannger", "Form", Q_NULLPTR));
+        min_btn->setText(QString());
+        max_restore_btn->setText(QString());
+        close_btn->setText(QString());
         label_14->setText(QApplication::translate("noPayReportMannger", "\345\274\200\345\247\213\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
         label_15->setText(QApplication::translate("noPayReportMannger", "\347\273\223\346\235\237\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
         nopay_report_search_btn->setText(QString());
