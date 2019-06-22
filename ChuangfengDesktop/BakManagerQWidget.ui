@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>845</width>
-    <height>636</height>
+    <width>860</width>
+    <height>630</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>860</width>
+    <height>630</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -30,7 +36,7 @@
     <number>1</number>
    </property>
    <item>
-    <widget class="QWidget" name="bak_title" native="true">
+    <widget class="QWidget" name="child_widget_title" native="true">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -38,7 +44,7 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(56, 59, 67);</string>
+      <string notr="true"/>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="spacing">
@@ -126,7 +132,7 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(68, 71, 77);</string>
+      <string notr="true">background-color: rgb(54, 78, 111);</string>
      </property>
      <widget class="QPushButton" name="bak_del_btn">
       <property name="geometry">
@@ -185,7 +191,7 @@
        <rect>
         <x>190</x>
         <y>10</y>
-        <width>60</width>
+        <width>65</width>
         <height>28</height>
        </rect>
       </property>
@@ -201,7 +207,7 @@
        <rect>
         <x>0</x>
         <y>10</y>
-        <width>60</width>
+        <width>65</width>
         <height>28</height>
        </rect>
       </property>
@@ -243,7 +249,7 @@
    <item>
     <widget class="QTableView" name="bak_tableView">
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(68, 71, 77);</string>
+      <string notr="true">background-color: rgb(54, 78, 111);</string>
      </property>
     </widget>
    </item>

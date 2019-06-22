@@ -20,18 +20,6 @@
         color: black;  
 }  
 
-QPushButton{
-	background-color: none;
-	border-image: url(:/ChuangfengDesktop/Resources/button_normal.png);
-}
-QPushButton:hover{
-	background-color: none;
-	border-image: url(:/ChuangfengDesktop/Resources/button_hover.png);
-}
-QPushButton:pressed{
-	background-color: none;
-	border-image: url(:/ChuangfengDesktop/Resources/button_pushed.png);
-}
 
 
 /*定义全局滚动条样式*/
@@ -99,7 +87,8 @@ QScrollBar::sub-page:vertical {
 
 
  QScrollBar::handle:horizontal {
-     background: rgba(69,124,216,150);
+     background: rgb(198,201,203);
+    border-radius:5px;
  }
 
  
@@ -499,7 +488,7 @@ spacing: 5px;
 }
  #store_feed_mgr_btn:pressed
  { 
-	border-image: url(:/ChuangfengDesktop/Resources/feed_btn.png)0 0 0 256;
+	border-image: url(:/ChuangfengDesktop/Resources/store_feed_mgr_btn.png)0 0 0 256;
 }
 #feed_btn
 { 
@@ -598,4 +587,8 @@ spacing: 5px;
  #StoreReport_btn:pressed
  { 
 	border-image: url(:/ChuangfengDesktop/Resources/StoreReport_btn.png)0 0 0 256;
+}
+
+#child_widget_title{
+background-color:#2A3A56;  
 }

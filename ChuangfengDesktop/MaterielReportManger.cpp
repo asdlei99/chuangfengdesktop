@@ -114,7 +114,7 @@ void MaterielReportManger::paintEvent(QPaintEvent *event)
 	path.addRect(0, 0, this->width(), 40);
 	QPainter painter(this);
 	painter.setRenderHint(QPainter::Antialiasing, true);
-	painter.fillPath(path, QBrush(QColor(56, 59, 67)));
+	painter.fillPath(path, QBrush(QColor(41, 57, 85)));
 	{
 		QPainterPath path;
 		path.setFillRule(Qt::WindingFill);
@@ -122,11 +122,11 @@ void MaterielReportManger::paintEvent(QPaintEvent *event)
 		QPainter painter(this);
 		painter.setRenderHint(QPainter::Antialiasing, true);
 		//painter.fillPath(path, QBrush(QColor(68, 71, 77)));
-		painter.fillPath(path, QBrush(QColor(56, 59, 67)));
+		painter.fillPath(path, QBrush(QColor(54, 78, 111)));
 	}
 }
 
 QWidget* MaterielReportManger::getDragnWidget()
 {
-	return ui->widget_title;
+	return ui->child_widget_title;
 }

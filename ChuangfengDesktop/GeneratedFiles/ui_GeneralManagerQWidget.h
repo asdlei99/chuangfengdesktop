@@ -29,7 +29,7 @@ class Ui_generalManager
 {
 public:
     QVBoxLayout *verticalLayout;
-    QWidget *general_title;
+    QWidget *child_widget_title;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *general_min_btn;
@@ -50,17 +50,18 @@ public:
     {
         if (generalManager->objectName().isEmpty())
             generalManager->setObjectName(QStringLiteral("generalManager"));
-        generalManager->resize(867, 631);
-        generalManager->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
+        generalManager->resize(860, 630);
+        generalManager->setMinimumSize(QSize(860, 630));
+        generalManager->setStyleSheet(QStringLiteral(""));
         verticalLayout = new QVBoxLayout(generalManager);
         verticalLayout->setSpacing(1);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(1, 1, 1, 1);
-        general_title = new QWidget(generalManager);
-        general_title->setObjectName(QStringLiteral("general_title"));
-        general_title->setMinimumSize(QSize(0, 40));
-        general_title->setStyleSheet(QStringLiteral("background-color: rgb(56, 59, 67);"));
-        horizontalLayout = new QHBoxLayout(general_title);
+        child_widget_title = new QWidget(generalManager);
+        child_widget_title->setObjectName(QStringLiteral("child_widget_title"));
+        child_widget_title->setMinimumSize(QSize(0, 40));
+        child_widget_title->setStyleSheet(QStringLiteral(""));
+        horizontalLayout = new QHBoxLayout(child_widget_title);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
@@ -68,31 +69,31 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer_2);
 
-        general_min_btn = new QPushButton(general_title);
+        general_min_btn = new QPushButton(child_widget_title);
         general_min_btn->setObjectName(QStringLiteral("general_min_btn"));
         general_min_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(general_min_btn);
 
-        general_max_restore_btn = new QPushButton(general_title);
+        general_max_restore_btn = new QPushButton(child_widget_title);
         general_max_restore_btn->setObjectName(QStringLiteral("general_max_restore_btn"));
         general_max_restore_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(general_max_restore_btn);
 
-        general_cose_btn = new QPushButton(general_title);
+        general_cose_btn = new QPushButton(child_widget_title);
         general_cose_btn->setObjectName(QStringLiteral("general_cose_btn"));
         general_cose_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(general_cose_btn);
 
 
-        verticalLayout->addWidget(general_title);
+        verticalLayout->addWidget(child_widget_title);
 
         widget = new QWidget(generalManager);
         widget->setObjectName(QStringLiteral("widget"));
         widget->setMinimumSize(QSize(0, 40));
-        widget->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
+        widget->setStyleSheet(QStringLiteral("background-color: rgb(54, 78, 111);"));
         startdateEdit = new QDateEdit(widget);
         startdateEdit->setObjectName(QStringLiteral("startdateEdit"));
         startdateEdit->setGeometry(QRect(80, 0, 110, 28));
@@ -102,11 +103,11 @@ public:
         general_export_btn->setGeometry(QRect(660, 0, 80, 28));
         label_5 = new QLabel(widget);
         label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(200, 0, 60, 28));
+        label_5->setGeometry(QRect(200, 0, 65, 28));
         label_5->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_4 = new QLabel(widget);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(10, 0, 60, 28));
+        label_4->setGeometry(QRect(10, 0, 65, 28));
         label_4->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         general_add_btn = new QPushButton(widget);
         general_add_btn->setObjectName(QStringLiteral("general_add_btn"));
@@ -127,7 +128,7 @@ public:
         general_table_view = new QTableView(generalManager);
         general_table_view->setObjectName(QStringLiteral("general_table_view"));
         general_table_view->setMinimumSize(QSize(865, 547));
-        general_table_view->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
+        general_table_view->setStyleSheet(QStringLiteral("background-color: rgb(54, 78, 111);"));
 
         verticalLayout->addWidget(general_table_view);
 

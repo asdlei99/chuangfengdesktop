@@ -30,7 +30,7 @@ FeedStoreManagerWdiget::FeedStoreManagerWdiget(QWidget *parent)
 		<<ui->area_detail_opt<< ui->area_return_opt;
 	QList<QChar> pixChar;
 	pixChar << 0xf509 << 0xf571 << 0xf1fe << 0xf2a3 << 0xf1fe << 0xf2a3;
-	QColor normalBgColor = QColor("#44474D");
+	QColor normalBgColor = QColor("#364E6F");
 	QColor hoverBgColor = QColor("#478CB6");
 	QColor checkBgColor = QColor("#478CB6");
 	QColor normalTextColor = QColor("#FFFFFF");
@@ -136,7 +136,7 @@ void FeedStoreManagerWdiget::paintEvent(QPaintEvent *event)
 	path.addRect(0, 0, this->width(), 40);
 	QPainter painter(this);
 	painter.setRenderHint(QPainter::Antialiasing, true);
-	painter.fillPath(path, QBrush(QColor(56, 59, 67)));
+	painter.fillPath(path, QBrush(QColor(41, 57, 85)));
 	{
 		QPainterPath path;
 		path.setFillRule(Qt::WindingFill);
@@ -144,11 +144,11 @@ void FeedStoreManagerWdiget::paintEvent(QPaintEvent *event)
 		QPainter painter(this);
 		painter.setRenderHint(QPainter::Antialiasing, true);
 		//painter.fillPath(path, QBrush(QColor(68, 71, 77)));
-		painter.fillPath(path, QBrush(QColor(56, 59, 67)));
+		painter.fillPath(path, QBrush(QColor(54, 78, 111)));
 	}
 }
 
 QWidget* FeedStoreManagerWdiget::getDragnWidget()
 {
-	return ui->feedstore_title;
+	return ui->child_widget_title;
 }

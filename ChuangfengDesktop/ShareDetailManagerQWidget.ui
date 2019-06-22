@@ -30,7 +30,7 @@
     <number>1</number>
    </property>
    <item>
-    <widget class="QWidget" name="widget_title" native="true">
+    <widget class="QWidget" name="child_widget_title" native="true">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -38,7 +38,7 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(56, 59, 67);</string>
+      <string notr="true"/>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="spacing">
@@ -125,6 +125,9 @@
        <height>40</height>
       </size>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(54, 78, 111);</string>
+     </property>
      <widget class="QDateEdit" name="detailshare_report_enddateEdit">
       <property name="geometry">
        <rect>
@@ -156,7 +159,7 @@
        <rect>
         <x>190</x>
         <y>10</y>
-        <width>60</width>
+        <width>65</width>
         <height>28</height>
        </rect>
       </property>
@@ -170,7 +173,7 @@
      <widget class="QPushButton" name="detaishare_report_search_btn">
       <property name="geometry">
        <rect>
-        <x>540</x>
+        <x>550</x>
         <y>10</y>
         <width>80</width>
         <height>28</height>
@@ -183,7 +186,7 @@
      <widget class="QPushButton" name="detailsharereport_export_btn">
       <property name="geometry">
        <rect>
-        <x>640</x>
+        <x>650</x>
         <y>10</y>
         <width>80</width>
         <height>28</height>
@@ -198,7 +201,7 @@
        <rect>
         <x>0</x>
         <y>10</y>
-        <width>60</width>
+        <width>65</width>
         <height>28</height>
        </rect>
       </property>
@@ -214,7 +217,7 @@
        <rect>
         <x>380</x>
         <y>10</y>
-        <width>60</width>
+        <width>65</width>
         <height>28</height>
        </rect>
       </property>
@@ -222,13 +225,13 @@
        <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string>养殖区域</string>
+       <string>养殖区域：</string>
       </property>
      </widget>
      <widget class="QComboBox" name="area_combox">
       <property name="geometry">
        <rect>
-        <x>440</x>
+        <x>450</x>
         <y>10</y>
         <width>80</width>
         <height>28</height>
@@ -244,6 +247,9 @@
        <width>823</width>
        <height>562</height>
       </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(54, 78, 111);</string>
      </property>
     </widget>
    </item>

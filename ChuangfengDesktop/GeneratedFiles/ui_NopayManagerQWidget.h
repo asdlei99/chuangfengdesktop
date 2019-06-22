@@ -29,7 +29,7 @@ class Ui_nopayManager
 {
 public:
     QVBoxLayout *verticalLayout;
-    QWidget *nopay_title;
+    QWidget *child_widget_title;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *min_btn;
@@ -50,16 +50,17 @@ public:
     {
         if (nopayManager->objectName().isEmpty())
             nopayManager->setObjectName(QStringLiteral("nopayManager"));
-        nopayManager->resize(831, 479);
+        nopayManager->resize(860, 630);
+        nopayManager->setMinimumSize(QSize(860, 630));
         verticalLayout = new QVBoxLayout(nopayManager);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(1, 1, 1, 1);
-        nopay_title = new QWidget(nopayManager);
-        nopay_title->setObjectName(QStringLiteral("nopay_title"));
-        nopay_title->setMinimumSize(QSize(0, 40));
-        nopay_title->setStyleSheet(QStringLiteral("background-color: rgb(56, 59, 67);"));
-        horizontalLayout = new QHBoxLayout(nopay_title);
+        child_widget_title = new QWidget(nopayManager);
+        child_widget_title->setObjectName(QStringLiteral("child_widget_title"));
+        child_widget_title->setMinimumSize(QSize(0, 40));
+        child_widget_title->setStyleSheet(QStringLiteral(""));
+        horizontalLayout = new QHBoxLayout(child_widget_title);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
@@ -67,39 +68,39 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer_2);
 
-        min_btn = new QPushButton(nopay_title);
+        min_btn = new QPushButton(child_widget_title);
         min_btn->setObjectName(QStringLiteral("min_btn"));
         min_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(min_btn);
 
-        max_restore_btn = new QPushButton(nopay_title);
+        max_restore_btn = new QPushButton(child_widget_title);
         max_restore_btn->setObjectName(QStringLiteral("max_restore_btn"));
         max_restore_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(max_restore_btn);
 
-        close_btn = new QPushButton(nopay_title);
+        close_btn = new QPushButton(child_widget_title);
         close_btn->setObjectName(QStringLiteral("close_btn"));
         close_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(close_btn);
 
 
-        verticalLayout->addWidget(nopay_title);
+        verticalLayout->addWidget(child_widget_title);
 
         widget_9 = new QWidget(nopayManager);
         widget_9->setObjectName(QStringLiteral("widget_9"));
         widget_9->setMinimumSize(QSize(0, 40));
         widget_9->setMaximumSize(QSize(16777215, 40));
-        widget_9->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
+        widget_9->setStyleSheet(QStringLiteral("background-color: rgb(54, 78, 111);"));
         nopay_enddateEdit = new QDateEdit(widget_9);
         nopay_enddateEdit->setObjectName(QStringLiteral("nopay_enddateEdit"));
         nopay_enddateEdit->setGeometry(QRect(260, 10, 110, 28));
         nopay_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_8 = new QLabel(widget_9);
         label_8->setObjectName(QStringLiteral("label_8"));
-        label_8->setGeometry(QRect(0, 10, 60, 28));
+        label_8->setGeometry(QRect(0, 10, 65, 28));
         label_8->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         nopay_search_btn = new QPushButton(widget_9);
         nopay_search_btn->setObjectName(QStringLiteral("nopay_search_btn"));
@@ -116,7 +117,7 @@ public:
         nopay_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_9 = new QLabel(widget_9);
         label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setGeometry(QRect(190, 10, 60, 28));
+        label_9->setGeometry(QRect(190, 10, 65, 28));
         label_9->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         nopay_del_btn = new QPushButton(widget_9);
         nopay_del_btn->setObjectName(QStringLiteral("nopay_del_btn"));
@@ -126,7 +127,7 @@ public:
 
         nopay_tableView = new QTableView(nopayManager);
         nopay_tableView->setObjectName(QStringLiteral("nopay_tableView"));
-        nopay_tableView->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
+        nopay_tableView->setStyleSheet(QStringLiteral("background-color: rgb(54, 78, 111);"));
 
         verticalLayout->addWidget(nopay_tableView);
 

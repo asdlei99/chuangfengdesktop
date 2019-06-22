@@ -29,7 +29,7 @@ class Ui_BakManager
 {
 public:
     QVBoxLayout *verticalLayout;
-    QWidget *bak_title;
+    QWidget *child_widget_title;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *bak_min_btn;
@@ -50,16 +50,17 @@ public:
     {
         if (BakManager->objectName().isEmpty())
             BakManager->setObjectName(QStringLiteral("BakManager"));
-        BakManager->resize(845, 636);
+        BakManager->resize(860, 630);
+        BakManager->setMinimumSize(QSize(860, 630));
         verticalLayout = new QVBoxLayout(BakManager);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(1, 1, 1, 1);
-        bak_title = new QWidget(BakManager);
-        bak_title->setObjectName(QStringLiteral("bak_title"));
-        bak_title->setMinimumSize(QSize(0, 40));
-        bak_title->setStyleSheet(QStringLiteral("background-color: rgb(56, 59, 67);"));
-        horizontalLayout = new QHBoxLayout(bak_title);
+        child_widget_title = new QWidget(BakManager);
+        child_widget_title->setObjectName(QStringLiteral("child_widget_title"));
+        child_widget_title->setMinimumSize(QSize(0, 40));
+        child_widget_title->setStyleSheet(QStringLiteral(""));
+        horizontalLayout = new QHBoxLayout(child_widget_title);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
@@ -67,32 +68,32 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer_2);
 
-        bak_min_btn = new QPushButton(bak_title);
+        bak_min_btn = new QPushButton(child_widget_title);
         bak_min_btn->setObjectName(QStringLiteral("bak_min_btn"));
         bak_min_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(bak_min_btn);
 
-        bak_max_restore_btn = new QPushButton(bak_title);
+        bak_max_restore_btn = new QPushButton(child_widget_title);
         bak_max_restore_btn->setObjectName(QStringLiteral("bak_max_restore_btn"));
         bak_max_restore_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(bak_max_restore_btn);
 
-        bak_cose_btn = new QPushButton(bak_title);
+        bak_cose_btn = new QPushButton(child_widget_title);
         bak_cose_btn->setObjectName(QStringLiteral("bak_cose_btn"));
         bak_cose_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(bak_cose_btn);
 
 
-        verticalLayout->addWidget(bak_title);
+        verticalLayout->addWidget(child_widget_title);
 
         widget_8 = new QWidget(BakManager);
         widget_8->setObjectName(QStringLiteral("widget_8"));
         widget_8->setMinimumSize(QSize(0, 40));
         widget_8->setMaximumSize(QSize(16777215, 40));
-        widget_8->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
+        widget_8->setStyleSheet(QStringLiteral("background-color: rgb(54, 78, 111);"));
         bak_del_btn = new QPushButton(widget_8);
         bak_del_btn->setObjectName(QStringLiteral("bak_del_btn"));
         bak_del_btn->setGeometry(QRect(560, 10, 80, 28));
@@ -108,11 +109,11 @@ public:
         bak_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_6 = new QLabel(widget_8);
         label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setGeometry(QRect(190, 10, 60, 28));
+        label_6->setGeometry(QRect(190, 10, 65, 28));
         label_6->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_7 = new QLabel(widget_8);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(0, 10, 60, 28));
+        label_7->setGeometry(QRect(0, 10, 65, 28));
         label_7->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         bak_startdateEdit = new QDateEdit(widget_8);
         bak_startdateEdit->setObjectName(QStringLiteral("bak_startdateEdit"));
@@ -126,7 +127,7 @@ public:
 
         bak_tableView = new QTableView(BakManager);
         bak_tableView->setObjectName(QStringLiteral("bak_tableView"));
-        bak_tableView->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
+        bak_tableView->setStyleSheet(QStringLiteral("background-color: rgb(54, 78, 111);"));
 
         verticalLayout->addWidget(bak_tableView);
 

@@ -29,7 +29,7 @@ class Ui_totalreportmanager
 {
 public:
     QVBoxLayout *verticalLayout;
-    QWidget *totalreport_title;
+    QWidget *child_widget_title;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *min_btn;
@@ -50,17 +50,17 @@ public:
     {
         if (totalreportmanager->objectName().isEmpty())
             totalreportmanager->setObjectName(QStringLiteral("totalreportmanager"));
-        totalreportmanager->resize(845, 635);
-        totalreportmanager->setMinimumSize(QSize(845, 635));
+        totalreportmanager->resize(860, 650);
+        totalreportmanager->setMinimumSize(QSize(860, 650));
         verticalLayout = new QVBoxLayout(totalreportmanager);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(1, 1, 1, 1);
-        totalreport_title = new QWidget(totalreportmanager);
-        totalreport_title->setObjectName(QStringLiteral("totalreport_title"));
-        totalreport_title->setMinimumSize(QSize(0, 40));
-        totalreport_title->setStyleSheet(QStringLiteral("background-color: rgb(56, 59, 67);"));
-        horizontalLayout = new QHBoxLayout(totalreport_title);
+        child_widget_title = new QWidget(totalreportmanager);
+        child_widget_title->setObjectName(QStringLiteral("child_widget_title"));
+        child_widget_title->setMinimumSize(QSize(0, 40));
+        child_widget_title->setStyleSheet(QStringLiteral(""));
+        horizontalLayout = new QHBoxLayout(child_widget_title);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
@@ -68,70 +68,70 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer_2);
 
-        min_btn = new QPushButton(totalreport_title);
+        min_btn = new QPushButton(child_widget_title);
         min_btn->setObjectName(QStringLiteral("min_btn"));
         min_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(min_btn);
 
-        max_restore_btn = new QPushButton(totalreport_title);
+        max_restore_btn = new QPushButton(child_widget_title);
         max_restore_btn->setObjectName(QStringLiteral("max_restore_btn"));
         max_restore_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(max_restore_btn);
 
-        close_btn = new QPushButton(totalreport_title);
+        close_btn = new QPushButton(child_widget_title);
         close_btn->setObjectName(QStringLiteral("close_btn"));
         close_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(close_btn);
 
 
-        verticalLayout->addWidget(totalreport_title);
+        verticalLayout->addWidget(child_widget_title);
 
         widget_15 = new QWidget(totalreportmanager);
         widget_15->setObjectName(QStringLiteral("widget_15"));
         widget_15->setMinimumSize(QSize(0, 60));
         widget_15->setMaximumSize(QSize(16777215, 60));
-        widget_15->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
+        widget_15->setStyleSheet(QStringLiteral("background-color: rgb(54, 78, 111);"));
         totalreport_startdateEdit = new QDateEdit(widget_15);
         totalreport_startdateEdit->setObjectName(QStringLiteral("totalreport_startdateEdit"));
-        totalreport_startdateEdit->setGeometry(QRect(70, 0, 110, 28));
+        totalreport_startdateEdit->setGeometry(QRect(70, 10, 110, 28));
         totalreport_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_10 = new QLabel(widget_15);
         label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setGeometry(QRect(190, 0, 60, 28));
+        label_10->setGeometry(QRect(190, 10, 65, 28));
         label_10->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         total_report_enddateEdit = new QDateEdit(widget_15);
         total_report_enddateEdit->setObjectName(QStringLiteral("total_report_enddateEdit"));
-        total_report_enddateEdit->setGeometry(QRect(260, 0, 110, 28));
+        total_report_enddateEdit->setGeometry(QRect(260, 10, 110, 28));
         total_report_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_11 = new QLabel(widget_15);
         label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setGeometry(QRect(0, 0, 60, 28));
+        label_11->setGeometry(QRect(0, 10, 66, 28));
         label_11->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         totalreport_search_btn = new QPushButton(widget_15);
         totalreport_search_btn->setObjectName(QStringLiteral("totalreport_search_btn"));
-        totalreport_search_btn->setGeometry(QRect(380, 0, 80, 28));
+        totalreport_search_btn->setGeometry(QRect(380, 10, 80, 28));
         label_12 = new QLabel(widget_15);
         label_12->setObjectName(QStringLiteral("label_12"));
-        label_12->setGeometry(QRect(110, 30, 191, 31));
+        label_12->setGeometry(QRect(110, 40, 191, 21));
         label_12->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
-"font: 75 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+"font: 75 14pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         label_13 = new QLabel(widget_15);
         label_13->setObjectName(QStringLiteral("label_13"));
-        label_13->setGeometry(QRect(530, 30, 191, 31));
+        label_13->setGeometry(QRect(530, 40, 191, 21));
         label_13->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
-"font: 75 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+"font: 75 14pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         totalreport_export_btn = new QPushButton(widget_15);
         totalreport_export_btn->setObjectName(QStringLiteral("totalreport_export_btn"));
-        totalreport_export_btn->setGeometry(QRect(480, 0, 80, 28));
+        totalreport_export_btn->setGeometry(QRect(480, 10, 80, 28));
 
         verticalLayout->addWidget(widget_15);
 
         total_reporttableView = new QTableView(totalreportmanager);
         total_reporttableView->setObjectName(QStringLiteral("total_reporttableView"));
-        total_reporttableView->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
+        total_reporttableView->setStyleSheet(QStringLiteral("background-color: rgb(54, 78, 111);"));
 
         verticalLayout->addWidget(total_reporttableView);
 

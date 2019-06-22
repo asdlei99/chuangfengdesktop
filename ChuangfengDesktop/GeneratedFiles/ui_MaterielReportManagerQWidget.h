@@ -29,7 +29,7 @@ class Ui_materielreport
 {
 public:
     QVBoxLayout *verticalLayout;
-    QWidget *widget_title;
+    QWidget *child_widget_title;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *min_btn;
@@ -50,17 +50,17 @@ public:
     {
         if (materielreport->objectName().isEmpty())
             materielreport->setObjectName(QStringLiteral("materielreport"));
-        materielreport->resize(848, 669);
-        materielreport->setMinimumSize(QSize(848, 669));
+        materielreport->resize(860, 669);
+        materielreport->setMinimumSize(QSize(860, 630));
         verticalLayout = new QVBoxLayout(materielreport);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(1, 1, 1, 1);
-        widget_title = new QWidget(materielreport);
-        widget_title->setObjectName(QStringLiteral("widget_title"));
-        widget_title->setMinimumSize(QSize(0, 40));
-        widget_title->setStyleSheet(QStringLiteral("background-color: rgb(56, 59, 67);"));
-        horizontalLayout = new QHBoxLayout(widget_title);
+        child_widget_title = new QWidget(materielreport);
+        child_widget_title->setObjectName(QStringLiteral("child_widget_title"));
+        child_widget_title->setMinimumSize(QSize(0, 40));
+        child_widget_title->setStyleSheet(QStringLiteral(""));
+        horizontalLayout = new QHBoxLayout(child_widget_title);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
@@ -68,68 +68,70 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer_2);
 
-        min_btn = new QPushButton(widget_title);
+        min_btn = new QPushButton(child_widget_title);
         min_btn->setObjectName(QStringLiteral("min_btn"));
         min_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(min_btn);
 
-        max_restore_btn = new QPushButton(widget_title);
+        max_restore_btn = new QPushButton(child_widget_title);
         max_restore_btn->setObjectName(QStringLiteral("max_restore_btn"));
         max_restore_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(max_restore_btn);
 
-        close_btn = new QPushButton(widget_title);
+        close_btn = new QPushButton(child_widget_title);
         close_btn->setObjectName(QStringLiteral("close_btn"));
         close_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(close_btn);
 
 
-        verticalLayout->addWidget(widget_title);
+        verticalLayout->addWidget(child_widget_title);
 
         widget_19 = new QWidget(materielreport);
         widget_19->setObjectName(QStringLiteral("widget_19"));
         widget_19->setMinimumSize(QSize(0, 60));
         widget_19->setMaximumSize(QSize(16777215, 60));
+        widget_19->setStyleSheet(QStringLiteral("background-color: rgb(54, 78, 111);"));
         label_21 = new QLabel(widget_19);
         label_21->setObjectName(QStringLiteral("label_21"));
-        label_21->setGeometry(QRect(10, 0, 60, 28));
+        label_21->setGeometry(QRect(10, 10, 65, 28));
         label_21->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_22 = new QLabel(widget_19);
         label_22->setObjectName(QStringLiteral("label_22"));
-        label_22->setGeometry(QRect(200, 0, 60, 28));
+        label_22->setGeometry(QRect(200, 10, 65, 28));
         label_22->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_23 = new QLabel(widget_19);
         label_23->setObjectName(QStringLiteral("label_23"));
-        label_23->setGeometry(QRect(540, 30, 191, 31));
+        label_23->setGeometry(QRect(540, 40, 191, 21));
         label_23->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
-"font: 75 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+"font: 75 14pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         label_24 = new QLabel(widget_19);
         label_24->setObjectName(QStringLiteral("label_24"));
-        label_24->setGeometry(QRect(120, 30, 191, 31));
+        label_24->setGeometry(QRect(120, 40, 191, 21));
         label_24->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
-"font: 75 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+"font: 75 14pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         materielreport_startdateEdit = new QDateEdit(widget_19);
         materielreport_startdateEdit->setObjectName(QStringLiteral("materielreport_startdateEdit"));
-        materielreport_startdateEdit->setGeometry(QRect(80, 0, 110, 28));
+        materielreport_startdateEdit->setGeometry(QRect(80, 10, 110, 28));
         materielreport_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         materielreport_search_btn = new QPushButton(widget_19);
         materielreport_search_btn->setObjectName(QStringLiteral("materielreport_search_btn"));
-        materielreport_search_btn->setGeometry(QRect(390, 0, 80, 28));
+        materielreport_search_btn->setGeometry(QRect(390, 10, 80, 28));
         materiel_report_enddateEdit = new QDateEdit(widget_19);
         materiel_report_enddateEdit->setObjectName(QStringLiteral("materiel_report_enddateEdit"));
-        materiel_report_enddateEdit->setGeometry(QRect(270, 0, 110, 28));
+        materiel_report_enddateEdit->setGeometry(QRect(270, 10, 110, 28));
         materiel_report_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         materielreport_export_btn = new QPushButton(widget_19);
         materielreport_export_btn->setObjectName(QStringLiteral("materielreport_export_btn"));
-        materielreport_export_btn->setGeometry(QRect(490, 0, 80, 28));
+        materielreport_export_btn->setGeometry(QRect(490, 10, 80, 28));
 
         verticalLayout->addWidget(widget_19);
 
         materiel_report_tableView = new QTableView(materielreport);
         materiel_report_tableView->setObjectName(QStringLiteral("materiel_report_tableView"));
+        materiel_report_tableView->setStyleSheet(QStringLiteral("background-color: rgb(54, 78, 111);"));
 
         verticalLayout->addWidget(materiel_report_tableView);
 

@@ -36,7 +36,7 @@
     <number>1</number>
    </property>
    <item>
-    <widget class="QWidget" name="widget_title" native="true">
+    <widget class="QWidget" name="child_widget_title" native="true">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -44,7 +44,7 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(56, 59, 67);</string>
+      <string notr="true"/>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="spacing">
@@ -131,6 +131,9 @@
        <height>40</height>
       </size>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(54, 78, 111);</string>
+     </property>
      <widget class="QPushButton" name="share_report_search_btn">
       <property name="geometry">
        <rect>
@@ -175,7 +178,7 @@
        <rect>
         <x>190</x>
         <y>10</y>
-        <width>60</width>
+        <width>65</width>
         <height>28</height>
        </rect>
       </property>
@@ -191,7 +194,7 @@
        <rect>
         <x>0</x>
         <y>10</y>
-        <width>60</width>
+        <width>65</width>
         <height>28</height>
        </rect>
       </property>
@@ -218,7 +221,11 @@
     </widget>
    </item>
    <item>
-    <widget class="QTableView" name="share_report_tableview"/>
+    <widget class="QTableView" name="share_report_tableview">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(54, 78, 111);</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

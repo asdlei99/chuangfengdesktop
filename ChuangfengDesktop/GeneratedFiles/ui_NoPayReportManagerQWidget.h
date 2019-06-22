@@ -29,7 +29,7 @@ class Ui_noPayReportMannger
 {
 public:
     QVBoxLayout *verticalLayout;
-    QWidget *nopayreport_title;
+    QWidget *child_widget_title;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *min_btn;
@@ -48,17 +48,17 @@ public:
     {
         if (noPayReportMannger->objectName().isEmpty())
             noPayReportMannger->setObjectName(QStringLiteral("noPayReportMannger"));
-        noPayReportMannger->resize(845, 631);
-        noPayReportMannger->setMinimumSize(QSize(845, 631));
+        noPayReportMannger->resize(861, 631);
+        noPayReportMannger->setMinimumSize(QSize(860, 630));
         verticalLayout = new QVBoxLayout(noPayReportMannger);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(1, 1, 1, 1);
-        nopayreport_title = new QWidget(noPayReportMannger);
-        nopayreport_title->setObjectName(QStringLiteral("nopayreport_title"));
-        nopayreport_title->setMinimumSize(QSize(0, 40));
-        nopayreport_title->setStyleSheet(QStringLiteral("background-color: rgb(56, 59, 67);"));
-        horizontalLayout = new QHBoxLayout(nopayreport_title);
+        child_widget_title = new QWidget(noPayReportMannger);
+        child_widget_title->setObjectName(QStringLiteral("child_widget_title"));
+        child_widget_title->setMinimumSize(QSize(0, 40));
+        child_widget_title->setStyleSheet(QStringLiteral(""));
+        horizontalLayout = new QHBoxLayout(child_widget_title);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
@@ -66,39 +66,39 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer_2);
 
-        min_btn = new QPushButton(nopayreport_title);
+        min_btn = new QPushButton(child_widget_title);
         min_btn->setObjectName(QStringLiteral("min_btn"));
         min_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(min_btn);
 
-        max_restore_btn = new QPushButton(nopayreport_title);
+        max_restore_btn = new QPushButton(child_widget_title);
         max_restore_btn->setObjectName(QStringLiteral("max_restore_btn"));
         max_restore_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(max_restore_btn);
 
-        close_btn = new QPushButton(nopayreport_title);
+        close_btn = new QPushButton(child_widget_title);
         close_btn->setObjectName(QStringLiteral("close_btn"));
         close_btn->setMinimumSize(QSize(32, 23));
 
         horizontalLayout->addWidget(close_btn);
 
 
-        verticalLayout->addWidget(nopayreport_title);
+        verticalLayout->addWidget(child_widget_title);
 
         widget_16 = new QWidget(noPayReportMannger);
         widget_16->setObjectName(QStringLiteral("widget_16"));
         widget_16->setMinimumSize(QSize(0, 40));
         widget_16->setMaximumSize(QSize(16777215, 40));
-        widget_16->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
+        widget_16->setStyleSheet(QStringLiteral("background-color: rgb(54, 78, 111);"));
         label_14 = new QLabel(widget_16);
         label_14->setObjectName(QStringLiteral("label_14"));
-        label_14->setGeometry(QRect(0, 10, 60, 28));
+        label_14->setGeometry(QRect(0, 10, 65, 28));
         label_14->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_15 = new QLabel(widget_16);
         label_15->setObjectName(QStringLiteral("label_15"));
-        label_15->setGeometry(QRect(190, 10, 60, 28));
+        label_15->setGeometry(QRect(190, 10, 65, 28));
         label_15->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         nopay_report_startdateEdit = new QDateEdit(widget_16);
         nopay_report_startdateEdit->setObjectName(QStringLiteral("nopay_report_startdateEdit"));
@@ -119,7 +119,7 @@ public:
 
         nopayreport_tableView = new QTableView(noPayReportMannger);
         nopayreport_tableView->setObjectName(QStringLiteral("nopayreport_tableView"));
-        nopayreport_tableView->setStyleSheet(QStringLiteral("background-color: rgb(68, 71, 77);"));
+        nopayreport_tableView->setStyleSheet(QStringLiteral("background-color: rgb(54, 78, 111);"));
 
         verticalLayout->addWidget(nopayreport_tableView);
 
