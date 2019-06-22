@@ -436,3 +436,166 @@ spacing: 5px;
 { 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_export_btn.png)0 0 0 160;
 }
+
+
+#general_btn
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/totalout.png)0 256 0 0;
+}
+#general_btn:hover
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/totalout.png)0 128 0 128;
+}
+ #general_btn:pressed
+ { 
+	border-image: url(:/ChuangfengDesktop/Resources/totalout.png)0 0 0 256;
+}
+#bak_btn
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/bak_btn.png)0 256 0 0;
+}
+#bak_btn:hover
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/bak_btn.png)0 128 0 128;
+}
+ #bak_btn:pressed
+ { 
+	border-image: url(:/ChuangfengDesktop/Resources/bak_btn.png)0 0 0 256;
+}
+#nopay_btn
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/nopay_btn.png)0 256 0 0;
+}
+#nopay_btn:hover
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/nopay_btn.png)0 128 0 128;
+}
+ #nopay_btn:pressed
+ { 
+	border-image: url(:/ChuangfengDesktop/Resources/nopay_btn.png)0 0 0 256;
+}
+
+
+#store_material_mgr_btn
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/material_btn.png)0 256 0 0;
+}
+#store_material_mgr_btn:hover
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/material_btn.png)0 128 0 128;
+}
+ #store_material_mgr_btn:pressed
+ { 
+	border-image: url(:/ChuangfengDesktop/Resources/material_btn.png)0 0 0 256;
+}
+
+#store_feed_mgr_btn
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/store_feed_mgr_btn.png)0 256 0 0;
+}
+#store_feed_mgr_btn:hover
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/store_feed_mgr_btn.png)0 128 0 128;
+}
+ #store_feed_mgr_btn:pressed
+ { 
+	border-image: url(:/ChuangfengDesktop/Resources/feed_btn.png)0 0 0 256;
+}
+#feed_btn
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/feed_btn.png)0 256 0 0;
+}
+#feed_btn:hover
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/feed_btn.png)0 128 0 128;
+}
+ #feed_btn:pressed
+ { 
+	border-image: url(:/ChuangfengDesktop/Resources/feed_btn.png)0 0 0 256;
+}
+#feedsum_btn
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/feedsum_btn.png)0 256 0 0;
+}
+#feedsum_btn:hover
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/feedsum_btn.png)0 128 0 128;
+}
+ #feedsum_btn:pressed
+ { 
+	border-image: url(:/ChuangfengDesktop/Resources/feedsum_btn.png)0 0 0 256;
+}
+
+#TotalReport_btn
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/TotalReport_btn.png)0 256 0 0;
+}
+#TotalReport_btn:hover
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/TotalReport_btn.png)0 128 0 128;
+}
+ #TotalReport_btn:pressed
+ { 
+	border-image: url(:/ChuangfengDesktop/Resources/TotalReport_btn.png)0 0 0 256;
+}
+
+#NoPayReport_btn
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/NoPayReport_btn.png)0 256 0 0;
+}
+#NoPayReport_btn:hover
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/NoPayReport_btn.png)0 128 0 128;
+}
+ #NoPayReport_btn:pressed
+ { 
+	border-image: url(:/ChuangfengDesktop/Resources/NoPayReport_btn.png)0 0 0 256;
+}
+#ShareReport_btn
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/ShareReport_btn.png)0 256 0 0;
+}
+#ShareReport_btn:hover
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/ShareReport_btn.png)0 128 0 128;
+}
+ #ShareReport_btn:pressed
+ { 
+	border-image: url(:/ChuangfengDesktop/Resources/ShareReport_btn.png)0 0 0 256;
+}
+#MaterielReport_btn
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/MaterielReport_btn.png)0 256 0 0;
+}
+#MaterielReport_btn:hover
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/MaterielReport_btn.png)0 128 0 128;
+}
+ #MaterielReport_btn:pressed
+ { 
+	border-image: url(:/ChuangfengDesktop/Resources/MaterielReport_btn.png)0 0 0 256;
+}
+#ShareDetail_btn
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/ShareDetail_btn.png)0 256 0 0;
+}
+#ShareDetail_btn:hover
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/ShareDetail_btn.png)0 128 0 128;
+}
+ #ShareDetail_btn:pressed
+ { 
+	border-image: url(:/ChuangfengDesktop/Resources/ShareDetail_btn.png)0 0 0 256;
+}
+#StoreReport_btn
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/StoreReport_btn.png)0 256 0 0;
+}
+#StoreReport_btn:hover
+{ 
+	border-image: url(:/ChuangfengDesktop/Resources/StoreReport_btn.png)0 128 0 128;
+}
+ #StoreReport_btn:pressed
+ { 
+	border-image: url(:/ChuangfengDesktop/Resources/StoreReport_btn.png)0 0 0 256;
+}

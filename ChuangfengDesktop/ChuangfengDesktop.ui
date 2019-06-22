@@ -334,7 +334,7 @@
      <item>
       <widget class="QStackedWidget" name="main_stackedWidget">
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="page">
         <property name="styleSheet">
@@ -372,11 +372,11 @@
            <property name="minimumSize">
             <size>
              <width>128</width>
-             <height>128</height>
+             <height>142</height>
             </size>
            </property>
            <property name="text">
-            <string>总账支出</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -398,11 +398,11 @@
            <property name="minimumSize">
             <size>
              <width>128</width>
-             <height>128</height>
+             <height>142</height>
             </size>
            </property>
            <property name="text">
-            <string>备用金支出</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -424,11 +424,11 @@
            <property name="minimumSize">
             <size>
              <width>128</width>
-             <height>128</height>
+             <height>142</height>
             </size>
            </property>
            <property name="text">
-            <string>应付款明细</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -496,11 +496,11 @@
            <property name="minimumSize">
             <size>
              <width>128</width>
-             <height>128</height>
+             <height>142</height>
             </size>
            </property>
            <property name="text">
-            <string>物料管理</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -522,11 +522,11 @@
            <property name="minimumSize">
             <size>
              <width>128</width>
-             <height>128</height>
+             <height>142</height>
             </size>
            </property>
            <property name="text">
-            <string>饲料药品管理</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -565,11 +565,11 @@
            <property name="minimumSize">
             <size>
              <width>128</width>
-             <height>128</height>
+             <height>142</height>
             </size>
            </property>
            <property name="text">
-            <string>喂料</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -578,11 +578,11 @@
            <property name="minimumSize">
             <size>
              <width>128</width>
-             <height>128</height>
+             <height>142</height>
             </size>
            </property>
            <property name="text">
-            <string>喂料汇总</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -673,11 +673,11 @@
            <property name="minimumSize">
             <size>
              <width>128</width>
-             <height>128</height>
+             <height>142</height>
             </size>
            </property>
            <property name="text">
-            <string>总收支表</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -686,11 +686,11 @@
            <property name="minimumSize">
             <size>
              <width>128</width>
-             <height>128</height>
+             <height>142</height>
             </size>
            </property>
            <property name="text">
-            <string>区域分摊表</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -738,11 +738,11 @@
            <property name="minimumSize">
             <size>
              <width>128</width>
-             <height>128</height>
+             <height>142</height>
             </size>
            </property>
            <property name="text">
-            <string>仓库表</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -751,11 +751,11 @@
            <property name="minimumSize">
             <size>
              <width>128</width>
-             <height>128</height>
+             <height>142</height>
             </size>
            </property>
            <property name="text">
-            <string>物料表</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -764,11 +764,11 @@
            <property name="minimumSize">
             <size>
              <width>128</width>
-             <height>128</height>
+             <height>142</height>
             </size>
            </property>
            <property name="text">
-            <string>分摊表</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -777,11 +777,11 @@
            <property name="minimumSize">
             <size>
              <width>128</width>
-             <height>128</height>
+             <height>142</height>
             </size>
            </property>
            <property name="text">
-            <string>应付款表</string>
+            <string/>
            </property>
           </widget>
          </item>

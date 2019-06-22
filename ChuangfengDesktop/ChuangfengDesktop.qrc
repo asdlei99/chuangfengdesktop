@@ -30,5 +30,18 @@
         <file>Resources/detail_add_btn.png</file>
         <file>Resources/detail_del_btn.png</file>
         <file>Resources/detail_export_btn.png</file>
+        <file>Resources/totalout.png</file>
+        <file>Resources/bak_btn.png</file>
+        <file>Resources/nopay_btn.png</file>
+        <file>Resources/material_btn.png</file>
+        <file>Resources/store_feed_mgr_btn.png</file>
+        <file>Resources/feed_btn.png</file>
+        <file>Resources/feedsum_btn.png</file>
+        <file>Resources/TotalReport_btn.png</file>
+        <file>Resources/MaterielReport_btn.png</file>
+        <file>Resources/NoPayReport_btn.png</file>
+        <file>Resources/ShareDetail_btn.png</file>
+        <file>Resources/ShareReport_btn.png</file>
+        <file>Resources/StoreReport_btn.png</file>
     </qresource>
 </RCC>

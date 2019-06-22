@@ -300,7 +300,7 @@ public:
 
         general_btn = new QPushButton(page);
         general_btn->setObjectName(QStringLiteral("general_btn"));
-        general_btn->setMinimumSize(QSize(128, 128));
+        general_btn->setMinimumSize(QSize(128, 142));
 
         horizontalLayout->addWidget(general_btn);
 
@@ -310,7 +310,7 @@ public:
 
         bak_btn = new QPushButton(page);
         bak_btn->setObjectName(QStringLiteral("bak_btn"));
-        bak_btn->setMinimumSize(QSize(128, 128));
+        bak_btn->setMinimumSize(QSize(128, 142));
 
         horizontalLayout->addWidget(bak_btn);
 
@@ -320,7 +320,7 @@ public:
 
         nopay_btn = new QPushButton(page);
         nopay_btn->setObjectName(QStringLiteral("nopay_btn"));
-        nopay_btn->setMinimumSize(QSize(128, 128));
+        nopay_btn->setMinimumSize(QSize(128, 142));
 
         horizontalLayout->addWidget(nopay_btn);
 
@@ -350,7 +350,7 @@ public:
 
         store_material_mgr_btn = new QPushButton(page_2);
         store_material_mgr_btn->setObjectName(QStringLiteral("store_material_mgr_btn"));
-        store_material_mgr_btn->setMinimumSize(QSize(128, 128));
+        store_material_mgr_btn->setMinimumSize(QSize(128, 142));
 
         horizontalLayout_6->addWidget(store_material_mgr_btn);
 
@@ -360,7 +360,7 @@ public:
 
         store_feed_mgr_btn = new QPushButton(page_2);
         store_feed_mgr_btn->setObjectName(QStringLiteral("store_feed_mgr_btn"));
-        store_feed_mgr_btn->setMinimumSize(QSize(128, 128));
+        store_feed_mgr_btn->setMinimumSize(QSize(128, 142));
 
         horizontalLayout_6->addWidget(store_feed_mgr_btn);
 
@@ -381,13 +381,13 @@ public:
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         feed_btn = new QPushButton(page_3);
         feed_btn->setObjectName(QStringLiteral("feed_btn"));
-        feed_btn->setMinimumSize(QSize(128, 128));
+        feed_btn->setMinimumSize(QSize(128, 142));
 
         gridLayout_3->addWidget(feed_btn, 0, 2, 1, 1);
 
         feedsum_btn = new QPushButton(page_3);
         feedsum_btn->setObjectName(QStringLiteral("feedsum_btn"));
-        feedsum_btn->setMinimumSize(QSize(128, 128));
+        feedsum_btn->setMinimumSize(QSize(128, 142));
 
         gridLayout_3->addWidget(feedsum_btn, 0, 4, 1, 1);
 
@@ -424,13 +424,13 @@ public:
 
         TotalReport_btn = new QPushButton(page_4);
         TotalReport_btn->setObjectName(QStringLiteral("TotalReport_btn"));
-        TotalReport_btn->setMinimumSize(QSize(128, 128));
+        TotalReport_btn->setMinimumSize(QSize(128, 142));
 
         gridLayout_2->addWidget(TotalReport_btn, 0, 4, 1, 1);
 
         ShareDetail_btn = new QPushButton(page_4);
         ShareDetail_btn->setObjectName(QStringLiteral("ShareDetail_btn"));
-        ShareDetail_btn->setMinimumSize(QSize(128, 128));
+        ShareDetail_btn->setMinimumSize(QSize(128, 142));
 
         gridLayout_2->addWidget(ShareDetail_btn, 2, 7, 1, 1);
 
@@ -448,25 +448,25 @@ public:
 
         StoreReport_btn = new QPushButton(page_4);
         StoreReport_btn->setObjectName(QStringLiteral("StoreReport_btn"));
-        StoreReport_btn->setMinimumSize(QSize(128, 128));
+        StoreReport_btn->setMinimumSize(QSize(128, 142));
 
         gridLayout_2->addWidget(StoreReport_btn, 2, 9, 1, 1);
 
         MaterielReport_btn = new QPushButton(page_4);
         MaterielReport_btn->setObjectName(QStringLiteral("MaterielReport_btn"));
-        MaterielReport_btn->setMinimumSize(QSize(128, 128));
+        MaterielReport_btn->setMinimumSize(QSize(128, 142));
 
         gridLayout_2->addWidget(MaterielReport_btn, 2, 4, 1, 1);
 
         ShareReport_btn = new QPushButton(page_4);
         ShareReport_btn->setObjectName(QStringLiteral("ShareReport_btn"));
-        ShareReport_btn->setMinimumSize(QSize(128, 128));
+        ShareReport_btn->setMinimumSize(QSize(128, 142));
 
         gridLayout_2->addWidget(ShareReport_btn, 0, 9, 1, 1);
 
         NoPayReport_btn = new QPushButton(page_4);
         NoPayReport_btn->setObjectName(QStringLiteral("NoPayReport_btn"));
-        NoPayReport_btn->setMinimumSize(QSize(128, 128));
+        NoPayReport_btn->setMinimumSize(QSize(128, 142));
 
         gridLayout_2->addWidget(NoPayReport_btn, 0, 7, 1, 1);
 
@@ -678,7 +678,7 @@ public:
 
         retranslateUi(ChuangfengDesktopClass);
 
-        main_stackedWidget->setCurrentIndex(2);
+        main_stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(ChuangfengDesktopClass);
@@ -704,19 +704,19 @@ public:
         close_btn->setToolTip(QApplication::translate("ChuangfengDesktopClass", "\345\205\263\351\227\255", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         close_btn->setText(QString());
-        general_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\346\200\273\350\264\246\346\224\257\345\207\272", Q_NULLPTR));
-        bak_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\244\207\347\224\250\351\207\221\346\224\257\345\207\272", Q_NULLPTR));
-        nopay_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\272\224\344\273\230\346\254\276\346\230\216\347\273\206", Q_NULLPTR));
-        store_material_mgr_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\347\211\251\346\226\231\347\256\241\347\220\206", Q_NULLPTR));
-        store_feed_mgr_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\351\245\262\346\226\231\350\215\257\345\223\201\347\256\241\347\220\206", Q_NULLPTR));
-        feed_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\226\202\346\226\231", Q_NULLPTR));
-        feedsum_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\226\202\346\226\231\346\261\207\346\200\273", Q_NULLPTR));
-        TotalReport_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\346\200\273\346\224\266\346\224\257\350\241\250", Q_NULLPTR));
-        ShareDetail_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\214\272\345\237\237\345\210\206\346\221\212\350\241\250", Q_NULLPTR));
-        StoreReport_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\344\273\223\345\272\223\350\241\250", Q_NULLPTR));
-        MaterielReport_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\347\211\251\346\226\231\350\241\250", Q_NULLPTR));
-        ShareReport_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\210\206\346\221\212\350\241\250", Q_NULLPTR));
-        NoPayReport_btn->setText(QApplication::translate("ChuangfengDesktopClass", "\345\272\224\344\273\230\346\254\276\350\241\250", Q_NULLPTR));
+        general_btn->setText(QString());
+        bak_btn->setText(QString());
+        nopay_btn->setText(QString());
+        store_material_mgr_btn->setText(QString());
+        store_feed_mgr_btn->setText(QString());
+        feed_btn->setText(QString());
+        feedsum_btn->setText(QString());
+        TotalReport_btn->setText(QString());
+        ShareDetail_btn->setText(QString());
+        StoreReport_btn->setText(QString());
+        MaterielReport_btn->setText(QString());
+        ShareReport_btn->setText(QString());
+        NoPayReport_btn->setText(QString());
         set_opt_person->setText(QApplication::translate("ChuangfengDesktopClass", "\344\272\272\345\221\230\347\256\241\347\220\206", Q_NULLPTR));
         set_opt_account->setText(QApplication::translate("ChuangfengDesktopClass", "\350\264\246\347\233\256\347\256\241\347\220\206", Q_NULLPTR));
         set_opt_detail_area->setText(QApplication::translate("ChuangfengDesktopClass", "\345\205\273\346\256\226\345\241\230\345\217\243", Q_NULLPTR));
