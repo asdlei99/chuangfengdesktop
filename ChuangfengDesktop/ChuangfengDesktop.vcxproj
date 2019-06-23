@@ -113,6 +113,7 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AddUserWidget.cpp" />
     <ClCompile Include="AreaLayoutManager.cpp" />
     <ClCompile Include="BakLayoutManager.cpp" />
     <ClCompile Include="BaseLayoutManager.cpp" />
@@ -151,6 +152,7 @@
     <QtMoc Include="ChuangfengDesktop.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="addUserWidget.ui" />
     <QtUic Include="BakManagerQWidget.ui" />
     <QtUic Include="ChuangfengDesktop.ui" />
     <QtUic Include="FeedStoreQwidget.ui" />
@@ -205,6 +207,7 @@
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt</IncludePath>
     </QtMoc>
+    <ClInclude Include="AddUserWidget.h" />
     <ClInclude Include="AreaLayoutManager.h" />
     <QtMoc Include="BakLayoutManager.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt</IncludePath>

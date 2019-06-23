@@ -135,6 +135,9 @@
     <ClCompile Include="FeedStoreManagerWdiget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AddUserWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ChuangfengDesktop.h">
@@ -256,6 +259,9 @@
     <QtUic Include="TotalReportManagerQWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="addUserWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="ChuangfengDesktop.qrc">
@@ -285,6 +291,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DetailAreaLayoutManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AddUserWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -589,6 +589,53 @@ spacing: 5px;
 	border-image: url(:/ChuangfengDesktop/Resources/StoreReport_btn.png)0 0 0 256;
 }
 
-#child_widget_title{
-background-color:#2A3A56;  
+#child_widget_title
+{
+	background-color:#2A3A56;  
 }
+
+#pop_widget_title
+{
+	background-color:#001D26;  
+}
+
+
+#pop_cloase_btn
+{
+	border-image: url(:/ChuangfengDesktop/Resources/pop_close_btn.png)0 48 0 0;
+}
+#pop_cloase_btn:hover
+{
+	border-image: url(:/ChuangfengDesktop/Resources/pop_close_btn.png)0 24 0 24;
+}
+#pop_cloase_btn:pressed
+{
+	border-image: url(:/ChuangfengDesktop/Resources/pop_close_btn.png)0 0 0 48;
+}
+
+#pop_min_btn
+{
+	border-image: url(:/ChuangfengDesktop/Resources/pop_min_btn.png)0 48 0 0;
+}
+#pop_min_btn:hover
+{
+	border-image: url(:/ChuangfengDesktop/Resources/pop_min_btn.png)0 24 0 24;
+}
+#pop_min_btn:pressed
+{
+	border-image: url(:/ChuangfengDesktop/Resources/pop_min_btn.png)0 0 0 48;
+}
+
+#pop_cancle_btn
+{
+	border-image: url(:/ChuangfengDesktop/Resources/pop_cancle_btn.png)0 200 0 0;
+}
+#pop_cancle_btn:hover
+{
+	border-image: url(:/ChuangfengDesktop/Resources/pop_cancle_btn.png)0 100 0 100;
+}
+#pop_cancle_btn:pressed
+{
+	border-image: url(:/ChuangfengDesktop/Resources/pop_cancle_btn.png)0 0 0 200;
+}
+

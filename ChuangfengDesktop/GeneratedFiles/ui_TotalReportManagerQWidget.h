@@ -100,7 +100,7 @@ public:
         totalreport_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_10 = new QLabel(widget_15);
         label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setGeometry(QRect(190, 10, 65, 28));
+        label_10->setGeometry(QRect(190, 10, 66, 28));
         label_10->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         total_report_enddateEdit = new QDateEdit(widget_15);
         total_report_enddateEdit->setObjectName(QStringLiteral("total_report_enddateEdit"));

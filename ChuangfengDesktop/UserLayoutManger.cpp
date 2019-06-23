@@ -1,13 +1,25 @@
 #include "UserLayoutManger.h"
+#include "AddUserWidget.h"
 
 UserLayoutManger::UserLayoutManger(Ui::ChuangfengDesktopClass*ui)
 	:BaseLayoutManager(ui)
 {
 	InitLayout();
+	connect(ui->user_add_btn, &QPushButton::clicked, this, [this]()->void {
+		AddUserWidget*pQtWidget = new AddUserWidget();
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
 }
 
 UserLayoutManger::~UserLayoutManger()
 {
+}
+
+void UserLayoutManger::ActionClickAddBtnSlot()
+{
+
 }
 
 void UserLayoutManger::InitLayout()
