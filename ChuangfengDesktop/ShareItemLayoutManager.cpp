@@ -1,9 +1,16 @@
 #include "ShareItemLayoutManager.h"
+#include "CommonDependenceWidget.h"
 
 ShareItemLayoutManager::ShareItemLayoutManager(Ui::ChuangfengDesktopClass*ui)
 	:BaseLayoutManager(ui)
 {
 	InitLayout();
+	connect(m_pUi->shareitem_add_btn, &QPushButton::clicked, this, [this]()->void {
+		CommonDependenceWidget*pQtWidget = new CommonDependenceWidget(PopDependenceWidgetEnum::enShareItemLayout);
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
 }
 
 ShareItemLayoutManager::~ShareItemLayoutManager()

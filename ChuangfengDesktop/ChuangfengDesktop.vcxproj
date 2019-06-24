@@ -119,6 +119,8 @@
     <ClCompile Include="BaseLayoutManager.cpp" />
     <ClCompile Include="CategoryLayoutManager.cpp" />
     <ClCompile Include="ChuangfengDesktop.cpp" />
+    <ClCompile Include="Common2ParamWidget.cpp" />
+    <ClCompile Include="CommonDependenceWidget.cpp" />
     <ClCompile Include="costShareObject.cpp" />
     <ClCompile Include="CustomCtrl\CCheckBoxHeaderView.cpp" />
     <ClCompile Include="CustomCtrl\IconHelper.cpp" />
@@ -155,6 +157,8 @@
     <QtUic Include="addUserWidget.ui" />
     <QtUic Include="BakManagerQWidget.ui" />
     <QtUic Include="ChuangfengDesktop.ui" />
+    <QtUic Include="common2ParamWidget.ui" />
+    <QtUic Include="commonDependenceAreaWidget.ui" />
     <QtUic Include="FeedStoreQwidget.ui" />
     <QtUic Include="GeneralManagerQWidget.ui" />
     <QtUic Include="LoginQWidget.ui" />
@@ -227,6 +231,8 @@
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt</IncludePath>
     </QtMoc>
+    <ClInclude Include="Common2ParamWidget.h" />
+    <ClInclude Include="CommonDependenceWidget.h" />
     <ClInclude Include="CustomCtrl\NoFocusDelegate.h" />
     <QtMoc Include="singleAreaShare.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt</IncludePath>

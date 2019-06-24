@@ -1,4 +1,5 @@
 #include "CategoryLayoutManager.h"
+#include "Common2ParamWidget.h"
 
 
 
@@ -6,6 +7,13 @@ CategoryLayoutManager::CategoryLayoutManager(Ui::ChuangfengDesktopClass*ui)
 	:BaseLayoutManager(ui)
 {
 	InitLayout();
+	connect(m_pUi->category_add_btn, &QPushButton::clicked, this, [this]()->void {
+		Common2ParamWidget*pQtWidget = new Common2ParamWidget(PopWidgetEnum::enCategoryLayout);
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
+	
 }
 
 

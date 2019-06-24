@@ -1,4 +1,5 @@
 #include "AreaLayoutManager.h"
+#include "Common2ParamWidget.h"
 
 
 
@@ -6,6 +7,12 @@ AreaLayoutManager::AreaLayoutManager(Ui::ChuangfengDesktopClass*ui)
 	:BaseLayoutManager(ui)
 {
 	InitLayout();
+	connect(m_pUi->area_add_btn, &QPushButton::clicked, this, [this]()->void {
+		Common2ParamWidget*pQtWidget = new Common2ParamWidget(PopWidgetEnum::enAreaLayout);
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
 }
 
 

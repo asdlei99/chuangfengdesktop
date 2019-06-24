@@ -138,6 +138,12 @@
     <ClCompile Include="AddUserWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Common2ParamWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonDependenceWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ChuangfengDesktop.h">
@@ -262,6 +268,12 @@
     <QtUic Include="addUserWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="common2ParamWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="commonDependenceAreaWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="ChuangfengDesktop.qrc">
@@ -294,6 +306,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AddUserWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common2ParamWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonDependenceWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

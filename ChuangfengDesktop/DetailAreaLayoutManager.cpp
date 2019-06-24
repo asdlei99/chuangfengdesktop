@@ -1,4 +1,5 @@
 #include "DetailAreaLayoutManager.h"
+#include "CommonDependenceWidget.h"
 
 
 
@@ -6,6 +7,12 @@ DetailAreaLayoutManager::DetailAreaLayoutManager(Ui::ChuangfengDesktopClass*ui)
 	:BaseLayoutManager(ui)
 {
 	InitLayout();
+	connect(m_pUi->detailarea_add_btn, &QPushButton::clicked, this, [this]()->void {
+		CommonDependenceWidget*pQtWidget = new CommonDependenceWidget(PopDependenceWidgetEnum::enDetailAreaLayout);
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
 }
 
 

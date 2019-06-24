@@ -14,6 +14,8 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -27,8 +29,18 @@ public:
     QWidget *pop_widget_title;
     QPushButton *pop_cloase_btn;
     QPushButton *pop_min_btn;
+    QLabel *label_5;
     QWidget *widget;
     QPushButton *pop_cancle_btn;
+    QPushButton *pop_commit_btn;
+    QLabel *label;
+    QLineEdit *userName_Edit;
+    QLabel *label_2;
+    QLineEdit *password_edit;
+    QLabel *label_3;
+    QLineEdit *sure_password_edit;
+    QLabel *label_4;
+    QLineEdit *remake_edit;
 
     void setupUi(QWidget *adduserWidget)
     {
@@ -51,6 +63,11 @@ public:
         pop_min_btn = new QPushButton(pop_widget_title);
         pop_min_btn->setObjectName(QStringLiteral("pop_min_btn"));
         pop_min_btn->setGeometry(QRect(535, 6, 24, 24));
+        label_5 = new QLabel(pop_widget_title);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setGeometry(QRect(10, 3, 151, 28));
+        label_5->setStyleSheet(QString::fromUtf8("font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: rgb(0, 200, 255);"));
 
         verticalLayout->addWidget(pop_widget_title);
 
@@ -59,7 +76,46 @@ public:
         widget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         pop_cancle_btn = new QPushButton(widget);
         pop_cancle_btn->setObjectName(QStringLiteral("pop_cancle_btn"));
-        pop_cancle_btn->setGeometry(QRect(100, 470, 100, 35));
+        pop_cancle_btn->setGeometry(QRect(70, 540, 95, 32));
+        pop_commit_btn = new QPushButton(widget);
+        pop_commit_btn->setObjectName(QStringLiteral("pop_commit_btn"));
+        pop_commit_btn->setGeometry(QRect(420, 540, 95, 32));
+        label = new QLabel(widget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(80, 50, 81, 28));
+        label->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
+"font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+        label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        userName_Edit = new QLineEdit(widget);
+        userName_Edit->setObjectName(QStringLiteral("userName_Edit"));
+        userName_Edit->setGeometry(QRect(170, 50, 161, 28));
+        label_2 = new QLabel(widget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(80, 100, 81, 28));
+        label_2->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
+"font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+        label_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        password_edit = new QLineEdit(widget);
+        password_edit->setObjectName(QStringLiteral("password_edit"));
+        password_edit->setGeometry(QRect(170, 100, 161, 28));
+        label_3 = new QLabel(widget);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(80, 150, 81, 28));
+        label_3->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
+"font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+        label_3->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        sure_password_edit = new QLineEdit(widget);
+        sure_password_edit->setObjectName(QStringLiteral("sure_password_edit"));
+        sure_password_edit->setGeometry(QRect(170, 150, 161, 28));
+        label_4 = new QLabel(widget);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(80, 200, 81, 28));
+        label_4->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
+"font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+        label_4->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        remake_edit = new QLineEdit(widget);
+        remake_edit->setObjectName(QStringLiteral("remake_edit"));
+        remake_edit->setGeometry(QRect(170, 200, 161, 28));
 
         verticalLayout->addWidget(widget);
 
@@ -71,10 +127,16 @@ public:
 
     void retranslateUi(QWidget *adduserWidget)
     {
-        adduserWidget->setWindowTitle(QApplication::translate("adduserWidget", "Form", Q_NULLPTR));
+        adduserWidget->setWindowTitle(QApplication::translate("adduserWidget", "\347\224\250\346\210\267\347\256\241\347\220\206", Q_NULLPTR));
         pop_cloase_btn->setText(QString());
         pop_min_btn->setText(QString());
+        label_5->setText(QApplication::translate("adduserWidget", "\347\224\250\346\210\267\347\256\241\347\220\206", Q_NULLPTR));
         pop_cancle_btn->setText(QString());
+        pop_commit_btn->setText(QString());
+        label->setText(QApplication::translate("adduserWidget", "\347\224\250\346\210\267\345\220\215\357\274\232", Q_NULLPTR));
+        label_2->setText(QApplication::translate("adduserWidget", "\345\257\206\347\240\201\357\274\232", Q_NULLPTR));
+        label_3->setText(QApplication::translate("adduserWidget", "\347\241\256\350\256\244\345\257\206\347\240\201\357\274\232", Q_NULLPTR));
+        label_4->setText(QApplication::translate("adduserWidget", "\345\244\207\346\263\250\357\274\232", Q_NULLPTR));
     } // retranslateUi
 
 };
