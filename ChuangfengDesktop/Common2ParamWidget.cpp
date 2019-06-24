@@ -7,6 +7,7 @@ Common2ParamWidget::Common2ParamWidget(PopWidgetEnum type, QWidget *parent)
 {
 	ui->setupUi(this);
 	connect(ui->pop_cloase_btn, &QPushButton::clicked, this, &QWidget::close);
+	connect(ui->pop_cancle_btn, &QPushButton::clicked, this, &QWidget::close);
 	connect(ui->pop_min_btn, &QPushButton::clicked, this, &QWidget::showMinimized);
 	switch (m_enWidgetType)
 	{

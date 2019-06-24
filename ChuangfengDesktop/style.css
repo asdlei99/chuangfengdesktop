@@ -353,21 +353,24 @@ spacing: 5px;
 
 #general_search_btn,#bak_search_btn,#nopay_search_btn,#totalreport_search_btn,#nopay_report_search_btn
 ,#share_report_search_btn,#detaishare_report_search_btn,#materielreport_search_btn,#storereport_search_btn,
-#fix_material_search_btn,#material_in_out_search_btn,#material_search_btn
+#fix_material_search_btn,#material_in_out_search_btn,#material_search_btn,#feed_search_btn,#feedstore_in_out_search_btn
+,#area_feed_search_btn,#area_in_out_search_btn
 { 
 	border-image: url(:/ChuangfengDesktop/Resources/search_btn.png)0 160 0 0;
 }
  #general_search_btn:hover,#bak_search_btn:hover,#nopay_search_btn:hover,#totalreport_search_btn:hover
  ,#nopay_report_search_btn:hover,#share_report_search_btn:hover,#detaishare_report_search_btn:hover
  ,#materielreport_search_btn:hover,#storereport_search_btn:hover,#fix_material_search_btn:hover,
- #material_in_out_search_btn:hover, #material_search_btn:hover
+ #material_in_out_search_btn:hover,#material_search_btn:hover,#feed_search_btn:hover,#feedstore_in_out_search_btn:hover
+ ,#area_feed_search_btn:hover ,#area_in_out_search_btn:hover
  { 
 	border-image: url(:/ChuangfengDesktop/Resources/search_btn.png)0 80 0 80;
 }
  #general_search_btn:pressed,#bak_search_btn:pressed,#nopay_search_btn:pressed,#totalreport_search_btn:pressed
  ,#nopay_report_search_btn:pressed,#share_report_search_btn:pressed,#detaishare_report_search_btn:pressed
  ,#materielreport_search_btn:pressed ,#storereport_search_btn:pressed,#fix_material_search_btn:pressed
- ,#material_in_out_search_btn:pressed,#material_search_btn:pressed
+ ,#material_in_out_search_btn:pressed,#material_search_btn:pressed,#feed_search_btn:pressed,#feedstore_in_out_search_btn:pressed
+ ,#area_feed_search_btn:pressed ,#area_in_out_search_btn:pressed
  { 
 	border-image: url(:/ChuangfengDesktop/Resources/search_btn.png)0 0 0 160;
 }
@@ -393,20 +396,27 @@ spacing: 5px;
 
 
 #general_del_btn,#bak_del_btn,#nopay_del_btn,#user_remove_btn,#category_remove_btn,#area_remove_btn,
-#supplier_remove_btn,#shareitem_remove_btn,#detailarea_remove_btn
+#supplier_remove_btn,#shareitem_remove_btn,#detailarea_remove_btn,#material_delete_btn
+,#material_in_out_delete_btn,#area_in_out_delete_btn,#area_feed_delete_btn,#feedstore_in_out_delete_btn
+,#feed_delete_btn
+
 { 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_del_btn.png)0 160 0 0;
 }
 
 #general_del_btn:hover,#bak_del_btn:hover,#nopay_del_btn:hover,#user_remove_btn:hover,
 #category_remove_btn:hover,#area_remove_btn:hover,#supplier_remove_btn:hover,#shareitem_remove_btn:hover,
-#detailarea_remove_btn:hover
+#detailarea_remove_btn:hover,#material_delete_btn:hover,#material_in_out_delete_btn:hover
+,#area_in_out_delete_btn:hover,#area_feed_delete_btn:hover,#feedstore_in_out_delete_btn:hover
+,#feed_delete_btn:hover
 { 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_del_btn.png)0 80 0 80;
 }
 #general_del_btn:pressed,#bak_del_btn:pressed,#nopay_del_btn:pressed,#user_remove_btn:pressed,
 #category_remove_btn:pressed,#area_remove_btn:pressed,#supplier_remove_btn:pressed,
-#shareitem_remove_btn:pressed,#detailarea_remove_btn:pressed
+#shareitem_remove_btn:pressed,#detailarea_remove_btn:pressed,#material_delete_btn:pressed
+,#material_in_out_delete_btn:pressed,#area_in_out_delete_btn:pressed,#area_feed_delete_btn:pressed
+,#feedstore_in_out_delete_btn:pressed,#feed_delete_btn:pressed
 { 
 	border-image: url(:/ChuangfengDesktop/Resources/detail_del_btn.png)0 0 0 160;
 }
@@ -631,14 +641,65 @@ spacing: 5px;
 
 #pop_cancle_btn
 {
-	border-image: url(:/ChuangfengDesktop/Resources/pop_cancle_btn.png)0 200 0 0;
+	border-image: url(:/ChuangfengDesktop/Resources/pop_cancle_btn.png)0 190 0 0;
 }
 #pop_cancle_btn:hover
 {
-	border-image: url(:/ChuangfengDesktop/Resources/pop_cancle_btn.png)0 100 0 100;
+	border-image: url(:/ChuangfengDesktop/Resources/pop_cancle_btn.png)0 95 0 95;
 }
 #pop_cancle_btn:pressed
 {
-	border-image: url(:/ChuangfengDesktop/Resources/pop_cancle_btn.png)0 0 0 200;
+	border-image: url(:/ChuangfengDesktop/Resources/pop_cancle_btn.png)0 0 0 190;
 }
 
+#pop_commit_btn
+{
+	border-image: url(:/ChuangfengDesktop/Resources/pop_ok_btn.png)0 190 0 0;
+}
+#pop_commit_btn:hover
+{
+	border-image: url(:/ChuangfengDesktop/Resources/pop_ok_btn.png)0 95 0 95;
+}
+#pop_commit_btn:pressed
+{
+	border-image: url(:/ChuangfengDesktop/Resources/pop_ok_btn.png)0 0 0 190;
+}
+
+#material_income_btn,#feed_income_btn
+{
+	border-image: url(:/ChuangfengDesktop/Resources/ruku_btn.png)0 160 0 0;
+}
+#material_income_btn:hover,#feed_income_btn:hover
+{
+	border-image: url(:/ChuangfengDesktop/Resources/ruku_btn.png)0 80 0 80;
+}
+#material_income_btn:pressed,#feed_income_btn:pressed
+{
+	border-image: url(:/ChuangfengDesktop/Resources/ruku_btn.png)0 0 0 160;
+}
+
+#material_out_btn,#feed_out_btn
+{
+	border-image: url(:/ChuangfengDesktop/Resources/chuku_btn.png)0 160 0 0;
+}
+#material_out_btn:hover,#feed_out_btn:hover
+{
+	border-image: url(:/ChuangfengDesktop/Resources/chuku_btn.png)0 80 0 80;
+}
+#material_out_btn:pressed,#feed_out_btn:pressed
+{
+	border-image: url(:/ChuangfengDesktop/Resources/chuku_btn.png)0 0 0 160;
+}
+
+#feed_return_btn,#area_feed_return_btn
+{
+	border-image: url(:/ChuangfengDesktop/Resources/tuiku_btn.png)0 160 0 0;
+}
+#feed_return_btn:hover,#area_feed_return_btn:hover
+{
+	border-image: url(:/ChuangfengDesktop/Resources/tuiku_btn.png)0 80 0 80;
+}
+#feed_return_btn:pressed,#area_feed_return_btn:pressed
+{
+	border-image: url(:/ChuangfengDesktop/Resources/tuiku_btn.png)0 0 0 160;
+}

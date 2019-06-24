@@ -46,5 +46,9 @@
         <file>Resources/pop_close_btn.png</file>
         <file>Resources/pop_min_btn.png</file>
         <file>Resources/pop_cancle_btn.png</file>
+        <file>Resources/pop_ok_btn.png</file>
+        <file>Resources/ruku_btn.png</file>
+        <file>Resources/chuku_btn.png</file>
+        <file>Resources/tuiku_btn.png</file>
     </qresource>
 </RCC>
