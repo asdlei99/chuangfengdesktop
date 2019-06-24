@@ -13,12 +13,15 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include <qnavbutton.h>
@@ -39,25 +42,51 @@ public:
     QHBoxLayout *horizontalLayout;
     QWidget *widget_2;
     NavButton *feedstore_detail_opt;
-    NavButton *feedstore_incom_opt;
-    NavButton *feedstore_out_opt;
-    NavButton *feedstore_return_opt;
+    NavButton *feedstore_in_out_opt;
     NavButton *area_detail_opt;
-    NavButton *area_return_opt;
+    NavButton *area_in_out_opt;
     QLabel *label;
     QStackedWidget *feedstore_stackedWidget;
-    QWidget *page_6;
-    QPushButton *pushButton_6;
-    QWidget *page_5;
-    QPushButton *pushButton_5;
     QWidget *page;
-    QPushButton *pushButton;
+    QVBoxLayout *verticalLayout_2;
+    QWidget *widget_3;
+    QPushButton *feed_search_btn;
+    QLineEdit *feed_name_edit;
+    QLabel *label_2;
+    QPushButton *feed_out_btn;
+    QPushButton *feed_delete_btn;
+    QPushButton *feed_income_btn;
+    QPushButton *feed_return_btn;
+    QTableView *total_feed_store_tableView;
     QWidget *page_2;
-    QPushButton *pushButton_2;
+    QVBoxLayout *verticalLayout_3;
+    QWidget *widget_4;
+    QPushButton *feedstore_in_out_search_btn;
+    QLabel *label_4;
+    QDateEdit *startdateEdit;
+    QDateEdit *enddateEdit;
+    QPushButton *feedstore_in_out_delete_btn;
+    QLabel *label_5;
+    QTableView *feedstore_in_out_tableView;
     QWidget *page_3;
-    QPushButton *pushButton_3;
+    QVBoxLayout *verticalLayout_4;
+    QWidget *widget_5;
+    QPushButton *area_feed_search_btn;
+    QLineEdit *area_feed_edit;
+    QLabel *label_3;
+    QPushButton *area_feed_return_btn;
+    QPushButton *area_feed_delete_btn;
+    QTableView *area_feed_detail_tableView;
     QWidget *page_4;
-    QPushButton *pushButton_4;
+    QVBoxLayout *verticalLayout_5;
+    QWidget *widget_6;
+    QLabel *label_6;
+    QDateEdit *startdateEdit_2;
+    QPushButton *area_in_out_search_btn;
+    QPushButton *area_in_out_delete_btn;
+    QDateEdit *enddateEdit_2;
+    QLabel *label_7;
+    QTableView *area_in_out_tableView;
 
     void setupUi(QWidget *FeedStore)
     {
@@ -116,22 +145,16 @@ public:
         widget_2->setStyleSheet(QStringLiteral("background-color: rgb(54, 78, 111);"));
         feedstore_detail_opt = new NavButton(widget_2);
         feedstore_detail_opt->setObjectName(QStringLiteral("feedstore_detail_opt"));
-        feedstore_detail_opt->setGeometry(QRect(10, 90, 140, 35));
-        feedstore_incom_opt = new NavButton(widget_2);
-        feedstore_incom_opt->setObjectName(QStringLiteral("feedstore_incom_opt"));
-        feedstore_incom_opt->setGeometry(QRect(10, 140, 140, 35));
-        feedstore_out_opt = new NavButton(widget_2);
-        feedstore_out_opt->setObjectName(QStringLiteral("feedstore_out_opt"));
-        feedstore_out_opt->setGeometry(QRect(10, 190, 140, 35));
-        feedstore_return_opt = new NavButton(widget_2);
-        feedstore_return_opt->setObjectName(QStringLiteral("feedstore_return_opt"));
-        feedstore_return_opt->setGeometry(QRect(10, 240, 140, 35));
+        feedstore_detail_opt->setGeometry(QRect(10, 60, 140, 35));
+        feedstore_in_out_opt = new NavButton(widget_2);
+        feedstore_in_out_opt->setObjectName(QStringLiteral("feedstore_in_out_opt"));
+        feedstore_in_out_opt->setGeometry(QRect(10, 110, 140, 35));
         area_detail_opt = new NavButton(widget_2);
         area_detail_opt->setObjectName(QStringLiteral("area_detail_opt"));
-        area_detail_opt->setGeometry(QRect(10, 290, 140, 35));
-        area_return_opt = new NavButton(widget_2);
-        area_return_opt->setObjectName(QStringLiteral("area_return_opt"));
-        area_return_opt->setGeometry(QRect(10, 340, 140, 35));
+        area_detail_opt->setGeometry(QRect(10, 160, 140, 35));
+        area_in_out_opt = new NavButton(widget_2);
+        area_in_out_opt->setObjectName(QStringLiteral("area_in_out_opt"));
+        area_in_out_opt->setGeometry(QRect(10, 210, 140, 35));
 
         horizontalLayout->addWidget(widget_2);
 
@@ -147,41 +170,153 @@ public:
         feedstore_stackedWidget->setObjectName(QStringLiteral("feedstore_stackedWidget"));
         feedstore_stackedWidget->setMinimumSize(QSize(768, 581));
         feedstore_stackedWidget->setStyleSheet(QStringLiteral("background-color: rgb(54, 78, 111);"));
-        page_6 = new QWidget();
-        page_6->setObjectName(QStringLiteral("page_6"));
-        pushButton_6 = new QPushButton(page_6);
-        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-        pushButton_6->setGeometry(QRect(530, 170, 75, 23));
-        feedstore_stackedWidget->addWidget(page_6);
-        page_5 = new QWidget();
-        page_5->setObjectName(QStringLiteral("page_5"));
-        pushButton_5 = new QPushButton(page_5);
-        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
-        pushButton_5->setGeometry(QRect(540, 400, 75, 23));
-        feedstore_stackedWidget->addWidget(page_5);
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        pushButton = new QPushButton(page);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(90, 30, 75, 23));
+        verticalLayout_2 = new QVBoxLayout(page);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        widget_3 = new QWidget(page);
+        widget_3->setObjectName(QStringLiteral("widget_3"));
+        widget_3->setMinimumSize(QSize(0, 60));
+        feed_search_btn = new QPushButton(widget_3);
+        feed_search_btn->setObjectName(QStringLiteral("feed_search_btn"));
+        feed_search_btn->setGeometry(QRect(210, 20, 80, 28));
+        feed_name_edit = new QLineEdit(widget_3);
+        feed_name_edit->setObjectName(QStringLiteral("feed_name_edit"));
+        feed_name_edit->setGeometry(QRect(80, 20, 113, 28));
+        feed_name_edit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_2 = new QLabel(widget_3);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(0, 20, 71, 28));
+        label_2->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        feed_out_btn = new QPushButton(widget_3);
+        feed_out_btn->setObjectName(QStringLiteral("feed_out_btn"));
+        feed_out_btn->setGeometry(QRect(390, 20, 80, 28));
+        feed_delete_btn = new QPushButton(widget_3);
+        feed_delete_btn->setObjectName(QStringLiteral("feed_delete_btn"));
+        feed_delete_btn->setGeometry(QRect(570, 20, 80, 28));
+        feed_income_btn = new QPushButton(widget_3);
+        feed_income_btn->setObjectName(QStringLiteral("feed_income_btn"));
+        feed_income_btn->setGeometry(QRect(300, 20, 80, 28));
+        feed_return_btn = new QPushButton(widget_3);
+        feed_return_btn->setObjectName(QStringLiteral("feed_return_btn"));
+        feed_return_btn->setGeometry(QRect(480, 20, 80, 28));
+
+        verticalLayout_2->addWidget(widget_3);
+
+        total_feed_store_tableView = new QTableView(page);
+        total_feed_store_tableView->setObjectName(QStringLiteral("total_feed_store_tableView"));
+
+        verticalLayout_2->addWidget(total_feed_store_tableView);
+
         feedstore_stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
-        pushButton_2 = new QPushButton(page_2);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(60, 70, 75, 23));
+        verticalLayout_3 = new QVBoxLayout(page_2);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        widget_4 = new QWidget(page_2);
+        widget_4->setObjectName(QStringLiteral("widget_4"));
+        widget_4->setMinimumSize(QSize(0, 40));
+        feedstore_in_out_search_btn = new QPushButton(widget_4);
+        feedstore_in_out_search_btn->setObjectName(QStringLiteral("feedstore_in_out_search_btn"));
+        feedstore_in_out_search_btn->setGeometry(QRect(380, 10, 80, 28));
+        label_4 = new QLabel(widget_4);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(0, 10, 65, 28));
+        label_4->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        startdateEdit = new QDateEdit(widget_4);
+        startdateEdit->setObjectName(QStringLiteral("startdateEdit"));
+        startdateEdit->setGeometry(QRect(70, 10, 110, 28));
+        startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        enddateEdit = new QDateEdit(widget_4);
+        enddateEdit->setObjectName(QStringLiteral("enddateEdit"));
+        enddateEdit->setGeometry(QRect(260, 10, 110, 28));
+        enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        feedstore_in_out_delete_btn = new QPushButton(widget_4);
+        feedstore_in_out_delete_btn->setObjectName(QStringLiteral("feedstore_in_out_delete_btn"));
+        feedstore_in_out_delete_btn->setGeometry(QRect(470, 10, 80, 28));
+        label_5 = new QLabel(widget_4);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setGeometry(QRect(190, 10, 65, 28));
+        label_5->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+
+        verticalLayout_3->addWidget(widget_4);
+
+        feedstore_in_out_tableView = new QTableView(page_2);
+        feedstore_in_out_tableView->setObjectName(QStringLiteral("feedstore_in_out_tableView"));
+
+        verticalLayout_3->addWidget(feedstore_in_out_tableView);
+
         feedstore_stackedWidget->addWidget(page_2);
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
-        pushButton_3 = new QPushButton(page_3);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(200, 20, 75, 23));
+        verticalLayout_4 = new QVBoxLayout(page_3);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        widget_5 = new QWidget(page_3);
+        widget_5->setObjectName(QStringLiteral("widget_5"));
+        widget_5->setMinimumSize(QSize(0, 60));
+        area_feed_search_btn = new QPushButton(widget_5);
+        area_feed_search_btn->setObjectName(QStringLiteral("area_feed_search_btn"));
+        area_feed_search_btn->setGeometry(QRect(220, 30, 80, 28));
+        area_feed_edit = new QLineEdit(widget_5);
+        area_feed_edit->setObjectName(QStringLiteral("area_feed_edit"));
+        area_feed_edit->setGeometry(QRect(90, 30, 113, 28));
+        area_feed_edit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_3 = new QLabel(widget_5);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(10, 30, 71, 28));
+        label_3->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        area_feed_return_btn = new QPushButton(widget_5);
+        area_feed_return_btn->setObjectName(QStringLiteral("area_feed_return_btn"));
+        area_feed_return_btn->setGeometry(QRect(310, 30, 80, 28));
+        area_feed_delete_btn = new QPushButton(widget_5);
+        area_feed_delete_btn->setObjectName(QStringLiteral("area_feed_delete_btn"));
+        area_feed_delete_btn->setGeometry(QRect(400, 30, 80, 28));
+
+        verticalLayout_4->addWidget(widget_5);
+
+        area_feed_detail_tableView = new QTableView(page_3);
+        area_feed_detail_tableView->setObjectName(QStringLiteral("area_feed_detail_tableView"));
+
+        verticalLayout_4->addWidget(area_feed_detail_tableView);
+
         feedstore_stackedWidget->addWidget(page_3);
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
-        pushButton_4 = new QPushButton(page_4);
-        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setGeometry(QRect(310, 190, 75, 23));
+        verticalLayout_5 = new QVBoxLayout(page_4);
+        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
+        widget_6 = new QWidget(page_4);
+        widget_6->setObjectName(QStringLiteral("widget_6"));
+        widget_6->setMinimumSize(QSize(0, 60));
+        label_6 = new QLabel(widget_6);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setGeometry(QRect(10, 20, 65, 28));
+        label_6->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        startdateEdit_2 = new QDateEdit(widget_6);
+        startdateEdit_2->setObjectName(QStringLiteral("startdateEdit_2"));
+        startdateEdit_2->setGeometry(QRect(80, 20, 110, 28));
+        startdateEdit_2->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        area_in_out_search_btn = new QPushButton(widget_6);
+        area_in_out_search_btn->setObjectName(QStringLiteral("area_in_out_search_btn"));
+        area_in_out_search_btn->setGeometry(QRect(390, 20, 80, 28));
+        area_in_out_delete_btn = new QPushButton(widget_6);
+        area_in_out_delete_btn->setObjectName(QStringLiteral("area_in_out_delete_btn"));
+        area_in_out_delete_btn->setGeometry(QRect(480, 20, 80, 28));
+        enddateEdit_2 = new QDateEdit(widget_6);
+        enddateEdit_2->setObjectName(QStringLiteral("enddateEdit_2"));
+        enddateEdit_2->setGeometry(QRect(270, 20, 110, 28));
+        enddateEdit_2->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_7 = new QLabel(widget_6);
+        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setGeometry(QRect(200, 20, 65, 28));
+        label_7->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+
+        verticalLayout_5->addWidget(widget_6);
+
+        area_in_out_tableView = new QTableView(page_4);
+        area_in_out_tableView->setObjectName(QStringLiteral("area_in_out_tableView"));
+
+        verticalLayout_5->addWidget(area_in_out_tableView);
+
         feedstore_stackedWidget->addWidget(page_4);
 
         horizontalLayout->addWidget(feedstore_stackedWidget);
@@ -201,19 +336,29 @@ public:
         feedstore_min_btn->setText(QString());
         feedstore_max_restore_btn->setText(QString());
         feedstore_cose_btn->setText(QString());
-        feedstore_detail_opt->setText(QApplication::translate("FeedStore", "\351\245\262\346\226\231\350\215\257\345\223\201\344\273\223\345\272\223\346\230\216\347\273\206", Q_NULLPTR));
-        feedstore_incom_opt->setText(QApplication::translate("FeedStore", "\345\205\245\345\272\223", Q_NULLPTR));
-        feedstore_out_opt->setText(QApplication::translate("FeedStore", "\345\207\272\345\272\223", Q_NULLPTR));
-        feedstore_return_opt->setText(QApplication::translate("FeedStore", "\351\200\200\350\264\247", Q_NULLPTR));
+        feedstore_detail_opt->setText(QApplication::translate("FeedStore", "\351\245\262\346\226\231\350\215\257\345\223\201\346\230\216\347\273\206", Q_NULLPTR));
+        feedstore_in_out_opt->setText(QApplication::translate("FeedStore", "\345\207\272\345\205\245\345\272\223\346\230\216\347\273\206", Q_NULLPTR));
         area_detail_opt->setText(QApplication::translate("FeedStore", "\345\210\206\344\273\223\346\230\216\347\273\206", Q_NULLPTR));
-        area_return_opt->setText(QApplication::translate("FeedStore", "\345\210\206\344\273\223\351\200\200\345\272\223", Q_NULLPTR));
+        area_in_out_opt->setText(QApplication::translate("FeedStore", "\345\210\206\344\273\223\345\207\272\345\205\245\345\272\223\346\230\216\347\273\206", Q_NULLPTR));
         label->setText(QApplication::translate("FeedStore", "TextLabel", Q_NULLPTR));
-        pushButton_6->setText(QApplication::translate("FeedStore", "PushButton", Q_NULLPTR));
-        pushButton_5->setText(QApplication::translate("FeedStore", "PushButton", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("FeedStore", "PushButton", Q_NULLPTR));
-        pushButton_2->setText(QApplication::translate("FeedStore", "PushButton", Q_NULLPTR));
-        pushButton_3->setText(QApplication::translate("FeedStore", "PushButton", Q_NULLPTR));
-        pushButton_4->setText(QApplication::translate("FeedStore", "PushButton", Q_NULLPTR));
+        feed_search_btn->setText(QString());
+        label_2->setText(QApplication::translate("FeedStore", "\347\211\251\345\223\201\345\220\215\347\247\260\357\274\232", Q_NULLPTR));
+        feed_out_btn->setText(QString());
+        feed_delete_btn->setText(QString());
+        feed_income_btn->setText(QString());
+        feed_return_btn->setText(QString());
+        feedstore_in_out_search_btn->setText(QString());
+        label_4->setText(QApplication::translate("FeedStore", "\345\274\200\345\247\213\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
+        feedstore_in_out_delete_btn->setText(QString());
+        label_5->setText(QApplication::translate("FeedStore", "\347\273\223\346\235\237\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
+        area_feed_search_btn->setText(QString());
+        label_3->setText(QApplication::translate("FeedStore", "\347\211\251\345\223\201\345\220\215\347\247\260\357\274\232", Q_NULLPTR));
+        area_feed_return_btn->setText(QString());
+        area_feed_delete_btn->setText(QString());
+        label_6->setText(QApplication::translate("FeedStore", "\345\274\200\345\247\213\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
+        area_in_out_search_btn->setText(QString());
+        area_in_out_delete_btn->setText(QString());
+        label_7->setText(QApplication::translate("FeedStore", "\347\273\223\346\235\237\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
     } // retranslateUi
 
 };

@@ -159,59 +159,33 @@
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>90</y>
+           <y>60</y>
            <width>140</width>
            <height>35</height>
           </rect>
          </property>
          <property name="text">
-          <string>饲料药品仓库明细</string>
+          <string>饲料药品明细</string>
          </property>
         </widget>
-        <widget class="NavButton" name="feedstore_incom_opt">
+        <widget class="NavButton" name="feedstore_in_out_opt">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>140</y>
+           <y>110</y>
            <width>140</width>
            <height>35</height>
           </rect>
          </property>
          <property name="text">
-          <string>入库</string>
-         </property>
-        </widget>
-        <widget class="NavButton" name="feedstore_out_opt">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>190</y>
-           <width>140</width>
-           <height>35</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>出库</string>
-         </property>
-        </widget>
-        <widget class="NavButton" name="feedstore_return_opt">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>240</y>
-           <width>140</width>
-           <height>35</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>退货</string>
+          <string>出入库明细</string>
          </property>
         </widget>
         <widget class="NavButton" name="area_detail_opt">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>290</y>
+           <y>160</y>
            <width>140</width>
            <height>35</height>
           </rect>
@@ -220,17 +194,17 @@
           <string>分仓明细</string>
          </property>
         </widget>
-        <widget class="NavButton" name="area_return_opt">
+        <widget class="NavButton" name="area_in_out_opt">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>340</y>
+           <y>210</y>
            <width>140</width>
            <height>35</height>
           </rect>
          </property>
          <property name="text">
-          <string>分仓退库</string>
+          <string>分仓出入库明细</string>
          </property>
         </widget>
        </widget>
@@ -268,95 +242,403 @@
         <property name="styleSheet">
          <string notr="true">background-color: rgb(54, 78, 111);</string>
         </property>
-        <widget class="QWidget" name="page_6">
-         <widget class="QPushButton" name="pushButton_6">
-          <property name="geometry">
-           <rect>
-            <x>530</x>
-            <y>170</y>
-            <width>75</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>PushButton</string>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QWidget" name="page_5">
-         <widget class="QPushButton" name="pushButton_5">
-          <property name="geometry">
-           <rect>
-            <x>540</x>
-            <y>400</y>
-            <width>75</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>PushButton</string>
-          </property>
-         </widget>
-        </widget>
         <widget class="QWidget" name="page">
-         <widget class="QPushButton" name="pushButton">
-          <property name="geometry">
-           <rect>
-            <x>90</x>
-            <y>30</y>
-            <width>75</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>PushButton</string>
-          </property>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QWidget" name="widget_3" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>60</height>
+             </size>
+            </property>
+            <widget class="QPushButton" name="feed_search_btn">
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>20</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="feed_name_edit">
+             <property name="geometry">
+              <rect>
+               <x>80</x>
+               <y>20</y>
+               <width>113</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_2">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>20</y>
+               <width>71</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>物品名称：</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="feed_out_btn">
+             <property name="geometry">
+              <rect>
+               <x>390</x>
+               <y>20</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="feed_delete_btn">
+             <property name="geometry">
+              <rect>
+               <x>570</x>
+               <y>20</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="feed_income_btn">
+             <property name="geometry">
+              <rect>
+               <x>300</x>
+               <y>20</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="feed_return_btn">
+             <property name="geometry">
+              <rect>
+               <x>480</x>
+               <y>20</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableView" name="total_feed_store_tableView"/>
+          </item>
+         </layout>
         </widget>
         <widget class="QWidget" name="page_2">
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="geometry">
-           <rect>
-            <x>60</x>
-            <y>70</y>
-            <width>75</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>PushButton</string>
-          </property>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QWidget" name="widget_4" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>40</height>
+             </size>
+            </property>
+            <widget class="QPushButton" name="feedstore_in_out_search_btn">
+             <property name="geometry">
+              <rect>
+               <x>380</x>
+               <y>10</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_4">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>10</y>
+               <width>65</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>开始时间：</string>
+             </property>
+            </widget>
+            <widget class="QDateEdit" name="startdateEdit">
+             <property name="geometry">
+              <rect>
+               <x>70</x>
+               <y>10</y>
+               <width>110</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+            </widget>
+            <widget class="QDateEdit" name="enddateEdit">
+             <property name="geometry">
+              <rect>
+               <x>260</x>
+               <y>10</y>
+               <width>110</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="feedstore_in_out_delete_btn">
+             <property name="geometry">
+              <rect>
+               <x>470</x>
+               <y>10</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_5">
+             <property name="geometry">
+              <rect>
+               <x>190</x>
+               <y>10</y>
+               <width>65</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>结束时间：</string>
+             </property>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableView" name="feedstore_in_out_tableView"/>
+          </item>
+         </layout>
         </widget>
         <widget class="QWidget" name="page_3">
-         <widget class="QPushButton" name="pushButton_3">
-          <property name="geometry">
-           <rect>
-            <x>200</x>
-            <y>20</y>
-            <width>75</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>PushButton</string>
-          </property>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QWidget" name="widget_5" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>60</height>
+             </size>
+            </property>
+            <widget class="QPushButton" name="area_feed_search_btn">
+             <property name="geometry">
+              <rect>
+               <x>220</x>
+               <y>30</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="area_feed_edit">
+             <property name="geometry">
+              <rect>
+               <x>90</x>
+               <y>30</y>
+               <width>113</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_3">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>30</y>
+               <width>71</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>物品名称：</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="area_feed_return_btn">
+             <property name="geometry">
+              <rect>
+               <x>310</x>
+               <y>30</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="area_feed_delete_btn">
+             <property name="geometry">
+              <rect>
+               <x>400</x>
+               <y>30</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableView" name="area_feed_detail_tableView"/>
+          </item>
+         </layout>
         </widget>
         <widget class="QWidget" name="page_4">
-         <widget class="QPushButton" name="pushButton_4">
-          <property name="geometry">
-           <rect>
-            <x>310</x>
-            <y>190</y>
-            <width>75</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>PushButton</string>
-          </property>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QWidget" name="widget_6" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>60</height>
+             </size>
+            </property>
+            <widget class="QLabel" name="label_6">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>20</y>
+               <width>65</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>开始时间：</string>
+             </property>
+            </widget>
+            <widget class="QDateEdit" name="startdateEdit_2">
+             <property name="geometry">
+              <rect>
+               <x>80</x>
+               <y>20</y>
+               <width>110</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="area_in_out_search_btn">
+             <property name="geometry">
+              <rect>
+               <x>390</x>
+               <y>20</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="area_in_out_delete_btn">
+             <property name="geometry">
+              <rect>
+               <x>480</x>
+               <y>20</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QDateEdit" name="enddateEdit_2">
+             <property name="geometry">
+              <rect>
+               <x>270</x>
+               <y>20</y>
+               <width>110</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_7">
+             <property name="geometry">
+              <rect>
+               <x>200</x>
+               <y>20</y>
+               <width>65</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>结束时间：</string>
+             </property>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableView" name="area_in_out_tableView"/>
+          </item>
+         </layout>
         </widget>
        </widget>
       </item>

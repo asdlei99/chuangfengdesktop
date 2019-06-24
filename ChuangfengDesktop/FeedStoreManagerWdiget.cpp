@@ -26,10 +26,10 @@ FeedStoreManagerWdiget::FeedStoreManagerWdiget(QWidget *parent)
 	ui->feedstore_max_restore_btn->setProperty("maximizeProperty", "maximize");
 	ui->feedstore_max_restore_btn->setStyle(QApplication::style());
 
-	m_NavButtonList << ui->feedstore_detail_opt << ui->feedstore_incom_opt << ui->feedstore_out_opt << ui->feedstore_return_opt
-		<<ui->area_detail_opt<< ui->area_return_opt;
+	m_NavButtonList << ui->feedstore_detail_opt << ui->feedstore_in_out_opt  
+		<<ui->area_detail_opt<< ui->area_in_out_opt;
 	QList<QChar> pixChar;
-	pixChar << 0xf509 << 0xf571 << 0xf1fe << 0xf2a3 << 0xf1fe << 0xf2a3;
+	pixChar << 0xf509 << 0xf1fe << 0xf2a3 << 0xf1fe ;
 	QColor normalBgColor = QColor("#364E6F");
 	QColor hoverBgColor = QColor("#478CB6");
 	QColor checkBgColor = QColor("#478CB6");

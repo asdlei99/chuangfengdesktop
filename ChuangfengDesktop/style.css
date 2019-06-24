@@ -352,19 +352,22 @@ spacing: 5px;
 
 
 #general_search_btn,#bak_search_btn,#nopay_search_btn,#totalreport_search_btn,#nopay_report_search_btn
-,#share_report_search_btn,#detaishare_report_search_btn,#materielreport_search_btn,#storereport_search_btn
+,#share_report_search_btn,#detaishare_report_search_btn,#materielreport_search_btn,#storereport_search_btn,
+#fix_material_search_btn,#material_in_out_search_btn,#material_search_btn
 { 
 	border-image: url(:/ChuangfengDesktop/Resources/search_btn.png)0 160 0 0;
 }
  #general_search_btn:hover,#bak_search_btn:hover,#nopay_search_btn:hover,#totalreport_search_btn:hover
  ,#nopay_report_search_btn:hover,#share_report_search_btn:hover,#detaishare_report_search_btn:hover
- ,#materielreport_search_btn:hover,#storereport_search_btn:hover
+ ,#materielreport_search_btn:hover,#storereport_search_btn:hover,#fix_material_search_btn:hover,
+ #material_in_out_search_btn:hover, #material_search_btn:hover
  { 
 	border-image: url(:/ChuangfengDesktop/Resources/search_btn.png)0 80 0 80;
 }
  #general_search_btn:pressed,#bak_search_btn:pressed,#nopay_search_btn:pressed,#totalreport_search_btn:pressed
  ,#nopay_report_search_btn:pressed,#share_report_search_btn:pressed,#detaishare_report_search_btn:pressed
- ,#materielreport_search_btn:pressed ,#storereport_search_btn:pressed
+ ,#materielreport_search_btn:pressed ,#storereport_search_btn:pressed,#fix_material_search_btn:pressed
+ ,#material_in_out_search_btn:pressed,#material_search_btn:pressed
  { 
 	border-image: url(:/ChuangfengDesktop/Resources/search_btn.png)0 0 0 160;
 }

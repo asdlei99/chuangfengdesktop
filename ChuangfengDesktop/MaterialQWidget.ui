@@ -159,7 +159,7 @@
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>90</y>
+           <y>80</y>
            <width>140</width>
            <height>35</height>
           </rect>
@@ -172,33 +172,20 @@
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>140</y>
+           <y>130</y>
            <width>140</width>
            <height>35</height>
           </rect>
          </property>
          <property name="text">
-          <string>物料入库</string>
-         </property>
-        </widget>
-        <widget class="NavButton" name="material_out_opt">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>190</y>
-           <width>140</width>
-           <height>35</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>物料出库</string>
+          <string>出入库明细</string>
          </property>
         </widget>
         <widget class="NavButton" name="fixacc_opt">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>240</y>
+           <y>180</y>
            <width>140</width>
            <height>35</height>
           </rect>
@@ -236,71 +223,269 @@
         <property name="minimumSize">
          <size>
           <width>768</width>
-          <height>581</height>
+          <height>60</height>
          </size>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(54, 78, 111);</string>
         </property>
         <widget class="QWidget" name="page">
-         <widget class="QPushButton" name="pushButton">
-          <property name="geometry">
-           <rect>
-            <x>90</x>
-            <y>30</y>
-            <width>75</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>PushButton</string>
-          </property>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QWidget" name="widget_3" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>60</height>
+             </size>
+            </property>
+            <widget class="QPushButton" name="material_search_btn">
+             <property name="geometry">
+              <rect>
+               <x>220</x>
+               <y>20</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_2">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>20</y>
+               <width>71</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>物品名称：</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="lineEdit">
+             <property name="geometry">
+              <rect>
+               <x>90</x>
+               <y>20</y>
+               <width>113</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="material_income_btn">
+             <property name="geometry">
+              <rect>
+               <x>310</x>
+               <y>20</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="material_out_btn">
+             <property name="geometry">
+              <rect>
+               <x>400</x>
+               <y>20</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="material_delete_btn">
+             <property name="geometry">
+              <rect>
+               <x>490</x>
+               <y>20</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableView" name="tableView"/>
+          </item>
+         </layout>
         </widget>
         <widget class="QWidget" name="page_2">
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="geometry">
-           <rect>
-            <x>60</x>
-            <y>70</y>
-            <width>75</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>PushButton</string>
-          </property>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QWidget" name="widget_4" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>60</height>
+             </size>
+            </property>
+            <widget class="QDateEdit" name="startdateEdit">
+             <property name="geometry">
+              <rect>
+               <x>80</x>
+               <y>20</y>
+               <width>110</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="material_in_out_search_btn">
+             <property name="geometry">
+              <rect>
+               <x>390</x>
+               <y>20</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QDateEdit" name="enddateEdit">
+             <property name="geometry">
+              <rect>
+               <x>270</x>
+               <y>20</y>
+               <width>110</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_4">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>20</y>
+               <width>65</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>开始时间：</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="material_in_out_delete_btn">
+             <property name="geometry">
+              <rect>
+               <x>480</x>
+               <y>20</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_5">
+             <property name="geometry">
+              <rect>
+               <x>200</x>
+               <y>20</y>
+               <width>65</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>结束时间：</string>
+             </property>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableView" name="material_in_out_detail_tableview"/>
+          </item>
+         </layout>
         </widget>
         <widget class="QWidget" name="page_3">
-         <widget class="QPushButton" name="pushButton_3">
-          <property name="geometry">
-           <rect>
-            <x>200</x>
-            <y>20</y>
-            <width>75</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>PushButton</string>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QWidget" name="page_4">
-         <widget class="QPushButton" name="pushButton_4">
-          <property name="geometry">
-           <rect>
-            <x>310</x>
-            <y>190</y>
-            <width>75</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>PushButton</string>
-          </property>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QWidget" name="widget_5" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>60</height>
+             </size>
+            </property>
+            <widget class="QPushButton" name="fix_material_search_btn">
+             <property name="geometry">
+              <rect>
+               <x>220</x>
+               <y>20</y>
+               <width>80</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="fix_material_edit">
+             <property name="geometry">
+              <rect>
+               <x>90</x>
+               <y>20</y>
+               <width>113</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_3">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>20</y>
+               <width>71</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>固定资产：</string>
+             </property>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableView" name="fix_material_tableView"/>
+          </item>
+         </layout>
         </widget>
        </widget>
       </item>

@@ -25,9 +25,9 @@ MaterialManagerWidget::MaterialManagerWidget(QWidget *parent)
 	ui->material_max_restore_btn->setProperty("maximizeProperty", "maximize");
 	ui->material_max_restore_btn->setStyle(QApplication::style());
 
-	m_NavButtonList << ui->material_detail_opt << ui->material_incom_opt << ui->material_out_opt << ui->fixacc_opt;
+	m_NavButtonList << ui->material_detail_opt << ui->material_incom_opt  << ui->fixacc_opt;
 	QList<QChar> pixChar;
-	pixChar << 0xf509 << 0xf571 << 0xf1fe << 0xf2a3 ;
+	pixChar << 0xf509 << 0xf571 << 0xf2a3 ;
 	QColor normalBgColor = QColor("#364E6F");
 	QColor hoverBgColor = QColor("#478CB6");
 	QColor checkBgColor = QColor("#478CB6");
