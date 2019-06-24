@@ -9,6 +9,7 @@
 #include <QtMath>
 #include "iconhelper.h"
 #include "commomdef.h"
+#include "AddFundDetailWidget.h"
 GeneralLayoutManger::GeneralLayoutManger(QWidget *parent)
 	:MoveableFramelessWindow(parent)
 	, ui(new Ui::generalManager)
@@ -17,6 +18,12 @@ GeneralLayoutManger::GeneralLayoutManger(QWidget *parent)
 	connect(ui->general_cose_btn, &QPushButton::clicked, this, &QWidget::close);
 	connect(ui->general_max_restore_btn, &QPushButton::clicked, this, &GeneralLayoutManger::updateMaximize);
 	connect(ui->general_min_btn, &QPushButton::clicked, this, &QWidget::showMinimized);
+	connect(ui->general_add_btn, &QPushButton::clicked, this, [this]()->void {
+		AddFundDetailWidget*pQtWidget = new AddFundDetailWidget(PopFundDetailEnum::enGeneralLayout);
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
 	ui->general_max_restore_btn->setToolTip(QString::fromLocal8Bit("最大化"));
 	//设置按钮的属性名为"maximizeProperty"
 	ui->general_max_restore_btn->setProperty("maximizeProperty", "maximize");

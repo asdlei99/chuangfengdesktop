@@ -9,6 +9,7 @@
 #include <QtMath>
 #include "iconhelper.h"
 #include "commomdef.h"
+#include "AddNoPayDetailWidget.h"
 NoPayLayoutManager::NoPayLayoutManager(QWidget *parent)
 	:MoveableFramelessWindow(parent)
 	, ui(new Ui::nopayManager)
@@ -17,6 +18,12 @@ NoPayLayoutManager::NoPayLayoutManager(QWidget *parent)
 	connect(ui->close_btn, &QPushButton::clicked, this, &QWidget::close);
 	connect(ui->max_restore_btn, &QPushButton::clicked, this, &NoPayLayoutManager::updateMaximize);
 	connect(ui->min_btn, &QPushButton::clicked, this, &QWidget::showMinimized);
+	connect(ui->nopay_add_btn, &QPushButton::clicked, this, [this]()->void {
+		AddNoPayDetailWidget*pQtWidget = new AddNoPayDetailWidget();
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
 	ui->max_restore_btn->setToolTip(QString::fromLocal8Bit("最大化"));
 	//设置按钮的属性名为"maximizeProperty"
 	ui->max_restore_btn->setProperty("maximizeProperty", "maximize");

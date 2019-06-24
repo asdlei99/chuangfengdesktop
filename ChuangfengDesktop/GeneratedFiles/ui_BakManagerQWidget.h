@@ -31,6 +31,7 @@ public:
     QVBoxLayout *verticalLayout;
     QWidget *child_widget_title;
     QHBoxLayout *horizontalLayout;
+    QLabel *label;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *bak_min_btn;
     QPushButton *bak_max_restore_btn;
@@ -55,7 +56,7 @@ public:
         verticalLayout = new QVBoxLayout(BakManager);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(1, 1, 1, 1);
+        verticalLayout->setContentsMargins(9, 1, 1, 1);
         child_widget_title = new QWidget(BakManager);
         child_widget_title->setObjectName(QStringLiteral("child_widget_title"));
         child_widget_title->setMinimumSize(QSize(0, 40));
@@ -64,6 +65,14 @@ public:
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        label = new QLabel(child_widget_title);
+        label->setObjectName(QStringLiteral("label"));
+        label->setMinimumSize(QSize(100, 0));
+        label->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
+"font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+
+        horizontalLayout->addWidget(label);
+
         horizontalSpacer_2 = new QSpacerItem(744, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_2);
@@ -139,7 +148,8 @@ public:
 
     void retranslateUi(QWidget *BakManager)
     {
-        BakManager->setWindowTitle(QApplication::translate("BakManager", "Form", Q_NULLPTR));
+        BakManager->setWindowTitle(QApplication::translate("BakManager", "\345\244\207\347\224\250\351\207\221\346\230\216\347\273\206", Q_NULLPTR));
+        label->setText(QApplication::translate("BakManager", "\345\244\207\347\224\250\351\207\221\346\230\216\347\273\206", Q_NULLPTR));
         bak_min_btn->setText(QString());
         bak_max_restore_btn->setText(QString());
         bak_cose_btn->setText(QString());

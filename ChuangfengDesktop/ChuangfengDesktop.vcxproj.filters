@@ -144,6 +144,12 @@
     <ClCompile Include="CommonDependenceWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AddFundDetailWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AddNoPayDetailWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ChuangfengDesktop.h">
@@ -274,6 +280,12 @@
     <QtUic Include="commonDependenceAreaWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="addFundDetailWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="addNopayDetailWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="ChuangfengDesktop.qrc">
@@ -312,6 +324,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CommonDependenceWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AddFundDetailWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AddNoPayDetailWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
