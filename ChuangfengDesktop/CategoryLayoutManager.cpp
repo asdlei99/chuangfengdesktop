@@ -18,6 +18,12 @@ CategoryLayoutManager::CategoryLayoutManager(Ui::ChuangfengDesktopClass*ui)
 		pQtWidget->setWindowModality(Qt::ApplicationModal);
 		pQtWidget->show();
 	});
+
+
+	connect(ui->category_remove_btn, &QPushButton::clicked, this, &CategoryLayoutManager::SlotRemoveCategoryItem);
+	
+
+
 	std::thread t([this]()->void {
 		this->threadGetCategoryInfoCallBack();
 	});
@@ -58,6 +64,69 @@ void CategoryLayoutManager::SlotAddCategory(QString&itemName, QString &remake)
 
 		}
 	}, itemName);
+	t.detach();
+}
+
+void CategoryLayoutManager::SlotRemoveCategoryItem()
+{
+	std::thread t([this]()->void {
+		QMap<int, int> qMapSelect;
+		bool isFirst = true;
+		QString itemList = "";
+		for (int i = 0; i < m_pViewModel->rowCount(); ++i)
+		{
+			if (Qt::Checked == m_pViewModel->item(i, 0)->checkState())
+			{
+				if (isFirst)
+				{
+					itemList = m_pViewModel->item(i, 1)->text();
+				}
+				else {
+					itemList += "," + m_pViewModel->item(i, 1)->text();
+				}
+				isFirst = false;
+				qMapSelect.insert(i, m_pViewModel->item(i, 1)->text().toInt());
+			}
+		}
+		if (qMapSelect.count() == 0)
+		{
+			return;
+		}
+		QString strParam = "ids=" + itemList;
+		QByteArray responseData;
+		SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/removeTaskItem"
+			, TempToken, strParam, responseData);
+		QJsonParseError json_error;
+		QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+		if (json_error.error == QJsonParseError::NoError)
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			int errorcode = rootObject["error_code"].toInt();
+			QString strMsg = rootObject["msg"].toString();
+			if (errorcode == 0)//成功
+			{
+				QMapIterator<int, int> Iterator(qMapSelect);
+				Iterator.toBack();
+				while (Iterator.hasPrevious())//利用qmap排序 从大的节点 往小的进行删除。
+				{
+					Iterator.previous();
+					int rowm = Iterator.key();
+					m_pViewModel->removeRow(rowm);
+					auto iter = g_CategoryList.find(Iterator.value());
+					if (iter != g_CategoryList.end())
+					{
+						g_CategoryList.erase(iter);
+					}
+				}
+			}
+			else {//失败
+
+			}
+		}
+		else {
+
+		}
+	});
 	t.detach();
 }
 

@@ -63,7 +63,10 @@ void UserLayoutManger::SlotRemoveUserItem()
 				qMapSelect.insert(i, m_pViewModel->item(i, 1)->text().toInt());
 			}
 		}
-
+		if (qMapSelect.count()==0)
+		{
+			return;
+		}
 		QString strParam = "ids=" + itemList;
 		QByteArray responseData;
 		SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteuser"

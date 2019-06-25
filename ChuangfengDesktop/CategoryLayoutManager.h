@@ -9,6 +9,7 @@ public:
 	~CategoryLayoutManager();
 public slots:
 	void SlotAddCategory(QString&itemName, QString &remake);
+	void SlotRemoveCategoryItem();
 public:
 	void threadGetCategoryInfoCallBack();
 private:
