@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -40,7 +41,8 @@ public:
     QLabel *label_3;
     QLineEdit *sure_password_edit;
     QLabel *label_4;
-    QLineEdit *remake_edit;
+    QComboBox *comboBox;
+    QLabel *error_lab;
 
     void setupUi(QWidget *adduserWidget)
     {
@@ -91,31 +93,36 @@ public:
         userName_Edit->setGeometry(QRect(170, 50, 161, 28));
         label_2 = new QLabel(widget);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(80, 100, 81, 28));
+        label_2->setGeometry(QRect(80, 110, 81, 28));
         label_2->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
 "font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         label_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         password_edit = new QLineEdit(widget);
         password_edit->setObjectName(QStringLiteral("password_edit"));
-        password_edit->setGeometry(QRect(170, 100, 161, 28));
+        password_edit->setGeometry(QRect(170, 110, 161, 28));
         label_3 = new QLabel(widget);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(80, 150, 81, 28));
+        label_3->setGeometry(QRect(80, 170, 81, 28));
         label_3->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
 "font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         label_3->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         sure_password_edit = new QLineEdit(widget);
         sure_password_edit->setObjectName(QStringLiteral("sure_password_edit"));
-        sure_password_edit->setGeometry(QRect(170, 150, 161, 28));
+        sure_password_edit->setGeometry(QRect(170, 170, 161, 28));
         label_4 = new QLabel(widget);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(80, 200, 81, 28));
+        label_4->setGeometry(QRect(80, 230, 81, 28));
         label_4->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
 "font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         label_4->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        remake_edit = new QLineEdit(widget);
-        remake_edit->setObjectName(QStringLiteral("remake_edit"));
-        remake_edit->setGeometry(QRect(170, 200, 161, 28));
+        comboBox = new QComboBox(widget);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+        comboBox->setGeometry(QRect(170, 230, 161, 28));
+        error_lab = new QLabel(widget);
+        error_lab->setObjectName(QStringLiteral("error_lab"));
+        error_lab->setGeometry(QRect(90, 340, 381, 28));
+        error_lab->setStyleSheet(QString::fromUtf8("font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: rgb(255, 85, 0);"));
 
         verticalLayout->addWidget(widget);
 
@@ -136,7 +143,8 @@ public:
         label->setText(QApplication::translate("adduserWidget", "\347\224\250\346\210\267\345\220\215\357\274\232", Q_NULLPTR));
         label_2->setText(QApplication::translate("adduserWidget", "\345\257\206\347\240\201\357\274\232", Q_NULLPTR));
         label_3->setText(QApplication::translate("adduserWidget", "\347\241\256\350\256\244\345\257\206\347\240\201\357\274\232", Q_NULLPTR));
-        label_4->setText(QApplication::translate("adduserWidget", "\345\244\207\346\263\250\357\274\232", Q_NULLPTR));
+        label_4->setText(QApplication::translate("adduserWidget", "\346\235\203\351\231\220\357\274\232", Q_NULLPTR));
+        error_lab->setText(QApplication::translate("adduserWidget", "\345\257\206\347\240\201\344\270\215\344\270\200\350\207\264\357\274\214\350\257\267\346\240\270\345\256\236\357\274\201", Q_NULLPTR));
     } // retranslateUi
 
 };

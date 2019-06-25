@@ -150,6 +150,9 @@
     <ClCompile Include="AddNoPayDetailWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SingletonHttpRequest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ChuangfengDesktop.h">
@@ -228,6 +231,12 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="StoreReportManager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="AddUserWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SingletonHttpRequest.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -315,9 +324,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DetailAreaLayoutManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AddUserWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common2ParamWidget.h">

@@ -165,7 +165,7 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
       <property name="geometry">
        <rect>
         <x>80</x>
-        <y>100</y>
+        <y>110</y>
         <width>81</width>
         <height>28</height>
        </rect>
@@ -185,7 +185,7 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>100</y>
+        <y>110</y>
         <width>161</width>
         <height>28</height>
        </rect>
@@ -195,7 +195,7 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
       <property name="geometry">
        <rect>
         <x>80</x>
-        <y>150</y>
+        <y>170</y>
         <width>81</width>
         <height>28</height>
        </rect>
@@ -215,7 +215,7 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>150</y>
+        <y>170</y>
         <width>161</width>
         <height>28</height>
        </rect>
@@ -225,7 +225,7 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
       <property name="geometry">
        <rect>
         <x>80</x>
-        <y>200</y>
+        <y>230</y>
         <width>81</width>
         <height>28</height>
        </rect>
@@ -235,20 +235,37 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
 font: 75 12pt &quot;微软雅黑&quot;;</string>
       </property>
       <property name="text">
-       <string>备注：</string>
+       <string>权限：</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="remake_edit">
+     <widget class="QComboBox" name="comboBox">
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>200</y>
+        <y>230</y>
         <width>161</width>
         <height>28</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="error_lab">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>340</y>
+        <width>381</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 12pt &quot;微软雅黑&quot;;
+color: rgb(255, 85, 0);</string>
+      </property>
+      <property name="text">
+       <string>密码不一致，请核实！</string>
       </property>
      </widget>
     </widget>
