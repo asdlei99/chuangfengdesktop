@@ -8,7 +8,7 @@ AddUserWidget::AddUserWidget(QWidget *parent )
 {
 	//00C8FF
 	ui->setupUi(this);
-	connect(ui->pop_cloase_btn, &QPushButton::clicked, this, &QWidget::close);
+	connect(ui->pop_close_btn, &QPushButton::clicked, this, &QWidget::close);
 	connect(ui->pop_cancle_btn, &QPushButton::clicked, this, &QWidget::close);
 	connect(ui->pop_min_btn, &QPushButton::clicked, this, &QWidget::showMinimized);
 	ui->comboBox->addItem(QString::fromLocal8Bit("¹ÜÀíÔ±"));
@@ -37,7 +37,7 @@ void AddUserWidget::DoCommit()
 		return;
 	}
 	emit RequestAddUser(ui->userName_Edit->text(), ui->password_edit->text(),ui->comboBox->currentText());
-	emit this->ui->pop_cloase_btn->clicked();
+	emit this->ui->pop_close_btn->clicked();
 }
 
 QWidget* AddUserWidget::getDragnWidget()

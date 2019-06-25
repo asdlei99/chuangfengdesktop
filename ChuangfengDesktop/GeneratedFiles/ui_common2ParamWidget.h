@@ -27,7 +27,7 @@ class Ui_Common2ParamWidget
 public:
     QVBoxLayout *verticalLayout;
     QWidget *pop_widget_title;
-    QPushButton *pop_cloase_btn;
+    QPushButton *pop_close_btn;
     QPushButton *pop_min_btn;
     QLabel *title_lab;
     QWidget *widget;
@@ -37,6 +37,7 @@ public:
     QLineEdit *tag_name_Edit;
     QLineEdit *remake_Edit;
     QLabel *remake_lab;
+    QLabel *error_lab;
 
     void setupUi(QWidget *Common2ParamWidget)
     {
@@ -53,9 +54,9 @@ public:
         pop_widget_title->setObjectName(QStringLiteral("pop_widget_title"));
         pop_widget_title->setMinimumSize(QSize(0, 35));
         pop_widget_title->setMaximumSize(QSize(16777214, 35));
-        pop_cloase_btn = new QPushButton(pop_widget_title);
-        pop_cloase_btn->setObjectName(QStringLiteral("pop_cloase_btn"));
-        pop_cloase_btn->setGeometry(QRect(560, 6, 24, 24));
+        pop_close_btn = new QPushButton(pop_widget_title);
+        pop_close_btn->setObjectName(QStringLiteral("pop_close_btn"));
+        pop_close_btn->setGeometry(QRect(560, 6, 24, 24));
         pop_min_btn = new QPushButton(pop_widget_title);
         pop_min_btn->setObjectName(QStringLiteral("pop_min_btn"));
         pop_min_btn->setGeometry(QRect(535, 6, 24, 24));
@@ -94,6 +95,11 @@ public:
         remake_lab->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
 "font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         remake_lab->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        error_lab = new QLabel(widget);
+        error_lab->setObjectName(QStringLiteral("error_lab"));
+        error_lab->setGeometry(QRect(140, 410, 381, 28));
+        error_lab->setStyleSheet(QString::fromUtf8("font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: rgb(255, 85, 0);"));
 
         verticalLayout->addWidget(widget);
 
@@ -106,13 +112,14 @@ public:
     void retranslateUi(QWidget *Common2ParamWidget)
     {
         Common2ParamWidget->setWindowTitle(QApplication::translate("Common2ParamWidget", "Form", Q_NULLPTR));
-        pop_cloase_btn->setText(QString());
+        pop_close_btn->setText(QString());
         pop_min_btn->setText(QString());
         title_lab->setText(QString());
         pop_cancle_btn->setText(QString());
         pop_commit_btn->setText(QString());
         tagName_lab->setText(QString());
         remake_lab->setText(QApplication::translate("Common2ParamWidget", "\345\244\207\346\263\250\357\274\232", Q_NULLPTR));
+        error_lab->setText(QApplication::translate("Common2ParamWidget", "\347\261\273\347\233\256\344\270\215\350\203\275\344\270\272\347\251\272\357\274\201", Q_NULLPTR));
     } // retranslateUi
 
 };

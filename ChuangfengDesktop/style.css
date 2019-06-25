@@ -613,15 +613,15 @@ spacing: 5px;
 }
 
 
-#pop_cloase_btn
+#pop_close_btn
 {
 	border-image: url(:/ChuangfengDesktop/Resources/pop_close_btn.png)0 48 0 0;
 }
-#pop_cloase_btn:hover
+#pop_close_btn:hover
 {
 	border-image: url(:/ChuangfengDesktop/Resources/pop_close_btn.png)0 24 0 24;
 }
-#pop_cloase_btn:pressed
+#pop_close_btn:pressed
 {
 	border-image: url(:/ChuangfengDesktop/Resources/pop_close_btn.png)0 0 0 48;
 }

@@ -153,6 +153,9 @@
     <ClCompile Include="SingletonHttpRequest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="globalVariable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ChuangfengDesktop.h">
@@ -239,6 +242,12 @@
     <QtMoc Include="SingletonHttpRequest.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="Common2ParamWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="CategoryLayoutManager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginQWidget.ui">
@@ -311,9 +320,6 @@
     <ClInclude Include="ThreadPool.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CategoryLayoutManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AreaLayoutManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -326,9 +332,6 @@
     <ClInclude Include="DetailAreaLayoutManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common2ParamWidget.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CommonDependenceWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -336,6 +339,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AddNoPayDetailWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="globalVariable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

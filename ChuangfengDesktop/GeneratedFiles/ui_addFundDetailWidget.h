@@ -29,7 +29,7 @@ class Ui_addFundDetailWidget
 public:
     QVBoxLayout *verticalLayout;
     QWidget *pop_widget_title;
-    QPushButton *pop_cloase_btn;
+    QPushButton *pop_close_btn;
     QPushButton *pop_min_btn;
     QLabel *title_lab;
     QWidget *widget;
@@ -63,9 +63,9 @@ public:
         pop_widget_title->setObjectName(QStringLiteral("pop_widget_title"));
         pop_widget_title->setMinimumSize(QSize(0, 35));
         pop_widget_title->setMaximumSize(QSize(16777214, 35));
-        pop_cloase_btn = new QPushButton(pop_widget_title);
-        pop_cloase_btn->setObjectName(QStringLiteral("pop_cloase_btn"));
-        pop_cloase_btn->setGeometry(QRect(560, 6, 24, 24));
+        pop_close_btn = new QPushButton(pop_widget_title);
+        pop_close_btn->setObjectName(QStringLiteral("pop_close_btn"));
+        pop_close_btn->setGeometry(QRect(560, 6, 24, 24));
         pop_min_btn = new QPushButton(pop_widget_title);
         pop_min_btn->setObjectName(QStringLiteral("pop_min_btn"));
         pop_min_btn->setGeometry(QRect(535, 6, 24, 24));
@@ -152,7 +152,7 @@ public:
     void retranslateUi(QWidget *addFundDetailWidget)
     {
         addFundDetailWidget->setWindowTitle(QApplication::translate("addFundDetailWidget", "Form", Q_NULLPTR));
-        pop_cloase_btn->setText(QString());
+        pop_close_btn->setText(QString());
         pop_min_btn->setText(QString());
         title_lab->setText(QString());
         pop_cancle_btn->setText(QString());

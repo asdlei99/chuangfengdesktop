@@ -8,6 +8,7 @@
 #include <QJsonArray>
 #include <QJsonValue>
 #include <QByteArray>
+#include "globalVariable.h"
 
 using namespace  std;
 
@@ -66,7 +67,7 @@ void UserLayoutManger::SlotRemoveUserItem()
 		QString strParam = "ids=" + itemList;
 		QByteArray responseData;
 		SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteuser"
-			, "1b6cd2a48895bf0ba22a12519f2439ba", strParam, responseData);
+			, TempToken, strParam, responseData);
 		QJsonParseError json_error;
 		QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 		if (json_error.error == QJsonParseError::NoError)
@@ -109,13 +110,14 @@ void UserLayoutManger::InitLayout()
 	m_pViewModel->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("用户名"));
 	m_pViewModel->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("权限"));
 	onSetTableAttribute(m_pUi->user_table_view, 4);
+	m_pUi->user_table_view->horizontalHeader()->setStretchLastSection(false);
 }
 
 void UserLayoutManger::threadGetUserInfoCallBack()
 {
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestGet("http://127.0.0.1:80/zerg/public/index.php/getUserList"
-		, "1b6cd2a48895bf0ba22a12519f2439ba", responseData);
+		, TempToken, responseData);
 	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -152,10 +154,15 @@ void UserLayoutManger::threadGetUserInfoCallBack()
 
 void UserLayoutManger::threadAddUserInfoCallBack(QString&userName, QString &password, QString &role)
 {
-	QString strParam = QString("username=%1&password=%2&role=%3").arg(userName).arg(password).arg(role);
+	QString md5;
+
+	QByteArray bb;
+	bb = QCryptographicHash::hash(password.toLocal8Bit(), QCryptographicHash::Md5);
+	md5.append(bb.toHex());
+	QString strParam = QString("username=%1&password=%2&role=%3").arg(userName).arg(md5).arg(role);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/adduser"
-		, "52d39586066c5de568c0218b24567a09", strParam,responseData);
+		, TempToken, strParam,responseData);
 	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -189,5 +196,6 @@ void UserLayoutManger::AddTableViewItem(int id, QString nickName, QString roleNa
 	m_pUi->user_table_view->setColumnWidth(0, 30);
 	m_pUi->user_table_view->setColumnWidth(1, 50);
 	m_pUi->user_table_view->setColumnWidth(2, 180);
+	m_pUi->user_table_view->setColumnWidth(3, 180);
 }
 

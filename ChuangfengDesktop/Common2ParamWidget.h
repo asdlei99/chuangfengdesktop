@@ -14,9 +14,12 @@ enum PopWidgetEnum
 class Common2ParamWidget :
 	public MoveableFramelessWindow
 {
+	Q_OBJECT
 public:
 	Common2ParamWidget(PopWidgetEnum type,QWidget *parent = Q_NULLPTR);
 	~Common2ParamWidget();
+signals:
+	void sig_comit(QString&itemName, QString &remake);
 private:
 	virtual QWidget*getDragnWidget();
 private:

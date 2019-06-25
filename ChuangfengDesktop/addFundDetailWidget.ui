@@ -55,7 +55,7 @@
        <height>35</height>
       </size>
      </property>
-     <widget class="QPushButton" name="pop_cloase_btn">
+     <widget class="QPushButton" name="pop_close_btn">
       <property name="geometry">
        <rect>
         <x>560</x>
