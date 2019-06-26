@@ -15,7 +15,6 @@ using namespace  std;
 
 UserLayoutManger::UserLayoutManger(Ui::ChuangfengDesktopClass*ui)
 	:BaseLayoutManager(ui)
-	, m_pThread(nullptr)
 {
 	InitLayout();
 	connect(ui->user_add_btn, &QPushButton::clicked, this, [this]()->void {
@@ -41,17 +40,21 @@ UserLayoutManger::~UserLayoutManger()
 
 void UserLayoutManger::SlotAddUser(QString&userName, QString &password, QString &role)
 {
-	
-	m_pThread = new QThread;
-	connect(m_pThread, SIGNAL(started()), this, SLOT(threadAddUserInfoCallBack(userName, password, role)));//新建的线程开始后执行test::first()
+	 m_addPsd = password;
+	 m_addUserName = userName;
+	 m_addrole =role;
+	 
+	QThread *m_pThread  =  new QThread;
+	connect(m_pThread, SIGNAL(started()), this, SLOT(threadAddUserInfoCallBack()));
+	connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
 	m_pThread->start();
 }
 
 void UserLayoutManger::SlotRemoveUserItem()
 {
-	
-	m_pThread = new QThread;
-	connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadRemove()));//新建的线程开始后执行test::first()
+	QThread *m_pThread = new QThread;
+	connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadRemove()));
+	connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
 	m_pThread->start();
 }
 
@@ -170,14 +173,14 @@ void UserLayoutManger::threadGetUserInfoCallBack()
 	}	
 }
 
-void UserLayoutManger::threadAddUserInfoCallBack(QString&userName, QString &password, QString &role)
+void UserLayoutManger::threadAddUserInfoCallBack()
 {
 	QString md5;
 
 	QByteArray bb;
-	bb = QCryptographicHash::hash(password.toLocal8Bit(), QCryptographicHash::Md5);
+	bb = QCryptographicHash::hash(m_addPsd.toLocal8Bit(), QCryptographicHash::Md5);
 	md5.append(bb.toHex());
-	QString strParam = QString("username=%1&password=%2&role=%3").arg(userName).arg(md5).arg(role);
+	QString strParam = QString("username=%1&password=%2&role=%3").arg(m_addUserName).arg(md5).arg(m_addrole);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/adduser"
 		, TempToken, strParam,responseData);
@@ -192,7 +195,7 @@ void UserLayoutManger::threadAddUserInfoCallBack(QString&userName, QString &pass
 		if (errorcode == 0)//成功
 		{
 			QString id = rootObject["id"].toString();
-			AddTableViewItem(id.toInt(), userName, role);
+			AddTableViewItem(id.toInt(), m_addUserName, m_addrole);
 			emit sig_NotifyMsg(QString::fromLocal8Bit("添加用户成功！"), errorcode);
 		}
 		else {//失败

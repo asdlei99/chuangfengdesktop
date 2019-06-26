@@ -55,7 +55,7 @@ public:
         title_lab = new QLabel(pop_widget_title);
         title_lab->setObjectName(QStringLiteral("title_lab"));
         title_lab->setGeometry(QRect(10, 1, 71, 28));
-        title_lab->setStyleSheet(QString::fromUtf8("font: 75 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+        title_lab->setStyleSheet(QString::fromUtf8("font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
 "color: rgb(0, 200, 255);"));
 
         verticalLayout->addWidget(pop_widget_title);
@@ -72,9 +72,12 @@ public:
         msg_label = new QLabel(widget);
         msg_label->setObjectName(QStringLiteral("msg_label"));
         msg_label->setGeometry(QRect(130, 30, 261, 28));
+        msg_label->setStyleSheet(QString::fromUtf8("font: 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         error_code_lab = new QLabel(widget);
         error_code_lab->setObjectName(QStringLiteral("error_code_lab"));
         error_code_lab->setGeometry(QRect(130, 70, 261, 28));
+        error_code_lab->setStyleSheet(QString::fromUtf8("font: 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: rgb(170, 0, 0);"));
 
         verticalLayout->addWidget(widget);
 

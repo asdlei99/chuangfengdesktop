@@ -703,3 +703,12 @@ spacing: 5px;
 {
 	border-image: url(:/ChuangfengDesktop/Resources/tuiku_btn.png)0 0 0 160;
 }
+
+#ico_lab[icoProperty="error"]{
+border-image: url(:/ChuangfengDesktop/Resources/msg_ico.png)0 50 0 0;
+}
+
+#ico_lab[icoProperty="success"]{
+border-image: url(:/ChuangfengDesktop/Resources/msg_ico.png)0 0 0 50;
+}
+

@@ -12,11 +12,20 @@ MsgPopWidget::MsgPopWidget( QString strMsg, int iErrorCode, QWidget *parent )
 	connect(ui->pop_close_btn, &QPushButton::clicked, this, &QWidget::close);
 	connect(ui->pop_commit_btn, &QPushButton::clicked, this, &QWidget::close);
 	ui->msg_label->setText(m_strMsg);
-	ui->error_code_lab->setText(QString::fromLocal8Bit("错误代码：") + QString::number(m_iErrorCode));
+	
 	switch (m_iErrorCode)
 	{
+	case 0:
+		//设置按钮的属性名为"maximizeProperty"
+		ui->ico_lab->setProperty("icoProperty", "success");
+		ui->ico_lab->setStyle(QApplication::style());
+		break;
 	
 	default:
+		ui->error_code_lab->setText(QString::fromLocal8Bit("错误代码：") + QString::number(m_iErrorCode));
+		//设置按钮的属性名为"maximizeProperty"
+		ui->ico_lab->setProperty("icoProperty", "error");
+		ui->ico_lab->setStyle(QApplication::style());
 		break;
 	}
 	

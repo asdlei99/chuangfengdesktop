@@ -50,5 +50,6 @@
         <file>Resources/ruku_btn.png</file>
         <file>Resources/chuku_btn.png</file>
         <file>Resources/tuiku_btn.png</file>
+        <file>Resources/msg_ico.png</file>
     </qresource>
 </RCC>
