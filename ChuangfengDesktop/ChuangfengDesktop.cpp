@@ -22,12 +22,16 @@
 #include "DetailShareReportManager.h"
 #include "MaterielReportManger.h"
 #include "StoreReportManager.h"
+#include "MsgPopWidget.h"
+
+
 ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
 	:MoveableFramelessWindow(parent)
 	,ui(new Ui::ChuangfengDesktopClass)
 	
 {
 	ui->setupUi(this);
+	myEvent1 = static_cast<QEvent::Type>(QEvent::registerEventType(-1));
 	connect(ui->close_btn, &QPushButton::clicked, this, &ChuangfengDesktop::close);
 	connect(ui->max_restore_btn, &QPushButton::clicked, this, &ChuangfengDesktop::updateMaximize);
 	connect(ui->min_btn, &QPushButton::clicked, this, &QWidget::showMinimized);
@@ -106,8 +110,8 @@ ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
 	ui->max_restore_btn->setStyle(QApplication::style());
 	initMainOption();
 	initSysLayoutOption();//初始化系统设置导航栏
-
 	m_ptrUserLayoutManger = make_shared<UserLayoutManger>(ui);
+	connect(m_ptrUserLayoutManger.get(), SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotMsgPop(QString,int)));
 	m_ptrCategoryLayoutManager = make_shared<CategoryLayoutManager>(ui);
 	m_ptrAreaLayoutManager = make_shared<AreaLayoutManager>(ui);
 	m_ptrSupplierLayoutManager = make_shared<SupplierLayoutManager>(ui);
@@ -316,5 +320,13 @@ void ChuangfengDesktop::SlotSysLayoutOptionClick()
 	}
 }
 
+void ChuangfengDesktop::SlotMsgPop(QString msg, int errorcode)
+{
+
+	MsgPopWidget*pQtWidget = new MsgPopWidget(msg, errorcode);
+	pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+	pQtWidget->setWindowModality(Qt::ApplicationModal);
+	pQtWidget->show();
+}
 
 

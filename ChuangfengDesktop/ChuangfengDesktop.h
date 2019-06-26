@@ -15,12 +15,12 @@
 #include "DetailShareReportManager.h"
 #include "MaterielReportManger.h"
 #include "StoreReportManager.h"
+#include <QEvent>
 using namespace  std;
 
 class ChuangfengDesktop :  public MoveableFramelessWindow
 {
 	Q_OBJECT
-
 public:
 	ChuangfengDesktop(QWidget *parent = Q_NULLPTR);
 	void close();
@@ -30,17 +30,15 @@ public:
 private:
 	virtual QWidget*getDragnWidget();
 private:
-
 	void initMainOption();
 	void initSysLayoutOption();
-
-	void initReportLayoutOption();
 signals:
-	void CloseMainWidgetSingnal();
+	void CloseMainWidgetSingnal();	
 public slots:
 	void updateMaximize();
 	void SlotOptionClick();
 	void SlotSysLayoutOptionClick();
+	void SlotMsgPop(QString msg,int errorcode);
 private:
 	Ui::ChuangfengDesktopClass*ui;
 	QList< NavButton*> mNavButtonList;
@@ -51,4 +49,5 @@ private:
 	shared_ptr<SupplierLayoutManager> m_ptrSupplierLayoutManager;
 	shared_ptr<ShareItemLayoutManager> m_ptrShareItemLayoutManager;
 	shared_ptr<DetailAreaLayoutManager> m_ptrDetailAreaLayoutManager;
+	QEvent::Type myEvent1;
 };

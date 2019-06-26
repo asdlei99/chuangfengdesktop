@@ -156,6 +156,9 @@
     <ClCompile Include="globalVariable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MsgPopWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ChuangfengDesktop.h">
@@ -263,6 +266,9 @@
     <QtMoc Include="ShareItemLayoutManager.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="MsgPopWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginQWidget.ui">
@@ -317,6 +323,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="addNopayDetailWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="MsgPopWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

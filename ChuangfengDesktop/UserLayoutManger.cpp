@@ -9,11 +9,13 @@
 #include <QJsonValue>
 #include <QByteArray>
 #include "globalVariable.h"
+#include "MsgPopWidget.h"
 
 using namespace  std;
 
 UserLayoutManger::UserLayoutManger(Ui::ChuangfengDesktopClass*ui)
 	:BaseLayoutManager(ui)
+	, m_pThread(nullptr)
 {
 	InitLayout();
 	connect(ui->user_add_btn, &QPushButton::clicked, this, [this]()->void {
@@ -23,11 +25,14 @@ UserLayoutManger::UserLayoutManger(Ui::ChuangfengDesktopClass*ui)
 		pQtWidget->setWindowModality(Qt::ApplicationModal);
 		pQtWidget->show();
 	});
+	
 	connect(ui->user_remove_btn, &QPushButton::clicked, this, &UserLayoutManger::SlotRemoveUserItem);
 	std::thread t([this]()->void {
 		this->threadGetUserInfoCallBack();
 	});
 	t.detach();
+
+	
 }
 
 UserLayoutManger::~UserLayoutManger()
@@ -36,69 +41,79 @@ UserLayoutManger::~UserLayoutManger()
 
 void UserLayoutManger::SlotAddUser(QString&userName, QString &password, QString &role)
 {
-	std::thread t([this](QString&userName, QString &password, QString &role)->void {
-		this->threadAddUserInfoCallBack(userName, password, role);
-	}, userName, password, role);
-	t.detach();
+	
+	m_pThread = new QThread;
+	connect(m_pThread, SIGNAL(started()), this, SLOT(threadAddUserInfoCallBack(userName, password, role)));//新建的线程开始后执行test::first()
+	m_pThread->start();
 }
 
 void UserLayoutManger::SlotRemoveUserItem()
 {
-	std::thread t([this]()->void {
-		QMap<int, int> qMapSelect;
-		bool isFirst = true;
-		QString itemList = "";
-		for (int i = 0; i < m_pViewModel->rowCount(); ++i)
-		{
-			if (Qt::Checked == m_pViewModel->item(i, 0)->checkState())
-			{
-				if (isFirst)
-				{
-					itemList = m_pViewModel->item(i, 1)->text();
-				}
-				else {
-					itemList += "," + m_pViewModel->item(i, 1)->text();
-				}
-				isFirst = false;
-				qMapSelect.insert(i, m_pViewModel->item(i, 1)->text().toInt());
-			}
-		}
-		if (qMapSelect.count()==0)
-		{
-			return;
-		}
-		QString strParam = "ids=" + itemList;
-		QByteArray responseData;
-		SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteuser"
-			, TempToken, strParam, responseData);
-		QJsonParseError json_error;
-		QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
-		if (json_error.error == QJsonParseError::NoError)
-		{
-			QJsonObject rootObject = parse_doucment.object();
-			int errorcode = rootObject["error_code"].toInt();
-			QString strMsg = rootObject["msg"].toString();
-			if (errorcode == 0)//成功
-			{
-				QMapIterator<int, int> Iterator(qMapSelect);
-				Iterator.toBack();
-				while (Iterator.hasPrevious())//利用qmap排序 从大的节点 往小的进行删除。
-				{
-					Iterator.previous();
-					int rowm = Iterator.key();
-					m_pViewModel->removeRow(rowm);
-				}
-			}
-			else {//失败
-
-			}
-		}
-		else {
-
-		}
-	});
-	t.detach();
+	
+	m_pThread = new QThread;
+	connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadRemove()));//新建的线程开始后执行test::first()
+	m_pThread->start();
 }
+
+
+void UserLayoutManger::SlotThreadRemove()
+{
+	QMap<int, int> qMapSelect;
+	bool isFirst = true;
+	QString itemList = "";
+	for (int i = 0; i < m_pViewModel->rowCount(); ++i)
+	{
+		if (Qt::Checked == m_pViewModel->item(i, 0)->checkState())
+		{
+			if (isFirst)
+			{
+				itemList = m_pViewModel->item(i, 1)->text();
+			}
+			else {
+				itemList += "," + m_pViewModel->item(i, 1)->text();
+			}
+			isFirst = false;
+			qMapSelect.insert(i, m_pViewModel->item(i, 1)->text().toInt());
+		}
+	}
+	if (qMapSelect.count() == 0)
+	{
+		return;
+	}
+	QString strParam = "ids=" + itemList;
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteuser"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		QJsonObject rootObject = parse_doucment.object();
+		int errorcode = rootObject["error_code"].toInt();
+		QString strMsg = rootObject["msg"].toString();
+		if (errorcode == 0)//成功
+		{
+			QMapIterator<int, int> Iterator(qMapSelect);
+			Iterator.toBack();
+			while (Iterator.hasPrevious())//利用qmap排序 从大的节点 往小的进行删除。
+			{
+				Iterator.previous();
+				int rowm = Iterator.key();
+				m_pViewModel->removeRow(rowm);
+			}
+			emit sig_NotifyMsg(QString::fromLocal8Bit("删除成功！"), errorcode);
+		}
+		else {//失败
+			emit sig_NotifyMsg(strMsg, errorcode);
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("删除失败！"), errorcode);
+	}
+}
+
+
 
 void UserLayoutManger::InitLayout()
 {
@@ -178,13 +193,15 @@ void UserLayoutManger::threadAddUserInfoCallBack(QString&userName, QString &pass
 		{
 			QString id = rootObject["id"].toString();
 			AddTableViewItem(id.toInt(), userName, role);
+			emit sig_NotifyMsg(QString::fromLocal8Bit("添加用户成功！"), errorcode);
 		}
 		else {//失败
-
+			emit sig_NotifyMsg(strMsg, errorcode);
 		}
 	}
 	else {
-
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("增加失败！"), errorcode);
 	}
 }
 

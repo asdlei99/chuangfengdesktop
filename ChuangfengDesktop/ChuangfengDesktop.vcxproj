@@ -139,6 +139,7 @@
     <ClCompile Include="MaterialManagerWidget.cpp" />
     <ClCompile Include="MaterielReportManger.cpp" />
     <ClCompile Include="MatterObject.cpp" />
+    <ClCompile Include="MsgPopWidget.cpp" />
     <ClCompile Include="non_paymentObject.cpp" />
     <ClCompile Include="NoPayLayoutManager.cpp" />
     <ClCompile Include="NopayReportManger.cpp" />
@@ -170,6 +171,7 @@
     <QtUic Include="LoginQWidget.ui" />
     <QtUic Include="MaterialQWidget.ui" />
     <QtUic Include="MaterielReportManagerQWidget.ui" />
+    <QtUic Include="MsgPopWidget.ui" />
     <QtUic Include="NopayManagerQWidget.ui" />
     <QtUic Include="NoPayReportManagerQWidget.ui" />
     <QtUic Include="ShareDetailManagerQWidget.ui" />
@@ -287,6 +289,10 @@
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt;.\CustomCtrl;$(QTDIR)\include\QtNetwork</IncludePath>
     </QtMoc>
     <QtMoc Include="SupplierLayoutManager.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt;$(QTDIR)\include\QtNetwork</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt;.\CustomCtrl;$(QTDIR)\include\QtNetwork</IncludePath>
+    </QtMoc>
+    <QtMoc Include="MsgPopWidget.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt;$(QTDIR)\include\QtNetwork</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt;.\CustomCtrl;$(QTDIR)\include\QtNetwork</IncludePath>
     </QtMoc>
