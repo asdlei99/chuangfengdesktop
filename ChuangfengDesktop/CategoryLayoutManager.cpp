@@ -19,10 +19,7 @@ CategoryLayoutManager::CategoryLayoutManager(Ui::ChuangfengDesktopClass*ui)
 		pQtWidget->show();
 	});
 
-
 	connect(ui->category_remove_btn, &QPushButton::clicked, this, &CategoryLayoutManager::SlotRemoveCategoryItem);
-	
-
 
 	std::thread t([this]()->void {
 		this->threadGetCategoryInfoCallBack();
@@ -37,7 +34,7 @@ CategoryLayoutManager::~CategoryLayoutManager()
 
 void CategoryLayoutManager::SlotAddCategory(QString&itemName, QString &remake)
 {
-		std::thread t([this](QString&Name)->void {
+	std::thread t([this](QString&Name)->void {
 		QString strParam = QString("name=%1").arg(Name);
 		QByteArray responseData;
 		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/insertTaskItem"

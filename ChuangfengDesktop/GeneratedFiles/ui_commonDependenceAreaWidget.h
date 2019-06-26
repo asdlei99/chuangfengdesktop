@@ -38,6 +38,8 @@ public:
     QLineEdit *tag_name_Edit;
     QLabel *remake_lab;
     QComboBox *area_combox;
+    QLineEdit *custom_name_Edit;
+    QLabel *error_lab;
 
     void setupUi(QWidget *CommondenpendenceWidget)
     {
@@ -95,6 +97,14 @@ public:
         area_combox = new QComboBox(widget);
         area_combox->setObjectName(QStringLiteral("area_combox"));
         area_combox->setGeometry(QRect(170, 100, 161, 28));
+        custom_name_Edit = new QLineEdit(widget);
+        custom_name_Edit->setObjectName(QStringLiteral("custom_name_Edit"));
+        custom_name_Edit->setGeometry(QRect(340, 100, 161, 28));
+        error_lab = new QLabel(widget);
+        error_lab->setObjectName(QStringLiteral("error_lab"));
+        error_lab->setGeometry(QRect(80, 430, 381, 28));
+        error_lab->setStyleSheet(QString::fromUtf8("font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: rgb(255, 85, 0);"));
 
         verticalLayout->addWidget(widget);
 
@@ -113,7 +123,8 @@ public:
         pop_cancle_btn->setText(QString());
         pop_commit_btn->setText(QString());
         tagName_lab->setText(QString());
-        remake_lab->setText(QApplication::translate("CommondenpendenceWidget", "\345\214\272\345\237\237\357\274\232", Q_NULLPTR));
+        remake_lab->setText(QApplication::translate("CommondenpendenceWidget", "\346\211\200\345\261\236\345\214\272\345\237\237\357\274\232", Q_NULLPTR));
+        error_lab->setText(QApplication::translate("CommondenpendenceWidget", "\347\261\273\347\233\256\344\270\215\350\203\275\344\270\272\347\251\272\357\274\201", Q_NULLPTR));
     } // retranslateUi
 
 };

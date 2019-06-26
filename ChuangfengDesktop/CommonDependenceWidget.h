@@ -10,6 +10,7 @@ enum PopDependenceWidgetEnum
 class CommonDependenceWidget :
 	public MoveableFramelessWindow
 {
+	Q_OBJECT
 public:
 	CommonDependenceWidget(PopDependenceWidgetEnum type, QWidget *parent = Q_NULLPTR);
 	~CommonDependenceWidget();
@@ -18,5 +19,9 @@ private:
 private:
 	Ui::CommondenpendenceWidget *ui;
 	PopDependenceWidgetEnum m_enWidgetType;
+public slots:
+	void comboBoxValueChanged();
+signals:
+	void sig_comit(QString&itemName, QString &fromName);
 };
 

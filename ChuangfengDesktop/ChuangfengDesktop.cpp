@@ -112,7 +112,7 @@ ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
 	m_ptrAreaLayoutManager = make_shared<AreaLayoutManager>(ui);
 	m_ptrSupplierLayoutManager = make_shared<SupplierLayoutManager>(ui);
 	m_ptrShareItemLayoutManager = make_shared<ShareItemLayoutManager>(ui);
-	m_ptrDetailAreaLayoutManager = make_shared<DetailAreaLayoutManager>(ui);
+	m_ptrDetailAreaLayoutManager = make_shared<DetailAreaLayoutManager>(ui, m_ptrAreaLayoutManager);
 }
 
 void ChuangfengDesktop::close()

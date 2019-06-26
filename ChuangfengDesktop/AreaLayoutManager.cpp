@@ -1,5 +1,8 @@
 #include "AreaLayoutManager.h"
 #include "Common2ParamWidget.h"
+#include <thread>
+#include "SingletonHttpRequest.h"
+#include "globalVariable.h"
 
 
 
@@ -9,6 +12,7 @@ AreaLayoutManager::AreaLayoutManager(Ui::ChuangfengDesktopClass*ui)
 	InitLayout();
 	connect(m_pUi->area_add_btn, &QPushButton::clicked, this, [this]()->void {
 		Common2ParamWidget*pQtWidget = new Common2ParamWidget(PopWidgetEnum::enAreaLayout);
+		connect(pQtWidget, SIGNAL(sig_comit(QString&, QString&)), this, SLOT(SlotAddArea(QString&, QString&)));
 		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
 		pQtWidget->setWindowModality(Qt::ApplicationModal);
 		pQtWidget->show();
@@ -34,17 +38,52 @@ void AreaLayoutManager::InitLayout()
 	m_pViewModel->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("备注"));
 	onSetTableAttribute(m_pUi->area_tableView, 4);
 
-	int nCount = 0;
-	for (auto i = 0; i < 1; i++)
-	{
-		m_pViewModel->setItem(i, 0, new QStandardItem(""));
-		m_pViewModel->item(i, 0)->setCheckable(true);
+	
+}
 
-		m_pViewModel->setItem(i, 1, new QStandardItem(QString::number(1)));
-		m_pViewModel->setItem(i, 2, new QStandardItem(QString::fromLocal8Bit("A区")));
+void AreaLayoutManager::SlotAddArea(QString& name, QString&remake)
+{
+	std::thread t([this](QString&Name)->void {
+		QString strParam = QString("name=%1").arg(Name);
+		QByteArray responseData;
+		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addAquaculture"
+			, TempToken, strParam, responseData);
 
-		nCount++;
-	}
+		QJsonParseError json_error;
+		QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+		if (json_error.error == QJsonParseError::NoError)
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			int errorcode = rootObject["error_code"].toInt();
+			QString strMsg = rootObject["msg"].toString();
+			if (errorcode == 0)//成功
+			{
+				QString id = rootObject["id"].toString();
+				AddTableViewItem(id.toInt(), Name);
+				AreaDetailStruct&item = g_areaList[id.toInt()];
+				item.areaName = Name;
+			}
+			else {//失败
+
+			}
+		}
+		else {
+
+		}
+	}, name);
+	t.detach();
+}
+
+void AreaLayoutManager::AddTableViewItem(int id, QString AreaName)
+{
+	int nCount = m_pViewModel->rowCount();
+	
+	m_pViewModel->setItem(nCount, 0, new QStandardItem(""));
+	m_pViewModel->item(nCount, 0)->setCheckable(true);
+
+	m_pViewModel->setItem(nCount, 1, new QStandardItem(QString::number(id)));
+	m_pViewModel->setItem(nCount, 2, new QStandardItem(AreaName));
+
 	m_pUi->area_tableView->setColumnWidth(0, 30);
 	m_pUi->area_tableView->setColumnWidth(1, 50);
 	m_pUi->area_tableView->setColumnWidth(2, 180);

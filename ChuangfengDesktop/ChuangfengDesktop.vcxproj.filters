@@ -248,6 +248,21 @@
     <QtMoc Include="CategoryLayoutManager.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="SupplierLayoutManager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="AreaLayoutManager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="CommonDependenceWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="DetailAreaLayoutManager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ShareItemLayoutManager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginQWidget.ui">
@@ -318,21 +333,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ThreadPool.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AreaLayoutManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SupplierLayoutManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShareItemLayoutManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DetailAreaLayoutManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CommonDependenceWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AddFundDetailWidget.h">

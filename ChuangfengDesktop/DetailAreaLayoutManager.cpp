@@ -1,23 +1,84 @@
 #include "DetailAreaLayoutManager.h"
 #include "CommonDependenceWidget.h"
+#include <thread>
+#include "SingletonHttpRequest.h"
+#include "globalVariable.h"
 
 
 
-DetailAreaLayoutManager::DetailAreaLayoutManager(Ui::ChuangfengDesktopClass*ui)
+DetailAreaLayoutManager::DetailAreaLayoutManager(Ui::ChuangfengDesktopClass*ui,shared_ptr<AreaLayoutManager> ptrAreaLayoutManager)
 	:BaseLayoutManager(ui)
+	, m_ptrAreaLayoutManager(ptrAreaLayoutManager)
 {
 	InitLayout();
 	connect(m_pUi->detailarea_add_btn, &QPushButton::clicked, this, [this]()->void {
 		CommonDependenceWidget*pQtWidget = new CommonDependenceWidget(PopDependenceWidgetEnum::enDetailAreaLayout);
+		connect(pQtWidget, SIGNAL(sig_comit(QString&, QString&)), this, SLOT(SlotAddDetailArea(QString&, QString&)));
 		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
 		pQtWidget->setWindowModality(Qt::ApplicationModal);
 		pQtWidget->show();
 	});
+
+	std::thread t([this]()->void {
+		this->threadAreaInfoCallBack();
+	});
+	t.detach();
 }
 
 
 DetailAreaLayoutManager::~DetailAreaLayoutManager()
 {
+}
+
+void DetailAreaLayoutManager::threadAreaInfoCallBack()
+{
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestGet("http://127.0.0.1:80/zerg/public/index.php/getAquaculturearea"
+		, TempToken, responseData);
+
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray rootarray = parse_doucment.array();
+			for (int i = 0; i < rootarray.size(); i++)
+			{
+				QJsonValue areaArray = rootarray.at(i);
+				QJsonObject areaObject = areaArray.toObject();
+				int id = areaObject["id"].toInt();
+				QString areaName = areaObject["name"].toString();
+				QJsonArray itemarray= areaObject["items"].toArray();
+				AreaDetailStruct&item = g_areaList[id];
+				item.areaName = areaName;
+				for (int j = 0; j < itemarray.size(); j++)
+				{
+				
+					QJsonValue areaDetailArray = itemarray.at(j);
+					QJsonObject areaDetailObject = areaDetailArray.toObject();
+					int itemId = areaDetailObject["id"].toInt();
+					QString areaDetailName = areaDetailObject["name"].toString();
+					AddTableViewItem(itemId, areaDetailName, areaName);
+					QString &detailArea = item.areaDetailList[itemId];
+					detailArea = areaDetailName;
+				}
+				m_ptrAreaLayoutManager->AddTableViewItem(id, areaName);
+			}
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+			}
+		}
+	}
+	else {
+
+	}
 }
 
 void DetailAreaLayoutManager::InitLayout()
@@ -34,19 +95,65 @@ void DetailAreaLayoutManager::InitLayout()
 	m_pViewModel->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("所属区域"));
 	onSetTableAttribute(m_pUi->detailarea_tableView, 4);
 
-	int nCount = 0;
-	for (auto i = 0; i < 1; i++)
-	{
-		m_pViewModel->setItem(i, 0, new QStandardItem(""));
-		m_pViewModel->item(i, 0)->setCheckable(true);
+	
+}
 
-		m_pViewModel->setItem(i, 1, new QStandardItem(QString::number(1)));
-		m_pViewModel->setItem(i, 2, new QStandardItem(QString::fromLocal8Bit("A1")));
-		m_pViewModel->setItem(i, 3, new QStandardItem(QString::fromLocal8Bit("A区")));
+void DetailAreaLayoutManager::AddTableViewItem(int id, QString AreaDetailName, QString AreaName)
+{
+	int nCount = m_pViewModel->rowCount();
 
-		nCount++;
-	}
+	m_pViewModel->setItem(nCount, 0, new QStandardItem(""));
+	m_pViewModel->item(nCount, 0)->setCheckable(true);
+
+	m_pViewModel->setItem(nCount, 1, new QStandardItem(QString::number(id)));
+	m_pViewModel->setItem(nCount, 2, new QStandardItem(AreaDetailName));
+	m_pViewModel->setItem(nCount, 3, new QStandardItem(AreaName));
+
+	
 	m_pUi->detailarea_tableView->setColumnWidth(0, 30);
 	m_pUi->detailarea_tableView->setColumnWidth(1, 50);
 	m_pUi->detailarea_tableView->setColumnWidth(2, 180);
+}
+
+void DetailAreaLayoutManager::SlotAddDetailArea(QString &tagName, QString&fromName)
+{
+	std::thread t([this](QString&Name, QString&itemName)->void {
+		QString strParam = QString("name=%1&itemname=%2").arg(Name).arg(itemName);
+		QByteArray responseData;
+		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addAquacultureareaDetail"
+			, TempToken, strParam, responseData);
+
+		QJsonParseError json_error;
+		QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+		if (json_error.error == QJsonParseError::NoError)
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			int errorcode = rootObject["error_code"].toInt();
+			QString strMsg = rootObject["msg"].toString();
+			if (errorcode == 0)//成功
+			{
+				QString id = rootObject["id"].toString();
+				int pid = rootObject["pid"].toInt();
+				AddTableViewItem(id.toInt(), itemName, Name);
+				if (g_areaList.find(pid) != g_areaList.end())
+				{
+					auto itor = g_areaList.find(pid);
+					itor->second.areaDetailList[id.toInt()] = itemName;
+				}
+				else {
+					AreaDetailStruct& item = g_areaList[pid];
+					item.areaName = Name;
+					item.areaDetailList[id.toInt()] = itemName;
+					m_ptrAreaLayoutManager->AddTableViewItem(pid, Name);
+				}
+			}
+			else {//失败
+
+			}
+		}
+		else {
+
+		}
+	}, fromName, tagName);
+	t.detach();
 }

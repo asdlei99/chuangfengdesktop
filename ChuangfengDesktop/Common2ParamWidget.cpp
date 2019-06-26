@@ -16,7 +16,7 @@ Common2ParamWidget::Common2ParamWidget(PopWidgetEnum type, QWidget *parent)
 		 ui->error_lab->setVisible(true);
 		 return;
 	 }
-	 emit this->sig_comit(ui->tag_name_Edit->text(), ui->remake_lab->text());
+	 emit this->sig_comit(ui->tag_name_Edit->text(), ui->remake_Edit->text());
 	 emit ui->pop_close_btn->clicked();
 	
 	});

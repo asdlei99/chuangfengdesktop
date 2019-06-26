@@ -3,10 +3,14 @@
 class AreaLayoutManager :
 	public BaseLayoutManager
 {
+	Q_OBJECT
 public:
 	AreaLayoutManager(Ui::ChuangfengDesktopClass*ui);
 	~AreaLayoutManager();
+	void AddTableViewItem(int id, QString AreaName);
 private:
 	virtual void InitLayout();
+public slots:
+	void SlotAddArea(QString& name, QString&remake);
 };
 

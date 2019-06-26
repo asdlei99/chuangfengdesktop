@@ -175,7 +175,7 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
 font: 75 12pt &quot;微软雅黑&quot;;</string>
       </property>
       <property name="text">
-       <string>区域：</string>
+       <string>所属区域：</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -189,6 +189,33 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
         <width>161</width>
         <height>28</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="custom_name_Edit">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>100</y>
+        <width>161</width>
+        <height>28</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="error_lab">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>430</y>
+        <width>381</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 12pt &quot;微软雅黑&quot;;
+color: rgb(255, 85, 0);</string>
+      </property>
+      <property name="text">
+       <string>类目不能为空！</string>
       </property>
      </widget>
     </widget>
