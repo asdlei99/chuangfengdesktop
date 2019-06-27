@@ -47,6 +47,7 @@ public:
     QLineEdit *return_edit;
     QLineEdit *pay_edit;
     QLabel *label_8;
+    QLineEdit *supplier_edit;
 
     void setupUi(QWidget *addNoPayDetailWidget)
     {
@@ -112,7 +113,7 @@ public:
         label_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         comboBox = new QComboBox(widget);
         comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setGeometry(QRect(170, 110, 111, 28));
+        comboBox->setGeometry(QRect(170, 110, 161, 28));
         label_6 = new QLabel(widget);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setGeometry(QRect(20, 170, 141, 28));
@@ -140,6 +141,9 @@ public:
         label_8->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
 "font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         label_8->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        supplier_edit = new QLineEdit(widget);
+        supplier_edit->setObjectName(QStringLiteral("supplier_edit"));
+        supplier_edit->setGeometry(QRect(340, 110, 161, 28));
 
         verticalLayout->addWidget(widget);
 
@@ -167,6 +171,7 @@ public:
         return_edit->setText(QApplication::translate("addNoPayDetailWidget", "0", Q_NULLPTR));
         pay_edit->setText(QApplication::translate("addNoPayDetailWidget", "0", Q_NULLPTR));
         label_8->setText(QApplication::translate("addNoPayDetailWidget", "\345\267\262\344\273\230\346\254\276\357\274\232", Q_NULLPTR));
+        supplier_edit->setText(QString());
     } // retranslateUi
 
 };

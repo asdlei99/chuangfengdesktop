@@ -10,6 +10,7 @@ enum PopFundDetailEnum
 class AddFundDetailWidget :
 	public MoveableFramelessWindow
 {
+	Q_OBJECT
 public:
 	AddFundDetailWidget(PopFundDetailEnum type, QWidget *parent = Q_NULLPTR);
 	~AddFundDetailWidget();
@@ -18,5 +19,8 @@ private:
 private:
 	Ui::addFundDetailWidget *ui;
 	PopFundDetailEnum m_enWidgetType;
+private slots:
+	void SubjectcomboBoxValueChanged();
+	void SharecomboBoxValueChanged();
 };
 

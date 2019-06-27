@@ -269,6 +269,12 @@
     <QtMoc Include="MsgPopWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="AddFundDetailWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="AddNoPayDetailWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginQWidget.ui">
@@ -342,12 +348,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ThreadPool.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AddFundDetailWidget.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AddNoPayDetailWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="globalVariable.h">

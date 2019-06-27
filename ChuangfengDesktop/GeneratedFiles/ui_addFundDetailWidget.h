@@ -47,6 +47,8 @@ public:
     QComboBox *subject_comboBox;
     QLabel *remake_lab_6;
     QComboBox *share_comboBox;
+    QLineEdit *subject_Edit;
+    QLineEdit *share_Edit;
 
     void setupUi(QWidget *addFundDetailWidget)
     {
@@ -140,6 +142,13 @@ public:
         share_comboBox = new QComboBox(widget);
         share_comboBox->setObjectName(QStringLiteral("share_comboBox"));
         share_comboBox->setGeometry(QRect(170, 290, 161, 28));
+        subject_Edit = new QLineEdit(widget);
+        subject_Edit->setObjectName(QStringLiteral("subject_Edit"));
+        subject_Edit->setGeometry(QRect(340, 220, 161, 28));
+        share_Edit = new QLineEdit(widget);
+        share_Edit->setObjectName(QStringLiteral("share_Edit"));
+        share_Edit->setGeometry(QRect(340, 290, 161, 28));
+        share_Edit->setFrame(true);
 
         verticalLayout->addWidget(widget);
 

@@ -35,7 +35,7 @@ void SingletonHttpRequest::RequestPost(const QString&strUrl, const QString&strTo
 
 	request.setUrl(QUrl(strUrl));
 	request.setRawHeader("token", strToken.toLocal8Bit());
-	
+	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 	QByteArray encodedString = QTextCodec::codecForName("UTF-8")->fromUnicode(strParam);
 	QNetworkReply *reply = pNetManager->post(request, encodedString);
 	QEventLoop eventLoop;
