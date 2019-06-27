@@ -190,6 +190,9 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
         <height>28</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="incom_Edit">
       <property name="geometry">

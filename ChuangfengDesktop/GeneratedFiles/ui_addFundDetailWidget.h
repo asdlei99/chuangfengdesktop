@@ -106,6 +106,7 @@ public:
         dateEdit = new QDateEdit(widget);
         dateEdit->setObjectName(QStringLiteral("dateEdit"));
         dateEdit->setGeometry(QRect(170, 40, 161, 28));
+        dateEdit->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
         incom_Edit = new QLineEdit(widget);
         incom_Edit->setObjectName(QStringLiteral("incom_Edit"));
         incom_Edit->setGeometry(QRect(170, 100, 161, 28));

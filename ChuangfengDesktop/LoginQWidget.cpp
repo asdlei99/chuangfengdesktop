@@ -53,6 +53,7 @@ LoginQWidget::LoginQWidget(QWidget *parent)
 		pQtWidget->show();
 		
 	});
+	
 }
 
 

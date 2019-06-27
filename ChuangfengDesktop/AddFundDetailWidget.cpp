@@ -42,7 +42,7 @@ AddFundDetailWidget::AddFundDetailWidget(PopFundDetailEnum type, QWidget *parent
 	ui->share_comboBox->setCurrentIndex(0);
 	ui->subject_Edit->setVisible(false);
 	ui->share_Edit->setVisible(false);
-	ui->dateEdit->setCalendarPopup(true);
+	ui->dateEdit->setCalendarPopup(true);	
 }
 
 
