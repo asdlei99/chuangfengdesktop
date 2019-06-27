@@ -182,7 +182,7 @@ void UserLayoutManger::threadAddUserInfoCallBack()
 	md5.append(bb.toHex());
 	QString strParam = QString("username=%1&password=%2&role=%3").arg(m_addUserName).arg(md5).arg(m_addrole);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/adduser"
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/adduser?XDEBUG_SESSION_START=17842"
 		, TempToken, strParam,responseData);
 	
 	QJsonParseError json_error;

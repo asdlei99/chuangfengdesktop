@@ -1,5 +1,6 @@
 #include "AddFundDetailWidget.h"
 #include "globalVariable.h"
+#include <QCalendarWidget>
 
 
 
@@ -41,6 +42,7 @@ AddFundDetailWidget::AddFundDetailWidget(PopFundDetailEnum type, QWidget *parent
 	ui->share_comboBox->setCurrentIndex(0);
 	ui->subject_Edit->setVisible(false);
 	ui->share_Edit->setVisible(false);
+	ui->dateEdit->setCalendarPopup(true);
 }
 
 

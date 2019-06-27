@@ -86,7 +86,7 @@ void GeneralLayoutManger::slotCheckBoxStateChanged(bool status)
 
 void GeneralLayoutManger::SlotSearchBtnAction()
 {
-
+	m_pViewModel->removeRows(0, m_pViewModel->rowCount());
 	QThread *m_pThread = new QThread;
 	connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadSearchGeneral()));
 	connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
@@ -115,11 +115,11 @@ void GeneralLayoutManger::SlotThreadSearchGeneral()
 				item.id =  userObject["id"].toInt();
 				item.strRemake = userObject["remake"].toString();
 				item.strCostArea = userObject["costarea_name"].toString();
-				item.strSurpls = QString::number(userObject["surplus"].toDouble());
-				item.strTime = userObject["account_time"].toString();
+				item.strSurpls = userObject["surplus"].toString();
+				item.strTime = userObject["account_time"].toString().mid(0,10);
 				item.strTaskName = userObject["task_name"].toString();
-				item.strPay = QString::number(userObject["pay"].toDouble());
-				item.strIncome = QString::number(userObject["income"].toDouble());
+				item.strPay = userObject["pay"].toString();
+				item.strIncome = userObject["income"].toString();
 				addTableView(item);
 			}
 		}

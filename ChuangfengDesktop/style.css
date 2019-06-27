@@ -5,20 +5,6 @@
 	color: #303030;
 }
 
-.QMenu{  
-        background-color:#FAFAFA;  
-        padding: 1px;  
-
-}  
-  
-.QMenu::item{  
-        background-color:transparent;  
-}  
-  
-.QMenu::item:selected{  
-        background-color:#E1E1E1;  
-        color: black;  
-}  
 
 
 
@@ -347,7 +333,11 @@ border-color: rgb(255,255,255);
 spacing: 1px;
 }
 
-
+QCalendarWidget 
+{
+    alternate-background-color: rgb(128, 128, 128);
+    background-color: #2F2F3E;
+}
 
 
 
