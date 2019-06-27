@@ -105,7 +105,7 @@ public:
         remake_lab_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         dateEdit = new QDateEdit(widget);
         dateEdit->setObjectName(QStringLiteral("dateEdit"));
-        dateEdit->setGeometry(QRect(170, 40, 101, 28));
+        dateEdit->setGeometry(QRect(170, 40, 161, 28));
         incom_Edit = new QLineEdit(widget);
         incom_Edit->setObjectName(QStringLiteral("incom_Edit"));
         incom_Edit->setGeometry(QRect(170, 100, 161, 28));

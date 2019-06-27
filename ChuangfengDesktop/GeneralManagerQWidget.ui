@@ -148,7 +148,7 @@ color: rgb(255, 255, 255);</string>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(54, 78, 111);</string>
      </property>
-     <widget class="QDateEdit" name="startdateEdit">
+     <widget class="QDateEdit" name="general_startdateEdit">
       <property name="geometry">
        <rect>
         <x>80</x>
@@ -219,7 +219,7 @@ color: rgb(255, 255, 255);</string>
        <string/>
       </property>
      </widget>
-     <widget class="QDateEdit" name="enddateEdit">
+     <widget class="QDateEdit" name="general_enddateEdit">
       <property name="geometry">
        <rect>
         <x>270</x>

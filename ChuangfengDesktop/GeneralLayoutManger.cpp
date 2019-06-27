@@ -10,12 +10,16 @@
 #include "iconhelper.h"
 #include "commomdef.h"
 #include "AddFundDetailWidget.h"
+#include "SingletonHttpRequest.h"
+#include "MsgPopWidget.h"
+#include "globalVariable.h"
 GeneralLayoutManger::GeneralLayoutManger(QWidget *parent)
 	:MoveableFramelessWindow(parent)
 	, ui(new Ui::generalManager)
 {
 	ui->setupUi(this);
 	connect(ui->general_cose_btn, &QPushButton::clicked, this, &QWidget::close);
+	connect(ui->general_search_btn, &QPushButton::clicked, this, &GeneralLayoutManger::SlotSearchBtnAction);
 	connect(ui->general_max_restore_btn, &QPushButton::clicked, this, &GeneralLayoutManger::updateMaximize);
 	connect(ui->general_min_btn, &QPushButton::clicked, this, &QWidget::showMinimized);
 	connect(ui->general_add_btn, &QPushButton::clicked, this, [this]()->void {
@@ -29,6 +33,12 @@ GeneralLayoutManger::GeneralLayoutManger(QWidget *parent)
 	ui->general_max_restore_btn->setProperty("maximizeProperty", "maximize");
 	ui->general_max_restore_btn->setStyle(QApplication::style());
 	InitLayout();
+	QDateTime current_date_time = QDateTime::currentDateTime();
+	ui->general_startdateEdit->setCalendarPopup(true);
+	ui->general_startdateEdit->setDateTime(current_date_time);
+	ui->general_enddateEdit->setCalendarPopup(true);
+	ui->general_enddateEdit->setDateTime(current_date_time);
+	connect(this, SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotMsgPop(QString, int)));
 }
 
 
@@ -74,6 +84,70 @@ void GeneralLayoutManger::slotCheckBoxStateChanged(bool status)
 	}
 }
 
+void GeneralLayoutManger::SlotSearchBtnAction()
+{
+
+	QThread *m_pThread = new QThread;
+	connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadSearchGeneral()));
+	connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+	m_pThread->start();
+}
+
+void GeneralLayoutManger::SlotThreadSearchGeneral()
+{
+	QString strParam = QString("starttime=%1&endtime=%2").arg(ui->general_startdateEdit->text()).arg(ui->general_enddateEdit->text());
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getGeneralDetail"
+		, TempToken, strParam, responseData);
+
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				QJsonValue userArray = array.at(i);
+				QJsonObject userObject = userArray.toObject();
+				DetailItemStruct item;
+				item.id =  userObject["id"].toInt();
+				item.strRemake = userObject["remake"].toString();
+				item.strCostArea = userObject["costarea_name"].toString();
+				item.strSurpls = QString::number(userObject["surplus"].toDouble());
+				item.strTime = userObject["account_time"].toString();
+				item.strTaskName = userObject["task_name"].toString();
+				item.strPay = QString::number(userObject["pay"].toDouble());
+				item.strIncome = QString::number(userObject["income"].toDouble());
+				addTableView(item);
+			}
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("网络请求异常！"), errorcode);
+	}
+}
+
+void GeneralLayoutManger::SlotMsgPop(QString msg, int errorcode)
+{
+	MsgPopWidget*pQtWidget = new MsgPopWidget(msg, errorcode);
+	pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+	pQtWidget->setWindowModality(Qt::ApplicationModal);
+	pQtWidget->show();
+}
+
 void GeneralLayoutManger::mouseDoubleClickEvent(QMouseEvent *event)
 {
 	Q_UNUSED(event); //没有实质性的作用，只是用来允许event可以不使用，用来避免编译器警告
@@ -104,6 +178,24 @@ QWidget* GeneralLayoutManger::getDragnWidget()
 	return ui->child_widget_title;
 }
 
+void GeneralLayoutManger::addTableView(DetailItemStruct&item)
+{
+	int nCount = m_pViewModel->rowCount();
+	m_pViewModel->setItem(nCount, 0, new QStandardItem(""));
+	m_pViewModel->item(nCount, 0)->setCheckable(true);
+	m_pViewModel->item(nCount, 0)->setData(QString::number(item.id));
+	m_pViewModel->setItem(nCount, 1, new QStandardItem(item.strTime));
+	m_pViewModel->setItem(nCount, 2, new QStandardItem(item.strRemake));
+	m_pViewModel->setItem(nCount, 3, new QStandardItem(item.strIncome));
+	m_pViewModel->setItem(nCount, 4, new QStandardItem(item.strPay));
+	m_pViewModel->setItem(nCount, 5, new QStandardItem(item.strSurpls));
+	m_pViewModel->setItem(nCount, 6, new QStandardItem(item.strTaskName));
+	m_pViewModel->setItem(nCount, 7, new QStandardItem(item.strCostArea));
+	ui->general_table_view->setColumnWidth(0, 30);
+	ui->general_table_view->setColumnWidth(1, 100);
+	ui->general_table_view->setColumnWidth(2, 180);
+}
+
 void GeneralLayoutManger::InitLayout()
 {
  	m_pViewHeadDeleagte = new CCheckBoxHeaderView(0, Qt::Horizontal, ui->general_table_view);
@@ -122,23 +214,7 @@ void GeneralLayoutManger::InitLayout()
  	m_pViewModel->setHeaderData(7, Qt::Horizontal, QString::fromLocal8Bit("费用分摊"));
  	onSetTableAttribute(ui->general_table_view, 8);
  
- 	int nCount = 0;
- 	for (auto i = 0; i < 10; i++)
- 	{
- 		m_pViewModel->setItem(i, 0, new QStandardItem(""));
- 		m_pViewModel->item(i, 0)->setCheckable(true);
- 		m_pViewModel->setItem(i, 1, new QStandardItem("2019-05-06"));
- 		m_pViewModel->setItem(i, 2, new QStandardItem(QString::fromLocal8Bit("虾收入")));
- 		m_pViewModel->setItem(i, 3, new QStandardItem(QString::number(3000)));
- 		m_pViewModel->setItem(i, 4, new QStandardItem(QString::number(2000)));
- 		m_pViewModel->setItem(i, 5, new QStandardItem(QString::number(1000)));
- 		m_pViewModel->setItem(i, 6, new QStandardItem(QString::fromLocal8Bit("虾收入")));
- 		nCount++;
- 	}
- 
-	ui->general_table_view->setColumnWidth(0, 30);
-	ui->general_table_view->setColumnWidth(1, 100);
-	ui->general_table_view->setColumnWidth(2, 180);
+
 	
 }
 
