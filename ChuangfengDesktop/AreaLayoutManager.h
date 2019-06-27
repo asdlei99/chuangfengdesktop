@@ -10,7 +10,12 @@ public:
 	void AddTableViewItem(int id, QString AreaName);
 private:
 	virtual void InitLayout();
+signals:
+	void sig_NotifyMsg(QString msg, int errorCode);
 public slots:
 	void SlotAddArea(QString& name, QString&remake);
+	void SlotThreadAddArea();
+private:
+	QString m_addName;
 };
 

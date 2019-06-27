@@ -17,7 +17,13 @@ private:
 	void AddTableViewItem(int id, QString AreaDetailName, QString AreaName);
 public slots:
 	void SlotAddDetailArea(QString &tagName, QString&fromName);
+	void SlotThreadAddDetailArea();
+signals:
+	void sig_NotifyMsg(QString msg, int errorCode);
 private:
 	shared_ptr<AreaLayoutManager> m_ptrAreaLayoutManager;
+private:
+	QString m_addItemName;
+	QString m_addParentName;
 };
 

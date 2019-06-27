@@ -117,43 +117,51 @@ void DetailAreaLayoutManager::AddTableViewItem(int id, QString AreaDetailName, Q
 
 void DetailAreaLayoutManager::SlotAddDetailArea(QString &tagName, QString&fromName)
 {
-	std::thread t([this](QString&Name, QString&itemName)->void {
-		QString strParam = QString("name=%1&itemname=%2").arg(Name).arg(itemName);
-		QByteArray responseData;
-		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addAquacultureareaDetail"
-			, TempToken, strParam, responseData);
+	m_addParentName = fromName;
+	m_addItemName = tagName;
+	QThread *m_pThread = new QThread;
+	connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadAddDetailArea()));
+	connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+	m_pThread->start();
+}
 
-		QJsonParseError json_error;
-		QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
-		if (json_error.error == QJsonParseError::NoError)
+void DetailAreaLayoutManager::SlotThreadAddDetailArea()
+{
+	QString strParam = QString("name=%1&itemname=%2").arg(m_addParentName).arg(m_addItemName);
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addAquacultureareaDetail"
+		, TempToken, strParam, responseData);
+
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		QJsonObject rootObject = parse_doucment.object();
+		int errorcode = rootObject["error_code"].toInt();
+		QString strMsg = rootObject["msg"].toString();
+		if (errorcode == 0)//成功
 		{
-			QJsonObject rootObject = parse_doucment.object();
-			int errorcode = rootObject["error_code"].toInt();
-			QString strMsg = rootObject["msg"].toString();
-			if (errorcode == 0)//成功
+			QString id = rootObject["id"].toString();
+			int pid = rootObject["pid"].toInt();
+			AddTableViewItem(id.toInt(), m_addItemName, m_addParentName);
+			if (g_areaList.find(pid) != g_areaList.end())
 			{
-				QString id = rootObject["id"].toString();
-				int pid = rootObject["pid"].toInt();
-				AddTableViewItem(id.toInt(), itemName, Name);
-				if (g_areaList.find(pid) != g_areaList.end())
-				{
-					auto itor = g_areaList.find(pid);
-					itor->second.areaDetailList[id.toInt()] = itemName;
-				}
-				else {
-					AreaDetailStruct& item = g_areaList[pid];
-					item.areaName = Name;
-					item.areaDetailList[id.toInt()] = itemName;
-					m_ptrAreaLayoutManager->AddTableViewItem(pid, Name);
-				}
+				auto itor = g_areaList.find(pid);
+				itor->second.areaDetailList[id.toInt()] = m_addItemName;
 			}
-			else {//失败
-
+			else {
+				AreaDetailStruct& item = g_areaList[pid];
+				item.areaName = m_addParentName;
+				item.areaDetailList[id.toInt()] = m_addItemName;
+				m_ptrAreaLayoutManager->AddTableViewItem(pid, m_addParentName);
 			}
+			emit sig_NotifyMsg(QString::fromLocal8Bit("添加数据成功！"), 0);
 		}
-		else {
-
+		else {//失败
+			emit sig_NotifyMsg(strMsg, errorcode);
 		}
-	}, fromName, tagName);
-	t.detach();
+	}
+	else {
+		emit sig_NotifyMsg(QString::fromLocal8Bit("添加数据失败！"), 404);
+	}
 }

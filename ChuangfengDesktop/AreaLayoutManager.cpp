@@ -43,35 +43,42 @@ void AreaLayoutManager::InitLayout()
 
 void AreaLayoutManager::SlotAddArea(QString& name, QString&remake)
 {
-	std::thread t([this](QString&Name)->void {
-		QString strParam = QString("name=%1").arg(Name);
-		QByteArray responseData;
-		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addAquaculture"
-			, TempToken, strParam, responseData);
+	m_addName = name;
+	QThread *m_pThread = new QThread;
+	connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadAddArea()));
+	connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+	m_pThread->start();
+}
 
-		QJsonParseError json_error;
-		QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
-		if (json_error.error == QJsonParseError::NoError)
+void AreaLayoutManager::SlotThreadAddArea()
+{
+	QString strParam = QString("name=%1").arg(m_addName);
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addAquaculture"
+		, TempToken, strParam, responseData);
+
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		QJsonObject rootObject = parse_doucment.object();
+		int errorcode = rootObject["error_code"].toInt();
+		QString strMsg = rootObject["msg"].toString();
+		if (errorcode == 0)//成功
 		{
-			QJsonObject rootObject = parse_doucment.object();
-			int errorcode = rootObject["error_code"].toInt();
-			QString strMsg = rootObject["msg"].toString();
-			if (errorcode == 0)//成功
-			{
-				QString id = rootObject["id"].toString();
-				AddTableViewItem(id.toInt(), Name);
-				AreaDetailStruct&item = g_areaList[id.toInt()];
-				item.areaName = Name;
-			}
-			else {//失败
-
-			}
+			QString id = rootObject["id"].toString();
+			AddTableViewItem(id.toInt(), m_addName);
+			AreaDetailStruct&item = g_areaList[id.toInt()];
+			item.areaName = m_addName;
+			emit sig_NotifyMsg(QString::fromLocal8Bit("添加数据成功！"), 0);
 		}
-		else {
-
+		else {//失败
+			emit sig_NotifyMsg(strMsg, errorcode);
 		}
-	}, name);
-	t.detach();
+	}
+	else {
+		emit sig_NotifyMsg(QString::fromLocal8Bit("添加数据失败！"), 404);
+	}
 }
 
 void AreaLayoutManager::AddTableViewItem(int id, QString AreaName)

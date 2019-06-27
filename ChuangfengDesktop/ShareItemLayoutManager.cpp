@@ -58,38 +58,46 @@ void ShareItemLayoutManager::InitLayout()
 
 void ShareItemLayoutManager::SlotAddShareItem(QString &tagName, QString&fromName)
 {
-	std::thread t([this](QString&Name, QString&itemName)->void {
-		QString strParam = QString("name=%1&itemname=%2").arg(Name).arg(itemName);
-		QByteArray responseData;
-		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addCostareas"
-			, TempToken, strParam, responseData);
+	m_addName = tagName;
+	m_addfromName = fromName;
+	QThread *m_pThread = new QThread;
+	connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadAddShareItem()));
+	connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+	m_pThread->start();
+}
 
-		QJsonParseError json_error;
-		QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
-		if (json_error.error == QJsonParseError::NoError)
+void ShareItemLayoutManager::SlotThreadAddShareItem()
+{
+	QString strParam = QString("name=%1&itemname=%2").arg(m_addfromName).arg(m_addName);
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addCostareas"
+		, TempToken, strParam, responseData);
+
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		QJsonObject rootObject = parse_doucment.object();
+		int errorcode = rootObject["error_code"].toInt();
+		QString strMsg = rootObject["msg"].toString();
+		if (errorcode == 0)//成功
 		{
-			QJsonObject rootObject = parse_doucment.object();
-			int errorcode = rootObject["error_code"].toInt();
-			QString strMsg = rootObject["msg"].toString();
-			if (errorcode == 0)//成功
-			{
-				QString id = rootObject["id"].toString();
-				int pid = rootObject["pid"].toInt();
-				AddTableViewItem(id.toInt(), itemName, Name);
-				CostAreaStruct&item = g_CostAreaList[id.toInt()];
-				item.areaId = pid;
-				item.areaName = Name;
-				item.costAreaName = itemName;
-			}
-			else {//失败
-
-			}
+			QString id = rootObject["id"].toString();
+			int pid = rootObject["pid"].toInt();
+			AddTableViewItem(id.toInt(), m_addName, m_addfromName);
+			CostAreaStruct&item = g_CostAreaList[id.toInt()];
+			item.areaId = pid;
+			item.areaName = m_addfromName;
+			item.costAreaName = m_addName;
+			emit  sig_NotifyMsg(QString::fromLocal8Bit("添加成功！"), 0);
 		}
-		else {
-
+		else {//失败
+			emit  sig_NotifyMsg(strMsg, errorcode);
 		}
-	}, fromName, tagName);
-	t.detach();
+	}
+	else {
+		emit  sig_NotifyMsg(QString::fromLocal8Bit("添加数据失败！"), 404);
+	}
 }
 
 void ShareItemLayoutManager::AddTableViewItem(int id, QString shareItem, QString AreaName)

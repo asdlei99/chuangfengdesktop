@@ -31,97 +31,111 @@ SupplierLayoutManager::~SupplierLayoutManager()
 
 void SupplierLayoutManager::SlotAddSupplier(QString&itemName, QString &remake)
 {
-	std::thread t([this](QString&Name,QString &make)->void {
-		QString strParam = QString("name=%1&remake=%2").arg(Name).arg(make);
-		QByteArray responseData;
-		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addSupplier"
-			, TempToken, strParam, responseData);
-
-		QJsonParseError json_error;
-		QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
-		if (json_error.error == QJsonParseError::NoError)
-		{
-			QJsonObject rootObject = parse_doucment.object();
-			int errorcode = rootObject["error_code"].toInt();
-			QString strMsg = rootObject["msg"].toString();
-			if (errorcode == 0)//成功
-			{
-				QString id = rootObject["id"].toString();
-				AddTableViewItem(id.toInt(), Name, make);
-				g_SupplierList[id.toInt()] = Name;
-			}
-			else {//失败
-
-			}
-		}
-		else {
-
-		}
-	}, itemName, remake);
-	t.detach();
+	m_addName = itemName;
+	m_addRemake = remake;
+	QThread *m_pThread = new QThread;
+	connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadAddItem()));
+	connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+	m_pThread->start();
 }
 
 void SupplierLayoutManager::SlotRemoveSupplierItem()
 {
-	std::thread t([this]()->void {
-		QMap<int, int> qMapSelect;
-		bool isFirst = true;
-		QString itemList = "";
-		for (int i = 0; i < m_pViewModel->rowCount(); ++i)
-		{
-			if (Qt::Checked == m_pViewModel->item(i, 0)->checkState())
-			{
-				if (isFirst)
-				{
-					itemList = m_pViewModel->item(i, 1)->text();
-				}
-				else {
-					itemList += "," + m_pViewModel->item(i, 1)->text();
-				}
-				isFirst = false;
-				qMapSelect.insert(i, m_pViewModel->item(i, 1)->text().toInt());
-			}
-		}
-		if (qMapSelect.count() == 0)
-		{
-			return;
-		}
-		QString strParam = "ids=" + itemList;
-		QByteArray responseData;
-		SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteSupplier"
-			, TempToken, strParam, responseData);
-		QJsonParseError json_error;
-		QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
-		if (json_error.error == QJsonParseError::NoError)
-		{
-			QJsonObject rootObject = parse_doucment.object();
-			int errorcode = rootObject["error_code"].toInt();
-			QString strMsg = rootObject["msg"].toString();
-			if (errorcode == 0)//成功
-			{
-				QMapIterator<int, int> Iterator(qMapSelect);
-				Iterator.toBack();
-				while (Iterator.hasPrevious())//利用qmap排序 从大的节点 往小的进行删除。
-				{
-					Iterator.previous();
-					int rowm = Iterator.key();
-					m_pViewModel->removeRow(rowm);
-					auto iter = g_SupplierList.find(Iterator.value());
-					if (iter != g_SupplierList.end())
-					{
-						g_SupplierList.erase(iter);
-					}
-				}
-			}
-			else {//失败
+	QThread *m_pThread = new QThread;
+	connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadRemoveItem()));
+	connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+	m_pThread->start();
+}
 
+void SupplierLayoutManager::SlotThreadRemoveItem()
+{
+	QMap<int, int> qMapSelect;
+	bool isFirst = true;
+	QString itemList = "";
+	for (int i = 0; i < m_pViewModel->rowCount(); ++i)
+	{
+		if (Qt::Checked == m_pViewModel->item(i, 0)->checkState())
+		{
+			if (isFirst)
+			{
+				itemList = m_pViewModel->item(i, 1)->text();
 			}
+			else {
+				itemList += "," + m_pViewModel->item(i, 1)->text();
+			}
+			isFirst = false;
+			qMapSelect.insert(i, m_pViewModel->item(i, 1)->text().toInt());
 		}
-		else {
+	}
+	if (qMapSelect.count() == 0)
+	{
+		return;
+	}
+	QString strParam = "ids=" + itemList;
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteSupplier"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		QJsonObject rootObject = parse_doucment.object();
+		int errorcode = rootObject["error_code"].toInt();
+		QString strMsg = rootObject["msg"].toString();
+		if (errorcode == 0)//成功
+		{
+			QMapIterator<int, int> Iterator(qMapSelect);
+			Iterator.toBack();
+			while (Iterator.hasPrevious())//利用qmap排序 从大的节点 往小的进行删除。
+			{
+				Iterator.previous();
+				int rowm = Iterator.key();
+				m_pViewModel->removeRow(rowm);
+				auto iter = g_SupplierList.find(Iterator.value());
+				if (iter != g_SupplierList.end())
+				{
+					g_SupplierList.erase(iter);
+				}
+			}
+			emit sig_NotifyMsg(QString::fromLocal8Bit("删除数据成功！"),0);
+		}
+		else {//失败
+			emit sig_NotifyMsg(strMsg, errorcode);
+		}
+	}
+	else {
+		emit sig_NotifyMsg(QString::fromLocal8Bit("网络请求异常！"), 404);
+	}
+}
 
+void SupplierLayoutManager::SlotThreadAddItem()
+{
+	QString strParam = QString("name=%1&remake=%2").arg(m_addName).arg(m_addRemake);
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addSupplier"
+		, TempToken, strParam, responseData);
+
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		QJsonObject rootObject = parse_doucment.object();
+		int errorcode = rootObject["error_code"].toInt();
+		QString strMsg = rootObject["msg"].toString();
+		if (errorcode == 0)//成功
+		{
+			QString id = rootObject["id"].toString();
+			AddTableViewItem(id.toInt(), m_addName, m_addRemake);
+			g_SupplierList[id.toInt()] = m_addName;
+			emit sig_NotifyMsg(QString::fromLocal8Bit("添加数据成功！"), 0);
 		}
-	});
-	t.detach();
+		else {//失败
+			emit sig_NotifyMsg(strMsg, errorcode);
+		}
+	}
+	else {
+		emit sig_NotifyMsg(QString::fromLocal8Bit("请求网络异常！"), 0);
+	}
 }
 
 void SupplierLayoutManager::InitLayout()

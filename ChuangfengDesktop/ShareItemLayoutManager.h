@@ -13,6 +13,12 @@ private:
 	void threadCostAreaInfoCallBack();
 public slots:
 	void SlotAddShareItem(QString &tagName, QString&fromName);
+	void SlotThreadAddShareItem();
+signals:
+	void sig_NotifyMsg(QString msg, int errorCode);
+private:
+	QString m_addName;
+	QString m_addfromName;
 	
 };
 

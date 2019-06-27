@@ -113,10 +113,15 @@ ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
 	m_ptrUserLayoutManger = make_shared<UserLayoutManger>(ui);
 	connect(m_ptrUserLayoutManger.get(), SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotMsgPop(QString,int)));
 	m_ptrCategoryLayoutManager = make_shared<CategoryLayoutManager>(ui);
+	connect(m_ptrCategoryLayoutManager.get(), SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotMsgPop(QString, int)));
 	m_ptrAreaLayoutManager = make_shared<AreaLayoutManager>(ui);
+	connect(m_ptrAreaLayoutManager.get(), SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotMsgPop(QString, int)));
 	m_ptrSupplierLayoutManager = make_shared<SupplierLayoutManager>(ui);
+	connect(m_ptrSupplierLayoutManager.get(), SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotMsgPop(QString, int)));
 	m_ptrShareItemLayoutManager = make_shared<ShareItemLayoutManager>(ui);
+	connect(m_ptrShareItemLayoutManager.get(), SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotMsgPop(QString, int)));
 	m_ptrDetailAreaLayoutManager = make_shared<DetailAreaLayoutManager>(ui, m_ptrAreaLayoutManager);
+	connect(m_ptrDetailAreaLayoutManager.get(), SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotMsgPop(QString, int)));
 }
 
 void ChuangfengDesktop::close()
