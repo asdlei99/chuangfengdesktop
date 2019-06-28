@@ -323,7 +323,7 @@ QTableView {
 }
 
 
-#general_enddateEdit,#general_startdateEdit
+#general_enddateEdit,#general_startdateEdit,#bak_startdateEdit,#bak_enddateEdit
 {
 font-size: 16px;
 background-color: white;

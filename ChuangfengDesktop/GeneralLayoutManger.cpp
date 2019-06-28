@@ -8,7 +8,7 @@
 #include <QPen>
 #include <QtMath>
 #include "iconhelper.h"
-#include "commomdef.h"
+
 #include "AddFundDetailWidget.h"
 #include "SingletonHttpRequest.h"
 #include "MsgPopWidget.h"

@@ -2,28 +2,7 @@
 #include "QtCustomBaseWnd.h"
 #include "ui_GeneralManagerQWidget.h"
 #include "CCheckBoxHeaderView.h"
-struct DetailItemStruct
-{
-	DetailItemStruct() {
-		id = 0;
-		strTime = "";
-		strRemake = "";
-		strTaskName = "";
-		strIncome = "";
-		strPay = "";
-		strSurpls = "";
-		strCostArea = "";
-	}
-	int id;
-	QString  strTime;
-	QString  strRemake;
-	QString  strTaskName;
-	QString	 strIncome;
-	QString  strPay;
-	QString  strSurpls;
-	QString	 strCostArea;
-
-};
+#include "commomdef.h"
 
 class GeneralLayoutManger:public MoveableFramelessWindow
 {
