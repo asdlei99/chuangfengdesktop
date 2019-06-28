@@ -203,6 +203,9 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
         <height>28</height>
        </rect>
       </property>
+      <property name="text">
+       <string>0</string>
+      </property>
      </widget>
      <widget class="QLabel" name="remake_lab_3">
       <property name="geometry">
@@ -232,6 +235,9 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
         <width>161</width>
         <height>28</height>
        </rect>
+      </property>
+      <property name="text">
+       <string>0</string>
       </property>
      </widget>
      <widget class="QLabel" name="remake_lab_4">
@@ -335,6 +341,23 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
       </property>
       <property name="frame">
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="error_lab">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>450</y>
+        <width>381</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 12pt &quot;微软雅黑&quot;;
+color: rgb(255, 85, 0);</string>
+      </property>
+      <property name="text">
+       <string>有选项为空，请核实！</string>
       </property>
      </widget>
     </widget>

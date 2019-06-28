@@ -49,6 +49,7 @@ public:
     QComboBox *share_comboBox;
     QLineEdit *subject_Edit;
     QLineEdit *share_Edit;
+    QLabel *error_lab;
 
     void setupUi(QWidget *addFundDetailWidget)
     {
@@ -150,6 +151,11 @@ public:
         share_Edit->setObjectName(QStringLiteral("share_Edit"));
         share_Edit->setGeometry(QRect(340, 290, 161, 28));
         share_Edit->setFrame(true);
+        error_lab = new QLabel(widget);
+        error_lab->setObjectName(QStringLiteral("error_lab"));
+        error_lab->setGeometry(QRect(90, 450, 381, 28));
+        error_lab->setStyleSheet(QString::fromUtf8("font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: rgb(255, 85, 0);"));
 
         verticalLayout->addWidget(widget);
 
@@ -169,10 +175,13 @@ public:
         pop_commit_btn->setText(QString());
         remake_lab->setText(QApplication::translate("addFundDetailWidget", "\346\221\230\350\246\201\357\274\232", Q_NULLPTR));
         remake_lab_2->setText(QApplication::translate("addFundDetailWidget", "\346\227\245\346\234\237\357\274\232", Q_NULLPTR));
+        incom_Edit->setText(QApplication::translate("addFundDetailWidget", "0", Q_NULLPTR));
         remake_lab_3->setText(QApplication::translate("addFundDetailWidget", "\345\200\237\346\226\271\357\274\232", Q_NULLPTR));
+        pay_Edit->setText(QApplication::translate("addFundDetailWidget", "0", Q_NULLPTR));
         remake_lab_4->setText(QApplication::translate("addFundDetailWidget", "\350\264\267\346\226\271\357\274\232", Q_NULLPTR));
         remake_lab_5->setText(QApplication::translate("addFundDetailWidget", "\351\241\271\347\233\256\357\274\232", Q_NULLPTR));
         remake_lab_6->setText(QApplication::translate("addFundDetailWidget", "\350\264\271\347\224\250\345\210\206\346\221\212\357\274\232", Q_NULLPTR));
+        error_lab->setText(QApplication::translate("addFundDetailWidget", "\346\234\211\351\200\211\351\241\271\344\270\272\347\251\272\357\274\214\350\257\267\346\240\270\345\256\236\357\274\201", Q_NULLPTR));
     } // retranslateUi
 
 };

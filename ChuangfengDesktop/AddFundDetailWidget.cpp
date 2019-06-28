@@ -15,6 +15,7 @@ AddFundDetailWidget::AddFundDetailWidget(PopFundDetailEnum type, QWidget *parent
 	connect(ui->pop_min_btn, &QPushButton::clicked, this, &QWidget::showMinimized);
 	connect(ui->subject_comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(SubjectcomboBoxValueChanged())); 
 	connect(ui->share_comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(SharecomboBoxValueChanged()));
+	connect(ui->pop_commit_btn, &QPushButton::clicked, this, &AddFundDetailWidget::SlotCommitAction);
 	switch (m_enWidgetType)
 	{
 	case enGeneralLayout:
@@ -42,7 +43,15 @@ AddFundDetailWidget::AddFundDetailWidget(PopFundDetailEnum type, QWidget *parent
 	ui->share_comboBox->setCurrentIndex(0);
 	ui->subject_Edit->setVisible(false);
 	ui->share_Edit->setVisible(false);
+	QDateTime current_date_time = QDateTime::currentDateTime();
 	ui->dateEdit->setCalendarPopup(true);	
+	ui->dateEdit->setDateTime(current_date_time);
+
+	QRegExp regExp("^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$");//创建了一个模式
+	QRegExpValidator *pattern = new QRegExpValidator(regExp, this);//创建了一个表达式
+	ui->incom_Edit->setValidator(pattern);//交付使用 
+	ui->pay_Edit->setValidator(pattern);
+	ui->error_lab->setVisible(false);
 }
 
 
@@ -74,5 +83,41 @@ void AddFundDetailWidget::SharecomboBoxValueChanged()
 	}
 	else {
 		ui->share_Edit->setVisible(false);
+	}
+}
+
+void AddFundDetailWidget::SlotCommitAction()
+{
+	QString time = ui->dateEdit->text();
+	QString strInCom = ui->incom_Edit->text();
+	QString strPay = ui->pay_Edit->text();
+	QString remake = ui->remake_Edit->text();
+	QString taskName;
+	QString costArea;
+	if (ui->share_comboBox->currentText() == QString::fromLocal8Bit("自定义"))
+	{
+		taskName = ui->subject_Edit->text();
+	}
+	else
+	{
+		taskName = ui->share_comboBox->currentText();
+	}
+	if (ui->share_comboBox->currentText() == QString::fromLocal8Bit("自定义"))
+	{
+		costArea = ui->share_Edit->text();
+	}
+	else
+	{
+		costArea = ui->share_comboBox->currentText();
+	}
+	if (costArea == ""|| taskName == ""|| strPay == ""|| strInCom == "")
+	{
+
+		ui->error_lab->setVisible(true);
+		return;
+	}
+	else {
+		emit sig_comit(time, strInCom, strPay, taskName, costArea, remake);
+		emit ui->pop_close_btn->clicked();
 	}
 }

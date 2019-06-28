@@ -24,9 +24,16 @@ GeneralLayoutManger::GeneralLayoutManger(QWidget *parent)
 	connect(ui->general_min_btn, &QPushButton::clicked, this, &QWidget::showMinimized);
 	connect(ui->general_add_btn, &QPushButton::clicked, this, [this]()->void {
 		AddFundDetailWidget*pQtWidget = new AddFundDetailWidget(PopFundDetailEnum::enGeneralLayout);
+		connect(pQtWidget, SIGNAL(sig_comit(QString&, QString &, QString&, QString&, QString&, QString&)), this, SLOT(SlotAddGeneral(QString&, QString &, QString&, QString&, QString&, QString&)));
 		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
 		pQtWidget->setWindowModality(Qt::ApplicationModal);
 		pQtWidget->show();
+	});
+	connect(ui->general_del_btn, &QPushButton::clicked, this, [this]()->void {
+		QThread *m_pThread = new QThread;
+		connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadRemoveItem()));
+		connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+		m_pThread->start();
 	});
 	ui->general_max_restore_btn->setToolTip(QString::fromLocal8Bit("最大化"));
 	//设置按钮的属性名为"maximizeProperty"
@@ -116,7 +123,7 @@ void GeneralLayoutManger::SlotThreadSearchGeneral()
 				item.strRemake = userObject["remake"].toString();
 				item.strCostArea = userObject["costarea_name"].toString();
 				item.strSurpls = userObject["surplus"].toString();
-				item.strTime = userObject["account_time"].toString().mid(0,10);
+				item.strTime = userObject["account_date"].toString().mid(0,10);
 				item.strTaskName = userObject["task_name"].toString();
 				item.strPay = userObject["pay"].toString();
 				item.strIncome = userObject["income"].toString();
@@ -146,6 +153,117 @@ void GeneralLayoutManger::SlotMsgPop(QString msg, int errorcode)
 	pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
 	pQtWidget->setWindowModality(Qt::ApplicationModal);
 	pQtWidget->show();
+}
+
+void GeneralLayoutManger::SlotAddGeneral(QString&time, QString &incom, QString&pay, QString&taskName, QString&shareName, QString&remake)
+{
+	 m_addTime = time;
+	 m_addIncom = incom;
+	 m_addPay = pay;
+	 m_addTaskName = taskName;
+	 m_addShare = shareName;
+	 m_addRemake = remake;
+	 m_pViewModel->removeRows(0, m_pViewModel->rowCount());
+	 QThread *m_pThread = new QThread;
+	 connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadAddGeneral()));
+	 connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+	 m_pThread->start();
+}
+
+void GeneralLayoutManger::SlotThreadAddGeneral()
+{
+	QString strParam = QString("account_time=%1&task_name=%2&income=%3&pay=%4&remake=%5&costarea=%6").arg(m_addTime).arg(m_addTaskName)
+		.arg(m_addIncom).arg(m_addPay).arg(m_addRemake).arg(m_addShare);
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addGeneral"
+		, TempToken, strParam, responseData);
+
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				QJsonValue userArray = array.at(i);
+				QJsonObject userObject = userArray.toObject();
+				DetailItemStruct item;
+				item.id = userObject["id"].toInt();
+				item.strRemake = userObject["remake"].toString();
+				item.strCostArea = userObject["costarea_name"].toString();
+				item.strSurpls = userObject["surplus"].toString();
+				item.strTime = userObject["account_date"].toString().mid(0, 10);
+				item.strTaskName = userObject["task_name"].toString();
+				item.strPay = userObject["pay"].toString();
+				item.strIncome = userObject["income"].toString();
+				addTableView(item);
+			}
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("网络请求异常！"), errorcode);
+	}
+}
+
+void GeneralLayoutManger::SlotThreadRemoveItem()
+{
+	int nCount = 0;
+	QString id;
+	double dValue = 0;
+	int iSelectItem = 0;
+	for (int i = 0; i < m_pViewModel->rowCount(); ++i)
+	{
+		if (Qt::Checked == m_pViewModel->item(i, 0)->checkState())
+		{
+			iSelectItem = i;
+			id = m_pViewModel->item(i, 0)->data().toString();
+			dValue = m_pViewModel->item(i, 3)->text().toDouble() - m_pViewModel->item(i, 4)->text().toDouble();
+			nCount++;
+		}
+	}
+	if (nCount>1)
+	{
+		return;
+	}
+
+	QString strParam = QString("id=%1&dvalue=%2").arg(id).arg(QString::number(dValue));
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteGeneralItem?XDEBUG_SESSION_START=10866"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		QJsonObject rootObject = parse_doucment.object();
+		int errorcode = rootObject["error_code"].toInt();
+		QString strMsg = rootObject["msg"].toString();
+		if (errorcode == 0)//成功
+		{
+			
+			m_pViewModel->removeRow(iSelectItem);
+			emit sig_NotifyMsg(QString::fromLocal8Bit("删除成功！"), errorcode);
+		}
+		else {//失败
+			emit sig_NotifyMsg(strMsg, errorcode);
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("删除失败！"), errorcode);
+	}
 }
 
 void GeneralLayoutManger::mouseDoubleClickEvent(QMouseEvent *event)

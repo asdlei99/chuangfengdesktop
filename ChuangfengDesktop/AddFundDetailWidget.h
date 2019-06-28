@@ -22,5 +22,8 @@ private:
 private slots:
 	void SubjectcomboBoxValueChanged();
 	void SharecomboBoxValueChanged();
+	void SlotCommitAction();
+signals:
+	void sig_comit(QString&time, QString &incom, QString&pay, QString&taskName, QString&shareName, QString&remake);
 };
 

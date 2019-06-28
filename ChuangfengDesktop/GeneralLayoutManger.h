@@ -37,6 +37,9 @@ private slots:
 	void SlotSearchBtnAction();
 	void SlotThreadSearchGeneral();
 	void SlotMsgPop(QString msg, int errorcode);
+	void SlotAddGeneral(QString&time, QString &incom, QString&pay, QString&taskName, QString&shareName, QString&remake);
+	void SlotThreadAddGeneral();
+	void SlotThreadRemoveItem();
 private:
 	virtual void mouseDoubleClickEvent(QMouseEvent *event);
 	void paintEvent(QPaintEvent *event);
@@ -49,5 +52,11 @@ private:
 	Ui::generalManager* ui;
 	CCheckBoxHeaderView * m_pViewHeadDeleagte;
 	QStandardItemModel *m_pViewModel;
+	QString m_addTime;
+	QString m_addIncom;
+	QString m_addPay;
+	QString m_addTaskName;
+	QString m_addShare;
+	QString m_addRemake;
 };
 
