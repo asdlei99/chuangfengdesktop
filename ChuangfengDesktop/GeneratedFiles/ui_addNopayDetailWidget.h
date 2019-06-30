@@ -48,6 +48,9 @@ public:
     QLineEdit *pay_edit;
     QLabel *label_8;
     QLineEdit *supplier_edit;
+    QLabel *label_9;
+    QLineEdit *remake_edit;
+    QLabel *error_lab;
 
     void setupUi(QWidget *addNoPayDetailWidget)
     {
@@ -80,7 +83,7 @@ public:
 
         widget = new QWidget(addNoPayDetailWidget);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        widget->setStyleSheet(QStringLiteral(""));
         pop_cancle_btn = new QPushButton(widget);
         pop_cancle_btn->setObjectName(QStringLiteral("pop_cancle_btn"));
         pop_cancle_btn->setGeometry(QRect(70, 540, 95, 32));
@@ -105,6 +108,7 @@ public:
         dateEdit = new QDateEdit(widget);
         dateEdit->setObjectName(QStringLiteral("dateEdit"));
         dateEdit->setGeometry(QRect(170, 50, 110, 28));
+        dateEdit->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
         label_2 = new QLabel(widget);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(80, 110, 81, 28));
@@ -144,6 +148,20 @@ public:
         supplier_edit = new QLineEdit(widget);
         supplier_edit->setObjectName(QStringLiteral("supplier_edit"));
         supplier_edit->setGeometry(QRect(340, 110, 161, 28));
+        label_9 = new QLabel(widget);
+        label_9->setObjectName(QStringLiteral("label_9"));
+        label_9->setGeometry(QRect(80, 400, 81, 28));
+        label_9->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
+"font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+        label_9->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        remake_edit = new QLineEdit(widget);
+        remake_edit->setObjectName(QStringLiteral("remake_edit"));
+        remake_edit->setGeometry(QRect(170, 400, 161, 28));
+        error_lab = new QLabel(widget);
+        error_lab->setObjectName(QStringLiteral("error_lab"));
+        error_lab->setGeometry(QRect(120, 480, 381, 28));
+        error_lab->setStyleSheet(QString::fromUtf8("font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: rgb(255, 85, 0);"));
 
         verticalLayout->addWidget(widget);
 
@@ -172,6 +190,9 @@ public:
         pay_edit->setText(QApplication::translate("addNoPayDetailWidget", "0", Q_NULLPTR));
         label_8->setText(QApplication::translate("addNoPayDetailWidget", "\345\267\262\344\273\230\346\254\276\357\274\232", Q_NULLPTR));
         supplier_edit->setText(QString());
+        label_9->setText(QApplication::translate("addNoPayDetailWidget", "\346\221\230\350\246\201\357\274\232", Q_NULLPTR));
+        remake_edit->setText(QString());
+        error_lab->setText(QApplication::translate("addNoPayDetailWidget", "\346\234\211\347\261\273\347\233\256\344\270\272\347\251\272\357\274\214\350\257\267\346\240\270\345\256\236~", Q_NULLPTR));
     } // retranslateUi
 
 };

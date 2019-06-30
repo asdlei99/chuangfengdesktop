@@ -20,6 +20,7 @@ NoPayLayoutManager::NoPayLayoutManager(QWidget *parent)
 	connect(ui->min_btn, &QPushButton::clicked, this, &QWidget::showMinimized);
 	connect(ui->nopay_add_btn, &QPushButton::clicked, this, [this]()->void {
 		AddNoPayDetailWidget*pQtWidget = new AddNoPayDetailWidget();
+		connect(pQtWidget, SIGNAL(sig_commit(QString&, QString&, QString&, QString&, QString&, QString&, QString&)), this, SLOT(SlotAddNopayDetail(QString&, QString&, QString&, QString&, QString&, QString&, QString&)));
 		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
 		pQtWidget->setWindowModality(Qt::ApplicationModal);
 		pQtWidget->show();
@@ -29,6 +30,11 @@ NoPayLayoutManager::NoPayLayoutManager(QWidget *parent)
 	ui->max_restore_btn->setProperty("maximizeProperty", "maximize");
 	ui->max_restore_btn->setStyle(QApplication::style());
 	InitLayout();
+	QDateTime current_date_time = QDateTime::currentDateTime();
+	ui->nopay_startdateEdit->setCalendarPopup(true);
+	ui->nopay_startdateEdit->setDateTime(current_date_time);
+	ui->nopay_enddateEdit->setCalendarPopup(true);
+	ui->nopay_enddateEdit->setDateTime(current_date_time);
 }
 
 
@@ -72,6 +78,26 @@ void NoPayLayoutManager::slotCheckBoxStateChanged(bool status)
 		for (int i = 0; i < m_pViewModel->rowCount(); ++i)
 			m_pViewModel->item(i, 0)->setCheckState(Qt::Unchecked);
 	}
+}
+
+void NoPayLayoutManager::SlotAddNopayDetail(QString&time, QString&suplier, QString&adjust, QString&newAdd, QString&returnValue, QString&pay, QString&remake)
+{
+	 m_strTime = time;
+	 m_strSuplier = suplier;
+	 m_remake = remake;
+	 m_adjust = adjust;
+	 m_newadd = newAdd;
+	 m_returnValue = returnValue;
+	 m_pay = pay;
+	 QThread *m_pThread = new QThread;
+	 connect(m_pThread, SIGNAL(started()), this, SLOT(SlothreadAddnopay()));
+	 connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+	 m_pThread->start();
+}
+
+void NoPayLayoutManager::SlothreadAddnopay()
+{
+
 }
 
 void NoPayLayoutManager::mouseDoubleClickEvent(QMouseEvent *event)
