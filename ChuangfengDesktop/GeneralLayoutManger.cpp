@@ -241,7 +241,7 @@ void GeneralLayoutManger::SlotThreadRemoveItem()
 
 	QString strParam = QString("id=%1&dvalue=%2").arg(id).arg(QString::number(dValue));
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteGeneralItem?XDEBUG_SESSION_START=10866"
+	SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteGeneralItem"
 		, TempToken, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);

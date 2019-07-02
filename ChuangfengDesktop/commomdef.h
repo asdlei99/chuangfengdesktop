@@ -26,3 +26,28 @@ struct DetailItemStruct
 	QString	 strCostArea;
 
 };
+struct noPayDetailItem
+{
+	noPayDetailItem() {
+		 id = 0;
+		 strTime = "";
+		 strSuplier = "";
+		 strAdd = "0";
+		 strReturn = "0";
+		 strAdjust = "0";
+		 strPayment = "0";
+		 strMake = "";
+		 strInitValue = "0";
+		 strSurplus = "0";
+	}
+	int id;
+	QString strTime;
+	QString strSuplier;
+	QString strAdd;
+	QString strReturn;
+	QString strAdjust;
+	QString strPayment;
+	QString strMake;
+	QString strInitValue;
+	QString strSurplus;
+};

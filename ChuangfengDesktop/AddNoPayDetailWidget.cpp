@@ -72,5 +72,6 @@ void AddNoPayDetailWidget::SlotCommitAction()
 		ui->error_lab->setVisible(true);
 		return;
 	}
-
+	emit sig_commit(time, suplier, adjust, newAdd, strReturn, pay, remake);
+	emit this->ui->pop_close_btn->clicked();
 }
