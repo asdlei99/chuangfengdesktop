@@ -68,7 +68,7 @@ public:
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         label = new QLabel(child_widget_title);
         label->setObjectName(QStringLiteral("label"));
-        label->setMinimumSize(QSize(100, 0));
+        label->setMinimumSize(QSize(120, 0));
         label->setStyleSheet(QString::fromUtf8("font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
 "color: rgb(255, 255, 255);"));
 

@@ -247,7 +247,6 @@ QWidget* NoPayLayoutManager::getDragnWidget()
 void NoPayLayoutManager::AddTableViewItem(noPayDetailItem&item)
 {
 	int nCount = m_pViewModel->rowCount();
-
 	m_pViewModel->setItem(nCount, 0, new QStandardItem(""));
 	m_pViewModel->item(nCount, 0)->setCheckable(true);
 	m_pViewModel->item(nCount, 0)->setData(QString::number(item.id));
@@ -338,5 +337,3 @@ void NoPayLayoutManager::InitLayout()
 	m_pViewModel->setHeaderData(10, Qt::Horizontal, QString::fromLocal8Bit("±¸×¢"));
 	onSetTableAttribute(ui->nopay_tableView, 11);
 }
-
-

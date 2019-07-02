@@ -141,7 +141,7 @@ bool MoveableFramelessWindow::nativeEvent(const QByteArray &eventType, void *mes
 	return QWidget::nativeEvent(eventType, message, result);
 }
 
-void MoveableFramelessWindow::onSetTableAttribute(QTableView *pTableView, const int cloum)
+void MoveableFramelessWindow::onSetTableAttribute(QTableView *pTableView, const int cloum,bool bStretchLast)
 {
 	
 	pTableView->setItemDelegate(new NoFocusDelegate());
@@ -149,7 +149,7 @@ void MoveableFramelessWindow::onSetTableAttribute(QTableView *pTableView, const 
 	{
 		pTableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Interactive);
 	}
-	pTableView ->horizontalHeader()->setStretchLastSection(true);
+	pTableView ->horizontalHeader()->setStretchLastSection(bStretchLast);
 
 	pTableView->verticalHeader()->setDefaultSectionSize(30); //设置行高
 	pTableView->setFrameShape(QFrame::Box); //设置无边框

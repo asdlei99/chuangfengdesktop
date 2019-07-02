@@ -114,6 +114,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AddFundDetailWidget.cpp" />
+    <ClCompile Include="AddMaterialWidget.cpp" />
     <ClCompile Include="AddNoPayDetailWidget.cpp" />
     <ClCompile Include="AddUserWidget.cpp" />
     <ClCompile Include="AreaLayoutManager.cpp" />
@@ -129,6 +130,7 @@
     <ClCompile Include="CustomCtrl\NoFocusDelegate.cpp" />
     <ClCompile Include="CustomCtrl\QNavButton.cpp" />
     <ClCompile Include="CustomCtrl\QtCustomBaseWnd.cpp" />
+    <ClCompile Include="DescMaterialWidget.cpp" />
     <ClCompile Include="DetailAreaLayoutManager.cpp" />
     <ClCompile Include="DetailShareReportManager.cpp" />
     <ClCompile Include="FeedStoreManagerWdiget.cpp" />
@@ -166,10 +168,12 @@
     <QtUic Include="ChuangfengDesktop.ui" />
     <QtUic Include="common2ParamWidget.ui" />
     <QtUic Include="commonDependenceAreaWidget.ui" />
+    <QtUic Include="DescMaterialWidget.ui" />
     <QtUic Include="FeedStoreQwidget.ui" />
     <QtUic Include="GeneralManagerQWidget.ui" />
     <QtUic Include="LoginQWidget.ui" />
     <QtUic Include="MaterialQWidget.ui" />
+    <QtUic Include="materialStorgeWidget.ui" />
     <QtUic Include="MaterielReportManagerQWidget.ui" />
     <QtUic Include="MsgPopWidget.ui" />
     <QtUic Include="NopayManagerQWidget.ui" />
@@ -243,6 +247,7 @@
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt;$(QTDIR)\include\QtNetwork</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt;.\CustomCtrl;$(QTDIR)\include\QtNetwork</IncludePath>
     </QtMoc>
+    <ClInclude Include="AddMaterialWidget.h" />
     <ClInclude Include="commomdef.h" />
     <QtMoc Include="UserLayoutManger.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt</IncludePath>
@@ -285,6 +290,7 @@
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt</IncludePath>
     </QtMoc>
+    <ClInclude Include="DescMaterialWidget.h" />
     <ClInclude Include="globalVariable.h" />
     <QtMoc Include="ShareItemLayoutManager.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt;$(QTDIR)\include\QtNetwork</IncludePath>

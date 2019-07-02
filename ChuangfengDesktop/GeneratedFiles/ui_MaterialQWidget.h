@@ -34,6 +34,7 @@ public:
     QVBoxLayout *verticalLayout;
     QWidget *child_widget_title;
     QHBoxLayout *horizontalLayout_2;
+    QLabel *label_6;
     QSpacerItem *horizontalSpacer;
     QPushButton *material_min_btn;
     QPushButton *material_max_restore_btn;
@@ -55,7 +56,7 @@ public:
     QPushButton *material_income_btn;
     QPushButton *material_out_btn;
     QPushButton *material_delete_btn;
-    QTableView *tableView;
+    QTableView *material_detail_tableView;
     QWidget *page_2;
     QVBoxLayout *verticalLayout_3;
     QWidget *widget_4;
@@ -92,7 +93,15 @@ public:
         horizontalLayout_2 = new QHBoxLayout(child_widget_title);
         horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_2->setContentsMargins(9, 0, 0, 0);
+        label_6 = new QLabel(child_widget_title);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setMinimumSize(QSize(120, 0));
+        label_6->setStyleSheet(QString::fromUtf8("font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: rgb(255, 255, 255);"));
+
+        horizontalLayout_2->addWidget(label_6);
+
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer);
@@ -183,10 +192,10 @@ public:
 
         verticalLayout_2->addWidget(widget_3);
 
-        tableView = new QTableView(page);
-        tableView->setObjectName(QStringLiteral("tableView"));
+        material_detail_tableView = new QTableView(page);
+        material_detail_tableView->setObjectName(QStringLiteral("material_detail_tableView"));
 
-        verticalLayout_2->addWidget(tableView);
+        verticalLayout_2->addWidget(material_detail_tableView);
 
         material_stackedWidget->addWidget(page);
         page_2 = new QWidget();
@@ -268,7 +277,8 @@ public:
 
     void retranslateUi(QWidget *Material)
     {
-        Material->setWindowTitle(QApplication::translate("Material", "Form", Q_NULLPTR));
+        Material->setWindowTitle(QApplication::translate("Material", "\347\211\251\346\226\231\347\256\241\347\220\206", Q_NULLPTR));
+        label_6->setText(QApplication::translate("Material", "\347\211\251\346\226\231\347\256\241\347\220\206", Q_NULLPTR));
         material_min_btn->setText(QString());
         material_max_restore_btn->setText(QString());
         material_cose_btn->setText(QString());

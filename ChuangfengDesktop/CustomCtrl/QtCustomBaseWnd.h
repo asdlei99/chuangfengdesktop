@@ -60,7 +60,7 @@ protected:
 protected slots:
 	//主题改变
 	virtual void onThemeColorChange(QString colorStr) {}
-	virtual void onSetTableAttribute(QTableView *pTableView,const int cloum);
+	virtual void onSetTableAttribute(QTableView *pTableView,const int cloum,bool bStretchLast = true);
 protected:
 	int m_nBorderWidth; //m_nBorder表示鼠标位于边框缩放范围的宽度
 };
