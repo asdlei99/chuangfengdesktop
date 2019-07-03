@@ -12,6 +12,10 @@
 #include "commomdef.h"
 #include "AddMaterialWidget.h"
 #include "DescMaterialWidget.h"
+#include "globalVariable.h"
+#include "SingletonHttpRequest.h"
+#include "MsgPopWidget.h"
+
 MaterialManagerWidget::MaterialManagerWidget(QWidget *parent)
 	:MoveableFramelessWindow(parent)
 , ui(new Ui::Material)
@@ -29,7 +33,7 @@ MaterialManagerWidget::MaterialManagerWidget(QWidget *parent)
 	initTableView();
 	connect(ui->material_income_btn, &QPushButton::clicked, this, [this]()->void {
 		AddMaterialWidget*pQtWidget = new AddMaterialWidget();
-		/*connect(pQtWidget, SIGNAL(sig_commit(QString&, QString&, QString&, QString&, QString&, QString&, QString&)), this, SLOT(SlotAddNopayDetail(QString&, QString&, QString&, QString&, QString&, QString&, QString&)));*/
+		connect(pQtWidget, SIGNAL(sig_commit(QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&)), this, SLOT(SlotAddMaterialDetail(QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&)));
 		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
 		pQtWidget->setWindowModality(Qt::ApplicationModal);
 		pQtWidget->show();
@@ -41,6 +45,16 @@ MaterialManagerWidget::MaterialManagerWidget(QWidget *parent)
 		pQtWidget->setWindowModality(Qt::ApplicationModal);
 		pQtWidget->show();
 	});
+	ui->comboBox->addItem(QString::fromLocal8Bit("入库"));
+	ui->comboBox->addItem(QString::fromLocal8Bit("出库"));
+	ui->comboBox->setCurrentIndex(0);
+	connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(comboBoxValueChanged()));
+	ChangeDetailTableView();
+	for (auto&kvp:g_areaList)
+	{
+		ui->area_comboBox->addItem(kvp.second.areaName);
+	}
+	connect(this, SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotPopMsg(QString, int)));
 }
 
 
@@ -198,20 +212,23 @@ void MaterialManagerWidget::initTableView()
 	connect(m_pViewHeadDeleagteinout, SIGNAL(sig_AllChecked(bool)), this, SLOT(slotCheckBoxStateChanged(bool)));
 	m_pViewModelinout = new QStandardItemModel();
 	ui->material_in_out_detail_tableview->setModel(m_pViewModelinout);
-	m_pViewModelinout->setColumnCount(8);
+	m_pViewModelinout->setColumnCount(9);
 	m_pViewModelinout->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit(""));
 	m_pViewModelinout->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("时间"));
-	m_pViewModelinout->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("方式"));
+	m_pViewModelinout->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("物品名称"));
 	m_pViewModelinout->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("数量"));
 	m_pViewModelinout->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("单价"));
 	m_pViewModelinout->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("运费"));
 	m_pViewModelinout->setHeaderData(6, Qt::Horizontal, QString::fromLocal8Bit("剩余数量"));
 	m_pViewModelinout->setHeaderData(7, Qt::Horizontal, QString::fromLocal8Bit("剩余总额"));
+	m_pViewModelinout->setHeaderData(8, Qt::Horizontal, QString::fromLocal8Bit("出库区域"));
 
-	onSetTableAttribute(ui->material_in_out_detail_tableview, 8, false);
+	onSetTableAttribute(ui->material_in_out_detail_tableview, 9, false);
 	ui->material_in_out_detail_tableview->setColumnWidth(0, 30);
 	ui->material_in_out_detail_tableview->setColumnWidth(1, 100);
 	ui->material_in_out_detail_tableview->setColumnWidth(2, 180);
+
+
 
 	m_pViewHeadDeleagteFix = new CCheckBoxHeaderView(0, Qt::Horizontal, ui->fix_material_tableView);
 	ui->fix_material_tableView->setHorizontalHeader(m_pViewHeadDeleagteFix);
@@ -230,11 +247,126 @@ void MaterialManagerWidget::initTableView()
 	m_pViewModelFix->setHeaderData(8, Qt::Horizontal, QString::fromLocal8Bit("本期分摊金额"));
 	m_pViewModelFix->setHeaderData(9, Qt::Horizontal, QString::fromLocal8Bit("分摊期数"));
 
-
+	
 	onSetTableAttribute(ui->fix_material_tableView, 10, false);
 	ui->fix_material_tableView->setColumnWidth(0, 30);
 	ui->fix_material_tableView->setColumnWidth(1, 100);
 	ui->fix_material_tableView->setColumnWidth(2, 180);
 
+}
+
+void MaterialManagerWidget::ChangeDetailTableView()
+{
+	if (ui->comboBox->currentText() == QString::fromLocal8Bit("入库"))
+	{
+		ui->material_in_out_detail_tableview->setColumnHidden(5, false);
+		ui->material_in_out_detail_tableview->setColumnHidden(6, true);
+		ui->material_in_out_detail_tableview->setColumnHidden(7, true);
+		ui->material_in_out_detail_tableview->setColumnHidden(8, true);
+		
+		ui->area_comboBox->setVisible(false);
+	}
+	else {
+		ui->material_in_out_detail_tableview->setColumnHidden(5, true);
+		ui->material_in_out_detail_tableview->setColumnHidden(6, false);
+		ui->material_in_out_detail_tableview->setColumnHidden(7, false);
+		ui->material_in_out_detail_tableview->setColumnHidden(8, false);
+		ui->area_comboBox->setVisible(true);
+	}
+}
+
+void MaterialManagerWidget::AddInMaterial(InMaterialStruct&item)
+{
+	int nCount = m_pViewModelinout->rowCount();
+	m_pViewModelinout->setItem(nCount, 0, new QStandardItem("id"));
+	m_pViewModelinout->item(nCount, 0)->setCheckable(true);
+	m_pViewModelinout->item(nCount, 0)->setData(QString::number(item.id));
+	m_pViewModelinout->setItem(nCount, 1, new QStandardItem(item.time.mid(0, 10)));
+	m_pViewModelinout->setItem(nCount, 2, new QStandardItem(item.subject));
+	m_pViewModelinout->setItem(nCount, 3, new QStandardItem(QString::number(item.number)));
+	m_pViewModelinout->setItem(nCount, 4, new QStandardItem(item.price));
+	m_pViewModelinout->setItem(nCount, 5, new QStandardItem(item.fare));
+	
+	//ChangeDetailTableView();
+	ui->material_in_out_detail_tableview->setColumnWidth(0, 30);
+}
+
+void MaterialManagerWidget::comboBoxValueChanged()
+{
+	ChangeDetailTableView();
+}
+
+void MaterialManagerWidget::SlotAddMaterialDetail(QString&time, QString&use, QString&subject_name, QString&category, QString&price, QString&unit, QString&specs, QString&fare, QString&number)
+{
+	ui->comboBox->setCurrentIndex(0);
+	 m_addTime = time;
+	 m_addUse = use;
+	 m_addSubject_name = subject_name;
+	 m_addCategory = category;
+	 m_addPrice = price;
+	 m_addUnit = unit;
+	 m_addSpecs =specs;
+	 m_addFare = fare;
+	 m_addNumber = number;
+	 QThread *m_pThread = new QThread;
+	 connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadAddMaterialDetail()));
+	 connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+	 m_pThread->start();
+}
+
+void MaterialManagerWidget::SlotThreadAddMaterialDetail()
+{
+
+	QString strParam = QString("operat_time=%1&use=%2&subject_name=%3&category=%4&price=%5&unit=%6&specs=%7&number=%8&fare=%9")
+		.arg(m_addTime).arg(m_addUse).arg(m_addSubject_name).arg(m_addCategory).arg(m_addPrice).arg(m_addUnit).
+		arg(m_addSpecs).arg(m_addNumber).arg(m_addFare);
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/InsertMaterial"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				InMaterialStruct item;
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				item.id = materialObject["id"].toInt();
+				item.time = materialObject["operat_time"].toString();
+				item.subject = materialObject["subject_name"].toString();
+				item.fare = materialObject["fare"].toString();
+				item.number = materialObject["number"].toInt();
+				item.price = materialObject["price"].toString();
+				AddInMaterial(item);
+			}
+			emit sig_NotifyMsg(QString::fromLocal8Bit("添加成功！"), 0);
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("网络请求异常！"), errorcode);
+	}
+}
+
+void MaterialManagerWidget::SlotPopMsg(QString msg, int errorCode)
+{
+	MsgPopWidget*pQtWidget = new MsgPopWidget(msg, errorCode);
+	pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+	pQtWidget->setWindowModality(Qt::ApplicationModal);
+	pQtWidget->show();
 }
 

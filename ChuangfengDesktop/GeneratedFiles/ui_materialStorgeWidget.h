@@ -208,7 +208,10 @@ public:
         error_lab->setText(QApplication::translate("materialStorgeWidget", "\346\234\211\351\200\211\351\241\271\344\270\272\347\251\272\357\274\214\350\257\267\346\240\270\345\256\236\357\274\201", Q_NULLPTR));
         remake_lab_8->setText(QApplication::translate("materialStorgeWidget", "\347\261\273\345\210\253\357\274\232", Q_NULLPTR));
         remake_lab_9->setText(QApplication::translate("materialStorgeWidget", "\350\277\220\350\264\271\357\274\232", Q_NULLPTR));
+        freight_Edit->setText(QApplication::translate("materialStorgeWidget", "0", Q_NULLPTR));
         remake_lab_10->setText(QApplication::translate("materialStorgeWidget", "\346\210\220\346\234\254\344\273\267\346\240\274\357\274\232", Q_NULLPTR));
+        pice_Edit->setText(QApplication::translate("materialStorgeWidget", "0", Q_NULLPTR));
+        Number_Edit->setText(QApplication::translate("materialStorgeWidget", "0", Q_NULLPTR));
         remake_lab_11->setText(QApplication::translate("materialStorgeWidget", "\346\225\260\351\207\217\357\274\232", Q_NULLPTR));
         norms_Edit->setText(QString());
         remake_lab_12->setText(QApplication::translate("materialStorgeWidget", "\347\211\251\345\223\201\350\247\204\346\240\274\357\274\232", Q_NULLPTR));

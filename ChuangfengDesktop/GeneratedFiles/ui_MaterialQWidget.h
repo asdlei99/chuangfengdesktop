@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -60,12 +61,15 @@ public:
     QWidget *page_2;
     QVBoxLayout *verticalLayout_3;
     QWidget *widget_4;
-    QDateEdit *startdateEdit;
-    QPushButton *material_in_out_search_btn;
-    QDateEdit *enddateEdit;
+    QHBoxLayout *horizontalLayout_3;
     QLabel *label_4;
-    QPushButton *material_in_out_delete_btn;
+    QDateEdit *startdateEdit;
     QLabel *label_5;
+    QDateEdit *enddateEdit;
+    QComboBox *comboBox;
+    QComboBox *area_comboBox;
+    QPushButton *material_in_out_search_btn;
+    QPushButton *material_in_out_delete_btn;
     QTableView *material_in_out_detail_tableview;
     QWidget *page_3;
     QVBoxLayout *verticalLayout_4;
@@ -205,28 +209,72 @@ public:
         widget_4 = new QWidget(page_2);
         widget_4->setObjectName(QStringLiteral("widget_4"));
         widget_4->setMinimumSize(QSize(0, 60));
-        startdateEdit = new QDateEdit(widget_4);
-        startdateEdit->setObjectName(QStringLiteral("startdateEdit"));
-        startdateEdit->setGeometry(QRect(80, 20, 110, 28));
-        startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
-        material_in_out_search_btn = new QPushButton(widget_4);
-        material_in_out_search_btn->setObjectName(QStringLiteral("material_in_out_search_btn"));
-        material_in_out_search_btn->setGeometry(QRect(390, 20, 80, 28));
-        enddateEdit = new QDateEdit(widget_4);
-        enddateEdit->setObjectName(QStringLiteral("enddateEdit"));
-        enddateEdit->setGeometry(QRect(270, 20, 110, 28));
-        enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        horizontalLayout_3 = new QHBoxLayout(widget_4);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         label_4 = new QLabel(widget_4);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(10, 20, 65, 28));
+        label_4->setMinimumSize(QSize(70, 28));
+        label_4->setMaximumSize(QSize(70, 28));
         label_4->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
-        material_in_out_delete_btn = new QPushButton(widget_4);
-        material_in_out_delete_btn->setObjectName(QStringLiteral("material_in_out_delete_btn"));
-        material_in_out_delete_btn->setGeometry(QRect(480, 20, 80, 28));
+
+        horizontalLayout_3->addWidget(label_4);
+
+        startdateEdit = new QDateEdit(widget_4);
+        startdateEdit->setObjectName(QStringLiteral("startdateEdit"));
+        startdateEdit->setMinimumSize(QSize(110, 28));
+        startdateEdit->setMaximumSize(QSize(110, 16777215));
+        startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+
+        horizontalLayout_3->addWidget(startdateEdit);
+
         label_5 = new QLabel(widget_4);
         label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(200, 20, 65, 28));
+        label_5->setMinimumSize(QSize(70, 28));
+        label_5->setMaximumSize(QSize(70, 28));
         label_5->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+
+        horizontalLayout_3->addWidget(label_5);
+
+        enddateEdit = new QDateEdit(widget_4);
+        enddateEdit->setObjectName(QStringLiteral("enddateEdit"));
+        enddateEdit->setMinimumSize(QSize(110, 28));
+        enddateEdit->setMaximumSize(QSize(110, 28));
+        enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+
+        horizontalLayout_3->addWidget(enddateEdit);
+
+        comboBox = new QComboBox(widget_4);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+        comboBox->setMinimumSize(QSize(80, 28));
+        comboBox->setMaximumSize(QSize(80, 28));
+        comboBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"border-color: rgb(255, 255, 255);"));
+
+        horizontalLayout_3->addWidget(comboBox);
+
+        area_comboBox = new QComboBox(widget_4);
+        area_comboBox->setObjectName(QStringLiteral("area_comboBox"));
+        area_comboBox->setMinimumSize(QSize(80, 28));
+        area_comboBox->setMaximumSize(QSize(80, 28));
+        area_comboBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"border-color: rgb(255, 255, 255);"));
+
+        horizontalLayout_3->addWidget(area_comboBox);
+
+        material_in_out_search_btn = new QPushButton(widget_4);
+        material_in_out_search_btn->setObjectName(QStringLiteral("material_in_out_search_btn"));
+        material_in_out_search_btn->setMinimumSize(QSize(80, 28));
+        material_in_out_search_btn->setMaximumSize(QSize(80, 28));
+
+        horizontalLayout_3->addWidget(material_in_out_search_btn);
+
+        material_in_out_delete_btn = new QPushButton(widget_4);
+        material_in_out_delete_btn->setObjectName(QStringLiteral("material_in_out_delete_btn"));
+        material_in_out_delete_btn->setMinimumSize(QSize(80, 28));
+        material_in_out_delete_btn->setMaximumSize(QSize(80, 28));
+
+        horizontalLayout_3->addWidget(material_in_out_delete_btn);
+
 
         verticalLayout_3->addWidget(widget_4);
 
@@ -291,10 +339,10 @@ public:
         material_income_btn->setText(QString());
         material_out_btn->setText(QString());
         material_delete_btn->setText(QString());
-        material_in_out_search_btn->setText(QString());
         label_4->setText(QApplication::translate("Material", "\345\274\200\345\247\213\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
-        material_in_out_delete_btn->setText(QString());
         label_5->setText(QApplication::translate("Material", "\347\273\223\346\235\237\346\227\266\351\227\264\357\274\232", Q_NULLPTR));
+        material_in_out_search_btn->setText(QString());
+        material_in_out_delete_btn->setText(QString());
         fix_material_search_btn->setText(QString());
         label_3->setText(QApplication::translate("Material", "\345\233\272\345\256\232\350\265\204\344\272\247\357\274\232", Q_NULLPTR));
     } // retranslateUi
