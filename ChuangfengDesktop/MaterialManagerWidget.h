@@ -5,13 +5,35 @@
 #include "CCheckBoxHeaderView.h"
 struct InMaterialStruct
 {
-	
 	int id = 0;
 	QString time = "";
 	QString subject = "";
 	QString fare = "";
 	QString price = "";
 	int number = 0;
+};
+
+struct MaterialStruct
+{
+	int id = 0;
+	QString use = "";
+	QString subject_name = "";
+	QString category = "";
+	QString price = "";
+	QString unit = "";
+	QString specs = "";
+	int number = 0;
+};
+struct OutMaterialStruct
+{
+	int id = 0;
+	QString strTime = "";
+	QString strSubject = "";
+	int number = 0;
+	QString strPrice = "";
+	int Surplus = 0;
+	QString strTotal = "";
+	QString strArea = "";
 
 };
 class MaterialManagerWidget :
@@ -29,6 +51,9 @@ private slots:
 	void SlotAddMaterialDetail(QString&time, QString&use, QString&subject_name, QString&category, QString&price, QString&unit, QString&specs, QString&fare, QString&number);
 	void SlotThreadAddMaterialDetail();
 	void SlotPopMsg(QString msg, int errorCode);
+	void SlotThreadSearchItem();
+	void SlotOutMaterial(int&number,QString&time,QString&area);
+	void SlotThreadOutMaterialDetail();
 private:
 	virtual void mouseDoubleClickEvent(QMouseEvent *event);
 	void paintEvent(QPaintEvent *event);
@@ -37,6 +62,9 @@ private:
 	void initTableView();
 	void ChangeDetailTableView();
 	void AddInMaterial(InMaterialStruct&item);
+	void AddMaterialTableView(MaterialStruct&item);
+	void AddOutMaterialTableView(OutMaterialStruct&item);
+	
 signals:
 	void sig_NotifyMsg(QString msg, int errorCode);
 private:
@@ -58,6 +86,14 @@ private:
 	QString m_addSpecs;
 	QString m_addFare;
 	QString m_addNumber;
+
+	QString m_outId;
+	QString m_outSubject;
+	QString m_outPrice;
+	QString m_outNumber;
+	QString m_outTime;
+	QString m_outArea;
+	
 	
 };
 

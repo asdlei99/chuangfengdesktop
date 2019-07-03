@@ -104,6 +104,7 @@ public:
         subject_name_Edit = new QLineEdit(widget);
         subject_name_Edit->setObjectName(QStringLiteral("subject_name_Edit"));
         subject_name_Edit->setGeometry(QRect(190, 100, 161, 28));
+        subject_name_Edit->setReadOnly(true);
         error_lab = new QLabel(widget);
         error_lab->setObjectName(QStringLiteral("error_lab"));
         error_lab->setGeometry(QRect(90, 450, 381, 28));
@@ -119,6 +120,7 @@ public:
         pice_Edit->setObjectName(QStringLiteral("pice_Edit"));
         pice_Edit->setGeometry(QRect(190, 160, 161, 28));
         pice_Edit->setFrame(true);
+        pice_Edit->setReadOnly(true);
         Number_Edit = new QLineEdit(widget);
         Number_Edit->setObjectName(QStringLiteral("Number_Edit"));
         Number_Edit->setGeometry(QRect(190, 220, 161, 28));

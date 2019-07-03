@@ -193,6 +193,9 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
         <height>28</height>
        </rect>
       </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
      </widget>
      <widget class="QLabel" name="error_lab">
       <property name="geometry">
@@ -241,6 +244,9 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
        </rect>
       </property>
       <property name="frame">
+       <bool>true</bool>
+      </property>
+      <property name="readOnly">
        <bool>true</bool>
       </property>
      </widget>

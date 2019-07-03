@@ -39,8 +39,29 @@ MaterialManagerWidget::MaterialManagerWidget(QWidget *parent)
 		pQtWidget->show();
 	});
 	connect(ui->material_out_btn, &QPushButton::clicked, this, [this]()->void {
-		DescMaterialWidget*pQtWidget = new DescMaterialWidget();
-		/*connect(pQtWidget, SIGNAL(sig_commit(QString&, QString&, QString&, QString&, QString&, QString&, QString&)), this, SLOT(SlotAddNopayDetail(QString&, QString&, QString&, QString&, QString&, QString&, QString&)));*/
+		int nCount = 0;
+		
+		double dValue = 0;
+		int iSelectItem = 0;
+		int m_maxNumber = 0;
+		for (int i = 0; i < m_pViewModelDetail->rowCount(); ++i)
+		{
+			if (Qt::Checked == m_pViewModelDetail->item(i, 0)->checkState())
+			{
+				iSelectItem = i;
+				m_outId = m_pViewModelDetail->item(i, 0)->data().toString();
+				m_outSubject = m_pViewModelDetail->item(i,3)->text();
+				m_outPrice = m_pViewModelDetail->item(i, 6)->text();
+				m_maxNumber = m_pViewModelDetail->item(i, 7)->text().toInt();
+				nCount++;
+			}
+		}
+		if (nCount > 1)
+		{
+			return;
+		}
+		DescMaterialWidget*pQtWidget = new DescMaterialWidget(m_outSubject, m_outPrice, m_maxNumber);
+		connect(pQtWidget, SIGNAL(sig_commit(int&, QString&, QString&)), this, SLOT(SlotOutMaterial(int&, QString&, QString&)));
 		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
 		pQtWidget->setWindowModality(Qt::ApplicationModal);
 		pQtWidget->show();
@@ -55,6 +76,13 @@ MaterialManagerWidget::MaterialManagerWidget(QWidget *parent)
 		ui->area_comboBox->addItem(kvp.second.areaName);
 	}
 	connect(this, SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotPopMsg(QString, int)));
+	connect(ui->material_search_btn, &QPushButton::clicked, this, [this]()->void {
+		m_pViewModelDetail->removeRows(0, m_pViewModelDetail->rowCount());
+		QThread *m_pThread = new QThread;
+		connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadSearchItem()));
+		connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+		m_pThread->start();
+	});
 }
 
 
@@ -289,16 +317,165 @@ void MaterialManagerWidget::AddInMaterial(InMaterialStruct&item)
 	
 	//ChangeDetailTableView();
 	ui->material_in_out_detail_tableview->setColumnWidth(0, 30);
+
+}
+
+void MaterialManagerWidget::AddMaterialTableView(MaterialStruct&item)
+{
+	int nCount = m_pViewModelDetail->rowCount();
+	m_pViewModelDetail->setItem(nCount, 0, new QStandardItem("id"));
+	m_pViewModelDetail->item(nCount, 0)->setCheckable(true);
+	m_pViewModelDetail->item(nCount, 0)->setData(QString::number(item.id));
+	m_pViewModelDetail->setItem(nCount, 1, new QStandardItem(item.use));
+	m_pViewModelDetail->setItem(nCount, 2, new QStandardItem(item.category));
+	m_pViewModelDetail->setItem(nCount, 3, new QStandardItem(item.subject_name));
+	m_pViewModelDetail->setItem(nCount, 4, new QStandardItem(item.specs));
+	m_pViewModelDetail->setItem(nCount, 5, new QStandardItem(item.unit));
+	m_pViewModelDetail->setItem(nCount, 6, new QStandardItem(item.price));
+	m_pViewModelDetail->setItem(nCount, 7, new QStandardItem(QString::number(item.number)));
+	m_pViewModelDetail->setItem(nCount, 8, new QStandardItem(QString::number(item.number*(item.price.toDouble()))));
+
+	//ChangeDetailTableView();
+	ui->material_detail_tableView->setColumnWidth(0, 30);
+}
+
+void MaterialManagerWidget::AddOutMaterialTableView(OutMaterialStruct&item)
+{
+	int nCount = m_pViewModelinout->rowCount();
+	m_pViewModelinout->setItem(nCount, 0, new QStandardItem("id"));
+	m_pViewModelinout->item(nCount, 0)->setCheckable(true);
+	m_pViewModelinout->item(nCount, 0)->setData(QString::number(item.id));
+	m_pViewModelinout->setItem(nCount, 1, new QStandardItem(item.strTime.mid(0, 10)));
+	m_pViewModelinout->setItem(nCount, 2, new QStandardItem(item.strSubject));
+	m_pViewModelinout->setItem(nCount, 3, new QStandardItem(QString::number(item.number)));
+	m_pViewModelinout->setItem(nCount, 4, new QStandardItem(item.strPrice));
+	m_pViewModelinout->setItem(nCount, 6, new QStandardItem(QString::number(item.Surplus)));
+	m_pViewModelinout->setItem(nCount, 7, new QStandardItem(item.strTotal));
+	m_pViewModelinout->setItem(nCount, 8, new QStandardItem(item.strArea));
+
+	//ChangeDetailTableView();
+	ui->material_in_out_detail_tableview->setColumnWidth(0, 30);
+}
+
+void MaterialManagerWidget::SlotThreadOutMaterialDetail()
+{
+	QString strParam = QString("id=%1&operat_time=%2&subject_name=%3&price=%4&number=%5&outarea=%6")
+		.arg(m_outId).arg(m_outTime).arg(m_outSubject).arg(m_outPrice).arg(m_outNumber).arg(m_outArea);
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/OutMaterial"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				OutMaterialStruct item;
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				item.id = materialObject["id"].toInt();
+				item.strTime = materialObject["operat_time"].toString();
+				item.strSubject = materialObject["subject_name"].toString();
+				item.strTotal = materialObject["totalprice"].toString();
+				item.strArea = materialObject["outarea"].toString();
+				item.Surplus = materialObject["surplus"].toInt();
+				item.number = materialObject["number"].toInt();
+				item.strPrice = materialObject["price"].toString();
+				AddOutMaterialTableView(item);
+			}
+			emit sig_NotifyMsg(QString::fromLocal8Bit("出库成功！"), 0);
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("网络请求异常！"), errorcode);
+	}
+}
+
+void MaterialManagerWidget::SlotThreadSearchItem()
+{
+	QString strParam = QString("subject_name=%1").arg(ui->lineEdit->text());
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SerachMaterial"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				MaterialStruct item;
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				item.id = materialObject["id"].toInt();
+				item.use = materialObject["use"].toString();
+				item.subject_name = materialObject["subject_name"].toString();
+				item.category = materialObject["category"].toString();
+				item.price = materialObject["price"].toString();
+				item.unit = materialObject["unit"].toString();
+				item.specs = materialObject["specs"].toString();
+				item.number = materialObject["number"].toInt();
+				AddMaterialTableView(item);
+			}
+			/*emit sig_NotifyMsg(QString::fromLocal8Bit("添加成功！"), 0);*/
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("网络请求异常！"), errorcode);
+	}
+}
+
+void MaterialManagerWidget::SlotOutMaterial(int&number, QString&time, QString&area)
+{
+	ui->comboBox->setCurrentIndex(1);
+	m_pViewModelinout->removeRows(0, m_pViewModelinout->rowCount());
+	m_pViewModelDetail->removeRows(0, m_pViewModelDetail->rowCount());
+	m_outNumber =QString::number(number) ; 
+	m_outTime = time;
+	m_outArea = area;
+	QThread *m_pThread = new QThread;
+	connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadOutMaterialDetail()));
+	connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+	m_pThread->start();
 }
 
 void MaterialManagerWidget::comboBoxValueChanged()
 {
+	m_pViewModelinout->removeRows(0, m_pViewModelinout->rowCount());
 	ChangeDetailTableView();
 }
 
 void MaterialManagerWidget::SlotAddMaterialDetail(QString&time, QString&use, QString&subject_name, QString&category, QString&price, QString&unit, QString&specs, QString&fare, QString&number)
 {
 	ui->comboBox->setCurrentIndex(0);
+	m_pViewModelinout->removeRows(0, m_pViewModelinout->rowCount());
 	 m_addTime = time;
 	 m_addUse = use;
 	 m_addSubject_name = subject_name;

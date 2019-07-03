@@ -284,6 +284,9 @@
     <QtMoc Include="AddMaterialWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="DescMaterialWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginQWidget.ui">
@@ -366,9 +369,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="globalVariable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DescMaterialWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
