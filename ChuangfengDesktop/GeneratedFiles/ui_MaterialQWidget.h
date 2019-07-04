@@ -75,8 +75,8 @@ public:
     QVBoxLayout *verticalLayout_4;
     QWidget *widget_5;
     QPushButton *fix_material_search_btn;
-    QLineEdit *fix_material_edit;
     QLabel *label_3;
+    QDateEdit *fix_dateEdit;
     QTableView *fix_material_tableView;
 
     void setupUi(QWidget *Material)
@@ -294,14 +294,14 @@ public:
         fix_material_search_btn = new QPushButton(widget_5);
         fix_material_search_btn->setObjectName(QStringLiteral("fix_material_search_btn"));
         fix_material_search_btn->setGeometry(QRect(220, 20, 80, 28));
-        fix_material_edit = new QLineEdit(widget_5);
-        fix_material_edit->setObjectName(QStringLiteral("fix_material_edit"));
-        fix_material_edit->setGeometry(QRect(90, 20, 113, 28));
-        fix_material_edit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_3 = new QLabel(widget_5);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(10, 20, 71, 28));
         label_3->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        fix_dateEdit = new QDateEdit(widget_5);
+        fix_dateEdit->setObjectName(QStringLiteral("fix_dateEdit"));
+        fix_dateEdit->setGeometry(QRect(70, 20, 110, 28));
+        fix_dateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
         verticalLayout_4->addWidget(widget_5);
 
@@ -344,7 +344,7 @@ public:
         material_in_out_search_btn->setText(QString());
         material_in_out_delete_btn->setText(QString());
         fix_material_search_btn->setText(QString());
-        label_3->setText(QApplication::translate("Material", "\345\233\272\345\256\232\350\265\204\344\272\247\357\274\232", Q_NULLPTR));
+        label_3->setText(QApplication::translate("Material", "\345\271\264\346\234\210\357\274\232", Q_NULLPTR));
     } // retranslateUi
 
 };

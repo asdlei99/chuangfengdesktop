@@ -36,6 +36,18 @@ struct OutMaterialStruct
 	QString strArea = "";
 
 };
+struct FixedAssetStruct {
+	int id = 0;
+	QString	subject_name = "";
+		QString instorge_time = "";
+		QString outstorge_time = "";
+		QString number = "";
+		QString price = "";
+		QString unit = "";
+		QString total = "";
+		QString outarea = "";
+			int periods = 0;
+};
 class MaterialManagerWidget :
 	public MoveableFramelessWindow
 {
@@ -54,6 +66,8 @@ private slots:
 	void SlotThreadSearchItem();
 	void SlotOutMaterial(int&number,QString&time,QString&area);
 	void SlotThreadOutMaterialDetail();
+	void SlotThreadSearchInoutItem();
+	void SlotThreadSearchFixedAsset();
 private:
 	virtual void mouseDoubleClickEvent(QMouseEvent *event);
 	void paintEvent(QPaintEvent *event);
@@ -64,6 +78,9 @@ private:
 	void AddInMaterial(InMaterialStruct&item);
 	void AddMaterialTableView(MaterialStruct&item);
 	void AddOutMaterialTableView(OutMaterialStruct&item);
+	void AddFixAsset(FixedAssetStruct&item);
+	void SearchInMaterial();
+	void SearchOutMaterial();
 	
 signals:
 	void sig_NotifyMsg(QString msg, int errorCode);
@@ -95,5 +112,6 @@ private:
 	QString m_outArea;
 	
 	
+
 };
 

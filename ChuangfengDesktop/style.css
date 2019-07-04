@@ -324,7 +324,7 @@ QTableView {
 
 
 #general_enddateEdit,#general_startdateEdit,#bak_startdateEdit,#bak_enddateEdit,#nopay_startdateEdit
-,#nopay_enddateEdit
+,#nopay_enddateEdit,#startdateEdit,#enddateEdit
 {
 font-size: 16px;
 background-color: white;

@@ -83,6 +83,28 @@ MaterialManagerWidget::MaterialManagerWidget(QWidget *parent)
 		connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
 		m_pThread->start();
 	});
+	connect(ui->material_in_out_search_btn, &QPushButton::clicked, this, [this]()->void {
+		m_pViewModelDetail->removeRows(0, m_pViewModelDetail->rowCount());
+		QThread *m_pThread = new QThread;
+		connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadSearchInoutItem()));
+		connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+		m_pThread->start();
+	});
+	connect(ui->fix_material_search_btn, &QPushButton::clicked, this, [this]()->void {
+		m_pViewModelDetail->removeRows(0, m_pViewModelDetail->rowCount());
+		QThread *m_pThread = new QThread;
+		connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadSearchFixedAsset()));
+		connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+		m_pThread->start();
+	});
+	QDateTime current_date_time = QDateTime::currentDateTime();
+	ui->startdateEdit->setCalendarPopup(true);
+	ui->startdateEdit->setDateTime(current_date_time);
+	ui->enddateEdit->setCalendarPopup(true);
+	ui->enddateEdit->setDateTime(current_date_time);
+
+	ui->fix_dateEdit->setCalendarPopup(true);
+	ui->fix_dateEdit->setDateTime(current_date_time);
 }
 
 
@@ -355,6 +377,188 @@ void MaterialManagerWidget::AddOutMaterialTableView(OutMaterialStruct&item)
 
 	//ChangeDetailTableView();
 	ui->material_in_out_detail_tableview->setColumnWidth(0, 30);
+}
+
+void MaterialManagerWidget::AddFixAsset(FixedAssetStruct&item)
+{
+	int nCount = m_pViewModelFix->rowCount();
+	m_pViewModelFix->setItem(nCount, 0, new QStandardItem("id"));
+	m_pViewModelFix->item(nCount, 0)->setCheckable(true);
+	m_pViewModelFix->item(nCount, 0)->setData(QString::number(item.id));
+	m_pViewModelFix->setItem(nCount, 1, new QStandardItem(item.subject_name));
+	m_pViewModelFix->setItem(nCount, 2, new QStandardItem(item.instorge_time.mid(0,10)));
+	m_pViewModelFix->setItem(nCount, 3, new QStandardItem(item.outstorge_time.mid(0, 10)));
+	m_pViewModelFix->setItem(nCount, 4, new QStandardItem(item.unit));
+	m_pViewModelFix->setItem(nCount, 5, new QStandardItem(item.price));
+
+	m_pViewModelFix->setItem(nCount, 6, new QStandardItem(item.total));
+	m_pViewModelFix->setItem(nCount, 7, new QStandardItem(""));
+	m_pViewModelFix->setItem(nCount, 8, new QStandardItem(QString::number(item.total.toDouble()/ item.periods)));
+	m_pViewModelFix->setItem(nCount, 9, new QStandardItem(QString::number(item.periods)));
+
+	ui->fix_material_tableView->setColumnWidth(0, 30);
+
+}
+
+void MaterialManagerWidget::SearchInMaterial()
+{
+	QString strParam = QString("starttime=%1&endtime=%2")
+		.arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text());
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchInMaterialDetail"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				InMaterialStruct item;
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				item.id = materialObject["id"].toInt();
+				item.time = materialObject["operat_time"].toString();
+				item.subject = materialObject["subject_name"].toString();
+				item.fare = materialObject["fare"].toString();
+				item.number = materialObject["number"].toInt();
+				item.price = materialObject["price"].toString();
+				AddInMaterial(item);
+			}
+			//emit sig_NotifyMsg(QString::fromLocal8Bit("添加成功！"), 0);
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("网络请求异常！"), errorcode);
+	}
+}
+
+void MaterialManagerWidget::SearchOutMaterial()
+{
+	QString strParam = QString("starttime=%1&endtime=%2&area=%3")
+		.arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text()).arg(ui->area_comboBox->currentText());
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchOutMaterialDetail"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				OutMaterialStruct item;
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				item.id = materialObject["id"].toInt();
+				item.strTime = materialObject["operat_time"].toString();
+				item.strSubject = materialObject["subject_name"].toString();
+				item.strTotal = materialObject["totalprice"].toString();
+				item.strArea = materialObject["outarea"].toString();
+				item.Surplus = materialObject["surplus"].toInt();
+				item.number = materialObject["number"].toInt();
+				item.strPrice = materialObject["price"].toString();
+				AddOutMaterialTableView(item);
+			}
+			//emit sig_NotifyMsg(QString::fromLocal8Bit("出库成功！"), 0);
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("网络请求异常！"), errorcode);
+	}
+}
+
+void MaterialManagerWidget::SlotThreadSearchFixedAsset()
+{
+	int year =  ui->fix_dateEdit->date().year();
+	int mouth = ui->fix_dateEdit->date().month();
+	QString maxtime = QString("%1-%2-%3").arg(QString::number(year)).arg(QString::number(mouth)).arg(QString::number(31));
+	QString mintime = QString("%1-%2-%3").arg(QString::number(year-2)).arg(QString::number(mouth)).arg(QString::number(31));
+	QString strParam = QString("mintime=%1&maxtime=%2").arg(mintime).arg(maxtime);
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchFixedAsset"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			
+			for (int i = 0; i < array.size(); i++)
+			{
+				FixedAssetStruct item;
+
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				item.id = materialObject["id"].toInt();
+				item.subject_name = materialObject["subject_name"].toString();
+				item.instorge_time = materialObject["instorge_time"].toString();
+				item.outstorge_time = materialObject["outstorge_time"].toString();
+				item.number = materialObject["number"].toString();
+				item.price = materialObject["price"].toString();
+				item.unit = materialObject["unit"].toString();
+				item.total = materialObject["total"].toString();
+				item.outarea = materialObject["outarea"].toString();
+				item.periods = materialObject["periods"].toInt();
+				AddFixAsset(item);
+			}
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("网络请求异常！"), errorcode);
+	}
+}
+
+void MaterialManagerWidget::SlotThreadSearchInoutItem()
+{
+	m_pViewModelinout->removeRows(0, m_pViewModelinout->rowCount());
+	if (ui->comboBox->currentText() == QString::fromLocal8Bit("入库"))
+	{
+		SearchInMaterial();
+	}
+	else {
+		SearchOutMaterial();
+	}
+	
 }
 
 void MaterialManagerWidget::SlotThreadOutMaterialDetail()
