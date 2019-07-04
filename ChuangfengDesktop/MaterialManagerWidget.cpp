@@ -392,7 +392,7 @@ void MaterialManagerWidget::AddFixAsset(FixedAssetStruct&item)
 	m_pViewModelFix->setItem(nCount, 5, new QStandardItem(item.price));
 
 	m_pViewModelFix->setItem(nCount, 6, new QStandardItem(item.total));
-	m_pViewModelFix->setItem(nCount, 7, new QStandardItem(""));
+	m_pViewModelFix->setItem(nCount, 7, new QStandardItem(QString::number((item.total.toDouble() / item.periods)*item.suplis)));
 	m_pViewModelFix->setItem(nCount, 8, new QStandardItem(QString::number(item.total.toDouble()/ item.periods)));
 	m_pViewModelFix->setItem(nCount, 9, new QStandardItem(QString::number(item.periods)));
 
@@ -494,13 +494,30 @@ void MaterialManagerWidget::SearchOutMaterial()
 	}
 }
 
+int MaterialManagerWidget::month_numbers(QString overtime, QString currenttime)
+{
+	QDateTime overdata;
+	overdata = QDateTime::fromString(overtime, "yyyy-MM-dd hh:mm:ss");
+	QDateTime currentdata;
+	currentdata = QDateTime::fromString(currenttime, "yyyy-MM-dd hh:mm:ss");
+	int month_number = 0;
+	if (overdata.date().year() < currentdata.date().year()) { //判断月份大小，进行相应加或减
+		month_number = abs(overdata.date().year() - currentdata.date().year()) * 12 + abs(overdata.date().month() - currentdata.date().month());
+	}
+	else {
+		month_number = abs(overdata.date().year() - currentdata.date().year()) * 12 - abs(overdata.date().month() - currentdata.date().month());
+	}
+	return month_number -1;
+}
+
 void MaterialManagerWidget::SlotThreadSearchFixedAsset()
 {
+	m_pViewModelFix->removeRows(0, m_pViewModelFix->rowCount());
 	int year =  ui->fix_dateEdit->date().year();
 	int mouth = ui->fix_dateEdit->date().month();
 	QString maxtime = QString("%1-%2-%3").arg(QString::number(year)).arg(QString::number(mouth)).arg(QString::number(31));
-	QString mintime = QString("%1-%2-%3").arg(QString::number(year-2)).arg(QString::number(mouth)).arg(QString::number(31));
-	QString strParam = QString("mintime=%1&maxtime=%2").arg(mintime).arg(maxtime);
+	
+	QString strParam = QString("over_time=%1&maxtime=%2").arg(maxtime);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchFixedAsset"
 		, TempToken, strParam, responseData);
@@ -528,6 +545,8 @@ void MaterialManagerWidget::SlotThreadSearchFixedAsset()
 				item.total = materialObject["total"].toString();
 				item.outarea = materialObject["outarea"].toString();
 				item.periods = materialObject["periods"].toInt();
+				QString test = maxtime + (" 00:00:00");
+				item.suplis = month_numbers(materialObject["over_time"].toString(), test);
 				AddFixAsset(item);
 			}
 		}
@@ -557,8 +576,7 @@ void MaterialManagerWidget::SlotThreadSearchInoutItem()
 	}
 	else {
 		SearchOutMaterial();
-	}
-	
+	}	
 }
 
 void MaterialManagerWidget::SlotThreadOutMaterialDetail()

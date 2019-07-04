@@ -47,6 +47,7 @@ struct FixedAssetStruct {
 		QString total = "";
 		QString outarea = "";
 			int periods = 0;
+			int suplis = 0;
 };
 class MaterialManagerWidget :
 	public MoveableFramelessWindow
@@ -81,6 +82,7 @@ private:
 	void AddFixAsset(FixedAssetStruct&item);
 	void SearchInMaterial();
 	void SearchOutMaterial();
+	int  month_numbers(QString overtime, QString currenttime);
 	
 signals:
 	void sig_NotifyMsg(QString msg, int errorCode);
