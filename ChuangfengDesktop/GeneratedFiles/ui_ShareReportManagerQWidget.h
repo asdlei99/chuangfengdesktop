@@ -101,7 +101,10 @@ public:
         share_report_startdateEdit = new QDateEdit(widget_17);
         share_report_startdateEdit->setObjectName(QStringLiteral("share_report_startdateEdit"));
         share_report_startdateEdit->setGeometry(QRect(70, 10, 110, 28));
-        share_report_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        share_report_startdateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         label_16 = new QLabel(widget_17);
         label_16->setObjectName(QStringLiteral("label_16"));
         label_16->setGeometry(QRect(190, 10, 65, 28));
@@ -113,7 +116,10 @@ public:
         share_report_enddateEdit = new QDateEdit(widget_17);
         share_report_enddateEdit->setObjectName(QStringLiteral("share_report_enddateEdit"));
         share_report_enddateEdit->setGeometry(QRect(260, 10, 110, 28));
-        share_report_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        share_report_enddateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
 
         verticalLayout->addWidget(widget_17);
 

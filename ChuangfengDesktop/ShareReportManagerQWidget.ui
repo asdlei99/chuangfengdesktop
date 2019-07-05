@@ -170,7 +170,10 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
+       <string notr="true">color: rgb(171, 171, 171);
+border-color: rgb(255, 255, 255);
+border-style: solid;
+border-width: 1px;</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_16">
@@ -215,7 +218,10 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
+       <string notr="true">color: rgb(171, 171, 171);
+border-color: rgb(255, 255, 255);
+border-style: solid;
+border-width: 1px;</string>
       </property>
      </widget>
     </widget>

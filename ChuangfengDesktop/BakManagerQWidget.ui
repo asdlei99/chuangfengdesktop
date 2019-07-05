@@ -200,7 +200,10 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
+       <string notr="true">color: rgb(171, 171, 171);
+border-color: rgb(255, 255, 255);
+border-style: solid;
+border-width: 1px;</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_6">
@@ -245,7 +248,10 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
+       <string notr="true">color: rgb(171, 171, 171);
+border-color: rgb(255, 255, 255);
+border-style: solid;
+border-width: 1px;</string>
       </property>
      </widget>
      <widget class="QPushButton" name="bak_search_btn">

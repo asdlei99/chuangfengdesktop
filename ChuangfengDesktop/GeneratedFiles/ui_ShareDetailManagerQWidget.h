@@ -97,11 +97,17 @@ public:
         detailshare_report_enddateEdit = new QDateEdit(widget_18);
         detailshare_report_enddateEdit->setObjectName(QStringLiteral("detailshare_report_enddateEdit"));
         detailshare_report_enddateEdit->setGeometry(QRect(260, 10, 110, 28));
-        detailshare_report_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        detailshare_report_enddateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         detailshare_report_startdateEdit = new QDateEdit(widget_18);
         detailshare_report_startdateEdit->setObjectName(QStringLiteral("detailshare_report_startdateEdit"));
         detailshare_report_startdateEdit->setGeometry(QRect(70, 10, 110, 28));
-        detailshare_report_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        detailshare_report_startdateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         label_18 = new QLabel(widget_18);
         label_18->setObjectName(QStringLiteral("label_18"));
         label_18->setGeometry(QRect(190, 10, 65, 28));

@@ -323,22 +323,15 @@ QTableView {
 }
 
 
-#general_enddateEdit,#general_startdateEdit,#bak_startdateEdit,#bak_enddateEdit,#nopay_startdateEdit
-,#nopay_enddateEdit,#startdateEdit,#enddateEdit
+/*#general_enddateEdit,#general_startdateEdit,#bak_startdateEdit,#bak_enddateEdit,#nopay_startdateEdit
+,#nopay_enddateEdit,#startdateEdit,#enddateEdit,#fix_dateEdit
 {
 font-size: 16px;
-background-color: white;
 border-style: solid;
 border-width: 1px;
 border-color: rgb(255,255,255);
 spacing: 1px;
-}
-
-QCalendarWidget 
-{
-  
-    background-color: #2F2F3E;
-}
+}*/
 
 
 

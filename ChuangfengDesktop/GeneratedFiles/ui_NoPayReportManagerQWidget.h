@@ -103,14 +103,20 @@ public:
         nopay_report_startdateEdit = new QDateEdit(widget_16);
         nopay_report_startdateEdit->setObjectName(QStringLiteral("nopay_report_startdateEdit"));
         nopay_report_startdateEdit->setGeometry(QRect(70, 10, 110, 28));
-        nopay_report_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        nopay_report_startdateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         nopay_report_search_btn = new QPushButton(widget_16);
         nopay_report_search_btn->setObjectName(QStringLiteral("nopay_report_search_btn"));
         nopay_report_search_btn->setGeometry(QRect(380, 10, 80, 28));
         nopay_report_enddateEdit = new QDateEdit(widget_16);
         nopay_report_enddateEdit->setObjectName(QStringLiteral("nopay_report_enddateEdit"));
         nopay_report_enddateEdit->setGeometry(QRect(260, 10, 110, 28));
-        nopay_report_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        nopay_report_enddateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         nopay_report_export_btn = new QPushButton(widget_16);
         nopay_report_export_btn->setObjectName(QStringLiteral("nopay_report_export_btn"));
         nopay_report_export_btn->setGeometry(QRect(480, 10, 80, 28));

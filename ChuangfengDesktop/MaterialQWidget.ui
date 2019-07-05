@@ -392,7 +392,10 @@ color: rgb(255, 255, 255);</string>
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(255, 255, 255);</string>
+                <string notr="true">color: rgb(171, 171, 171);
+border-color: rgb(255, 255, 255);
+border-style: solid;
+border-width: 1px;</string>
                </property>
               </widget>
              </item>
@@ -433,7 +436,10 @@ color: rgb(255, 255, 255);</string>
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(255, 255, 255);</string>
+                <string notr="true">color: rgb(171, 171, 171);
+border-color: rgb(255, 255, 255);
+border-style: solid;
+border-width: 1px;</string>
                </property>
               </widget>
              </item>
@@ -572,7 +578,10 @@ border-color: rgb(255, 255, 255);</string>
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">color: rgb(255, 255, 255);</string>
+              <string notr="true">color: rgb(171, 171, 171);
+border-color: rgb(255, 255, 255);
+border-style: solid;
+border-width: 1px;</string>
              </property>
             </widget>
            </widget>

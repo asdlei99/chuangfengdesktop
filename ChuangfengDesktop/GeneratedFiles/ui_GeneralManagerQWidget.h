@@ -106,7 +106,10 @@ public:
         general_startdateEdit = new QDateEdit(widget);
         general_startdateEdit->setObjectName(QStringLiteral("general_startdateEdit"));
         general_startdateEdit->setGeometry(QRect(80, 20, 110, 28));
-        general_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        general_startdateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         general_export_btn = new QPushButton(widget);
         general_export_btn->setObjectName(QStringLiteral("general_export_btn"));
         general_export_btn->setGeometry(QRect(660, 20, 80, 28));
@@ -124,7 +127,10 @@ public:
         general_enddateEdit = new QDateEdit(widget);
         general_enddateEdit->setObjectName(QStringLiteral("general_enddateEdit"));
         general_enddateEdit->setGeometry(QRect(270, 20, 110, 28));
-        general_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        general_enddateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         general_search_btn = new QPushButton(widget);
         general_search_btn->setObjectName(QStringLiteral("general_search_btn"));
         general_search_btn->setGeometry(QRect(390, 20, 80, 28));

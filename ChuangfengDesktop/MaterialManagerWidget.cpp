@@ -297,7 +297,6 @@ void MaterialManagerWidget::initTableView()
 	m_pViewModelFix->setHeaderData(8, Qt::Horizontal, QString::fromLocal8Bit("本期分摊金额"));
 	m_pViewModelFix->setHeaderData(9, Qt::Horizontal, QString::fromLocal8Bit("分摊期数"));
 
-	
 	onSetTableAttribute(ui->fix_material_tableView, 10, false);
 	ui->fix_material_tableView->setColumnWidth(0, 30);
 	ui->fix_material_tableView->setColumnWidth(1, 100);

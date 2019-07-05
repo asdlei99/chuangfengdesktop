@@ -115,7 +115,10 @@ public:
         bak_enddateEdit = new QDateEdit(widget_8);
         bak_enddateEdit->setObjectName(QStringLiteral("bak_enddateEdit"));
         bak_enddateEdit->setGeometry(QRect(260, 10, 110, 28));
-        bak_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        bak_enddateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         label_6 = new QLabel(widget_8);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setGeometry(QRect(190, 10, 65, 28));
@@ -127,7 +130,10 @@ public:
         bak_startdateEdit = new QDateEdit(widget_8);
         bak_startdateEdit->setObjectName(QStringLiteral("bak_startdateEdit"));
         bak_startdateEdit->setGeometry(QRect(70, 10, 110, 28));
-        bak_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        bak_startdateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         bak_search_btn = new QPushButton(widget_8);
         bak_search_btn->setObjectName(QStringLiteral("bak_search_btn"));
         bak_search_btn->setGeometry(QRect(380, 10, 80, 28));

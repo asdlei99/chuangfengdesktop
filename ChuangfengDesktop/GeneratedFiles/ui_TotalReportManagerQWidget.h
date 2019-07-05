@@ -97,7 +97,10 @@ public:
         totalreport_startdateEdit = new QDateEdit(widget_15);
         totalreport_startdateEdit->setObjectName(QStringLiteral("totalreport_startdateEdit"));
         totalreport_startdateEdit->setGeometry(QRect(70, 10, 110, 28));
-        totalreport_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        totalreport_startdateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         label_10 = new QLabel(widget_15);
         label_10->setObjectName(QStringLiteral("label_10"));
         label_10->setGeometry(QRect(190, 10, 66, 28));
@@ -105,7 +108,10 @@ public:
         total_report_enddateEdit = new QDateEdit(widget_15);
         total_report_enddateEdit->setObjectName(QStringLiteral("total_report_enddateEdit"));
         total_report_enddateEdit->setGeometry(QRect(260, 10, 110, 28));
-        total_report_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        total_report_enddateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         label_11 = new QLabel(widget_15);
         label_11->setObjectName(QStringLiteral("label_11"));
         label_11->setGeometry(QRect(0, 10, 66, 28));

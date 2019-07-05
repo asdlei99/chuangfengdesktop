@@ -106,7 +106,10 @@ public:
         nopay_enddateEdit = new QDateEdit(widget_9);
         nopay_enddateEdit->setObjectName(QStringLiteral("nopay_enddateEdit"));
         nopay_enddateEdit->setGeometry(QRect(260, 10, 110, 28));
-        nopay_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        nopay_enddateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         label_8 = new QLabel(widget_9);
         label_8->setObjectName(QStringLiteral("label_8"));
         label_8->setGeometry(QRect(0, 10, 65, 28));
@@ -123,7 +126,10 @@ public:
         nopay_startdateEdit = new QDateEdit(widget_9);
         nopay_startdateEdit->setObjectName(QStringLiteral("nopay_startdateEdit"));
         nopay_startdateEdit->setGeometry(QRect(70, 10, 110, 28));
-        nopay_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        nopay_startdateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         label_9 = new QLabel(widget_9);
         label_9->setObjectName(QStringLiteral("label_9"));
         label_9->setGeometry(QRect(190, 10, 65, 28));

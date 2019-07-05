@@ -97,7 +97,10 @@ public:
         store_report_enddateEdit = new QDateEdit(widget_20);
         store_report_enddateEdit->setObjectName(QStringLiteral("store_report_enddateEdit"));
         store_report_enddateEdit->setGeometry(QRect(270, 10, 110, 28));
-        store_report_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        store_report_enddateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         label_25 = new QLabel(widget_20);
         label_25->setObjectName(QStringLiteral("label_25"));
         label_25->setGeometry(QRect(120, 40, 261, 21));
@@ -110,7 +113,10 @@ public:
         storereport_startdateEdit = new QDateEdit(widget_20);
         storereport_startdateEdit->setObjectName(QStringLiteral("storereport_startdateEdit"));
         storereport_startdateEdit->setGeometry(QRect(80, 10, 110, 28));
-        storereport_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        storereport_startdateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         storereport_export_btn = new QPushButton(widget_20);
         storereport_export_btn->setObjectName(QStringLiteral("storereport_export_btn"));
         storereport_export_btn->setGeometry(QRect(490, 10, 80, 28));

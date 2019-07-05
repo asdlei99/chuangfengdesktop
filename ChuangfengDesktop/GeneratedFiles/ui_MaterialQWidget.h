@@ -223,7 +223,10 @@ public:
         startdateEdit->setObjectName(QStringLiteral("startdateEdit"));
         startdateEdit->setMinimumSize(QSize(110, 28));
         startdateEdit->setMaximumSize(QSize(110, 16777215));
-        startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        startdateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
 
         horizontalLayout_3->addWidget(startdateEdit);
 
@@ -239,7 +242,10 @@ public:
         enddateEdit->setObjectName(QStringLiteral("enddateEdit"));
         enddateEdit->setMinimumSize(QSize(110, 28));
         enddateEdit->setMaximumSize(QSize(110, 28));
-        enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        enddateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
 
         horizontalLayout_3->addWidget(enddateEdit);
 
@@ -301,7 +307,10 @@ public:
         fix_dateEdit = new QDateEdit(widget_5);
         fix_dateEdit->setObjectName(QStringLiteral("fix_dateEdit"));
         fix_dateEdit->setGeometry(QRect(70, 20, 110, 28));
-        fix_dateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        fix_dateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
 
         verticalLayout_4->addWidget(widget_5);
 
