@@ -1,5 +1,4 @@
 #include "FeedStoreManagerWdiget.h"
-
 #include <QKeyEvent>
 #include <QMouseEvent>
 #include <QRect>
@@ -11,6 +10,8 @@
 #include "iconhelper.h"
 #include "commomdef.h"
 #include "globalVariable.h"
+#include "AddFeedStoreWidget.h"
+#include "DescFeedStoreWidget.h"
 
 
 FeedStoreManagerWdiget::FeedStoreManagerWdiget(QWidget *parent)
@@ -47,6 +48,16 @@ FeedStoreManagerWdiget::FeedStoreManagerWdiget(QWidget *parent)
 	connect(ui->storge_type_combox, SIGNAL(currentIndexChanged(int)), this, SLOT(comboBoxValueChanged()));
 	ui->area_combox->setVisible(false);
 	initTableView();
+
+	connect(ui->feed_income_btn, &QPushButton::clicked, this, [this]()->void {
+		AddFeedStoreWidget*pQtWidget = new AddFeedStoreWidget();
+		//connect(pQtWidget, SIGNAL(sig_commit(QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&)), this, SLOT(SlotAddMaterialDetail(QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&)));
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
+
+	connect(ui->feed_out_btn, &QPushButton::clicked, this, &FeedStoreManagerWdiget::SlotDescFeedStore);
 }
 
 
@@ -99,6 +110,20 @@ void FeedStoreManagerWdiget::comboBoxValueChanged()
 {
 	ChangeDetailTableView();
 }
+
+void FeedStoreManagerWdiget::SlotDescFeedStore()
+{
+	QString subject = "";
+	QString price = "";
+	int number = 0;
+	QString area = "ytes";
+	DescFeedStoreWidget*pQtWidget = new DescFeedStoreWidget(_enIncomStore, subject, price, number, area);
+	//connect(pQtWidget, SIGNAL(sig_commit(QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&)), this, SLOT(SlotAddMaterialDetail(QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&)));
+	pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+	pQtWidget->setWindowModality(Qt::ApplicationModal);
+	pQtWidget->show();
+}
+
 void FeedStoreManagerWdiget::ChangeDetailTableView()
 {
 	if (ui->storge_type_combox->currentText() == QString::fromLocal8Bit("Èë¿â")|| ui->storge_type_combox->currentText() == QString::fromLocal8Bit("ÍË»õ"))

@@ -13,6 +13,7 @@ private slots:
 	void updateMaximize();
 	void SlotOptionClick();
 	void comboBoxValueChanged();
+	void SlotDescFeedStore();
 	
 private:
 	virtual void mouseDoubleClickEvent(QMouseEvent *event);

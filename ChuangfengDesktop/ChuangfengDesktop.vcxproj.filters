@@ -165,6 +165,12 @@
     <ClCompile Include="DescMaterialWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AddFeedStoreWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DescFeedStoreWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ChuangfengDesktop.h">
@@ -287,6 +293,12 @@
     <QtMoc Include="DescMaterialWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="AddFeedStoreWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="DescFeedStoreWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginQWidget.ui">
@@ -350,6 +362,12 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="DescMaterialWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="AddFeedStoreWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="DescFeedStoreWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

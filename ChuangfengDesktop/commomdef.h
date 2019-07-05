@@ -51,3 +51,12 @@ struct noPayDetailItem
 	QString strInitValue;
 	QString strSurplus;
 };
+
+enum FeedTypeEnum
+{
+	_enIncomStore = 1,
+_enOutStore,
+_enRenturnStore,
+_enBack
+
+};
