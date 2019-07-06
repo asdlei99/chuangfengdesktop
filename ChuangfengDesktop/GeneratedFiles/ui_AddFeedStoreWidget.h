@@ -81,7 +81,7 @@ public:
 
         widget = new QWidget(AddFeedStoreWidget);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setStyleSheet(QStringLiteral(""));
+        widget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         pop_cancle_btn = new QPushButton(widget);
         pop_cancle_btn->setObjectName(QStringLiteral("pop_cancle_btn"));
         pop_cancle_btn->setGeometry(QRect(70, 540, 95, 32));

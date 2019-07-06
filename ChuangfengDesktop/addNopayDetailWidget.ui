@@ -103,7 +103,7 @@ color: rgb(0, 200, 255);</string>
    <item>
     <widget class="QWidget" name="widget" native="true">
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
      <widget class="QPushButton" name="pop_cancle_btn">
       <property name="geometry">
