@@ -12,7 +12,8 @@
 #include "globalVariable.h"
 #include "AddFeedStoreWidget.h"
 #include "DescFeedStoreWidget.h"
-
+#include "SingletonHttpRequest.h"
+#include "MsgPopWidget.h"
 
 FeedStoreManagerWdiget::FeedStoreManagerWdiget(QWidget *parent)
 	:MoveableFramelessWindow(parent)
@@ -51,7 +52,7 @@ FeedStoreManagerWdiget::FeedStoreManagerWdiget(QWidget *parent)
 
 	connect(ui->feed_income_btn, &QPushButton::clicked, this, [this]()->void {
 		AddFeedStoreWidget*pQtWidget = new AddFeedStoreWidget();
-		//connect(pQtWidget, SIGNAL(sig_commit(QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&)), this, SLOT(SlotAddMaterialDetail(QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&)));
+		connect(pQtWidget, SIGNAL(sig_commit(QString&, QString&, QString&, QString&, QString&, QString&, QString&)), this, SLOT(SlotAddFeedStore(QString&, QString&, QString&, QString&, QString&, QString&, QString&)));
 		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
 		pQtWidget->setWindowModality(Qt::ApplicationModal);
 		pQtWidget->show();
@@ -124,6 +125,22 @@ void FeedStoreManagerWdiget::SlotDescFeedStore()
 	pQtWidget->show();
 }
 
+void FeedStoreManagerWdiget::SlotAddFeedStore(QString&time, QString&suplier, QString&subject_name, QString&price, QString&unit, QString&specs, QString&number)
+{
+	 m_time = time;
+	 m_suplier = suplier;
+	 m_subject_name = subject_name;
+	 m_price = price;
+	 m_unit = unit;
+	 m_specs = specs;
+	 m_number = number;
+	 QThread *m_pThread = new QThread;
+	 connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadAddFeedStore()));
+	 connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+	 m_pThread->start();
+
+}
+
 void FeedStoreManagerWdiget::ChangeDetailTableView()
 {
 	if (ui->storge_type_combox->currentText() == QString::fromLocal8Bit("入库")|| ui->storge_type_combox->currentText() == QString::fromLocal8Bit("退货"))
@@ -185,6 +202,57 @@ void FeedStoreManagerWdiget::AddAreaFeedStoreTableView(AreaFeedStoreStruct&item)
 	m_pViewModelTotalArea->setItem(nCount, 5, new QStandardItem(QString::number(item.price.toDouble()*item.number)));
 
 	ui->area_feed_detail_tableView->setColumnWidth(0, 30);
+}
+
+void FeedStoreManagerWdiget::SlotThreadAddFeedStore()
+{
+	QString strParam = QString("operat_time=%1&supplier=%2&subject_name=%3&specs=%4&price=%5&unit=%6&number=%7")
+		.arg(m_time).arg(m_suplier).arg(m_subject_name).arg(m_specs).arg(m_price).arg(m_unit).
+		arg(m_number);
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/InComFeedStore"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				FeedStoreStruct item;
+				
+			
+			}
+			emit sig_NotifyMsg(QString::fromLocal8Bit("添加成功！"), 0);
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("网络请求异常！"), errorcode);
+	}
+}
+
+void FeedStoreManagerWdiget::SlotPopMsg(QString msg, int errorCode)
+{
+	MsgPopWidget*pQtWidget = new MsgPopWidget(msg, errorCode);
+	pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+	pQtWidget->setWindowModality(Qt::ApplicationModal);
+	pQtWidget->show();
 }
 
 void FeedStoreManagerWdiget::mouseDoubleClickEvent(QMouseEvent *event)

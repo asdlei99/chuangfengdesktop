@@ -10,7 +10,7 @@ public:
 	AddFeedStoreWidget(QWidget *parent = Q_NULLPTR);
 	~AddFeedStoreWidget();
 signals:
-	void sig_commit(QString&time,  QString&subject_name, QString&price, QString&unit, QString&specs,  QString&number);
+	void sig_commit(QString&time, QString&suplier, QString&subject_name, QString&price, QString&unit, QString&specs,  QString&number);
 private:
 	virtual QWidget*getDragnWidget();
 private slots:

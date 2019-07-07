@@ -36,5 +36,15 @@ QWidget* AddFeedStoreWidget::getDragnWidget()
 
 void AddFeedStoreWidget::SlotCommit()
 {
+	QString subject_name = ui->subject_name_Edit->text();
+	QString  price = ui->pice_Edit->text();
+	QString number = ui->Number_Edit->text();
 
+	if (subject_name == ""||price == ""|| number == "")
+	{
+		ui->error_lab->setVisible(true);
+		return;
+	}
+	emit sig_commit(ui->dateEdit->text(), ui->use_Edit->text(), subject_name, price, ui->unit_Edit->text(), ui->norms_Edit->text(), number);
+	emit ui->pop_close_btn->clicked();
 }
