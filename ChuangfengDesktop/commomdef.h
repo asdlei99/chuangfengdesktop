@@ -55,8 +55,42 @@ struct noPayDetailItem
 enum FeedTypeEnum
 {
 	_enIncomStore = 1,
-_enOutStore,
-_enRenturnStore,
-_enBack
+	_enOutStore,
+	_enRenturnStore,
+	_enBack
+};
 
+
+struct FeedStoreStruct
+{
+	int id = 0;
+	QString supplier = "";
+	QString subject_name = "";
+	QString specs = "";
+	QString unit = "";
+	QString price = "0";
+	int number = 0;
+};
+
+
+struct FeedStoreIn_out_return_Struct
+{
+	int id = 0;
+	QString time = "";
+	QString subject_name = "";
+	int number = 0;
+	QString price = "0";
+	int surplus = 0;
+	QString total = "0";
+	QString area = "";
+
+};
+struct AreaFeedStoreStruct
+{
+	int id = 0;
+	QString area = "";
+	QString supplier = "";
+	QString subject_name = "";
+	QString price = "0";
+	int number = 0;
 };

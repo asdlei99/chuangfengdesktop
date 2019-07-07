@@ -2,6 +2,7 @@
 #include "QtCustomBaseWnd.h"
 #include "ui_FeedStoreQwidget.h"
 #include "CCheckBoxHeaderView.h"
+#include "commomdef.h"
 class FeedStoreManagerWdiget :
 	public MoveableFramelessWindow
 {
@@ -22,6 +23,9 @@ private:
 	void InitOption();
 	void initTableView();
 	void ChangeDetailTableView();
+	void AddFeedStoreTableView(FeedStoreStruct&item);
+	void AddFeedStoreIn_out_return_TableView(FeedStoreIn_out_return_Struct&item);
+	void AddAreaFeedStoreTableView(AreaFeedStoreStruct&item);
 private:
 	Ui::FeedStore*ui;
 	QList< NavButton*> m_NavButtonList;

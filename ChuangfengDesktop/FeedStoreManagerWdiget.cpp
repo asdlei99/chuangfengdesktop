@@ -8,7 +8,7 @@
 #include <QPen>
 #include <QtMath>
 #include "iconhelper.h"
-#include "commomdef.h"
+
 #include "globalVariable.h"
 #include "AddFeedStoreWidget.h"
 #include "DescFeedStoreWidget.h"
@@ -135,6 +135,58 @@ void FeedStoreManagerWdiget::ChangeDetailTableView()
 		ui->area_combox->setVisible(true);
 	}
 }
+
+void FeedStoreManagerWdiget::AddFeedStoreTableView(FeedStoreStruct&item)
+{
+	int nCount = m_pViewModelTotalDetail->rowCount();
+	
+	m_pViewModelTotalDetail->item(nCount, 0)->setCheckable(true);
+	m_pViewModelTotalDetail->item(nCount, 0)->setData(QString::number(item.id));
+	m_pViewModelTotalDetail->setItem(nCount, 1, new QStandardItem(item.supplier));
+	m_pViewModelTotalDetail->setItem(nCount, 2, new QStandardItem(item.subject_name));
+	m_pViewModelTotalDetail->setItem(nCount, 3, new QStandardItem(item.specs));
+	m_pViewModelTotalDetail->setItem(nCount, 4, new QStandardItem(item.unit));
+	m_pViewModelTotalDetail->setItem(nCount, 6, new QStandardItem(item.price));
+	m_pViewModelTotalDetail->setItem(nCount, 7, new QStandardItem(QString::number(item.number)));
+	m_pViewModelTotalDetail->setItem(nCount, 8, new QStandardItem(QString::number(item.price.toDouble()*item.number)));
+
+	ui->area_feed_detail_tableView->setColumnWidth(0, 30);
+}
+
+void FeedStoreManagerWdiget::AddFeedStoreIn_out_return_TableView(FeedStoreIn_out_return_Struct&item)
+{
+
+	int nCount = m_pViewModelTotalDetail_in_out_return->rowCount();
+
+	m_pViewModelTotalDetail_in_out_return->item(nCount, 0)->setCheckable(true);
+	m_pViewModelTotalDetail_in_out_return->item(nCount, 0)->setData(QString::number(item.id));
+	m_pViewModelTotalDetail_in_out_return->setItem(nCount, 1, new QStandardItem(item.time));
+	m_pViewModelTotalDetail_in_out_return->setItem(nCount, 2, new QStandardItem(item.subject_name));
+	m_pViewModelTotalDetail_in_out_return->setItem(nCount, 3, new QStandardItem(QString::number(item.number)));
+	m_pViewModelTotalDetail_in_out_return->setItem(nCount, 4, new QStandardItem(item.price));
+	m_pViewModelTotalDetail_in_out_return->setItem(nCount, 6, new QStandardItem(QString::number(item.surplus)));
+	m_pViewModelTotalDetail_in_out_return->setItem(nCount, 7, new QStandardItem(QString::number(item.price.toDouble()*item.surplus)));
+	m_pViewModelTotalDetail_in_out_return->setItem(nCount, 8, new QStandardItem(item.area));
+
+	ui->feedstore_in_out_tableView->setColumnWidth(0, 30);
+}
+
+void FeedStoreManagerWdiget::AddAreaFeedStoreTableView(AreaFeedStoreStruct&item)
+{
+	int nCount = m_pViewModelTotalArea->rowCount();
+
+	m_pViewModelTotalArea->item(nCount, 0)->setCheckable(true);
+	m_pViewModelTotalArea->item(nCount, 0)->setData(QString::number(item.id));
+	m_pViewModelTotalArea->setItem(nCount, 1, new QStandardItem(item.area));
+	m_pViewModelTotalArea->setItem(nCount, 2, new QStandardItem(item.subject_name));
+	m_pViewModelTotalArea->setItem(nCount, 3, new QStandardItem(item.price));
+
+	m_pViewModelTotalArea->setItem(nCount, 4, new QStandardItem(QString::number(item.number)));
+	m_pViewModelTotalArea->setItem(nCount, 5, new QStandardItem(QString::number(item.price.toDouble()*item.number)));
+
+	ui->area_feed_detail_tableView->setColumnWidth(0, 30);
+}
+
 void FeedStoreManagerWdiget::mouseDoubleClickEvent(QMouseEvent *event)
 {
 	Q_UNUSED(event); //没有实质性的作用，只是用来允许event可以不使用，用来避免编译器警告
@@ -261,16 +313,14 @@ void FeedStoreManagerWdiget::initTableView()
 	ui->area_feed_detail_tableView->setHorizontalHeader(m_pViewHeadDeleagteTotalArea);
 	m_pViewModelTotalArea = new QStandardItemModel();
 	ui->area_feed_detail_tableView->setModel(m_pViewModelTotalArea);
-	m_pViewModelTotalArea->setColumnCount(8);
+	m_pViewModelTotalArea->setColumnCount(6);
 	m_pViewModelTotalArea->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit(""));
 	m_pViewModelTotalArea->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("区域"));
 	m_pViewModelTotalArea->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("物品名称"));
-	m_pViewModelTotalArea->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("物品规格"));
-	m_pViewModelTotalArea->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("单位"));
-	m_pViewModelTotalArea->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("成本单价"));
-	m_pViewModelTotalArea->setHeaderData(6, Qt::Horizontal, QString::fromLocal8Bit("数量"));
-	m_pViewModelTotalArea->setHeaderData(7, Qt::Horizontal, QString::fromLocal8Bit("总价值"));
-	onSetTableAttribute(ui->area_feed_detail_tableView, 8, false);
+	m_pViewModelTotalArea->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("成本单价"));
+	m_pViewModelTotalArea->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("数量"));
+	m_pViewModelTotalArea->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("总价值"));
+	onSetTableAttribute(ui->area_feed_detail_tableView, 6, false);
 	ui->area_feed_detail_tableView->setColumnWidth(0, 30);
 	ui->area_feed_detail_tableView->setColumnWidth(1, 100);
 	ui->area_feed_detail_tableView->setColumnWidth(2, 180);
