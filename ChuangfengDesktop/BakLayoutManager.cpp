@@ -283,7 +283,7 @@ void BakLayoutManager::SlotThreadRemoveItem()
 			nCount++;
 		}
 	}
-	if (nCount > 1)
+	if (nCount > 1 || nCount == 0)
 	{
 		return;
 	}

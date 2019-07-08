@@ -40,15 +40,11 @@ MaterialManagerWidget::MaterialManagerWidget(QWidget *parent)
 	});
 	connect(ui->material_out_btn, &QPushButton::clicked, this, [this]()->void {
 		int nCount = 0;
-		
-		double dValue = 0;
-		int iSelectItem = 0;
 		int m_maxNumber = 0;
 		for (int i = 0; i < m_pViewModelDetail->rowCount(); ++i)
 		{
 			if (Qt::Checked == m_pViewModelDetail->item(i, 0)->checkState())
 			{
-				iSelectItem = i;
 				m_outId = m_pViewModelDetail->item(i, 0)->data().toString();
 				m_outSubject = m_pViewModelDetail->item(i,3)->text();
 				m_outPrice = m_pViewModelDetail->item(i, 6)->text();
@@ -56,7 +52,7 @@ MaterialManagerWidget::MaterialManagerWidget(QWidget *parent)
 				nCount++;
 			}
 		}
-		if (nCount > 1)
+		if (nCount > 1 || nCount == 0)
 		{
 			return;
 		}
@@ -312,7 +308,6 @@ void MaterialManagerWidget::ChangeDetailTableView()
 		ui->material_in_out_detail_tableview->setColumnHidden(6, true);
 		ui->material_in_out_detail_tableview->setColumnHidden(7, true);
 		ui->material_in_out_detail_tableview->setColumnHidden(8, true);
-		
 		ui->area_comboBox->setVisible(false);
 	}
 	else {
@@ -327,7 +322,6 @@ void MaterialManagerWidget::ChangeDetailTableView()
 void MaterialManagerWidget::AddInMaterial(InMaterialStruct&item)
 {
 	int nCount = m_pViewModelinout->rowCount();
-	m_pViewModelinout->setItem(nCount, 0, new QStandardItem("id"));
 	m_pViewModelinout->item(nCount, 0)->setCheckable(true);
 	m_pViewModelinout->item(nCount, 0)->setData(QString::number(item.id));
 	m_pViewModelinout->setItem(nCount, 1, new QStandardItem(item.time.mid(0, 10)));

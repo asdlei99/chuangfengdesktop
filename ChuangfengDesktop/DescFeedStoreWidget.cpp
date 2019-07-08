@@ -52,8 +52,8 @@ DescFeedStoreWidget::DescFeedStoreWidget(FeedTypeEnum _type,QString&subject, QSt
 	ui->error_lab->setVisible(false);
 	if (m_type != _enOutStore)
 	{
-		ui->comboBox->setWindowTitle(area);
-		ui->comboBox->setDisabled(true);
+		ui->comboBox->setVisible(false);
+		ui->area_lab->setVisible(false);
 	}
 }
 
