@@ -51,5 +51,6 @@
         <file>Resources/chuku_btn.png</file>
         <file>Resources/tuiku_btn.png</file>
         <file>Resources/msg_ico.png</file>
+        <file>Resources/feeding_btn.png</file>
     </qresource>
 </RCC>

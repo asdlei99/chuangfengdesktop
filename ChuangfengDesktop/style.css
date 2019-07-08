@@ -696,3 +696,15 @@ border-image: url(:/ChuangfengDesktop/Resources/msg_ico.png)0 50 0 0;
 border-image: url(:/ChuangfengDesktop/Resources/msg_ico.png)0 0 0 50;
 }
 
+#feeding_btn
+{
+	border-image: url(:/ChuangfengDesktop/Resources/feeding_btn.png)0 160 0 0;
+}
+#feeding_btn:hover
+{
+	border-image: url(:/ChuangfengDesktop/Resources/feeding_btn.png)0 80 0 80;
+}
+#feeding_btn:pressed
+{
+	border-image: url(:/ChuangfengDesktop/Resources/feeding_btn.png)0 0 0 160;
+}
