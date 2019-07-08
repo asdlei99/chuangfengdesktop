@@ -113,6 +113,7 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AddFeedingWidget.cpp" />
     <ClCompile Include="AddFeedStoreWidget.cpp" />
     <ClCompile Include="AddFundDetailWidget.cpp" />
     <ClCompile Include="AddMaterialWidget.cpp" />
@@ -135,6 +136,7 @@
     <ClCompile Include="DescMaterialWidget.cpp" />
     <ClCompile Include="DetailAreaLayoutManager.cpp" />
     <ClCompile Include="DetailShareReportManager.cpp" />
+    <ClCompile Include="FeedingManagerWidget.cpp" />
     <ClCompile Include="FeedStoreManagerWdiget.cpp" />
     <ClCompile Include="GeneralLayoutManger.cpp" />
     <ClCompile Include="globalVariable.cpp" />
@@ -163,6 +165,7 @@
     <QtMoc Include="ChuangfengDesktop.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="AddFeedingWidget.ui" />
     <QtUic Include="AddFeedStoreWidget.ui" />
     <QtUic Include="addFundDetailWidget.ui" />
     <QtUic Include="addNopayDetailWidget.ui" />
@@ -173,6 +176,7 @@
     <QtUic Include="commonDependenceAreaWidget.ui" />
     <QtUic Include="DescFeedStoreWidget.ui" />
     <QtUic Include="DescMaterialWidget.ui" />
+    <QtUic Include="FeedingWidget.ui" />
     <QtUic Include="FeedStoreQwidget.ui" />
     <QtUic Include="GeneralManagerQWidget.ui" />
     <QtUic Include="LoginQWidget.ui" />
@@ -259,6 +263,7 @@
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt;$(QTDIR)\include\QtNetwork</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt;.\CustomCtrl;$(QTDIR)\include\QtNetwork</IncludePath>
     </QtMoc>
+    <QtMoc Include="AddFeedingWidget.h" />
     <ClInclude Include="commomdef.h" />
     <QtMoc Include="UserLayoutManger.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt</IncludePath>
@@ -306,6 +311,10 @@
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt;.\CustomCtrl;$(QTDIR)\include\QtNetwork</IncludePath>
     </QtMoc>
     <QtMoc Include="DescFeedStoreWidget.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt;$(QTDIR)\include\QtNetwork</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt;.\CustomCtrl;$(QTDIR)\include\QtNetwork</IncludePath>
+    </QtMoc>
+    <QtMoc Include="FeedingManagerWidget.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt;$(QTDIR)\include\QtNetwork</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt;.\CustomCtrl;$(QTDIR)\include\QtNetwork</IncludePath>
     </QtMoc>

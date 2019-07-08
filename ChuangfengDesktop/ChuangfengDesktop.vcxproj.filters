@@ -171,6 +171,12 @@
     <ClCompile Include="DescFeedStoreWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FeedingManagerWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AddFeedingWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ChuangfengDesktop.h">
@@ -299,6 +305,9 @@
     <QtMoc Include="DescFeedStoreWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="FeedingManagerWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginQWidget.ui">
@@ -370,6 +379,12 @@
     <QtUic Include="DescFeedStoreWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="FeedingWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="AddFeedingWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="ChuangfengDesktop.qrc">
@@ -387,6 +402,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="globalVariable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AddFeedingWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -41,9 +41,6 @@ private:
 	void AddFeedStoreIn_out_return_TableView(FeedStoreIn_out_return_Struct&item);
 	void AddAreaFeedStoreTableView(AreaFeedStoreStruct&item);
 	void HideDetailTableView(FeedTypeEnum _type);
-
-
-
 signals:
 	void sig_NotifyMsg(QString msg, int errorCode);
 public:

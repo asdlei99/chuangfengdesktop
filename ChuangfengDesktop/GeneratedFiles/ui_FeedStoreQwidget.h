@@ -341,7 +341,7 @@ public:
 
     void retranslateUi(QWidget *FeedStore)
     {
-        FeedStore->setWindowTitle(QApplication::translate("FeedStore", "Form", Q_NULLPTR));
+        FeedStore->setWindowTitle(QApplication::translate("FeedStore", "\351\245\262\346\226\231\350\215\257\345\223\201\347\256\241\347\220\206", Q_NULLPTR));
         feedstore_min_btn->setText(QString());
         feedstore_max_restore_btn->setText(QString());
         feedstore_cose_btn->setText(QString());

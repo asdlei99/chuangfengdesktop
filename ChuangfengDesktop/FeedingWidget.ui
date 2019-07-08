@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>FeedStore</class>
- <widget class="QWidget" name="FeedStore">
+ <class>FeedingWidget</class>
+ <widget class="QWidget" name="FeedingWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>饲料药品管理</string>
+   <string>喂料管理</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -155,7 +155,7 @@
         <property name="styleSheet">
          <string notr="true">background-color: rgb(54, 78, 111);</string>
         </property>
-        <widget class="NavButton" name="feedstore_detail_opt">
+        <widget class="NavButton" name="feeding_opt">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -165,10 +165,10 @@
           </rect>
          </property>
          <property name="text">
-          <string>饲料药品明细</string>
+          <string>喂料</string>
          </property>
         </widget>
-        <widget class="NavButton" name="feedstore_in_out_opt">
+        <widget class="NavButton" name="feeding_detail_opt">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -178,20 +178,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>出入库明细</string>
-         </property>
-        </widget>
-        <widget class="NavButton" name="area_detail_opt">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>160</y>
-           <width>140</width>
-           <height>35</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>分仓明细</string>
+          <string>喂料明细</string>
          </property>
         </widget>
        </widget>
@@ -219,7 +206,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QStackedWidget" name="feedstore_stackedWidget">
+       <widget class="QStackedWidget" name="feeding_stackedWidget">
         <property name="minimumSize">
          <size>
           <width>768</width>
@@ -229,20 +216,20 @@
         <property name="styleSheet">
          <string notr="true">background-color: rgb(54, 78, 111);</string>
         </property>
-        <widget class="QWidget" name="page">
-         <layout class="QVBoxLayout" name="verticalLayout_2">
+        <widget class="QWidget" name="page_3">
+         <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
-           <widget class="QWidget" name="widget_3" native="true">
+           <widget class="QWidget" name="widget_5" native="true">
             <property name="minimumSize">
              <size>
               <width>0</width>
               <height>60</height>
              </size>
             </property>
-            <widget class="QPushButton" name="feed_search_btn">
+            <widget class="QPushButton" name="area_feed_search_btn">
              <property name="geometry">
               <rect>
-               <x>210</x>
+               <x>310</x>
                <y>20</y>
                <width>80</width>
                <height>28</height>
@@ -252,10 +239,10 @@
               <string/>
              </property>
             </widget>
-            <widget class="QLineEdit" name="feed_name_edit">
+            <widget class="QLineEdit" name="area_feed_edit">
              <property name="geometry">
               <rect>
-               <x>80</x>
+               <x>90</x>
                <y>20</y>
                <width>113</width>
                <height>28</height>
@@ -265,10 +252,10 @@
               <string notr="true">color: rgb(255, 255, 255);</string>
              </property>
             </widget>
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel" name="label_3">
              <property name="geometry">
               <rect>
-               <x>0</x>
+               <x>10</x>
                <y>20</y>
                <width>71</width>
                <height>28</height>
@@ -281,10 +268,10 @@
               <string>物品名称：</string>
              </property>
             </widget>
-            <widget class="QPushButton" name="feed_out_btn">
+            <widget class="QPushButton" name="feeding_btn">
              <property name="geometry">
               <rect>
-               <x>390</x>
+               <x>400</x>
                <y>20</y>
                <width>80</width>
                <height>28</height>
@@ -294,49 +281,36 @@
               <string/>
              </property>
             </widget>
-            <widget class="QPushButton" name="feed_delete_btn">
+            <widget class="QComboBox" name="area3_combox">
              <property name="geometry">
               <rect>
-               <x>570</x>
+               <x>220</x>
                <y>20</y>
                <width>80</width>
                <height>28</height>
               </rect>
              </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="feed_income_btn">
-             <property name="geometry">
-              <rect>
-               <x>300</x>
-               <y>20</y>
+             <property name="minimumSize">
+              <size>
                <width>80</width>
                <height>28</height>
-              </rect>
+              </size>
              </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="feed_return_btn">
-             <property name="geometry">
-              <rect>
-               <x>480</x>
-               <y>20</y>
+             <property name="maximumSize">
+              <size>
                <width>80</width>
                <height>28</height>
-              </rect>
+              </size>
              </property>
-             <property name="text">
-              <string/>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(171, 171, 171);
+border-color: rgb(255, 255, 255);</string>
              </property>
             </widget>
            </widget>
           </item>
           <item>
-           <widget class="QTableView" name="total_feed_store_tableView"/>
+           <widget class="QTableView" name="area_feedstore_tableView"/>
           </item>
          </layout>
         </widget>
@@ -440,27 +414,13 @@ border-width: 1px;</string>
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="storge_type_combox">
-               <property name="minimumSize">
-                <size>
-                 <width>80</width>
-                 <height>28</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>80</width>
-                 <height>28</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">color: rgb(171, 171, 171);
-border-color: rgb(255, 255, 255);</string>
-               </property>
-              </widget>
-             </item>
-             <item>
               <widget class="QComboBox" name="area_combox">
+               <property name="minimumSize">
+                <size>
+                 <width>80</width>
+                 <height>28</height>
+                </size>
+               </property>
                <property name="maximumSize">
                 <size>
                  <width>80</width>
@@ -474,26 +434,21 @@ border-color: rgb(255, 255, 255);</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="feedstore_in_out_search_btn">
-               <property name="minimumSize">
-                <size>
-                 <width>80</width>
-                 <height>28</height>
-                </size>
-               </property>
+              <widget class="QComboBox" name="area_item_combox">
                <property name="maximumSize">
                 <size>
                  <width>80</width>
                  <height>28</height>
                 </size>
                </property>
-               <property name="text">
-                <string/>
+               <property name="styleSheet">
+                <string notr="true">color: rgb(171, 171, 171);
+border-color: rgb(255, 255, 255);</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="feedstore_in_out_delete_btn">
+              <widget class="QPushButton" name="detail_search_btn">
                <property name="minimumSize">
                 <size>
                  <width>80</width>
@@ -515,118 +470,7 @@ border-color: rgb(255, 255, 255);</string>
            </widget>
           </item>
           <item>
-           <widget class="QTableView" name="feedstore_in_out_tableView"/>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="page_3">
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <widget class="QWidget" name="widget_5" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>60</height>
-             </size>
-            </property>
-            <widget class="QPushButton" name="area_feed_search_btn">
-             <property name="geometry">
-              <rect>
-               <x>310</x>
-               <y>20</y>
-               <width>80</width>
-               <height>28</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-            <widget class="QLineEdit" name="area_feed_edit">
-             <property name="geometry">
-              <rect>
-               <x>90</x>
-               <y>20</y>
-               <width>113</width>
-               <height>28</height>
-              </rect>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">color: rgb(255, 255, 255);</string>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_3">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>20</y>
-               <width>71</width>
-               <height>28</height>
-              </rect>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">color: rgb(255, 255, 255);</string>
-             </property>
-             <property name="text">
-              <string>物品名称：</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="area_feed_return_btn">
-             <property name="geometry">
-              <rect>
-               <x>400</x>
-               <y>20</y>
-               <width>80</width>
-               <height>28</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="area_feed_delete_btn">
-             <property name="geometry">
-              <rect>
-               <x>490</x>
-               <y>20</y>
-               <width>80</width>
-               <height>28</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-            <widget class="QComboBox" name="area3_combox">
-             <property name="geometry">
-              <rect>
-               <x>220</x>
-               <y>20</y>
-               <width>80</width>
-               <height>28</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>80</width>
-               <height>28</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>80</width>
-               <height>28</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">color: rgb(171, 171, 171);
-border-color: rgb(255, 255, 255);</string>
-             </property>
-            </widget>
-           </widget>
-          </item>
-          <item>
-           <widget class="QTableView" name="area_feed_detail_tableView"/>
+           <widget class="QTableView" name="feeding_detail_tableView"/>
           </item>
          </layout>
         </widget>

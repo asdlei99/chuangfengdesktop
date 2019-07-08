@@ -573,34 +573,8 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="4">
-          <widget class="QPushButton" name="feedsum_btn">
-           <property name="minimumSize">
-            <size>
-             <width>128</width>
-             <height>142</height>
-            </size>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="5">
-          <spacer name="horizontalSpacer_21">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
          <item row="0" column="3">
-          <spacer name="horizontalSpacer_17">
+          <spacer name="horizontalSpacer_21">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -638,7 +612,7 @@
            </property>
           </spacer>
          </item>
-         <item row="0" column="6">
+         <item row="0" column="4">
           <spacer name="horizontalSpacer_19">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>

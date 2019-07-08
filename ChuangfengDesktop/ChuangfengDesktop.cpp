@@ -23,7 +23,7 @@
 #include "MaterielReportManger.h"
 #include "StoreReportManager.h"
 #include "MsgPopWidget.h"
-
+#include "FeedingManagerWidget.h"
 
 ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
 	:MoveableFramelessWindow(parent)
@@ -94,6 +94,12 @@ ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
 	});
 	connect(ui->MaterielReport_btn, &QPushButton::clicked, this, [this]()->void {
 		MaterielReportManger*pQtWidget = new MaterielReportManger();
+		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+		pQtWidget->setWindowModality(Qt::ApplicationModal);
+		pQtWidget->show();
+	});
+	connect(ui->feed_btn, &QPushButton::clicked, this, [this]()->void {
+		FeedingManagerWidget*pQtWidget = new FeedingManagerWidget();
 		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
 		pQtWidget->setWindowModality(Qt::ApplicationModal);
 		pQtWidget->show();

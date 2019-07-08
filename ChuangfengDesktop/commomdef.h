@@ -89,6 +89,8 @@ struct AreaFeedStoreStruct
 {
 	int id = 0;
 	QString area = "";
+	QString specs = "";
+	QString unit = "";
 	QString supplier = "";
 	QString subject_name = "";
 	QString price = "0";

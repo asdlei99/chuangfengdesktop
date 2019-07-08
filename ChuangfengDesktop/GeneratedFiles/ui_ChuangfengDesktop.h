@@ -78,9 +78,7 @@ public:
     QWidget *page_3;
     QGridLayout *gridLayout_3;
     QPushButton *feed_btn;
-    QPushButton *feedsum_btn;
     QSpacerItem *horizontalSpacer_21;
-    QSpacerItem *horizontalSpacer_17;
     QSpacerItem *horizontalSpacer_18;
     QSpacerItem *horizontalSpacer_20;
     QSpacerItem *horizontalSpacer_19;
@@ -385,19 +383,9 @@ public:
 
         gridLayout_3->addWidget(feed_btn, 0, 2, 1, 1);
 
-        feedsum_btn = new QPushButton(page_3);
-        feedsum_btn->setObjectName(QStringLiteral("feedsum_btn"));
-        feedsum_btn->setMinimumSize(QSize(128, 142));
-
-        gridLayout_3->addWidget(feedsum_btn, 0, 4, 1, 1);
-
         horizontalSpacer_21 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_3->addItem(horizontalSpacer_21, 0, 5, 1, 1);
-
-        horizontalSpacer_17 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout_3->addItem(horizontalSpacer_17, 0, 3, 1, 1);
+        gridLayout_3->addItem(horizontalSpacer_21, 0, 3, 1, 1);
 
         horizontalSpacer_18 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -409,7 +397,7 @@ public:
 
         horizontalSpacer_19 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_3->addItem(horizontalSpacer_19, 0, 6, 1, 1);
+        gridLayout_3->addItem(horizontalSpacer_19, 0, 4, 1, 1);
 
         main_stackedWidget->addWidget(page_3);
         page_4 = new QWidget();
@@ -710,7 +698,6 @@ public:
         store_material_mgr_btn->setText(QString());
         store_feed_mgr_btn->setText(QString());
         feed_btn->setText(QString());
-        feedsum_btn->setText(QString());
         TotalReport_btn->setText(QString());
         ShareDetail_btn->setText(QString());
         StoreReport_btn->setText(QString());

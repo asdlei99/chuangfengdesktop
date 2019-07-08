@@ -259,9 +259,11 @@ void FeedStoreManagerWdiget::AddAreaFeedStoreTableView(AreaFeedStoreStruct&item)
 	m_pViewModelTotalArea->item(nCount, 0)->setCheckable(true);
 	m_pViewModelTotalArea->setItem(nCount, 1, new QStandardItem(item.area));
 	m_pViewModelTotalArea->setItem(nCount, 2, new QStandardItem(item.subject_name));
-	m_pViewModelTotalArea->setItem(nCount, 3, new QStandardItem(item.price));
-	m_pViewModelTotalArea->setItem(nCount, 4, new QStandardItem(QString::number(item.number)));
-	m_pViewModelTotalArea->setItem(nCount, 5, new QStandardItem(QString::number(item.price.toDouble()*item.number)));
+	m_pViewModelTotalArea->setItem(nCount, 3, new QStandardItem(item.unit));
+	m_pViewModelTotalArea->setItem(nCount, 4, new QStandardItem(item.specs));
+	m_pViewModelTotalArea->setItem(nCount, 5, new QStandardItem(item.price));
+	m_pViewModelTotalArea->setItem(nCount, 6, new QStandardItem(QString::number(item.number)));
+	m_pViewModelTotalArea->setItem(nCount, 7, new QStandardItem(QString::number(item.price.toDouble()*item.number)));
 	ui->area_feed_detail_tableView->setColumnWidth(0, 60);
 }
 
@@ -319,6 +321,8 @@ void FeedStoreManagerWdiget::SlotThreadSearchAreaFeedStore()
 				item.number = materialObject["number"].toInt();
 				item.subject_name = materialObject["subject_name"].toString();
 				item.area = materialObject["area"].toString();
+				item.specs = materialObject["specs"].toString();
+				item.unit = materialObject["unit"].toString();
 				item.price = materialObject["price"].toString();
 				AddAreaFeedStoreTableView(item);
 			}
@@ -384,6 +388,8 @@ void FeedStoreManagerWdiget::SlotThreadDescFeedStore()
 					item.supplier = materialObject["supplier"].toString();
 					item.number = materialObject["number"].toInt();
 					item.subject_name = materialObject["subject_name"].toString();
+					item.specs = materialObject["specs"].toString();
+					item.unit = materialObject["unit"].toString();
 					item.area = materialObject["area"].toString();
 					item.price = materialObject["price"].toString();
 					AddAreaFeedStoreTableView(item);
@@ -776,12 +782,14 @@ void FeedStoreManagerWdiget::initTableView()
 	onSetTableAttribute(ui->feedstore_in_out_tableView, 8, false);	
 	m_pViewModelTotalArea = new QStandardItemModel();
 	ui->area_feed_detail_tableView->setModel(m_pViewModelTotalArea);
-	m_pViewModelTotalArea->setColumnCount(6);
+	m_pViewModelTotalArea->setColumnCount(8);
 	m_pViewModelTotalArea->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("ID"));
 	m_pViewModelTotalArea->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("区域"));
 	m_pViewModelTotalArea->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("物品名称"));
-	m_pViewModelTotalArea->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("成本单价"));
-	m_pViewModelTotalArea->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("数量"));
-	m_pViewModelTotalArea->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("总价值"));
-	onSetTableAttribute(ui->area_feed_detail_tableView, 6, false);
+	m_pViewModelTotalArea->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("单位"));
+	m_pViewModelTotalArea->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("规格"));
+	m_pViewModelTotalArea->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("成本单价"));
+	m_pViewModelTotalArea->setHeaderData(6, Qt::Horizontal, QString::fromLocal8Bit("数量"));
+	m_pViewModelTotalArea->setHeaderData(7, Qt::Horizontal, QString::fromLocal8Bit("总价值"));
+	onSetTableAttribute(ui->area_feed_detail_tableView, 8, false);
 }
