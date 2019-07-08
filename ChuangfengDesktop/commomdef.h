@@ -96,3 +96,17 @@ struct AreaFeedStoreStruct
 	QString price = "0";
 	int number = 0;
 };
+
+struct AreaFeedFeedingDetailStruct
+{
+	int id = 0;
+	QString time;
+	QString area = "";
+	QString areaitem = "";
+	QString specs = "";
+	QString unit = "";
+	QString supplier = "";
+	QString subject_name = "";
+	QString price = "0";
+	int number = 0;
+};

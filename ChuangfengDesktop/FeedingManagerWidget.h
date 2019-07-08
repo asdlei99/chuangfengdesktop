@@ -30,11 +30,12 @@ private:
 	void InitOption();
 	void initTableView();
 	void AddAreaFeedStoreTableView(AreaFeedStoreStruct&item);
-
+	void AddAreaFeedingDetailTableViEW(AreaFeedFeedingDetailStruct&item);
 private:
 	Ui::FeedingWidget*ui;
 	QList< NavButton*> m_NavButtonList;
 	QStandardItemModel *m_pViewModelTotalArea;
+	QStandardItemModel *m_pViewModelFeedingDetail;
 	QString m_time;
 	QString m_suplier;
 	QString m_subject_name;

@@ -34,6 +34,9 @@ AddFeedingWidget::AddFeedingWidget(QString&subject_name, QString&price, int maxN
 	QRegExpValidator *patternr = new QRegExpValidator(regExpr, this);//创建了一个表达式
 	ui->Number_Edit->setValidator(patternr);
 	ui->error_lab->setVisible(false);
+	QDateTime current_date_time = QDateTime::currentDateTime();
+	ui->dateEdit->setCalendarPopup(true);
+	ui->dateEdit->setDateTime(current_date_time);
 }
 
 

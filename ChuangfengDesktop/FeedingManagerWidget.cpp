@@ -60,7 +60,7 @@ FeedingManagerWidget::FeedingManagerWidget(QWidget *parent )
 
 	connect(ui->area_combox, SIGNAL(currentIndexChanged(int)), this, SLOT(comboBoxValueChanged()));
 	connect(ui->feeding_btn, &QPushButton::clicked, this, [this]()->void {
-
+	
 		int nCount = 0;
 		int m_maxNumber = 0;
 		for (int i = 0; i < m_pViewModelTotalArea->rowCount(); ++i)
@@ -72,6 +72,8 @@ FeedingManagerWidget::FeedingManagerWidget(QWidget *parent )
 				m_price = m_pViewModelTotalArea->item(i, 5)->text();
 				m_maxNumber = m_pViewModelTotalArea->item(i, 6)->text().toInt();
 				m_area = m_pViewModelTotalArea->item(i, 1)->text();
+				m_unit = m_pViewModelTotalArea->item(i, 3)->text();
+				m_specs = m_pViewModelTotalArea->item(i, 4)->text();
 				nCount++;
 			}
 		}
@@ -88,6 +90,7 @@ FeedingManagerWidget::FeedingManagerWidget(QWidget *parent )
 	});
 
 	connect(ui->detail_search_btn, &QPushButton::clicked, this, [this]()->void {
+		m_pViewModelFeedingDetail->removeRows(0, m_pViewModelFeedingDetail->rowCount());
 		QThread *m_pThread = new QThread;
 		connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadSearchFeeding()));
 		connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
@@ -254,6 +257,22 @@ void FeedingManagerWidget::initTableView()
 	m_pViewModelTotalArea->setHeaderData(6, Qt::Horizontal, QString::fromLocal8Bit("数量"));
 	m_pViewModelTotalArea->setHeaderData(7, Qt::Horizontal, QString::fromLocal8Bit("总价值"));
 	onSetTableAttribute(ui->area_feedstore_tableView, 8, false);
+
+	m_pViewModelFeedingDetail = new QStandardItemModel();
+
+	ui->feeding_detail_tableView->setModel(m_pViewModelFeedingDetail);
+	m_pViewModelFeedingDetail->setColumnCount(10);
+	m_pViewModelFeedingDetail->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("ID"));
+	m_pViewModelFeedingDetail->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("时间"));
+	m_pViewModelFeedingDetail->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("区域"));
+	m_pViewModelFeedingDetail->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("塘号"));
+	m_pViewModelFeedingDetail->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("物品名称"));
+	m_pViewModelFeedingDetail->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("规格"));
+	m_pViewModelFeedingDetail->setHeaderData(6, Qt::Horizontal, QString::fromLocal8Bit("单位"));
+	m_pViewModelFeedingDetail->setHeaderData(7, Qt::Horizontal, QString::fromLocal8Bit("数量"));
+	m_pViewModelFeedingDetail->setHeaderData(8, Qt::Horizontal, QString::fromLocal8Bit("成本单价"));
+	m_pViewModelFeedingDetail->setHeaderData(9, Qt::Horizontal, QString::fromLocal8Bit("成本总额"));
+	onSetTableAttribute(ui->feeding_detail_tableView, 10, false);
 }
 
 void FeedingManagerWidget::AddAreaFeedStoreTableView(AreaFeedStoreStruct&item)
@@ -269,17 +288,123 @@ void FeedingManagerWidget::AddAreaFeedStoreTableView(AreaFeedStoreStruct&item)
 	m_pViewModelTotalArea->setItem(nCount, 6, new QStandardItem(QString::number(item.number)));
 	m_pViewModelTotalArea->setItem(nCount, 7, new QStandardItem(QString::number(item.price.toDouble()*item.number)));
 	ui->area_feedstore_tableView->setColumnWidth(0, 60);
-	connect(ui->area_feed_search_btn, &QPushButton::clicked, this, &FeedingManagerWidget::SlotSearchAreaFeedStore);
+	
+}
+
+void FeedingManagerWidget::AddAreaFeedingDetailTableViEW(AreaFeedFeedingDetailStruct&item)
+{
+	int nCount = m_pViewModelFeedingDetail->rowCount();
+	m_pViewModelFeedingDetail->setItem(nCount, 0, new QStandardItem(QString::number(item.id)));
+	m_pViewModelFeedingDetail->item(nCount, 0)->setCheckable(true);
+	m_pViewModelFeedingDetail->setItem(nCount, 1, new QStandardItem(item.time.mid(0,10)));
+	m_pViewModelFeedingDetail->setItem(nCount, 2, new QStandardItem(item.area));
+	m_pViewModelFeedingDetail->setItem(nCount, 3, new QStandardItem(item.areaitem));
+	m_pViewModelFeedingDetail->setItem(nCount, 4, new QStandardItem(item.subject_name));
+	m_pViewModelFeedingDetail->setItem(nCount, 5, new QStandardItem(item.specs));
+	m_pViewModelFeedingDetail->setItem(nCount, 6, new QStandardItem(item.unit));
+	m_pViewModelFeedingDetail->setItem(nCount, 7, new QStandardItem(item.price));
+	m_pViewModelFeedingDetail->setItem(nCount, 8, new QStandardItem(QString::number(item.number)));
+	m_pViewModelFeedingDetail->setItem(nCount, 9, new QStandardItem(QString::number(item.price.toDouble()*item.number)));
+	ui->feeding_detail_tableView->setColumnWidth(0, 60);
 }
 
 void FeedingManagerWidget::SlotThreadAddFeeding()
 {
-	
+	QString strParam = QString("id=%1&operat_time=%2&subject_name=%3&price=%4&number=%5&area=%6&areaitem=%7&specs=%8&unit=%9")
+		.arg(QString::number(m_id)).arg(m_time).arg(m_subject_name).arg(m_price).arg(m_number).arg(m_area)
+		.arg(m_areaItem).arg(m_specs).arg(m_unit);
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addFeeding"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				AreaFeedStoreStruct item;
+				item.id = materialObject["id"].toInt();
+				item.supplier = materialObject["supplier"].toString();
+				item.number = materialObject["number"].toInt();
+				item.subject_name = materialObject["subject_name"].toString();
+				item.area = materialObject["area"].toString();
+				item.specs = materialObject["specs"].toString();
+				item.unit = materialObject["unit"].toString();
+				item.price = materialObject["price"].toString();
+				AddAreaFeedStoreTableView(item);
+			}
+			emit sig_NotifyMsg(QString::fromLocal8Bit("添加成功！"), 0);
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("网络请求异常！"), errorcode);
+	}
 }
 
 void FeedingManagerWidget::SlotThreadSearchFeeding()
 {
-
+	QString strParam = QString("starttime=%1&endtime=%2&area=%3&areaitem=%4")
+		.arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text()).arg(ui->area_combox->currentText()).arg(ui->area_item_combox->currentText());
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SerachFeeding"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				AreaFeedFeedingDetailStruct item;
+				item.id = materialObject["id"].toInt();
+				item.time = materialObject["operat_time"].toString();
+				item.supplier = materialObject["supplier"].toString();
+				item.number = materialObject["number"].toInt();
+				item.subject_name = materialObject["subject_name"].toString();
+				item.area = materialObject["area"].toString();
+				item.specs = materialObject["specs"].toString();
+				item.unit = materialObject["unit"].toString();
+				item.price = materialObject["price"].toString();
+				item.areaitem = materialObject["areaitem"].toString();
+				AddAreaFeedingDetailTableViEW(item);
+			}
+			
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("网络请求异常！"), errorcode);
+	}
 }
 
 void FeedingManagerWidget::comboBoxValueChanged()
