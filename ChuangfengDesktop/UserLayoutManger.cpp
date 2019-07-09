@@ -9,7 +9,7 @@
 #include <QJsonValue>
 #include <QByteArray>
 #include "globalVariable.h"
-#include "MsgPopWidget.h"
+
 
 using namespace  std;
 

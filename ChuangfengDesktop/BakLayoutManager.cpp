@@ -11,7 +11,7 @@
 
 #include "AddFundDetailWidget.h"
 #include "SingletonHttpRequest.h"
-#include "MsgPopWidget.h"
+
 #include "globalVariable.h"
 BakLayoutManager::BakLayoutManager(QWidget *parent)
 	:MoveableFramelessWindow(parent)
@@ -45,7 +45,7 @@ BakLayoutManager::BakLayoutManager(QWidget *parent)
 	ui->bak_startdateEdit->setDateTime(current_date_time);
 	ui->bak_enddateEdit->setCalendarPopup(true);
 	ui->bak_enddateEdit->setDateTime(current_date_time);
-	connect(this, SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotMsgPop(QString, int)));
+
 }
 
 
@@ -196,13 +196,7 @@ void BakLayoutManager::SlotThreadSearchGeneral()
 	}
 }
 
-void BakLayoutManager::SlotMsgPop(QString msg, int errorcode)
-{
-	MsgPopWidget*pQtWidget = new MsgPopWidget(msg, errorcode);
-	pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
-	pQtWidget->setWindowModality(Qt::ApplicationModal);
-	pQtWidget->show();
-}
+
 
 void BakLayoutManager::SlotAddGeneral(QString&time, QString &incom, QString&pay, QString&taskName, QString&shareName, QString&remake)
 {
@@ -285,6 +279,7 @@ void BakLayoutManager::SlotThreadRemoveItem()
 	}
 	if (nCount > 1 || nCount == 0)
 	{
+		emit sig_NotifyMsg(QString::fromLocal8Bit("请选择节点且只能一个节点！"), 10086);
 		return;
 	}
 

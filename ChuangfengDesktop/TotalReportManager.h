@@ -22,6 +22,9 @@ private slots:
 	void SlotThreadSearchGeneral();
 	void FormatTableView();
 	void AddGeneralTableview();
+	void SlotThreadExportReport();
+
+
 private:
 	virtual void mouseDoubleClickEvent(QMouseEvent *event);
 	void paintEvent(QPaintEvent *event);
@@ -34,6 +37,6 @@ private:
 
 	double m_initGeneral = 0;
 	double m_initBak = 0;
-	QString m_ExcelPath;
+	QString m_ExcelPath = "";
 };
 

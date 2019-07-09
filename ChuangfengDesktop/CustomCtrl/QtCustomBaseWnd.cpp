@@ -27,6 +27,15 @@ MoveableFramelessWindow::MoveableFramelessWindow(QWidget *parent) :
 	this->setWindowFlags(Qt::FramelessWindowHint);
 	//设置底层背景透明
 	setAttribute(Qt::WA_TranslucentBackground);
+	connect(this, SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotMsgPop(QString, int)));
+}
+
+void MoveableFramelessWindow::SlotMsgPop(QString msg, int errorcode)
+{
+	MsgPopWidget*pQtWidget = new MsgPopWidget(msg, errorcode);
+	pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+	pQtWidget->setWindowModality(Qt::ApplicationModal);
+	pQtWidget->show();
 }
 
 void MoveableFramelessWindow::paintEvent(QPaintEvent *event)
@@ -166,19 +175,13 @@ void MoveableFramelessWindow::onSetTableAttribute(QTableView *pTableView, const 
 	pTableView->horizontalHeader()->setHighlightSections(false);
 }
 
-void MoveableFramelessWindow::SlotMsgPop(QString msg, int errorcode)
-{
-	MsgPopWidget*pQtWidget = new MsgPopWidget(msg, errorcode);
-	pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
-	pQtWidget->setWindowModality(Qt::ApplicationModal);
-	pQtWidget->show();
-}
+
 
 bool MoveableFramelessWindow::exportToExcel(QString&excelPath)
 {
 	excelPath = QFileDialog::getSaveFileName(this, QString::fromLocal8Bit("导出表格"), ".", "Microsoft Office(*.xlsx)");//获取保存路径
 	if (!excelPath.isEmpty()) {
-		QAxObject *excel = new QAxObject(this);
+		QAxObject *excel = new QAxObject((QObject*)nullptr);
 		excel->setControl("Excel.Application");//连接Excel控件
 		excel->dynamicCall("SetVisible (bool Visible)", "false");//不显示窗体
 		excel->setProperty("DisplayAlerts", false);//不显示任何警告信息。如果为true那么在关闭是会出现类似“文件已修改，是否保存”的提示

@@ -63,7 +63,6 @@ private slots:
 	void comboBoxValueChanged();
 	void SlotAddMaterialDetail(QString&time, QString&use, QString&subject_name, QString&category, QString&price, QString&unit, QString&specs, QString&fare, QString&number);
 	void SlotThreadAddMaterialDetail();
-	void SlotPopMsg(QString msg, int errorCode);
 	void SlotThreadSearchItem();
 	void SlotOutMaterial(int&number,QString&time,QString&area);
 	void SlotThreadOutMaterialDetail();
@@ -83,9 +82,6 @@ private:
 	void SearchInMaterial();
 	void SearchOutMaterial();
 	int  month_numbers(QString overtime, QString currenttime);
-	
-signals:
-	void sig_NotifyMsg(QString msg, int errorCode);
 private:
 	Ui::Material*ui;
 	QList< NavButton*> m_NavButtonList;

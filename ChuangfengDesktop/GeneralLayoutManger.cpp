@@ -11,7 +11,7 @@
 
 #include "AddFundDetailWidget.h"
 #include "SingletonHttpRequest.h"
-#include "MsgPopWidget.h"
+
 #include "globalVariable.h"
 GeneralLayoutManger::GeneralLayoutManger(QWidget *parent)
 	:MoveableFramelessWindow(parent)
@@ -45,7 +45,7 @@ GeneralLayoutManger::GeneralLayoutManger(QWidget *parent)
 	ui->general_startdateEdit->setDateTime(current_date_time);
 	ui->general_enddateEdit->setCalendarPopup(true);
 	ui->general_enddateEdit->setDateTime(current_date_time);
-	connect(this, SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotMsgPop(QString, int)));
+
 }
 
 
@@ -147,13 +147,7 @@ void GeneralLayoutManger::SlotThreadSearchGeneral()
 	}
 }
 
-void GeneralLayoutManger::SlotMsgPop(QString msg, int errorcode)
-{
-	MsgPopWidget*pQtWidget = new MsgPopWidget(msg, errorcode);
-	pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
-	pQtWidget->setWindowModality(Qt::ApplicationModal);
-	pQtWidget->show();
-}
+
 
 void GeneralLayoutManger::SlotAddGeneral(QString&time, QString &incom, QString&pay, QString&taskName, QString&shareName, QString&remake)
 {
@@ -234,8 +228,9 @@ void GeneralLayoutManger::SlotThreadRemoveItem()
 			nCount++;
 		}
 	}
-	if (nCount>1)
+	if (nCount>1||nCount == 0)
 	{
+		emit sig_NotifyMsg(QString::fromLocal8Bit("请选择节点且只能一个节点！"), 10086);
 		return;
 	}
 

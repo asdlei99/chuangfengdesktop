@@ -22,7 +22,7 @@
 #include "DetailShareReportManager.h"
 #include "MaterielReportManger.h"
 #include "StoreReportManager.h"
-#include "MsgPopWidget.h"
+
 #include "FeedingManagerWidget.h"
 
 ChuangfengDesktop::ChuangfengDesktop(QWidget *parent)
@@ -331,13 +331,5 @@ void ChuangfengDesktop::SlotSysLayoutOptionClick()
 	}
 }
 
-void ChuangfengDesktop::SlotMsgPop(QString msg, int errorcode)
-{
-
-	MsgPopWidget*pQtWidget = new MsgPopWidget(msg, errorcode);
-	pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
-	pQtWidget->setWindowModality(Qt::ApplicationModal);
-	pQtWidget->show();
-}
 
 

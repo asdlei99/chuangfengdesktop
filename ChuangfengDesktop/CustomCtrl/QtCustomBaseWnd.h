@@ -12,6 +12,7 @@ class MoveableFramelessWindow : public QWidget
 public:
 	explicit MoveableFramelessWindow(QWidget *parent);
 
+
 protected:
 	void paintEvent(QPaintEvent *event);
 	/**
@@ -62,6 +63,7 @@ protected slots:
 	virtual void onThemeColorChange(QString colorStr) {}
 	virtual void onSetTableAttribute(QTableView *pTableView,const int cloum,bool bStretchLast = true);
 	void SlotMsgPop(QString msg, int errorcode);
+protected:
 	bool exportToExcel( QString&excelPath);
 
 signals:

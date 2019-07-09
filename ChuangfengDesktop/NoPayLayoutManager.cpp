@@ -10,7 +10,7 @@
 #include "iconhelper.h"
 
 #include "AddNoPayDetailWidget.h"
-#include "MsgPopWidget.h"
+
 #include "SingletonHttpRequest.h"
 #include "globalVariable.h"
 NoPayLayoutManager::NoPayLayoutManager(QWidget *parent)
@@ -45,7 +45,7 @@ NoPayLayoutManager::NoPayLayoutManager(QWidget *parent)
 	ui->nopay_startdateEdit->setDateTime(current_date_time);
 	ui->nopay_enddateEdit->setCalendarPopup(true);
 	ui->nopay_enddateEdit->setDateTime(current_date_time);
-	connect(this, SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotMsgPop(QString, int)));
+
 }
 
 
@@ -91,13 +91,7 @@ void NoPayLayoutManager::slotCheckBoxStateChanged(bool status)
 	}
 }
 
-void NoPayLayoutManager::SlotMsgPop(QString msg, int errorcode)
-{
-	MsgPopWidget*pQtWidget = new MsgPopWidget(msg, errorcode);
-	pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
-	pQtWidget->setWindowModality(Qt::ApplicationModal);
-	pQtWidget->show();
-}
+
 
 void NoPayLayoutManager::SlotAddNopayDetail(QString&time, QString&suplier, QString&adjust, QString&newAdd, QString&returnValue, QString&pay, QString&remake)
 {
@@ -286,6 +280,7 @@ void NoPayLayoutManager::SlotThreadRemoveItem()
 	}
 	if (nCount > 1 || nCount == 0)
 	{
+		emit sig_NotifyMsg(QString::fromLocal8Bit("请选择节点且只能一个节点！"), 10086);
 		return;
 	}
 

@@ -12,6 +12,7 @@
 #include "SingletonHttpRequest.h"
 #include "globalVariable.h"
 
+
 void TotalReportManager::InitLayout()
 {
  	m_pViewModel = new QStandardItemModel();
@@ -27,8 +28,7 @@ void TotalReportManager::InitLayout()
  	m_pViewModel->setHeaderData(7, Qt::Horizontal, QString::fromLocal8Bit("结余"));
  	onSetTableAttribute(ui->total_reporttableView, 8);
  	ui->total_reporttableView->horizontalHeader()->setStretchLastSection(false);
- 	
- 	
+	
 }
 
 
@@ -45,6 +45,7 @@ TotalReportManager::TotalReportManager(QWidget *parent)
 	ui->max_restore_btn->setProperty("maximizeProperty", "maximize");
 	ui->max_restore_btn->setStyle(QApplication::style());
 	InitLayout();
+	
 	QDateTime current_date_time = QDateTime::currentDateTime();
 	ui->total_report_enddateEdit->setCalendarPopup(true);
 	ui->total_report_enddateEdit->setDateTime(current_date_time);
@@ -52,9 +53,12 @@ TotalReportManager::TotalReportManager(QWidget *parent)
 	ui->totalreport_startdateEdit->setDateTime(current_date_time);
 	connect(ui->totalreport_search_btn, &QPushButton::clicked, this, &TotalReportManager::SlotSearchBtnAction);
 	connect(ui->totalreport_export_btn, &QPushButton::clicked, this, [this]()->void {
-		exportToExcel(m_ExcelPath);
-		StatementObject test(m_ExcelPath);
-		test.FillTableData(m_initGeneral, m_initBak, m_tableViewMap);
+		QThread *m_pThread = new QThread;
+		this->moveToThread(m_pThread);
+		connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadExportReport()));
+		connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+		m_pThread->start();
+		
 	});
 	m_tableViewMap.clear();
 }
@@ -266,6 +270,23 @@ void TotalReportManager::AddGeneralTableview()
 	m_pViewModel->setItem(nCount, 7, new QStandardItem(QString::number(totalBakIncome- totalBakOut)));
 	FormatTableView();
 }
+
+void TotalReportManager::SlotThreadExportReport()
+{
+	//多线程必须初始化
+	CoInitializeEx(NULL, COINIT_MULTITHREADED);
+	m_ExcelPath = "";
+	exportToExcel(m_ExcelPath);
+	if (m_ExcelPath != "")
+	{
+		StatementObject test(m_ExcelPath);
+		test.FillTableData(m_initGeneral, m_initBak, m_tableViewMap);
+		emit sig_NotifyMsg(QString::fromLocal8Bit("导出成功！"), 0);
+	}
+	
+}
+
+
 
 void TotalReportManager::mouseDoubleClickEvent(QMouseEvent *event)
 {

@@ -14,7 +14,6 @@ public:
 private slots:
 	void updateMaximize();
 	void slotCheckBoxStateChanged(bool status);
-	void SlotMsgPop(QString msg, int errorcode);
 	void SlotAddNopayDetail(QString&time,QString&suplier,QString&adjust,QString&newAdd,QString&returnValue,QString&pay,QString&remake);
 	void SlothreadAddnopay();
 	void SlotSearchThread();
@@ -25,8 +24,7 @@ private:
 	virtual QWidget*getDragnWidget();
 	void AddTableViewItem(noPayDetailItem&item);
 	
-signals:
-	void sig_NotifyMsg(QString msg, int errorCode);
+
 private:
 	virtual void InitLayout();
 	Ui::nopayManager* ui;

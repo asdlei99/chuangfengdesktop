@@ -14,15 +14,13 @@ public:
 public slots:
 	void updateMaximize();
 	void SlotOptionClick();
-	void SlotPopMsg(QString msg, int errorCode);
 	void SlotSearchAreaFeedStore();
 	void SlotThreadSearchAreaFeedStore();
 	void comboBoxValueChanged();
 	void SlotAddFeeding(QString&time, QString&number, QString&areaItem);
 	void SlotThreadAddFeeding();
 	void SlotThreadSearchFeeding();
-signals:
-	void sig_NotifyMsg(QString msg, int errorCode);
+
 private:
 	virtual void mouseDoubleClickEvent(QMouseEvent *event);
 	void paintEvent(QPaintEvent *event);

@@ -38,7 +38,6 @@ public slots:
 	void updateMaximize();
 	void SlotOptionClick();
 	void SlotSysLayoutOptionClick();
-	void SlotMsgPop(QString msg,int errorcode);
 private:
 	Ui::ChuangfengDesktopClass*ui;
 	QList< NavButton*> mNavButtonList;

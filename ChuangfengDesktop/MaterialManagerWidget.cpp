@@ -14,7 +14,7 @@
 #include "DescMaterialWidget.h"
 #include "globalVariable.h"
 #include "SingletonHttpRequest.h"
-#include "MsgPopWidget.h"
+
 
 MaterialManagerWidget::MaterialManagerWidget(QWidget *parent)
 	:MoveableFramelessWindow(parent)
@@ -54,6 +54,7 @@ MaterialManagerWidget::MaterialManagerWidget(QWidget *parent)
 		}
 		if (nCount > 1 || nCount == 0)
 		{
+			emit sig_NotifyMsg(QString::fromLocal8Bit("请选择节点且只能一个节点！"), 10086);
 			return;
 		}
 		DescMaterialWidget*pQtWidget = new DescMaterialWidget(m_outSubject, m_outPrice, m_maxNumber);
@@ -71,7 +72,7 @@ MaterialManagerWidget::MaterialManagerWidget(QWidget *parent)
 	{
 		ui->area_comboBox->addItem(kvp.second.areaName);
 	}
-	connect(this, SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotPopMsg(QString, int)));
+	
 	connect(ui->material_search_btn, &QPushButton::clicked, this, [this]()->void {
 		m_pViewModelDetail->removeRows(0, m_pViewModelDetail->rowCount());
 		QThread *m_pThread = new QThread;
@@ -322,6 +323,7 @@ void MaterialManagerWidget::ChangeDetailTableView()
 void MaterialManagerWidget::AddInMaterial(InMaterialStruct&item)
 {
 	int nCount = m_pViewModelinout->rowCount();
+	m_pViewModelinout->setItem(nCount, 0, new QStandardItem(""));
 	m_pViewModelinout->item(nCount, 0)->setCheckable(true);
 	m_pViewModelinout->item(nCount, 0)->setData(QString::number(item.id));
 	m_pViewModelinout->setItem(nCount, 1, new QStandardItem(item.time.mid(0, 10)));
@@ -754,11 +756,4 @@ void MaterialManagerWidget::SlotThreadAddMaterialDetail()
 	}
 }
 
-void MaterialManagerWidget::SlotPopMsg(QString msg, int errorCode)
-{
-	MsgPopWidget*pQtWidget = new MsgPopWidget(msg, errorCode);
-	pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
-	pQtWidget->setWindowModality(Qt::ApplicationModal);
-	pQtWidget->show();
-}
 

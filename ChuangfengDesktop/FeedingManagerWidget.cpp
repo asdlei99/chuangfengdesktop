@@ -1,5 +1,4 @@
 #include "FeedingManagerWidget.h"
-#include "MsgPopWidget.h"
 #include <QKeyEvent>
 #include <QMouseEvent>
 #include <QRect>
@@ -12,7 +11,7 @@
 
 #include "globalVariable.h"
 #include "SingletonHttpRequest.h"
-#include "MsgPopWidget.h"
+
 #include "AddFeedingWidget.h"
 
 FeedingManagerWidget::FeedingManagerWidget(QWidget *parent )
@@ -27,7 +26,6 @@ FeedingManagerWidget::FeedingManagerWidget(QWidget *parent )
 	//设置按钮的属性名为"maximizeProperty"
 	ui->feedstore_max_restore_btn->setProperty("maximizeProperty", "maximize");
 	ui->feedstore_max_restore_btn->setStyle(QApplication::style());
-	connect(this, SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotPopMsg(QString, int)));
 	InitOption();
 	initTableView();
 	for (auto&kvp:g_areaList)
@@ -53,8 +51,7 @@ FeedingManagerWidget::FeedingManagerWidget(QWidget *parent )
 			for (auto&kvpi: kvp.second.areaDetailList)
 			{
 				ui->area_item_combox->addItem(kvpi.second);
-			}
-			
+			}	
 		}
 	}
 
@@ -79,6 +76,7 @@ FeedingManagerWidget::FeedingManagerWidget(QWidget *parent )
 		}
 		if (nCount > 1 || nCount == 0)
 		{
+			emit sig_NotifyMsg(QString::fromLocal8Bit("请选择节点且只能一个节点！"), 10086);
 			return;
 		}
 
@@ -144,13 +142,7 @@ void FeedingManagerWidget::SlotOptionClick()
 	}
 }
 
-void FeedingManagerWidget::SlotPopMsg(QString msg, int errorCode)
-{
-	MsgPopWidget*pQtWidget = new MsgPopWidget(msg, errorCode);
-	pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
-	pQtWidget->setWindowModality(Qt::ApplicationModal);
-	pQtWidget->show();
-}
+
 
 void FeedingManagerWidget::SlotSearchAreaFeedStore()
 {

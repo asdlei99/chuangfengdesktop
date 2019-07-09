@@ -21,7 +21,6 @@ public slots:
 	void SlotSearchFeedStoreDetail_in_out_return_back();
 	void SlotAddFeedStore(QString&time, QString&suplier, QString&subject_name, QString&price, QString&unit, QString&specs, QString&number);
 	void SlotThreadAddFeedStore();
-	void SlotPopMsg(QString msg, int errorCode);
 	void SlotSearchFeedStore();
 	void SlotSearchAreaFeedStore();
 	void SlotSearchAreaOutFeedStore();
@@ -41,8 +40,7 @@ private:
 	void AddFeedStoreIn_out_return_TableView(FeedStoreIn_out_return_Struct&item);
 	void AddAreaFeedStoreTableView(AreaFeedStoreStruct&item);
 	void HideDetailTableView(FeedTypeEnum _type);
-signals:
-	void sig_NotifyMsg(QString msg, int errorCode);
+
 public:
 	Ui::FeedStore*ui;
 	QList< NavButton*> m_NavButtonList;

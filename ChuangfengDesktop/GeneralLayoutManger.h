@@ -15,7 +15,6 @@ private slots:
 	void slotCheckBoxStateChanged(bool status);
 	void SlotSearchBtnAction();
 	void SlotThreadSearchGeneral();
-	void SlotMsgPop(QString msg, int errorcode);
 	void SlotAddGeneral(QString&time, QString &incom, QString&pay, QString&taskName, QString&shareName, QString&remake);
 	void SlotThreadAddGeneral();
 	void SlotThreadRemoveItem();
@@ -24,8 +23,7 @@ private:
 	void paintEvent(QPaintEvent *event);
 	virtual QWidget*getDragnWidget();
 	void addTableView(DetailItemStruct&item);
-signals:
-	void sig_NotifyMsg(QString msg, int errorCode);
+
 private:
 	virtual void InitLayout();
 	Ui::generalManager* ui;

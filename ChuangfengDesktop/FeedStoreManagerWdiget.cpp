@@ -12,7 +12,7 @@
 #include "AddFeedStoreWidget.h"
 #include "DescFeedStoreWidget.h"
 #include "SingletonHttpRequest.h"
-#include "MsgPopWidget.h"
+
 
 FeedStoreManagerWdiget::FeedStoreManagerWdiget(QWidget *parent)
 	:MoveableFramelessWindow(parent)
@@ -61,7 +61,6 @@ FeedStoreManagerWdiget::FeedStoreManagerWdiget(QWidget *parent)
 	connect(ui->feed_out_btn, &QPushButton::clicked, this, &FeedStoreManagerWdiget::SlotDescFeedStore);
 	connect(ui->feed_return_btn, &QPushButton::clicked, this, &FeedStoreManagerWdiget::SlotBackFeedStore);
 	connect(ui->feedstore_in_out_search_btn, &QPushButton::clicked, this, &FeedStoreManagerWdiget::SlotSearchFeedStoreDetail_in_out_return_back);
-	connect(this, SIGNAL(sig_NotifyMsg(QString, int)), this, SLOT(SlotPopMsg(QString, int)));
 	connect(ui->feed_search_btn, &QPushButton::clicked, this, &FeedStoreManagerWdiget::SlotSearchFeedStore);
 	connect(ui->area_feed_search_btn, &QPushButton::clicked, this, &FeedStoreManagerWdiget::SlotSearchAreaFeedStore);
 	connect(ui->area_feed_return_btn, &QPushButton::clicked, this, &FeedStoreManagerWdiget::SlotSearchAreaOutFeedStore);
@@ -168,6 +167,7 @@ void FeedStoreManagerWdiget::SlotBackFeedStore()
 	}
 	if (nCount > 1 || nCount == 0)
 	{
+		emit sig_NotifyMsg(QString::fromLocal8Bit("请选择节点且只能一个节点！"), 10086);
 		return;
 	}
 
@@ -617,13 +617,7 @@ void FeedStoreManagerWdiget::SlotThreadAddFeedStore()
 	}
 }
 
-void FeedStoreManagerWdiget::SlotPopMsg(QString msg, int errorCode)
-{
-	MsgPopWidget*pQtWidget = new MsgPopWidget(msg, errorCode);
-	pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
-	pQtWidget->setWindowModality(Qt::ApplicationModal);
-	pQtWidget->show();
-}
+
 
 
 void FeedStoreManagerWdiget::SlotSearchFeedStore()
@@ -662,6 +656,7 @@ void FeedStoreManagerWdiget::SlotSearchAreaOutFeedStore()
 	}
 	if (nCount > 1 || nCount == 0)
 	{
+		emit sig_NotifyMsg(QString::fromLocal8Bit("请选择节点且只能一个节点！"), 10086);
 		return;
 	}
 
