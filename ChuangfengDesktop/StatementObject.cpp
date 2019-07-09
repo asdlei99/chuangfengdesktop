@@ -12,32 +12,39 @@ StatementObject::~StatementObject()
 {
 }
 
-bool StatementObject::FillTableData(map<QString, map<accountType, tuple<double, double>>> _dataMap)
+bool StatementObject::FillTableData(double initGeneral, double initBak,  map<QString, tableViewItemStruct> _dataMap)
 {
 	QExcel object(m_strTablePath);
 	object.selectSheet("Sheet1");
 	int iInsertRaw = m_iDataStartRaw;
 	double iTotalIncom = 0, iTotalPay = 0, iBakIncom = 0, iBakPay = 0;
+	iTotalIncom += initGeneral;
+	iBakIncom += initBak;
+	object.setCellString(iInsertRaw, 1, QString::fromLocal8Bit("总账号期初余额"));
+	object.setCellString(iInsertRaw, 2, QString::number(initGeneral) );
+	iInsertRaw++;
+	object.setCellString(iInsertRaw, 1, QString::fromLocal8Bit("备用金期初余额"));
+	object.setCellString(iInsertRaw, 6, QString::number(initBak));
+	iInsertRaw++;
 	for (auto&kvp : _dataMap)
 	{
 		object.setCellString(iInsertRaw, 1, kvp.first);
-		for (auto&skvp : kvp.second)
-		{
-			if (skvp.first == EN_Total)
+		
+			if (kvp.second.bType &0x01)
 			{
-				object.setCellString(iInsertRaw, 2, QString::number(get<0>(skvp.second)));
-				iTotalIncom += get<0>(skvp.second);
-				object.setCellString(iInsertRaw, 3, QString::number(get<1>(skvp.second)));
-				iTotalPay += get<1>(skvp.second);
+				object.setCellString(iInsertRaw, 2, QString::number(kvp.second.generalIncome)=="0"?"": QString::number(kvp.second.generalPay));
+				iTotalIncom += kvp.second.generalIncome;
+				object.setCellString(iInsertRaw, 3, QString::number(kvp.second.generalPay) == "0" ? "" : QString::number(kvp.second.generalPay));
+				iTotalPay += kvp.second.generalPay;
 			}
-			else
+			if(kvp.second.bType & 0x10)
 			{
-				object.setCellString(iInsertRaw, 6, QString::number(get<0>(skvp.second)));
-				iBakIncom += get<0>(skvp.second);
-				object.setCellString(iInsertRaw, 7, QString::number(get<1>(skvp.second)));
-				iBakPay += get<1>(skvp.second);
+				object.setCellString(iInsertRaw, 6, QString::number(kvp.second.bakIncome) == "0" ? "" : QString::number(kvp.second.bakIncome));
+				iBakIncom += kvp.second.bakIncome;
+				object.setCellString(iInsertRaw, 7, QString::number(kvp.second.bakPay) == "0" ? "" : QString::number(kvp.second.bakPay));
+				iBakPay += kvp.second.bakPay;
 			}
-		}
+		
 		iInsertRaw++;
 	}
 	object.setCellString(iInsertRaw, 2, QString::number(iTotalIncom));

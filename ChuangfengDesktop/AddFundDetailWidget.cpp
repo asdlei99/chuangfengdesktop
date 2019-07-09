@@ -100,7 +100,7 @@ void AddFundDetailWidget::SlotCommitAction()
 	}
 	else
 	{
-		taskName = ui->share_comboBox->currentText();
+		taskName = ui->subject_comboBox->currentText();
 	}
 	if (ui->share_comboBox->currentText() == QString::fromLocal8Bit("×Ô¶¨Òå"))
 	{

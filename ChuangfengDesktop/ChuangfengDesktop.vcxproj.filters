@@ -34,6 +34,12 @@
     <Filter Include="TableObject">
       <UniqueIdentifier>{55042d7e-9ca5-4d41-91b6-42a66f1c8063}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Report">
+      <UniqueIdentifier>{7941d837-f0da-412c-b98a-9bf2f3b46880}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PopWidget">
+      <UniqueIdentifier>{7fa78fe4-2d45-408e-85db-1e84b18dd701}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -111,43 +117,10 @@
     <ClCompile Include="DetailAreaLayoutManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TotalReportManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NopayReportManger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShareReportManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DetailShareReportManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MaterielReportManger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StoreReportManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MaterialManagerWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FeedStoreManagerWdiget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AddUserWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common2ParamWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CommonDependenceWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AddFundDetailWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AddNoPayDetailWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SingletonHttpRequest.cpp">
@@ -156,26 +129,59 @@
     <ClCompile Include="globalVariable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MsgPopWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AddMaterialWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DescMaterialWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AddFeedStoreWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DescFeedStoreWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FeedingManagerWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MaterielReportManger.cpp">
+      <Filter>Report</Filter>
+    </ClCompile>
+    <ClCompile Include="StoreReportManager.cpp">
+      <Filter>Report</Filter>
+    </ClCompile>
+    <ClCompile Include="NopayReportManger.cpp">
+      <Filter>Report</Filter>
+    </ClCompile>
+    <ClCompile Include="TotalReportManager.cpp">
+      <Filter>Report</Filter>
+    </ClCompile>
+    <ClCompile Include="ShareReportManager.cpp">
+      <Filter>Report</Filter>
+    </ClCompile>
+    <ClCompile Include="DetailShareReportManager.cpp">
+      <Filter>Report</Filter>
+    </ClCompile>
+    <ClCompile Include="MsgPopWidget.cpp">
+      <Filter>PopWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="DescMaterialWidget.cpp">
+      <Filter>PopWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="AddFundDetailWidget.cpp">
+      <Filter>PopWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonDependenceWidget.cpp">
+      <Filter>PopWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="Common2ParamWidget.cpp">
+      <Filter>PopWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="AddUserWidget.cpp">
+      <Filter>PopWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="AddNoPayDetailWidget.cpp">
+      <Filter>PopWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="AddFeedStoreWidget.cpp">
+      <Filter>PopWidget</Filter>
+    </ClCompile>
     <ClCompile Include="AddFeedingWidget.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>PopWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="AddMaterialWidget.cpp">
+      <Filter>PopWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="DescFeedStoreWidget.cpp">
+      <Filter>PopWidget</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -239,31 +245,7 @@
     <QtMoc Include="NoPayLayoutManager.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="TotalReportManager.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="NopayReportManger.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="ShareReportManager.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="DetailShareReportManager.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="MaterielReportManger.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="StoreReportManager.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="AddUserWidget.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="SingletonHttpRequest.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="Common2ParamWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="CategoryLayoutManager.h">
@@ -275,38 +257,65 @@
     <QtMoc Include="AreaLayoutManager.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="CommonDependenceWidget.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="DetailAreaLayoutManager.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="ShareItemLayoutManager.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="MsgPopWidget.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="AddFundDetailWidget.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="AddNoPayDetailWidget.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="AddMaterialWidget.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="DescMaterialWidget.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="AddFeedStoreWidget.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="DescFeedStoreWidget.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="FeedingManagerWidget.h">
       <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="TotalReportManager.h">
+      <Filter>Report</Filter>
+    </QtMoc>
+    <QtMoc Include="MaterielReportManger.h">
+      <Filter>Report</Filter>
+    </QtMoc>
+    <QtMoc Include="NopayReportManger.h">
+      <Filter>Report</Filter>
+    </QtMoc>
+    <QtMoc Include="ShareReportManager.h">
+      <Filter>Report</Filter>
+    </QtMoc>
+    <QtMoc Include="StoreReportManager.h">
+      <Filter>Report</Filter>
+    </QtMoc>
+    <QtMoc Include="DetailShareReportManager.h">
+      <Filter>Report</Filter>
+    </QtMoc>
+    <QtMoc Include="AddFundDetailWidget.h">
+      <Filter>PopWidget</Filter>
+    </QtMoc>
+    <QtMoc Include="AddNoPayDetailWidget.h">
+      <Filter>PopWidget</Filter>
+    </QtMoc>
+    <QtMoc Include="AddUserWidget.h">
+      <Filter>PopWidget</Filter>
+    </QtMoc>
+    <QtMoc Include="AddMaterialWidget.h">
+      <Filter>PopWidget</Filter>
+    </QtMoc>
+    <QtMoc Include="AddFeedStoreWidget.h">
+      <Filter>PopWidget</Filter>
+    </QtMoc>
+    <QtMoc Include="AddFeedingWidget.h">
+      <Filter>PopWidget</Filter>
+    </QtMoc>
+    <QtMoc Include="DescMaterialWidget.h">
+      <Filter>PopWidget</Filter>
+    </QtMoc>
+    <QtMoc Include="DescFeedStoreWidget.h">
+      <Filter>PopWidget</Filter>
+    </QtMoc>
+    <QtMoc Include="Common2ParamWidget.h">
+      <Filter>PopWidget</Filter>
+    </QtMoc>
+    <QtMoc Include="CommonDependenceWidget.h">
+      <Filter>PopWidget</Filter>
+    </QtMoc>
+    <QtMoc Include="MsgPopWidget.h">
+      <Filter>PopWidget</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -402,9 +411,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="globalVariable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AddFeedingWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

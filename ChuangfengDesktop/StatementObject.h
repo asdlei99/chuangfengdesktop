@@ -5,10 +5,13 @@
 using namespace std;
 
 
-
-enum accountType {
-	EN_Total = 1,
-	EN_Bak
+struct  tableViewItemStruct
+{
+	unsigned short bType = 0; //змеЫ 0x01,0x10
+	double generalIncome = 0;
+	double  generalPay = 0;
+	double bakIncome = 0;
+	double  bakPay = 0;
 };
 
 class StatementObject :public QObject
@@ -19,7 +22,7 @@ public:
 	StatementObject(QString _strTablePath);
 	~StatementObject();
 public:
-	bool FillTableData(map<QString, map<accountType, tuple<double, double>>> _dataMap);
+	bool FillTableData(double initGeneral,double initBak, map<QString, tableViewItemStruct> _dataMap);
 private:
 	bool InitTableForm();
 private:

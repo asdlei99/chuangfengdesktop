@@ -9,6 +9,10 @@
 #include <QtMath>
 #include <QHeaderView>
 #include "NoFocusDelegate.h"
+#include "MsgPopWidget.h"
+#include <QFileDialog>
+#include <QAxObject>
+#include <QAxWidget>
 #ifdef Q_OS_WIN
 #include <qt_windows.h>
 #include <Windowsx.h>
@@ -160,4 +164,35 @@ void MoveableFramelessWindow::onSetTableAttribute(QTableView *pTableView, const 
 	pTableView->verticalHeader()->setHidden(true);
 	//点击表时不对表头行光亮（获取焦点） 
 	pTableView->horizontalHeader()->setHighlightSections(false);
+}
+
+void MoveableFramelessWindow::SlotMsgPop(QString msg, int errorcode)
+{
+	MsgPopWidget*pQtWidget = new MsgPopWidget(msg, errorcode);
+	pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
+	pQtWidget->setWindowModality(Qt::ApplicationModal);
+	pQtWidget->show();
+}
+
+bool MoveableFramelessWindow::exportToExcel(QString&excelPath)
+{
+	excelPath = QFileDialog::getSaveFileName(this, QString::fromLocal8Bit("导出表格"), ".", "Microsoft Office(*.xlsx)");//获取保存路径
+	if (!excelPath.isEmpty()) {
+		QAxObject *excel = new QAxObject(this);
+		excel->setControl("Excel.Application");//连接Excel控件
+		excel->dynamicCall("SetVisible (bool Visible)", "false");//不显示窗体
+		excel->setProperty("DisplayAlerts", false);//不显示任何警告信息。如果为true那么在关闭是会出现类似“文件已修改，是否保存”的提示
+
+		QAxObject *workbooks = excel->querySubObject("WorkBooks");//获取工作簿集合
+		workbooks->dynamicCall("Add");//新建一个工作簿
+		QAxObject *workbook = excel->querySubObject("ActiveWorkBook");//获取当前工作簿
+		QAxObject *worksheets = workbook->querySubObject("Sheets");//获取工作表集合
+		QAxObject *worksheet = worksheets->querySubObject("Item(int)", 1);//获取工作表集合的工作表1，即sheet1
+		workbook->dynamicCall("SaveAs(const QString&)", QDir::toNativeSeparators(excelPath));//保存至filepath，注意一定要用QDir::toNativeSeparators将路径中的"/"转换为"\"，不然一定保存不了。
+		workbook->dynamicCall("Close()");//关闭工作簿
+		excel->dynamicCall("Quit()");//关闭excel
+		delete excel;
+		excel = NULL;
+	}
+	return true;
 }

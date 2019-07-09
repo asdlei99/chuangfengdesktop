@@ -9,12 +9,11 @@
 #include <QtMath>
 #include "iconhelper.h"
 #include "commomdef.h"
+#include "SingletonHttpRequest.h"
+#include "globalVariable.h"
 
 void TotalReportManager::InitLayout()
 {
-	//m_pViewHeadDeleagte = new CCheckBoxHeaderView(0, Qt::Horizontal, m_pUi->detailarea_tableView);
-	//m_pUi->detailarea_tableView->setHorizontalHeader(m_pViewHeadDeleagte);
-	//connect(m_pViewHeadDeleagte, SIGNAL(sig_AllChecked(bool)), this, SLOT(slotCheckBoxStateChanged(bool)));
  	m_pViewModel = new QStandardItemModel();
  	ui->total_reporttableView->setModel(m_pViewModel);
  	m_pViewModel->setColumnCount(8);
@@ -28,36 +27,8 @@ void TotalReportManager::InitLayout()
  	m_pViewModel->setHeaderData(7, Qt::Horizontal, QString::fromLocal8Bit("½áÓà"));
  	onSetTableAttribute(ui->total_reporttableView, 8);
  	ui->total_reporttableView->horizontalHeader()->setStretchLastSection(false);
- 	int nCount = 0;
- 	for (auto i = 0; i < 10; i++)
- 	{
- 		m_pViewModel->setItem(i, 0, new QStandardItem(QString::fromLocal8Bit("×ÜÕËºÅÆÚ³õÓà¶î")));
- 		/*m_pViewModel->item(i, 0)->setCheckable(tru)));
- 		m_pViewModel->setItem(i, 2, new QStandardItem()));
- 		m_pViewModel->setItem(i, 2, new QStandardItem(e);*/
- 
- 		m_pViewModel->setItem(i, 1, new QStandardItem(QString::number(209637.89)));
- 		m_pViewModel->setItem(i, 2, new QStandardItem(QString::fromLocal8Bit("0")));
- 		m_pViewModel->setItem(i, 3, new QStandardItem(QString::fromLocal8Bit("0")));
- 
- 		
- 
- 		nCount++;
- 	}
- 	for (auto i = 0; i < 10; i++)
- 	{
- 		m_pViewModel->setItem(i, 5, new QStandardItem(QString::number(209637.89)));
- 		m_pViewModel->setItem(i, 6, new QStandardItem(QString::fromLocal8Bit("0")));
- 		m_pViewModel->setItem(i, 7, new QStandardItem(QString::fromLocal8Bit("0")));
- 	}
- 	ui->total_reporttableView->setColumnWidth(0, 160);
- 	ui->total_reporttableView->setColumnWidth(1, 80);
- 	ui->total_reporttableView->setColumnWidth(2, 80);
- 	ui->total_reporttableView->setColumnWidth(3, 80);
- 
- 	ui->total_reporttableView->setColumnWidth(5, 80);
- 	ui->total_reporttableView->setColumnWidth(6, 80);
- 	ui->total_reporttableView->setColumnWidth(7, 80);
+ 	
+ 	
 }
 
 
@@ -74,6 +45,18 @@ TotalReportManager::TotalReportManager(QWidget *parent)
 	ui->max_restore_btn->setProperty("maximizeProperty", "maximize");
 	ui->max_restore_btn->setStyle(QApplication::style());
 	InitLayout();
+	QDateTime current_date_time = QDateTime::currentDateTime();
+	ui->total_report_enddateEdit->setCalendarPopup(true);
+	ui->total_report_enddateEdit->setDateTime(current_date_time);
+	ui->totalreport_startdateEdit->setCalendarPopup(true);
+	ui->totalreport_startdateEdit->setDateTime(current_date_time);
+	connect(ui->totalreport_search_btn, &QPushButton::clicked, this, &TotalReportManager::SlotSearchBtnAction);
+	connect(ui->totalreport_export_btn, &QPushButton::clicked, this, [this]()->void {
+		exportToExcel(m_ExcelPath);
+		StatementObject test(m_ExcelPath);
+		test.FillTableData(m_initGeneral, m_initBak, m_tableViewMap);
+	});
+	m_tableViewMap.clear();
 }
 
 
@@ -117,6 +100,171 @@ void TotalReportManager::slotCheckBoxStateChanged(bool status)
 		for (int i = 0; i < m_pViewModel->rowCount(); ++i)
 			m_pViewModel->item(i, 0)->setCheckState(Qt::Unchecked);
 	}
+}
+
+void TotalReportManager::SlotSearchBtnAction()
+{
+	m_tableViewMap.clear();
+	m_pViewModel->removeRows(0, m_pViewModel->rowCount());
+	QThread *m_pThread = new QThread;
+	connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadSearchGeneral()));
+	connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+	m_pThread->start();
+}
+
+void TotalReportManager::SlotThreadSearchGeneral()
+{
+
+	QString strParam = QString("starttime=%1&endtime=%2").arg(ui->totalreport_startdateEdit->text()).arg(ui->total_report_enddateEdit->text());
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getGeneralDetail"
+		, TempToken, strParam, responseData);
+
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = array.size()-1; i >=0; i--)
+			{
+				QJsonValue userArray = array.at(i);
+				QJsonObject userObject = userArray.toObject();
+				if (i == array.size() - 1)
+				{
+					m_initGeneral = userObject["surplus"].toString().toDouble() + userObject["pay"].toString().toDouble() 
+						- userObject["income"].toString().toDouble();
+				}
+				tableViewItemStruct&item = m_tableViewMap[userObject["task_name"].toString()];
+				item.generalIncome += userObject["income"].toString().toDouble();
+				item.generalPay += userObject["pay"].toString().toDouble();
+				item.bType |= 0x01;
+				
+			}
+			
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("ÍøÂçÇëÇóÒì³££¡"), errorcode);
+	}
+
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getBakDetail"
+		, TempToken, strParam, responseData);
+
+
+	 parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = array.size()-1; i >=0; i--)
+			{
+				QJsonValue userArray = array.at(i);
+				QJsonObject userObject = userArray.toObject();
+				if (i == array.size() - 1)
+				{
+					m_initBak = userObject["surplus"].toString().toDouble() + userObject["pay"].toString().toDouble()
+						- userObject["income"].toString().toDouble();
+				}
+				
+				tableViewItemStruct&item = m_tableViewMap[userObject["task_name"].toString()];
+				item.bakIncome += userObject["income"].toString().toDouble();
+				item.bakPay += userObject["pay"].toString().toDouble();
+				item.bType |= 0x10;
+				
+			}
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("ÍøÂçÇëÇóÒì³££¡"), errorcode);
+	}
+	AddGeneralTableview();
+}
+
+void TotalReportManager::FormatTableView()
+{
+	ui->total_reporttableView->setColumnWidth(0, 160);
+	ui->total_reporttableView->setColumnWidth(1, 80);
+	ui->total_reporttableView->setColumnWidth(2, 80);
+	ui->total_reporttableView->setColumnWidth(3, 80);
+
+	ui->total_reporttableView->setColumnWidth(5, 80);
+	ui->total_reporttableView->setColumnWidth(6, 80);
+	ui->total_reporttableView->setColumnWidth(7, 80);
+}
+
+void TotalReportManager::AddGeneralTableview()
+{
+	double totalGeneralIncome = 0;
+	double totalGeneralOut = 0;
+	double totalBakIncome = 0;
+	double totalBakOut = 0;
+	m_pViewModel->setItem(0, 0, new QStandardItem(QString::fromLocal8Bit("×ÜÕËºÅÆÚ³õÓà¶î")));
+	m_pViewModel->setItem(0, 1, new QStandardItem(QString::number(m_initGeneral)));
+	m_pViewModel->setItem(0, 2, new QStandardItem(QString::fromLocal8Bit("")));
+	m_pViewModel->setItem(0, 3, new QStandardItem(QString::fromLocal8Bit("")));
+	m_pViewModel->setItem(1, 0, new QStandardItem(QString::fromLocal8Bit("±¸ÓÃ½ð³õÆÚÓà¶î")));
+	m_pViewModel->setItem(1, 5, new QStandardItem(QString::number(m_initBak)));
+	m_pViewModel->setItem(1, 6, new QStandardItem(QString::fromLocal8Bit("")));
+	m_pViewModel->setItem(1, 7, new QStandardItem(QString::fromLocal8Bit("")));
+	totalGeneralIncome += m_initGeneral;
+	totalBakIncome += m_initBak;
+	int nCount = 2;
+	for (auto&kvp:m_tableViewMap)
+	{
+		m_pViewModel->setItem(nCount, 0, new QStandardItem(kvp.first));
+		if (kvp.second.bType&0x01)
+		{
+			totalGeneralIncome += kvp.second.generalIncome;
+			totalGeneralOut += kvp.second.generalPay;
+			m_pViewModel->setItem(nCount, 1, new QStandardItem(QString::number(kvp.second.generalIncome) == "0" ? "" : QString::number(kvp.second.generalIncome)));
+			m_pViewModel->setItem(nCount, 2, new QStandardItem(QString::number(kvp.second.generalPay)=="0"?"": QString::number(kvp.second.generalPay)));
+			m_pViewModel->setItem(nCount, 3, new QStandardItem(QString::fromLocal8Bit("")));
+		}
+		if (kvp.second.bType & 0x10)
+		{
+			totalBakIncome += kvp.second.bakIncome;
+			totalBakOut += kvp.second.bakPay;
+			m_pViewModel->setItem(nCount, 5, new QStandardItem(QString::number(kvp.second.bakIncome) == "0" ? "" : QString::number(kvp.second.bakIncome)));
+			m_pViewModel->setItem(nCount, 6, new QStandardItem(QString::number(kvp.second.bakPay) == "0" ? "" : QString::number(kvp.second.bakPay)));
+			m_pViewModel->setItem(nCount, 7, new QStandardItem(QString::fromLocal8Bit("")));
+		}
+		nCount++;
+	}
+
+	m_pViewModel->setItem(nCount, 0, new QStandardItem(QString::fromLocal8Bit("½áËã")));
+	m_pViewModel->setItem(nCount, 1, new QStandardItem(QString::number(totalGeneralIncome)));
+	m_pViewModel->setItem(nCount, 2, new QStandardItem(QString::number(totalGeneralOut)));
+	m_pViewModel->setItem(nCount, 3, new QStandardItem(QString::number(totalGeneralIncome- totalGeneralOut)));
+
+	m_pViewModel->setItem(nCount, 5, new QStandardItem(QString::number(totalBakIncome)));
+	m_pViewModel->setItem(nCount, 6, new QStandardItem(QString::number(totalBakOut)));
+	m_pViewModel->setItem(nCount, 7, new QStandardItem(QString::number(totalBakIncome- totalBakOut)));
+	FormatTableView();
 }
 
 void TotalReportManager::mouseDoubleClickEvent(QMouseEvent *event)

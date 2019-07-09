@@ -61,6 +61,12 @@ protected slots:
 	//主题改变
 	virtual void onThemeColorChange(QString colorStr) {}
 	virtual void onSetTableAttribute(QTableView *pTableView,const int cloum,bool bStretchLast = true);
+	void SlotMsgPop(QString msg, int errorcode);
+	bool exportToExcel( QString&excelPath);
+
+signals:
+	void sig_NotifyMsg(QString msg, int errorCode);
+
 protected:
 	int m_nBorderWidth; //m_nBorder表示鼠标位于边框缩放范围的宽度
 };

@@ -31,3 +31,5 @@ extern map<int, AreaDetailStruct> g_areaList;
 extern map<int, CostAreaStruct> g_CostAreaList;
 
 
+
+
