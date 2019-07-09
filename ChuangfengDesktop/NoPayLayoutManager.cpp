@@ -139,8 +139,9 @@ void NoPayLayoutManager::SlothreadAddnopay()
 				item.strPayment = nopayDetailObject["Payment"].toString();
 				item.strInitValue = nopayDetailObject["init_amount"].toString();
 				AddTableViewItem(item);
-				emit sig_NotifyMsg(QString::fromLocal8Bit("添加成功！"), 0);
+				
 			}
+			emit sig_NotifyMsg(QString::fromLocal8Bit("添加成功！"), 0);
 		}
 		else
 		{

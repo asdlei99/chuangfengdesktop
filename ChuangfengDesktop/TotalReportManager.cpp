@@ -53,11 +53,13 @@ TotalReportManager::TotalReportManager(QWidget *parent)
 	ui->totalreport_startdateEdit->setDateTime(current_date_time);
 	connect(ui->totalreport_search_btn, &QPushButton::clicked, this, &TotalReportManager::SlotSearchBtnAction);
 	connect(ui->totalreport_export_btn, &QPushButton::clicked, this, [this]()->void {
-		QThread *m_pThread = new QThread;
-		this->moveToThread(m_pThread);
-		connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadExportReport()));
-		connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
-		m_pThread->start();
+		m_ExcelPath = QFileDialog::getSaveFileName(0, QString::fromLocal8Bit("导出表格"), ".", "Microsoft Office(*.xlsx)");//获取保存路径
+		if (!m_ExcelPath.isEmpty()) {
+			ui->totalreport_export_btn->setEnabled(false);
+			StatementObject* pthread = new StatementObject(m_ExcelPath,m_initGeneral, m_initBak, m_tableViewMap);
+			connect(pthread, SIGNAL(finished()), this, SLOT(finishedThreadBtnSlot()));
+			pthread->start();
+		}
 		
 	});
 	m_tableViewMap.clear();
@@ -118,7 +120,6 @@ void TotalReportManager::SlotSearchBtnAction()
 
 void TotalReportManager::SlotThreadSearchGeneral()
 {
-
 	QString strParam = QString("starttime=%1&endtime=%2").arg(ui->totalreport_startdateEdit->text()).arg(ui->total_report_enddateEdit->text());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getGeneralDetail"
@@ -143,10 +144,8 @@ void TotalReportManager::SlotThreadSearchGeneral()
 				tableViewItemStruct&item = m_tableViewMap[userObject["task_name"].toString()];
 				item.generalIncome += userObject["income"].toString().toDouble();
 				item.generalPay += userObject["pay"].toString().toDouble();
-				item.bType |= 0x01;
-				
-			}
-			
+				item.bType |= 0x01;	
+			}	
 		}
 		else
 		{
@@ -166,8 +165,6 @@ void TotalReportManager::SlotThreadSearchGeneral()
 
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getBakDetail"
 		, TempToken, strParam, responseData);
-
-
 	 parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
 	{
@@ -183,12 +180,10 @@ void TotalReportManager::SlotThreadSearchGeneral()
 					m_initBak = userObject["surplus"].toString().toDouble() + userObject["pay"].toString().toDouble()
 						- userObject["income"].toString().toDouble();
 				}
-				
 				tableViewItemStruct&item = m_tableViewMap[userObject["task_name"].toString()];
 				item.bakIncome += userObject["income"].toString().toDouble();
 				item.bakPay += userObject["pay"].toString().toDouble();
 				item.bType |= 0x10;
-				
 			}
 		}
 		else
@@ -274,19 +269,16 @@ void TotalReportManager::AddGeneralTableview()
 void TotalReportManager::SlotThreadExportReport()
 {
 	//多线程必须初始化
-	CoInitializeEx(NULL, COINIT_MULTITHREADED);
-	m_ExcelPath = "";
-	exportToExcel(m_ExcelPath);
-	if (m_ExcelPath != "")
-	{
-		StatementObject test(m_ExcelPath);
-		test.FillTableData(m_initGeneral, m_initBak, m_tableViewMap);
-		emit sig_NotifyMsg(QString::fromLocal8Bit("导出成功！"), 0);
-	}
 	
+
 }
 
 
+
+void TotalReportManager::finishedThreadBtnSlot()
+{
+	ui->totalreport_export_btn->setEnabled(true);
+}
 
 void TotalReportManager::mouseDoubleClickEvent(QMouseEvent *event)
 {

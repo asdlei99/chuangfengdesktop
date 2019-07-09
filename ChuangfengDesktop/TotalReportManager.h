@@ -23,7 +23,7 @@ private slots:
 	void FormatTableView();
 	void AddGeneralTableview();
 	void SlotThreadExportReport();
-
+	void finishedThreadBtnSlot();
 
 private:
 	virtual void mouseDoubleClickEvent(QMouseEvent *event);

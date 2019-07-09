@@ -9,6 +9,8 @@
 #include <QtMath>
 #include "iconhelper.h"
 #include "commomdef.h"
+#include "SingletonHttpRequest.h"
+#include "globalVariable.h"
 
 void NopayReportManger::InitLayout()
 {
@@ -25,38 +27,140 @@ void NopayReportManger::InitLayout()
   	m_pViewModel->setHeaderData(7, Qt::Horizontal, QString::fromLocal8Bit("ÆÚÄ©Óà¶î"));
   	onSetTableAttribute(ui->nopayreport_tableView, 8);
 	ui->nopayreport_tableView->horizontalHeader()->setStretchLastSection(false);
-  	int nCount = 0;
-  	for (auto i = 0; i < 10; i++)
-  	{
-  		m_pViewModel->setItem(i, 0, new QStandardItem(QString::fromLocal8Bit("×ÜÕËºÅÆÚ³õÓà¶î")));
-  		/*m_pViewModel->item(i, 0)->setCheckable(tru)));
-  		m_pViewModel->setItem(i, 2, new QStandardItem()));
-  		m_pViewModel->setItem(i, 2, new QStandardItem(e);*/
-  
-  		m_pViewModel->setItem(i, 1, new QStandardItem(QString::number(209637.89)));
-  		m_pViewModel->setItem(i, 2, new QStandardItem(QString::fromLocal8Bit("0")));
-  		m_pViewModel->setItem(i, 3, new QStandardItem(QString::fromLocal8Bit("0")));
-  
-  
-  
-  		nCount++;
-  	}
-  	for (auto i = 0; i < 10; i++)
-  	{
-  		m_pViewModel->setItem(i, 5, new QStandardItem(QString::number(209637.89)));
-  		m_pViewModel->setItem(i, 6, new QStandardItem(QString::fromLocal8Bit("0")));
-  		m_pViewModel->setItem(i, 7, new QStandardItem(QString::fromLocal8Bit("0")));
-  	}
-	ui->nopayreport_tableView->setColumnWidth(0, 160);
-	ui->nopayreport_tableView->setColumnWidth(1, 80);
-	ui->nopayreport_tableView->setColumnWidth(2, 80);
-	ui->nopayreport_tableView->setColumnWidth(3, 80);
-  
-	ui->nopayreport_tableView->setColumnWidth(5, 80);
-	ui->nopayreport_tableView->setColumnWidth(6, 80);
-	ui->nopayreport_tableView->setColumnWidth(7, 80);
+  	
 }
 
+
+void NopayReportManger::SlotThreadSearchBakInfo()
+{
+	map<QString, vector<DuesStruct>> tempList;
+	QString strParam = QString("");
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getDuesList"
+		, TempToken, strParam, responseData);
+
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = array.size() - 1; i >= 0; i--)
+			{
+				QJsonValue userArray = array.at(i);
+				QJsonObject userObject = userArray.toObject();
+				DuesStruct&item = m_DuesInfoMap[userObject["supplier"].toString()];
+				item.abstract = userObject["abstract"].toString();
+				item.initDues = userObject["surplus"].toString().toDouble();
+				item.surplus = userObject["surplus"].toString().toDouble();
+				item.supplier = userObject["supplier"].toString();
+			}
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("ÍøÂçÇëÇóÒì³££¡"), errorcode);
+	}
+
+
+	 strParam = QString("starttime=%1&endtime=%2").arg(ui->nopay_report_startdateEdit->text()).arg(ui->nopay_report_enddateEdit->text());
+	
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getDuesDetail"
+		, TempToken, strParam, responseData);
+
+
+	 parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = array.size() - 1; i >= 0; i--)
+			{
+				QJsonValue userArray = array.at(i);
+				QJsonObject userObject = userArray.toObject();
+				vector<DuesStruct>&vec = tempList[userObject["supplier"].toString()];
+				DuesStruct item;
+				item.abstract = userObject["abstract"].toString();
+				item.added = userObject["added"].toString().toDouble();
+				item.adjustment = userObject["adjustment"].toString().toDouble();
+				item.back = userObject["back"].toString().toDouble();
+				item.pay = userObject["Payment"].toString().toDouble();
+				item.initDues = userObject["initDues"].toString().toDouble();
+				item.surplus = userObject["surplus"].toString().toDouble();
+				item.supplier = userObject["supplier"].toString();
+				vec.push_back(item);
+				
+			}
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("ÍøÂçÇëÇóÒì³££¡"), errorcode);
+	}
+
+	for (auto&kvp:m_DuesInfoMap)
+	{
+		auto &itor = tempList.find(kvp.first);
+		if (tempList.end() != itor)
+		{
+			int nCount = itor->second.size();
+			for (auto i = 0;i< nCount;i++)
+			{
+				if (i == 0)
+				{
+					kvp.second.initDues = itor->second[i].initDues;
+				}
+				if (i == nCount -1)
+				{
+					kvp.second.surplus = itor->second[i].surplus;
+				}
+				kvp.second.added += itor->second[i].added;
+				kvp.second.adjustment += itor->second[i].adjustment;
+				kvp.second.back += itor->second[i].back;
+				kvp.second.pay += itor->second[i].pay;
+			}
+		}
+	}
+	
+	int nCount = 0;
+	for (auto&kvp : m_DuesInfoMap)
+	{
+		m_pViewModel->setItem(nCount, 0, new QStandardItem(kvp.second.supplier));
+		m_pViewModel->setItem(nCount, 1, new QStandardItem(kvp.second.abstract));
+		m_pViewModel->setItem(nCount, 2, new QStandardItem(QString::number(kvp.second.initDues)));
+		m_pViewModel->setItem(nCount, 3, new QStandardItem(QString::number(kvp.second.adjustment)));
+		m_pViewModel->setItem(nCount, 4, new QStandardItem(QString::number(kvp.second.added)));
+		m_pViewModel->setItem(nCount, 5, new QStandardItem(QString::number(kvp.second.back)));
+		m_pViewModel->setItem(nCount, 6, new QStandardItem(QString::number(kvp.second.pay)));
+		m_pViewModel->setItem(nCount, 7, new QStandardItem(QString::number(kvp.second.surplus)));
+
+		nCount++;
+	}
+	
+	
+}
 
 NopayReportManger::NopayReportManger(QWidget *parent)
 	:MoveableFramelessWindow(parent)
@@ -71,6 +175,19 @@ NopayReportManger::NopayReportManger(QWidget *parent)
 	ui->max_restore_btn->setProperty("maximizeProperty", "maximize");
 	ui->max_restore_btn->setStyle(QApplication::style());
 	InitLayout();
+	QDateTime current_date_time = QDateTime::currentDateTime();
+	ui->nopay_report_enddateEdit->setCalendarPopup(true);
+	ui->nopay_report_enddateEdit->setDateTime(current_date_time);
+	ui->nopay_report_startdateEdit->setCalendarPopup(true);
+	ui->nopay_report_startdateEdit->setDateTime(current_date_time);
+	connect(ui->nopay_report_search_btn, &QPushButton::clicked, this, [this]()->void {
+		//m_tableViewMap.clear();
+		m_pViewModel->removeRows(0, m_pViewModel->rowCount());
+		QThread *m_pThread = new QThread;
+		connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadSearchBakInfo()));
+		connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+		m_pThread->start();
+	});
 }
 
 

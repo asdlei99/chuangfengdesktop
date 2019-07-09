@@ -1,7 +1,7 @@
 #pragma once
 #include <map>
 #include <tuple>
-#include <QObject>
+#include <QThread>
 using namespace std;
 
 
@@ -14,19 +14,23 @@ struct  tableViewItemStruct
 	double  bakPay = 0;
 };
 
-class StatementObject :public QObject
+class StatementObject :public QThread
 {
 	Q_OBJECT
 
 public:
-	StatementObject(QString _strTablePath);
+	StatementObject(QString&path, double initGeneral, double initBak, map<QString, tableViewItemStruct> &list);
 	~StatementObject();
 public:
 	bool FillTableData(double initGeneral,double initBak, map<QString, tableViewItemStruct> _dataMap);
 private:
 	bool InitTableForm();
+	virtual void run();
 private:
 	QString m_strTablePath;
 	const int m_iDataStartRaw = 5;
+	map<QString, tableViewItemStruct> m_list;
+	double m_initGeneral;
+	double m_initBak;
 };
 

@@ -55,7 +55,7 @@ void AddNoPayDetailWidget::SlotCommitAction()
 {
 	QString time = ui->dateEdit->text();
 	QString suplier;
-	if (ui->comboBox->currentText() == "自定义")
+	if (ui->comboBox->currentText() == QString::fromLocal8Bit("自定义"))
 	{
 		suplier = ui->supplier_edit->text();
 	}
