@@ -181,12 +181,23 @@ NopayReportManger::NopayReportManger(QWidget *parent)
 	ui->nopay_report_startdateEdit->setCalendarPopup(true);
 	ui->nopay_report_startdateEdit->setDateTime(current_date_time);
 	connect(ui->nopay_report_search_btn, &QPushButton::clicked, this, [this]()->void {
-		//m_tableViewMap.clear();
+		m_DuesInfoMap.clear();
 		m_pViewModel->removeRows(0, m_pViewModel->rowCount());
 		QThread *m_pThread = new QThread;
 		connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadSearchBakInfo()));
 		connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
 		m_pThread->start();
+	});
+
+	connect(ui->nopay_report_export_btn, &QPushButton::clicked, this, [this]()->void {
+		m_ExcelPath = QFileDialog::getSaveFileName(0, QString::fromLocal8Bit("导出表格"), ".", "Microsoft Office(*.xlsx)");//获取保存路径
+		if (!m_ExcelPath.isEmpty()) {
+			ui->nopay_report_export_btn->setEnabled(false);
+			non_paymentObject* pthread = new non_paymentObject(m_DuesInfoMap,m_ExcelPath );
+			connect(pthread, SIGNAL(finished()), this, SLOT(finishedThreadBtnSlot()));
+			pthread->start();
+		}
+
 	});
 }
 
@@ -263,4 +274,9 @@ QWidget* NopayReportManger::getDragnWidget()
 	return ui->child_widget_title;
 }
 
+void NopayReportManger::finishedThreadBtnSlot()
+{
+	ui->nopay_report_export_btn->setEnabled(true);
+	emit sig_NotifyMsg(QString::fromLocal8Bit("导出成功！"), 0);
+}
 

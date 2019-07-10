@@ -1,6 +1,6 @@
 #include "StatementObject.h"
 #include "QExcel.h"
-#include <QFileDialog>
+
 #include <QAxObject>
 #include <QAxWidget>
 #include <windows.h>
@@ -17,51 +17,25 @@ StatementObject::~StatementObject()
 {
 }
 
-bool copyFileToPath(QString sourceDir, QString toDir, bool coverFileIfExist)
-{
-	toDir.replace("\\", "/");
-	if (sourceDir == toDir) {
-		return true;
-	}
-	if (!QFile::exists(sourceDir)) {
-		return false;
-	}
-	QDir *createfile = new QDir;
-	bool exist = createfile->exists(toDir);
-	if (exist) {
-		if (coverFileIfExist) {
-			createfile->remove(toDir);
-		}
-	}//end if
-
-	if (!QFile::copy(sourceDir, toDir))
-	{
-		return false;
-	}
-	return true;
-}
-
 
 void StatementObject::run()
 {
 	CoInitializeEx(NULL, COINIT_MULTITHREADED);
-	copyFileToPath("general.xlsx", m_strTablePath, true);
+	QExcel::copyFileToPath("general.xlsx", m_strTablePath, true);
 	QExcel object(m_strTablePath);
-	//object.selectSheet("Sheet1");
 	object.selectSheet(1);
-
-	object.setCellString("A1", QString::fromLocal8Bit("创丰五月份总收支表"), EnumTextAliPos::Center, 18, true);
-	object.setCellString("A2", QString::fromLocal8Bit("单位：元"), EnumTextAliPos::Right, 14, false);
-
-	object.setCellString("B3", QString::fromLocal8Bit("总账收支"), EnumTextAliPos::Center, 14, true);
-	object.setCellString("F3", QString::fromLocal8Bit("备用金收支"), EnumTextAliPos::Center, 14, true);
-	object.setCellString("A4", QString::fromLocal8Bit("项目"));
-	object.setCellString("B4", QString::fromLocal8Bit("借方"));
-	object.setCellString("C4", QString::fromLocal8Bit("贷方"));
-	object.setCellString("D4", QString::fromLocal8Bit("结余"));
-	object.setCellString("F4", QString::fromLocal8Bit("借方"));
-	object.setCellString("G4", QString::fromLocal8Bit("贷方"));
-	object.setCellString("H4", QString::fromLocal8Bit("结余"));
+// 	object.setCellString("A1", QString::fromLocal8Bit("创丰五月份总收支表"), EnumTextAliPos::Center, 18, true);
+// 	object.setCellString("A2", QString::fromLocal8Bit("单位：元"), EnumTextAliPos::Right, 14, false);
+// 
+// 	object.setCellString("B3", QString::fromLocal8Bit("总账收支"), EnumTextAliPos::Center, 14, true);
+// 	object.setCellString("F3", QString::fromLocal8Bit("备用金收支"), EnumTextAliPos::Center, 14, true);
+// 	object.setCellString("A4", QString::fromLocal8Bit("项目"));
+// 	object.setCellString("B4", QString::fromLocal8Bit("借方"));
+// 	object.setCellString("C4", QString::fromLocal8Bit("贷方"));
+// 	object.setCellString("D4", QString::fromLocal8Bit("结余"));
+// 	object.setCellString("F4", QString::fromLocal8Bit("借方"));
+// 	object.setCellString("G4", QString::fromLocal8Bit("贷方"));
+// 	object.setCellString("H4", QString::fromLocal8Bit("结余"));
 
 
 	int iInsertRaw = m_iDataStartRaw;

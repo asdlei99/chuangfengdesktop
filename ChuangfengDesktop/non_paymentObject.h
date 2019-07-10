@@ -1,41 +1,31 @@
 #pragma once
-#include <QObject>
+#include <QThread>
 #include <map>
 
 using namespace  std;
 
-struct non_paymentStruct //应付款总表数据结构
+struct DuesStruct
 {
-	non_paymentStruct() {
-		dbOpeningBalance = 0;
-		dbDeductio = 0;
-		dbAdd = 0;
-		dbReturn = 0;
-		dbPay = 0;
-		strMark = "";
-		dbRemainingSum = 0;
-	}
-	QString strMark;
-	double dbOpeningBalance;
-	double dbDeductio;
-	double dbAdd;
-	double dbReturn;
-	double dbPay;
-	double dbRemainingSum;
-
+	QString supplier = "";
+	QString abstract = "";
+	double  surplus = 0;
+	double initDues = 0;
+	double adjustment = 0;
+	double added = 0;
+	double pay = 0;
+	double back = 0;
 };
 
-class non_paymentObject :public QObject
+class non_paymentObject :public QThread
 {
 	Q_OBJECT
 public:
-	non_paymentObject(QString _strTablePath);
+	non_paymentObject(map<QString, DuesStruct> &_DuesInfoMap,QString _strTablePath);
 	~non_paymentObject();
-public:
-	bool FillTableData(map<QString, non_paymentStruct> _dataMap);
 private:
-	bool InitTableForm();
+	virtual void run();
 private:
 	QString m_strTablePath;
 	const int m_iDataStartRaw = 4;
+	map<QString, DuesStruct> m_DuesInfoMap;
 };

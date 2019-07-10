@@ -6,11 +6,12 @@
 #include <QStringList>  
 #include <QDebug>  
 #include <QColor>
-
+#include <QFileDialog>
 
 
 QExcel::QExcel(QString xlsFilePath, QObject *parent)
 {
+	m_path = xlsFilePath;
 	excel = 0;
 	workBooks = 0;
 	workBook = 0;
@@ -19,10 +20,10 @@ QExcel::QExcel(QString xlsFilePath, QObject *parent)
 
 	excel = new QAxObject("Excel.Application", parent);
 	workBooks = excel->querySubObject("Workbooks");
-	QFile file(xlsFilePath);
+	QFile file(m_path);
 	if (file.exists())
 	{
-		workBooks->dynamicCall("Open(const QString&)", xlsFilePath);
+		workBooks->dynamicCall("Open(const QString&)", m_path);
 		workBook = excel->querySubObject("ActiveWorkBook");
 		sheets = workBook->querySubObject("WorkSheets");
 	}
@@ -31,6 +32,11 @@ QExcel::QExcel(QString xlsFilePath, QObject *parent)
 QExcel::~QExcel()
 {
 	close();
+}
+
+void QExcel::init()
+{
+	
 }
 
 void QExcel::close()
@@ -347,3 +353,30 @@ void QExcel::setRowHeight(int row, int height)
 	r->setProperty("RowHeight", height);
 }
 
+bool QExcel::copyFileToPath(QString sourceDir, QString toDir, bool coverFileIfExist)
+{
+	toDir.replace("\\", "/");
+	if (sourceDir == toDir) {
+		return true;
+	}
+	if (!QFile::exists(sourceDir)) {
+		return false;
+	}
+	QDir *createfile = new QDir;
+	bool exist = createfile->exists(toDir);
+	if (exist) {
+		if (coverFileIfExist) {
+			createfile->remove(toDir);
+		}
+	}//end if
+
+	if (!QFile::copy(sourceDir, toDir))
+	{
+		delete createfile;
+		createfile = nullptr;
+		return false;
+	}
+	delete createfile;
+	createfile = nullptr;
+	return true;
+}

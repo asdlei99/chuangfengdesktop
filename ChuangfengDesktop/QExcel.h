@@ -18,6 +18,7 @@ public:
 	~QExcel();
 
 public:
+	void init();
 	QAxObject * getWorkBooks();
 	QAxObject * getWorkBook();
 	QAxObject * getWorkSheets();
@@ -58,6 +59,7 @@ public:
 	void getUsedRange(int *topLeftRow, int *topLeftColumn, int *bottomRightRow, int *bottomRightColumn);
 	void setColumnWidth(int column, int width);
 	void setRowHeight(int row, int height);
+	 bool static copyFileToPath(QString sourceDir, QString toDir, bool coverFileIfExist);
 	void setCellTextCenter(int row, int column);
 	void setCellTextPos(const QString& cell, EnumTextAliPos pos);
 	void setCellTextWrap(int row, int column, bool isWrap);
