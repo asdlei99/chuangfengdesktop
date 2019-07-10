@@ -210,7 +210,6 @@ void TotalReportManager::FormatTableView()
 	ui->total_reporttableView->setColumnWidth(1, 80);
 	ui->total_reporttableView->setColumnWidth(2, 80);
 	ui->total_reporttableView->setColumnWidth(3, 80);
-
 	ui->total_reporttableView->setColumnWidth(5, 80);
 	ui->total_reporttableView->setColumnWidth(6, 80);
 	ui->total_reporttableView->setColumnWidth(7, 80);
@@ -278,6 +277,7 @@ void TotalReportManager::SlotThreadExportReport()
 void TotalReportManager::finishedThreadBtnSlot()
 {
 	ui->totalreport_export_btn->setEnabled(true);
+	emit sig_NotifyMsg(QString::fromLocal8Bit("导出成功！"), 0);
 }
 
 void TotalReportManager::mouseDoubleClickEvent(QMouseEvent *event)

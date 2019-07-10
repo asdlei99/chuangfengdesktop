@@ -59,7 +59,7 @@ bool non_paymentObject::InitTableForm()
 	object.selectSheet("Sheet1");
 	object.mergeCells("A1:H1");
 	object.mergeCells("A2:H2");
-	object.setCellString("A1", QString::fromLocal8Bit("创丰五月份应付款及未付款"), EnumTextAliPos::Center, 18, true);
+	object.setCellString("A1", QString::fromLocal8Bit("创丰X月份应付款及未付款"), EnumTextAliPos::Center, 18, true);
 	object.setCellString("A2", QString::fromLocal8Bit("单位：元"), EnumTextAliPos::Right, 14, false);
 	object.setCellString("A3", QString::fromLocal8Bit("供应商"), EnumTextAliPos::Center, 14, true);
 	object.setCellString("B3", QString::fromLocal8Bit("摘要"), EnumTextAliPos::Center, 14, true);

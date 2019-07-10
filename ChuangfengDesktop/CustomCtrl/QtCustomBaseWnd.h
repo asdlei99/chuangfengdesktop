@@ -63,9 +63,6 @@ protected slots:
 	virtual void onThemeColorChange(QString colorStr) {}
 	virtual void onSetTableAttribute(QTableView *pTableView,const int cloum,bool bStretchLast = true);
 	void SlotMsgPop(QString msg, int errorcode);
-protected:
-	bool exportToExcel( QString&excelPath);
-
 signals:
 	void sig_NotifyMsg(QString msg, int errorCode);
 

@@ -98,6 +98,13 @@ void QExcel::setCellString(int row, int column, const QString& value)
 	range->dynamicCall("SetValue(const QString&)", value);
 }
 
+void QExcel::SetCell(QVariant item, QString A)
+{
+	QAxObject *range = sheet->querySubObject("Range(const QString&)", A);
+	bool ret = range->setProperty("Value", item);	
+	int a = 0;
+}
+
 void QExcel::setCellFontBold(int row, int column, bool isBold)
 {
 	QString cell;

@@ -42,6 +42,7 @@ public:
 	/* 单元格                                                                 */
 	/**************************************************************************/
 	void setCellString(int row, int column, const QString& value);
+	void SetCell(QVariant item, QString A);
 	//cell 例如 "A7"  
 	void setCellString(const QString& cell, const QString& value, const EnumTextAliPos& posType = EnumTextAliPos::Center, int fontSize = 11, bool bBold = false);
 	//range 例如 "A5:C7"  
@@ -82,6 +83,7 @@ private:
 	QAxObject * workBook;
 	QAxObject * sheets;
 	QAxObject * sheet;
+	QString m_path;
 };
 
 

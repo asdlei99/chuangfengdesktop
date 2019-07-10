@@ -21,10 +21,7 @@ class StatementObject :public QThread
 public:
 	StatementObject(QString&path, double initGeneral, double initBak, map<QString, tableViewItemStruct> &list);
 	~StatementObject();
-public:
-	bool FillTableData(double initGeneral,double initBak, map<QString, tableViewItemStruct> _dataMap);
 private:
-	bool InitTableForm();
 	virtual void run();
 private:
 	QString m_strTablePath;
