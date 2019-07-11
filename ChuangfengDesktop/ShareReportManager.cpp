@@ -380,21 +380,8 @@ void ShareReportManager::GetFixedAssetCostsShare()
 				 }	
 			}
 		}
-		else
-		{
-			QJsonObject rootObject = parse_doucment.object();
-			if (!rootObject["error_code"].isNull())//
-			{
-				int errorcode = rootObject["error_code"].toInt();
-				QString strMsg = rootObject["msg"].toString();
-				emit sig_NotifyMsg(strMsg, errorcode);
-			}
-		}
 	}
-	else {
-		int errorcode = 404;
-		emit sig_NotifyMsg(QString::fromLocal8Bit("Õ¯¬Á«Î«Û“Ï≥££°"), errorcode);
-	}
+	
 }
 
 void ShareReportManager::addTableView()

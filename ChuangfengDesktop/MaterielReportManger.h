@@ -9,6 +9,7 @@ class MaterielReportManger :public MoveableFramelessWindow
 public:
 	MaterielReportManger(QWidget *parent = Q_NULLPTR);
 	~MaterielReportManger();
+	const int mouthMax[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
 private slots:
 	void updateMaximize();
 	void slotCheckBoxStateChanged(bool status);
@@ -20,6 +21,9 @@ private:
 	void  getMaterialTotalPrice(double&all);
 	void  getInComeMaterialSearchTime();
 	void  getInComeMaterialCurrentTime(double&add);
+	void  getFixedUseCurrentTime(double&value);
+	void  getOutMaterialCurrentTime(double&value);
+	void  getOutMaterialUse();
 	void  getFixedUse();
 	void  getFixedAsset();
 	void AddTableView();

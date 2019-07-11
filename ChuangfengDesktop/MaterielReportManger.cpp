@@ -154,7 +154,7 @@ void MaterielReportManger::getMaterialTotalPrice(double&all)
 				QJsonValue materialArray = array.at(i);
 				QJsonObject materialObject = materialArray.toObject();
 				
-				all += materialObject["totalprice"].toDouble();
+				all += materialObject["totalprice"].toString().toDouble();
 				
 			}
 		}
@@ -211,14 +211,156 @@ void MaterielReportManger::getInComeMaterialCurrentTime(double&add)
 	}	
 }
 
+void MaterielReportManger::getFixedUseCurrentTime(double&value)
+{
+	QDateTime current_date_time = QDateTime::currentDateTime();
+	QString strParam = QString("starttime=%1&endtime=%2")
+		.arg(ui->materielreport_startdateEdit->text()).arg(current_date_time.toString("yyyy-MM-dd hh:mm:ss"));
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getFixedUsetoReport"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				value += materialObject["total"].toDouble();
+			}
+		}
+	}
+}
+
+void MaterielReportManger::getOutMaterialCurrentTime(double&value)
+{
+	QDateTime current_date_time = QDateTime::currentDateTime();
+	QString strParam = QString("starttime=%1&endtime=%2")
+		.arg(ui->materielreport_startdateEdit->text()).arg(current_date_time.toString("yyyy-MM-dd hh:mm:ss"));
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchOutMaterialByReport"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				value += materialObject["total"].toString().toDouble();
+			}
+		}
+	}
+}
+
+void MaterielReportManger::getOutMaterialUse()
+{
+	
+	QString strParam = QString("starttime=%1&endtime=%2")
+		.arg(ui->materielreport_startdateEdit->text()).arg(ui->materiel_report_enddateEdit->text());
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchOutMaterialByReport"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				double&value = m_materialUseList[materialObject["outarea"].toString()];
+				value += materialObject["price"].toString().toDouble()*materialObject["number"].toInt();
+			}
+		}
+	}
+}
+
 void MaterielReportManger::getFixedUse()
 {
 
+	QString strParam = QString("starttime=%1&endtime=%2")
+		.arg(ui->materielreport_startdateEdit->text()).arg(ui->materiel_report_enddateEdit->text());
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getFixedUsetoReport"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				m_FixedUse += materialObject["total"].toString().toDouble();
+			}
+		}
+	}
+}
+int month_numbers(QString overtime, QString currenttime)
+{
+	QDateTime overdata;
+	overdata = QDateTime::fromString(overtime, "yyyy-MM-dd hh:mm:ss");
+	QDateTime currentdata;
+	currentdata = QDateTime::fromString(currenttime, "yyyy-MM-dd hh:mm:ss");
+	int month_number = 0;
+	int overdataYear = overdata.date().year();
+	int currentdataYear = currentdata.date().year();
+	int overdataMouth = overdata.date().month();
+	int  currentdataMouth = currentdata.date().month();
+	if (overdataYear < currentdataYear) { //判断月份大小，进行相应加或减
+		month_number = abs(overdataYear - currentdataYear) * 12 + abs(overdataMouth - currentdataMouth);
+	}
+	else {
+		month_number = abs(overdataYear - currentdataYear) * 12 - abs(overdataMouth - currentdataMouth);
+	}
+	return month_number - 1;
 }
 
 void MaterielReportManger::getFixedAsset()
 {
+	int year = ui->materiel_report_enddateEdit->date().year();
+	int mouth = ui->materiel_report_enddateEdit->date().month();
+	QString maxtime = QString("%1-%2-%3").arg(QString::number(year)).arg(QString::number(mouth)).arg(QString::number(mouthMax[mouth - 1]));
 
+	QString strParam = QString("over_time=%1").arg(maxtime);
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchFixedAsset"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+
+			for (int i = 0; i < array.size(); i++)
+			{
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				tuple<double, double>& item = m_fixedList[materialObject["outarea"].toString()];
+				get<1>(item) += materialObject["total"].toString().toDouble() / materialObject["periods"].toInt();
+				QString test = maxtime + (" 00:00:00");
+				int suplis = month_numbers(materialObject["over_time"].toString(), test);
+				get<0>(item) += (materialObject["total"].toString().toDouble() / materialObject["periods"].toInt())*suplis;
+			}
+		}
+	}
 }
 
 void MaterielReportManger::AddTableView()
@@ -235,13 +377,13 @@ void MaterielReportManger::AddTableView()
 	nCount++;
 	inCome += m_currentAmout;
 	m_pViewModel->setItem(nCount, 0, new QStandardItem(QString::fromLocal8Bit("固资领用")));
-	m_pViewModel->setItem(nCount, 1, new QStandardItem(QString::number(m_FixedUse)));
+	m_pViewModel->setItem(nCount, 2, new QStandardItem(QString::number(m_FixedUse)));
 	out += m_FixedUse;
 	nCount++;
 
 	for (auto&kvp:m_materialUseList)
 	{
-		m_pViewModel->setItem(nCount, 0, new QStandardItem(QString::fromLocal8Bit("总账号期初余额")));
+		m_pViewModel->setItem(nCount, 0, new QStandardItem(kvp.first));
 		m_pViewModel->setItem(nCount, 2, new QStandardItem(QString::number(kvp.second)));
 		out += kvp.second;
 		nCount++;
@@ -263,8 +405,8 @@ void MaterielReportManger::AddTableView()
 		nCount++;
 	}
 	m_pViewModel->setItem(nCount, 5, new QStandardItem(QString::fromLocal8Bit("合计：")));
-	m_pViewModel->setItem(nCount, 6, new QStandardItem(QString::number(inCome)));
-	m_pViewModel->setItem(nCount, 7, new QStandardItem(QString::number(out)));
+	m_pViewModel->setItem(nCount, 6, new QStandardItem(QString::number(a)));
+	m_pViewModel->setItem(nCount, 7, new QStandardItem(QString::number(b)));
 
 	ui->materiel_report_tableView->setColumnWidth(0, 160);
 	ui->materiel_report_tableView->setColumnWidth(1, 80);
@@ -278,10 +420,16 @@ void MaterielReportManger::SlotThreadGetMaterialInfo()
 	  getMaterialTotalPrice(dbTotal);
 	  double add = 0;
 	  getInComeMaterialCurrentTime(add);
-	  m_initAmount = dbTotal - add;
+	  double outMaterial = 0;
+	  getOutMaterialCurrentTime(outMaterial);
+		  double fix = 0;
+	  getFixedUseCurrentTime(fix);
+	  m_initAmount = dbTotal - add+ outMaterial+ fix;
 	  getInComeMaterialSearchTime();
 	  getFixedUse();
 	 
 	 getFixedAsset();
+	 getOutMaterialUse();
 	 AddTableView();
+	 
 }

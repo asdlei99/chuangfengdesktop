@@ -107,7 +107,7 @@ public:
         use_Edit->setGeometry(QRect(360, 40, 161, 28));
         remake_lab_4 = new QLabel(widget);
         remake_lab_4->setObjectName(QStringLiteral("remake_lab_4"));
-        remake_lab_4->setGeometry(QRect(270, 40, 81, 28));
+        remake_lab_4->setGeometry(QRect(290, 40, 61, 28));
         remake_lab_4->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
 "font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         remake_lab_4->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
@@ -119,7 +119,7 @@ public:
         remake_lab_5->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         remake_lab_6 = new QLabel(widget);
         remake_lab_6->setObjectName(QStringLiteral("remake_lab_6"));
-        remake_lab_6->setGeometry(QRect(270, 160, 81, 28));
+        remake_lab_6->setGeometry(QRect(290, 160, 61, 28));
         remake_lab_6->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
 "font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         remake_lab_6->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
@@ -140,19 +140,19 @@ public:
         subject_Edit->setGeometry(QRect(360, 100, 161, 28));
         remake_lab_8 = new QLabel(widget);
         remake_lab_8->setObjectName(QStringLiteral("remake_lab_8"));
-        remake_lab_8->setGeometry(QRect(270, 100, 81, 28));
+        remake_lab_8->setGeometry(QRect(290, 100, 61, 28));
         remake_lab_8->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
 "font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         remake_lab_8->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         remake_lab_9 = new QLabel(widget);
         remake_lab_9->setObjectName(QStringLiteral("remake_lab_9"));
-        remake_lab_9->setGeometry(QRect(270, 210, 81, 28));
+        remake_lab_9->setGeometry(QRect(290, 220, 61, 28));
         remake_lab_9->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
 "font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         remake_lab_9->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         freight_Edit = new QLineEdit(widget);
         freight_Edit->setObjectName(QStringLiteral("freight_Edit"));
-        freight_Edit->setGeometry(QRect(360, 210, 161, 28));
+        freight_Edit->setGeometry(QRect(360, 220, 161, 28));
         remake_lab_10 = new QLabel(widget);
         remake_lab_10->setObjectName(QStringLiteral("remake_lab_10"));
         remake_lab_10->setGeometry(QRect(30, 160, 81, 28));
