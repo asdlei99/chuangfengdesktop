@@ -14,6 +14,7 @@ private slots:
 	void updateMaximize();
 	void slotCheckBoxStateChanged(bool status);
 	void SlotThreadGetMaterialInfo();
+	void finishedThreadBtnSlot();
 private:
 	virtual void mouseDoubleClickEvent(QMouseEvent *event);
 	void paintEvent(QPaintEvent *event);
@@ -27,6 +28,7 @@ private:
 	void  getFixedUse();
 	void  getFixedAsset();
 	void AddTableView();
+
 private:
 	virtual void InitLayout();
 	Ui::materielreport* ui;

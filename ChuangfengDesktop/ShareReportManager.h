@@ -22,7 +22,7 @@ private:
 	void paintEvent(QPaintEvent *event);
 	virtual QWidget*getDragnWidget();
 	void GetGeneralCostsShare();
-	void GetBakCostsShare();
+	
 	void GetMaterialCostsShare();
 	void GetFeedingCostsShare();
 	void GetFixedAssetCostsShare();

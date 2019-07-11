@@ -60,6 +60,17 @@ MaterielReportManger::MaterielReportManger(QWidget *parent)
 		connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
 		m_pThread->start();
 	});
+
+	connect(ui->materielreport_export_btn, &QPushButton::clicked, this, [this]()->void {
+		QString m_ExcelPath = QFileDialog::getSaveFileName(0, QString::fromLocal8Bit("导出表格"), ".", "Microsoft Office(*.xlsx)");//获取保存路径
+		if (!m_ExcelPath.isEmpty()) {
+			ui->materielreport_export_btn->setEnabled(false);
+			MatterObject* pthread = new MatterObject(m_ExcelPath, m_initAmount, m_currentAmout, m_FixedUse, m_materialUseList,m_fixedList);
+			connect(pthread, SIGNAL(finished()), this, SLOT(finishedThreadBtnSlot()));
+			pthread->start();
+		}
+
+	});
 }
 
 
@@ -412,6 +423,12 @@ void MaterielReportManger::AddTableView()
 	ui->materiel_report_tableView->setColumnWidth(1, 80);
 	ui->materiel_report_tableView->setColumnWidth(2, 80);
 	ui->materiel_report_tableView->setColumnWidth(3, 80);
+}
+
+void MaterielReportManger::finishedThreadBtnSlot()
+{
+	ui->materielreport_export_btn->setEnabled(true);
+	emit sig_NotifyMsg(QString::fromLocal8Bit("导出成功！"), 0);
 }
 
 void MaterielReportManger::SlotThreadGetMaterialInfo()

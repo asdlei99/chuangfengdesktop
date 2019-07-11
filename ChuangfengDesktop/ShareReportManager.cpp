@@ -128,7 +128,6 @@ void ShareReportManager::slotCheckBoxStateChanged(bool status)
 void ShareReportManager::SlotThreadGetCostsShare()
 {
 	GetGeneralCostsShare();
-	GetBakCostsShare();
 	GetFeedingCostsShare();
 	GetMaterialCostsShare();
 	GetFixedAssetCostsShare();
@@ -257,10 +256,7 @@ void ShareReportManager::GetGeneralCostsShare()
 	}
 }
 
-void ShareReportManager::GetBakCostsShare()
-{
 
-}
 
 void ShareReportManager::GetMaterialCostsShare()
 {
