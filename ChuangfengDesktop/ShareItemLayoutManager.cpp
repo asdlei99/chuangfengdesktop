@@ -85,7 +85,7 @@ void ShareItemLayoutManager::SlotThreadAddShareItem()
 			QString id = rootObject["id"].toString();
 			int pid = rootObject["pid"].toInt();
 			AddTableViewItem(id.toInt(), m_addName, m_addfromName);
-			CostAreaStruct&item = g_CostAreaList[id.toInt()];
+			CostAreaStruct&item = g_CostAreaList[m_addName];
 			item.areaId = pid;
 			item.areaName = m_addfromName;
 			item.costAreaName = m_addName;
@@ -140,7 +140,7 @@ void ShareItemLayoutManager::threadCostAreaInfoCallBack()
 				QString areaName = areaobject["name"].toString();
 				int pid = areaobject["id"].toInt();
 				AddTableViewItem(id, costareaName, areaName);
-				CostAreaStruct&item = g_CostAreaList[id];
+				CostAreaStruct&item = g_CostAreaList[costareaName];
 				item.areaId = pid;
 				item.areaName = areaName;
 				item.costAreaName = costareaName;

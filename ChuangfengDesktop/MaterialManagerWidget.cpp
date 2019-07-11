@@ -496,11 +496,15 @@ int MaterialManagerWidget::month_numbers(QString overtime, QString currenttime)
 	QDateTime currentdata;
 	currentdata = QDateTime::fromString(currenttime, "yyyy-MM-dd hh:mm:ss");
 	int month_number = 0;
-	if (overdata.date().year() < currentdata.date().year()) { //判断月份大小，进行相应加或减
-		month_number = abs(overdata.date().year() - currentdata.date().year()) * 12 + abs(overdata.date().month() - currentdata.date().month());
+	int overdataYear = overdata.date().year();
+	int currentdataYear = currentdata.date().year();
+	int overdataMouth = overdata.date().month();
+	int  currentdataMouth = currentdata.date().month();
+	if (overdataYear < currentdataYear) { //判断月份大小，进行相应加或减
+		month_number = abs(overdataYear - currentdataYear) * 12 + abs(overdataMouth - currentdataMouth);
 	}
 	else {
-		month_number = abs(overdata.date().year() - currentdata.date().year()) * 12 - abs(overdata.date().month() - currentdata.date().month());
+		month_number = abs(overdataYear - currentdataYear) * 12 - abs(overdataMouth - currentdataMouth);
 	}
 	return month_number -1;
 }
@@ -510,9 +514,9 @@ void MaterialManagerWidget::SlotThreadSearchFixedAsset()
 	m_pViewModelFix->removeRows(0, m_pViewModelFix->rowCount());
 	int year =  ui->fix_dateEdit->date().year();
 	int mouth = ui->fix_dateEdit->date().month();
-	QString maxtime = QString("%1-%2-%3").arg(QString::number(year)).arg(QString::number(mouth)).arg(QString::number(31));
+	QString maxtime = QString("%1-%2-%3").arg(QString::number(year)).arg(QString::number(mouth)).arg(QString::number(mouthMax[mouth-1]));
 	
-	QString strParam = QString("over_time=%1&maxtime=%2").arg(maxtime);
+	QString strParam = QString("over_time=%1").arg(maxtime);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchFixedAsset"
 		, TempToken, strParam, responseData);
@@ -579,7 +583,7 @@ void MaterialManagerWidget::SlotThreadOutMaterialDetail()
 	QString strParam = QString("id=%1&operat_time=%2&subject_name=%3&price=%4&number=%5&outarea=%6")
 		.arg(m_outId).arg(m_outTime).arg(m_outSubject).arg(m_outPrice).arg(m_outNumber).arg(m_outArea);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/OutMaterial"
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/OutMaterial?XDEBUG_SESSION_START=17307"
 		, TempToken, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -590,18 +594,28 @@ void MaterialManagerWidget::SlotThreadOutMaterialDetail()
 			QJsonArray array = parse_doucment.array();
 			for (int i = 0; i < array.size(); i++)
 			{
-				OutMaterialStruct item;
+				/*OutMaterialStruct item;*/
 				QJsonValue materialArray = array.at(i);
 				QJsonObject materialObject = materialArray.toObject();
+// 				item.id = materialObject["id"].toInt();
+// 				item.strTime = materialObject["operat_time"].toString();
+// 				item.strSubject = materialObject["subject_name"].toString();
+// 				item.strTotal = materialObject["totalprice"].toString();
+// 				item.strArea = materialObject["outarea"].toString();
+// 				item.Surplus = materialObject["surplus"].toInt();
+// 				item.number = materialObject["number"].toInt();
+// 				item.strPrice = materialObject["price"].toString();
+// 				AddOutMaterialTableView(item);
+				MaterialStruct item;
 				item.id = materialObject["id"].toInt();
-				item.strTime = materialObject["operat_time"].toString();
-				item.strSubject = materialObject["subject_name"].toString();
-				item.strTotal = materialObject["totalprice"].toString();
-				item.strArea = materialObject["outarea"].toString();
-				item.Surplus = materialObject["surplus"].toInt();
+				item.use = materialObject["use"].toString();
+				item.subject_name = materialObject["subject_name"].toString();
+				item.category = materialObject["category"].toString();
+				item.price = materialObject["price"].toString();
+				item.unit = materialObject["unit"].toString();
+				item.specs = materialObject["specs"].toString();
 				item.number = materialObject["number"].toInt();
-				item.strPrice = materialObject["price"].toString();
-				AddOutMaterialTableView(item);
+				AddMaterialTableView(item);
 			}
 			emit sig_NotifyMsg(QString::fromLocal8Bit("出库成功！"), 0);
 		}
@@ -637,9 +651,10 @@ void MaterialManagerWidget::SlotThreadSearchItem()
 			QJsonArray array = parse_doucment.array();
 			for (int i = 0; i < array.size(); i++)
 			{
-				MaterialStruct item;
+				
 				QJsonValue materialArray = array.at(i);
 				QJsonObject materialObject = materialArray.toObject();
+				MaterialStruct item;
 				item.id = materialObject["id"].toInt();
 				item.use = materialObject["use"].toString();
 				item.subject_name = materialObject["subject_name"].toString();
@@ -650,7 +665,6 @@ void MaterialManagerWidget::SlotThreadSearchItem()
 				item.number = materialObject["number"].toInt();
 				AddMaterialTableView(item);
 			}
-			/*emit sig_NotifyMsg(QString::fromLocal8Bit("添加成功！"), 0);*/
 		}
 		else
 		{
@@ -672,7 +686,6 @@ void MaterialManagerWidget::SlotThreadSearchItem()
 void MaterialManagerWidget::SlotOutMaterial(int&number, QString&time, QString&area)
 {
 	ui->comboBox->setCurrentIndex(1);
-	m_pViewModelinout->removeRows(0, m_pViewModelinout->rowCount());
 	m_pViewModelDetail->removeRows(0, m_pViewModelDetail->rowCount());
 	m_outNumber =QString::number(number) ; 
 	m_outTime = time;
@@ -692,7 +705,7 @@ void MaterialManagerWidget::comboBoxValueChanged()
 void MaterialManagerWidget::SlotAddMaterialDetail(QString&time, QString&use, QString&subject_name, QString&category, QString&price, QString&unit, QString&specs, QString&fare, QString&number)
 {
 	ui->comboBox->setCurrentIndex(0);
-	m_pViewModelinout->removeRows(0, m_pViewModelinout->rowCount());
+	m_pViewModelDetail->removeRows(0, m_pViewModelDetail->rowCount());
 	 m_addTime = time;
 	 m_addUse = use;
 	 m_addSubject_name = subject_name;
@@ -726,16 +739,20 @@ void MaterialManagerWidget::SlotThreadAddMaterialDetail()
 			QJsonArray array = parse_doucment.array();
 			for (int i = 0; i < array.size(); i++)
 			{
-				InMaterialStruct item;
+				
 				QJsonValue materialArray = array.at(i);
 				QJsonObject materialObject = materialArray.toObject();
+				MaterialStruct item;
 				item.id = materialObject["id"].toInt();
-				item.time = materialObject["operat_time"].toString();
-				item.subject = materialObject["subject_name"].toString();
-				item.fare = materialObject["fare"].toString();
-				item.number = materialObject["number"].toInt();
+				item.use = materialObject["use"].toString();
+				item.subject_name = materialObject["subject_name"].toString();
+				item.category = materialObject["category"].toString();
 				item.price = materialObject["price"].toString();
-				AddInMaterial(item);
+				item.unit = materialObject["unit"].toString();
+				item.specs = materialObject["specs"].toString();
+				item.number = materialObject["number"].toInt();
+				AddMaterialTableView(item);
+				
 			}
 			emit sig_NotifyMsg(QString::fromLocal8Bit("添加成功！"), 0);
 		}

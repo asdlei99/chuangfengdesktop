@@ -56,6 +56,7 @@ class MaterialManagerWidget :
 public:
 	MaterialManagerWidget(QWidget *parent = Q_NULLPTR);
 	~MaterialManagerWidget();
+	const int mouthMax[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
 	//双击标题栏进行界面的最大化/还原
 private slots:
 	void updateMaximize();

@@ -1,32 +1,28 @@
 #pragma once
-#include <QObject>
+#include <QThread>
 #include <map>
 using namespace std;
-struct shareStruct
+
+struct  ShareInfoStruct
 {
-	shareStruct() {
-		dbCost = 0;
-		dbFeedMedicine = 0;
-		dbMatter = 0;
-		dbFixedAssets = 0;
-	}
-	double dbCost;
-	double dbFeedMedicine;
-	double dbMatter;
-	double dbFixedAssets;
+	QString costName = "";
+	double LogisticsCosts = 0.0;
+	double FeedCosts = 0.0;
+	double MaterialCosts = 0.0;
+	double FixedAssetCosts = 0.0;
+
 };
 
-class costShareObject :public QObject
+class costShareObject :public QThread
 {
 	Q_OBJECT
 public:
-	costShareObject(QString _strTablePath);
+	costShareObject(map<QString, ShareInfoStruct>& _list,QString _strTablePath);
 	~costShareObject();
-public:
-	bool FillTableData(map<QString, shareStruct>_areaShare);
 private:
-	bool InitTableForm();
+	virtual void run();
 private:
 	QString m_strTablePath;
-	const int m_iDataStartRaw = 3;
+	const int m_iDataStartRaw = 4;
+	map<QString, ShareInfoStruct> m_list;
 };

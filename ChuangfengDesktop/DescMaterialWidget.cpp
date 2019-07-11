@@ -27,7 +27,8 @@ DescMaterialWidget::DescMaterialWidget(QString&subject, QString&price, int&numbe
 			return;
 		}
 		int number = ui->Number_Edit->text().toInt();
-		QString time = ui->dateEdit->text();
+		QString time = QString("%1-%2-%3").arg(ui->dateEdit->date().year()).arg(ui->dateEdit->date().month())
+		.arg(ui->dateEdit->date().day());
 		QString area = ui->comboBox->currentText();
 		emit sig_commit(number, time, area);
 		emit ui->pop_close_btn->clicked();
