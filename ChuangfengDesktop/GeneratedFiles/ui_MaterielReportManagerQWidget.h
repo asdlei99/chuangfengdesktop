@@ -115,14 +115,20 @@ public:
         materielreport_startdateEdit = new QDateEdit(widget_19);
         materielreport_startdateEdit->setObjectName(QStringLiteral("materielreport_startdateEdit"));
         materielreport_startdateEdit->setGeometry(QRect(80, 10, 110, 28));
-        materielreport_startdateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        materielreport_startdateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         materielreport_search_btn = new QPushButton(widget_19);
         materielreport_search_btn->setObjectName(QStringLiteral("materielreport_search_btn"));
         materielreport_search_btn->setGeometry(QRect(390, 10, 80, 28));
         materiel_report_enddateEdit = new QDateEdit(widget_19);
         materiel_report_enddateEdit->setObjectName(QStringLiteral("materiel_report_enddateEdit"));
         materiel_report_enddateEdit->setGeometry(QRect(270, 10, 110, 28));
-        materiel_report_enddateEdit->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        materiel_report_enddateEdit->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;"));
         materielreport_export_btn = new QPushButton(widget_19);
         materielreport_export_btn->setObjectName(QStringLiteral("materielreport_export_btn"));
         materielreport_export_btn->setGeometry(QRect(490, 10, 80, 28));

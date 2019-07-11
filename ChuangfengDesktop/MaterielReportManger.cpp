@@ -9,6 +9,8 @@
 #include <QtMath>
 #include "iconhelper.h"
 #include "commomdef.h"
+#include "SingletonHttpRequest.h"
+#include "globalVariable.h"
 
 void MaterielReportManger::InitLayout()
 {
@@ -25,21 +27,6 @@ void MaterielReportManger::InitLayout()
 	m_pViewModel->setHeaderData(7, Qt::Horizontal, QString::fromLocal8Bit("本期分摊"));
 	onSetTableAttribute(ui->materiel_report_tableView, 8);
 	ui->materiel_report_tableView->horizontalHeader()->setStretchLastSection(false);
-	int nCount = 0;
-	for (auto i = 0; i < 10; i++)
-	{
-		m_pViewModel->setItem(i, 0, new QStandardItem(QString::fromLocal8Bit("总账号期初余额")));
-
-		m_pViewModel->setItem(i, 1, new QStandardItem(QString::number(209637.89)));
-		m_pViewModel->setItem(i, 2, new QStandardItem(QString::fromLocal8Bit("0")));
-		m_pViewModel->setItem(i, 3, new QStandardItem(QString::fromLocal8Bit("0")));
-		nCount++;
-	}
-
-	ui->materiel_report_tableView->setColumnWidth(0, 160);
-	ui->materiel_report_tableView->setColumnWidth(1, 80);
-	ui->materiel_report_tableView->setColumnWidth(2, 80);
-	ui->materiel_report_tableView->setColumnWidth(3, 80);
 }
 
 
@@ -56,6 +43,23 @@ MaterielReportManger::MaterielReportManger(QWidget *parent)
 	ui->max_restore_btn->setProperty("maximizeProperty", "maximize");
 	ui->max_restore_btn->setStyle(QApplication::style());
 	InitLayout();
+	QDateTime current_date_time = QDateTime::currentDateTime();
+	ui->materielreport_startdateEdit->setCalendarPopup(true);
+	ui->materielreport_startdateEdit->setDateTime(current_date_time);
+	ui->materiel_report_enddateEdit->setCalendarPopup(true);
+	ui->materiel_report_enddateEdit->setDateTime(current_date_time);
+	connect(ui->materielreport_search_btn, &QPushButton::clicked, this, [this]()->void {
+		m_pViewModel->removeRows(0, m_pViewModel->rowCount());
+		 m_initAmount = 0;
+		 m_currentAmout = 0;
+		 m_FixedUse = 0;
+		 m_materialUseList.clear();
+		 m_fixedList.clear();
+		QThread *m_pThread = new QThread;
+		connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadGetMaterialInfo()));
+		connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+		m_pThread->start();
+	});
 }
 
 
@@ -129,4 +133,155 @@ void MaterielReportManger::paintEvent(QPaintEvent *event)
 QWidget* MaterielReportManger::getDragnWidget()
 {
 	return ui->child_widget_title;
+}
+
+void MaterielReportManger::getMaterialTotalPrice(double&all)
+{
+	QString strParam = QString("subject_name=%1").arg("");
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SerachMaterial"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				
+				all += materialObject["totalprice"].toDouble();
+				
+			}
+		}
+	}
+}
+
+void MaterielReportManger::getInComeMaterialSearchTime()
+{
+	QDateTime current_date_time = QDateTime::currentDateTime();
+	QString strParam = QString("starttime=%1&endtime=%2")
+		.arg(ui->materielreport_startdateEdit->text()).arg(ui->materiel_report_enddateEdit->text());
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchInMaterialDetail"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				m_currentAmout += materialObject["price"].toString().toDouble()*materialObject["number"].toInt();
+			}
+		}
+	}
+}
+
+void MaterielReportManger::getInComeMaterialCurrentTime(double&add)
+{
+	QDateTime current_date_time = QDateTime::currentDateTime();
+	QString strParam = QString("starttime=%1&endtime=%2")
+		.arg(ui->materielreport_startdateEdit->text()).arg(current_date_time.toString("yyyy-MM-dd hh:mm:ss"));
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchInMaterialDetail"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{	
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				add += materialObject["price"].toString().toDouble()*materialObject["number"].toInt();
+			}
+		}
+	}	
+}
+
+void MaterielReportManger::getFixedUse()
+{
+
+}
+
+void MaterielReportManger::getFixedAsset()
+{
+
+}
+
+void MaterielReportManger::AddTableView()
+{
+	int nCount = 0;
+	double inCome = 0;
+	double out = 0;
+	m_pViewModel->setItem(nCount, 0, new QStandardItem(QString::fromLocal8Bit("期初余额")));
+	m_pViewModel->setItem(nCount, 1, new QStandardItem(QString::number(m_initAmount)));
+	inCome += m_initAmount;
+	nCount++;
+	m_pViewModel->setItem(nCount, 0, new QStandardItem(QString::fromLocal8Bit("本月购入")));
+	m_pViewModel->setItem(nCount, 1, new QStandardItem(QString::number(m_currentAmout)));
+	nCount++;
+	inCome += m_currentAmout;
+	m_pViewModel->setItem(nCount, 0, new QStandardItem(QString::fromLocal8Bit("固资领用")));
+	m_pViewModel->setItem(nCount, 1, new QStandardItem(QString::number(m_FixedUse)));
+	out += m_FixedUse;
+	nCount++;
+
+	for (auto&kvp:m_materialUseList)
+	{
+		m_pViewModel->setItem(nCount, 0, new QStandardItem(QString::fromLocal8Bit("总账号期初余额")));
+		m_pViewModel->setItem(nCount, 2, new QStandardItem(QString::number(kvp.second)));
+		out += kvp.second;
+		nCount++;
+	}
+	m_pViewModel->setItem(nCount, 0, new QStandardItem(QString::fromLocal8Bit("合计：")));
+	m_pViewModel->setItem(nCount, 1, new QStandardItem(QString::number(inCome)));
+	m_pViewModel->setItem(nCount, 2, new QStandardItem(QString::number(out)));
+	m_pViewModel->setItem(nCount, 3, new QStandardItem(QString::number(inCome- out)));
+	
+	nCount = 0;
+	double a = 0, b = 0;
+	for (auto&kvp : m_fixedList)
+	{
+		m_pViewModel->setItem(nCount, 5, new QStandardItem(kvp.first));
+		m_pViewModel->setItem(nCount, 6, new QStandardItem(QString::number(get<0>(kvp.second))));
+		a += get<0>(kvp.second);
+		m_pViewModel->setItem(nCount, 7, new QStandardItem(QString::number(get<1>(kvp.second))));
+		b += get<1>(kvp.second);
+		nCount++;
+	}
+	m_pViewModel->setItem(nCount, 5, new QStandardItem(QString::fromLocal8Bit("合计：")));
+	m_pViewModel->setItem(nCount, 6, new QStandardItem(QString::number(inCome)));
+	m_pViewModel->setItem(nCount, 7, new QStandardItem(QString::number(out)));
+
+	ui->materiel_report_tableView->setColumnWidth(0, 160);
+	ui->materiel_report_tableView->setColumnWidth(1, 80);
+	ui->materiel_report_tableView->setColumnWidth(2, 80);
+	ui->materiel_report_tableView->setColumnWidth(3, 80);
+}
+
+void MaterielReportManger::SlotThreadGetMaterialInfo()
+{
+	  double dbTotal = 0;
+	  getMaterialTotalPrice(dbTotal);
+	  double add = 0;
+	  getInComeMaterialCurrentTime(add);
+	  m_initAmount = dbTotal - add;
+	  getInComeMaterialSearchTime();
+	  getFixedUse();
+	 
+	 getFixedAsset();
+	 AddTableView();
 }
