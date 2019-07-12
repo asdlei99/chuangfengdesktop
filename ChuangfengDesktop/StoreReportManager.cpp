@@ -347,7 +347,7 @@ void StoreReportManager::getBackInfo()
 			{
 				QJsonValue materialArray = array.at(i);
 				QJsonObject materialObject = materialArray.toObject();
-				double&value = m_backList[materialObject["supplier"].toString()];
+				double&value = m_backList[materialObject["supplier"].toString() + QString::fromLocal8Bit("退货")];
 				value+= materialObject["price"].toString().toDouble()*materialObject["number"].toInt();
 			}
 		}
@@ -386,7 +386,7 @@ void StoreReportManager::getIncome()
 			{
 				QJsonValue materialArray = array.at(i);
 				QJsonObject materialObject = materialArray.toObject();
-				double&value = m_incomeList[materialObject["supplier"].toString()];
+				double&value = m_incomeList[materialObject["supplier"].toString() + QString::fromLocal8Bit("进货")];
 				value += materialObject["price"].toString().toDouble()*materialObject["number"].toInt();
 			}
 		}
@@ -425,7 +425,7 @@ void StoreReportManager::getReturn()
 			{
 				QJsonValue materialArray = array.at(i);
 				QJsonObject materialObject = materialArray.toObject();
-				double&value = m_returnList[materialObject["supplier"].toString()];
+				double&value = m_returnList[QString::fromLocal8Bit("分库退库")];
 				value += materialObject["price"].toString().toDouble()*materialObject["number"].toInt();
 			}
 		}
@@ -464,7 +464,7 @@ void StoreReportManager::getUse()
 			{
 				QJsonValue materialArray = array.at(i);
 				QJsonObject materialObject = materialArray.toObject();
-				double&value = m_useList[materialObject["supplier"].toString()];
+				double&value = m_useList[materialObject["outarea"].toString()+QString::fromLocal8Bit("领用")];
 				value += materialObject["price"].toString().toDouble()*materialObject["number"].toInt();
 			}
 		}
