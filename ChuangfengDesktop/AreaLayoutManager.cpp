@@ -68,7 +68,7 @@ void AreaLayoutManager::SlotThreadAddArea()
 		{
 			QString id = rootObject["id"].toString();
 			AddTableViewItem(id.toInt(), m_addName);
-			AreaDetailStruct&item = g_areaList[id.toInt()];
+			AreaDetailStruct&item = g_areaList[m_addName];
 			item.areaName = m_addName;
 			emit sig_NotifyMsg(QString::fromLocal8Bit("添加数据成功！"), 0);
 		}

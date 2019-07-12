@@ -9,35 +9,22 @@
 #include <QtMath>
 #include "iconhelper.h"
 #include "commomdef.h"
+#include "globalVariable.h"
+#include "SingletonHttpRequest.h"
 
 void DetailShareReportManager::InitLayout()
 {
 	m_pViewModel = new QStandardItemModel();
 	ui->detailshare_report_tableview->setModel(m_pViewModel);
-	m_pViewModel->setColumnCount(5);
+	m_pViewModel->setColumnCount(4);
 	m_pViewModel->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("塘号"));
-	m_pViewModel->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("饲料药品"));
-	m_pViewModel->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("消毒"));
-	m_pViewModel->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("物料"));
-	m_pViewModel->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("固资分摊"));
-
-	onSetTableAttribute(ui->detailshare_report_tableview, 5);
+	m_pViewModel->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("饲料"));
+	m_pViewModel->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("药品"));
+	m_pViewModel->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("消毒"));
+// 	m_pViewModel->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("物料"));
+// 	m_pViewModel->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("固资分摊"));
+	onSetTableAttribute(ui->detailshare_report_tableview, 4);
 	ui->detailshare_report_tableview->horizontalHeader()->setStretchLastSection(false);
-	int nCount = 0;
-	for (auto i = 0; i < 10; i++)
-	{
-		m_pViewModel->setItem(i, 0, new QStandardItem(QString::fromLocal8Bit("总账号期初余额")));
-
-		m_pViewModel->setItem(i, 1, new QStandardItem(QString::number(209637.89)));
-		m_pViewModel->setItem(i, 2, new QStandardItem(QString::fromLocal8Bit("0")));
-		m_pViewModel->setItem(i, 3, new QStandardItem(QString::fromLocal8Bit("0")));
-		nCount++;
-	}
-
-	ui->detailshare_report_tableview->setColumnWidth(0, 160);
-	ui->detailshare_report_tableview->setColumnWidth(1, 80);
-	ui->detailshare_report_tableview->setColumnWidth(2, 80);
-	ui->detailshare_report_tableview->setColumnWidth(3, 80);
 }
 
 
@@ -54,6 +41,43 @@ DetailShareReportManager::DetailShareReportManager(QWidget *parent)
 	ui->max_restore_btn->setProperty("maximizeProperty", "maximize");
 	ui->max_restore_btn->setStyle(QApplication::style());
 	InitLayout();
+	QDateTime current_date_time = QDateTime::currentDateTime();
+	ui->detailshare_report_startdateEdit->setCalendarPopup(true);
+	ui->detailshare_report_startdateEdit->setDateTime(current_date_time);
+	ui->detailshare_report_enddateEdit->setCalendarPopup(true);
+	ui->detailshare_report_enddateEdit->setDateTime(current_date_time);
+	for (auto&kvp : g_areaList)
+	{
+		ui->area_combox->addItem(kvp.second.areaName);
+	}
+	connect(ui->detaishare_report_search_btn, &QPushButton::clicked, this, [this]()->void {
+		m_list.clear();
+		auto iter = g_areaList.find(ui->area_combox->currentText());
+		if (iter != g_areaList.end())
+		{
+			for (auto&kvp:iter->second.areaDetailList)
+			{
+				singleShareStruct&item = m_list[kvp.second];
+			}
+		}
+		else {
+			return;
+		}
+		m_pViewModel->removeRows(0, m_pViewModel->rowCount());
+		QThread *m_pThread = new QThread;
+		connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadSearchShare()));
+		connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+		m_pThread->start();
+	});
+	connect(ui->detailsharereport_export_btn, &QPushButton::clicked, this, [this]()->void {
+		QString m_ExcelPath = QFileDialog::getSaveFileName(0, QString::fromLocal8Bit("导出表格"), ".", "Microsoft Office(*.xlsx)");//获取保存路径
+		if (!m_ExcelPath.isEmpty()) {
+			ui->detailsharereport_export_btn->setEnabled(false);
+			singleAreaShare* pthread = new singleAreaShare(m_ExcelPath, m_list);
+			connect(pthread, SIGNAL(finished()), this, SLOT(finishedThreadBtnSlot()));
+			pthread->start();
+		}
+	});
 }
 
 
@@ -82,7 +106,6 @@ void DetailShareReportManager::updateMaximize()
 			//设置按钮的属性名为"maximizeProperty"
 			ui->max_restore_btn->setProperty("maximizeProperty", "maximize");
 		}
-
 		ui->max_restore_btn->setStyle(QApplication::style());
 	}
 }
@@ -129,6 +152,77 @@ QWidget* DetailShareReportManager::getDragnWidget()
 	return ui->child_widget_title;
 }
 
+void DetailShareReportManager::AddTableView()
+{
+	int nCount = 0;
+	for (auto&KVP:m_list)
+	{
+		m_pViewModel->setItem(nCount, 0, new QStandardItem(KVP.first));
+		m_pViewModel->setItem(nCount, 1, new QStandardItem(QString::number(KVP.second.dbFeed)));
+		m_pViewModel->setItem(nCount, 2, new QStandardItem(QString::number(KVP.second.dbDrug)));
+		m_pViewModel->setItem(nCount, 3, new QStandardItem(QString::number(KVP.second.dbDisinfect)));
+		nCount++;
+	}
+	ui->detailshare_report_tableview->setColumnWidth(0, 160);
+	ui->detailshare_report_tableview->setColumnWidth(1, 80);
+	ui->detailshare_report_tableview->setColumnWidth(2, 80);
+	ui->detailshare_report_tableview->setColumnWidth(3, 80);
+}
 
+void DetailShareReportManager::finishedThreadBtnSlot()
+{
+	ui->detailsharereport_export_btn->setEnabled(true);
+	emit sig_NotifyMsg(QString::fromLocal8Bit("导出成功！"), 0);
+}
+
+void DetailShareReportManager::SlotThreadSearchShare()
+{
+	QString strParam = QString("starttime=%1&endtime=%2&area=%3")
+		.arg(ui->detailshare_report_startdateEdit->text()).arg(ui->detailshare_report_enddateEdit->text()).arg(ui->area_combox->currentText());
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SerachFeedingToReport"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+		
+				singleShareStruct&item = m_list[materialObject["areaitem"].toString()];
+				if (materialObject["type"].toString() == QString::fromLocal8Bit("饲料"))
+				{
+					item.dbFeed += materialObject["number"].toInt()*materialObject["price"].toString().toDouble();
+				}
+				else if(materialObject["type"].toString() == QString::fromLocal8Bit("药品")){
+					item.dbDrug += materialObject["number"].toInt()*materialObject["price"].toString().toDouble();
+				}
+				else {
+					item.dbDisinfect += materialObject["number"].toInt()*materialObject["price"].toString().toDouble();
+				}	
+			}
+			AddTableView();
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("网络请求异常！"), errorcode);
+	}
+}
 
 

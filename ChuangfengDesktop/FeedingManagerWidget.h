@@ -17,7 +17,7 @@ public slots:
 	void SlotSearchAreaFeedStore();
 	void SlotThreadSearchAreaFeedStore();
 	void comboBoxValueChanged();
-	void SlotAddFeeding(QString&time, QString&number, QString&areaItem);
+	void SlotAddFeeding(QString&time, QString&number, QString&areaItem,QString&type);
 	void SlotThreadAddFeeding();
 	void SlotThreadSearchFeeding();
 
@@ -44,5 +44,6 @@ private:
 	int m_id = 0;
 	QString m_area;
 	QString m_areaItem;
+	QString m_feedingType;
 };
 

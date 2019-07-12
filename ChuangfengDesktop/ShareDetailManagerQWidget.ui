@@ -243,6 +243,10 @@ border-width: 1px;</string>
         <height>28</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(171, 171, 171);
+border-color: rgb(171, 171, 171);</string>
+      </property>
      </widget>
     </widget>
    </item>

@@ -47,6 +47,8 @@ public:
     QLabel *remake_lab_12;
     QLineEdit *area_Edit;
     QComboBox *comboBox;
+    QLabel *remake_lab_13;
+    QComboBox *type_comboBox;
 
     void setupUi(QWidget *AddFeedingWidget)
     {
@@ -113,39 +115,48 @@ public:
 "color: rgb(255, 85, 0);"));
         remake_lab_10 = new QLabel(widget);
         remake_lab_10->setObjectName(QStringLiteral("remake_lab_10"));
-        remake_lab_10->setGeometry(QRect(30, 220, 81, 28));
+        remake_lab_10->setGeometry(QRect(30, 280, 81, 28));
         remake_lab_10->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
 "font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         remake_lab_10->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         pice_Edit = new QLineEdit(widget);
         pice_Edit->setObjectName(QStringLiteral("pice_Edit"));
-        pice_Edit->setGeometry(QRect(120, 220, 161, 28));
+        pice_Edit->setGeometry(QRect(120, 280, 161, 28));
         pice_Edit->setFrame(true);
         pice_Edit->setReadOnly(true);
         Number_Edit = new QLineEdit(widget);
         Number_Edit->setObjectName(QStringLiteral("Number_Edit"));
-        Number_Edit->setGeometry(QRect(120, 160, 161, 28));
+        Number_Edit->setGeometry(QRect(120, 220, 161, 28));
         Number_Edit->setFrame(true);
         remake_lab_11 = new QLabel(widget);
         remake_lab_11->setObjectName(QStringLiteral("remake_lab_11"));
-        remake_lab_11->setGeometry(QRect(30, 160, 81, 28));
+        remake_lab_11->setGeometry(QRect(30, 220, 81, 28));
         remake_lab_11->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
 "font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         remake_lab_11->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         remake_lab_12 = new QLabel(widget);
         remake_lab_12->setObjectName(QStringLiteral("remake_lab_12"));
-        remake_lab_12->setGeometry(QRect(30, 280, 81, 28));
+        remake_lab_12->setGeometry(QRect(30, 340, 81, 28));
         remake_lab_12->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
 "font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         remake_lab_12->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         area_Edit = new QLineEdit(widget);
         area_Edit->setObjectName(QStringLiteral("area_Edit"));
-        area_Edit->setGeometry(QRect(120, 280, 71, 28));
+        area_Edit->setGeometry(QRect(120, 340, 71, 28));
         area_Edit->setFrame(true);
         area_Edit->setReadOnly(true);
         comboBox = new QComboBox(widget);
         comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setGeometry(QRect(200, 280, 81, 28));
+        comboBox->setGeometry(QRect(200, 340, 81, 28));
+        remake_lab_13 = new QLabel(widget);
+        remake_lab_13->setObjectName(QStringLiteral("remake_lab_13"));
+        remake_lab_13->setGeometry(QRect(30, 160, 81, 28));
+        remake_lab_13->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
+"font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+        remake_lab_13->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        type_comboBox = new QComboBox(widget);
+        type_comboBox->setObjectName(QStringLiteral("type_comboBox"));
+        type_comboBox->setGeometry(QRect(120, 160, 161, 28));
 
         verticalLayout->addWidget(widget);
 
@@ -172,6 +183,7 @@ public:
         remake_lab_11->setText(QApplication::translate("AddFeedingWidget", "\346\225\260\351\207\217\357\274\232", Q_NULLPTR));
         remake_lab_12->setText(QApplication::translate("AddFeedingWidget", "\345\241\230\345\217\267\357\274\232", Q_NULLPTR));
         area_Edit->setText(QString());
+        remake_lab_13->setText(QApplication::translate("AddFeedingWidget", "\347\261\273\345\236\213\357\274\232", Q_NULLPTR));
     } // retranslateUi
 
 };

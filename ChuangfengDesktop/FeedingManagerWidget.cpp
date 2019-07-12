@@ -81,7 +81,7 @@ FeedingManagerWidget::FeedingManagerWidget(QWidget *parent )
 		}
 
 		AddFeedingWidget*pQtWidget = new AddFeedingWidget(m_subject_name,m_price,m_maxNumber, m_area);
-		connect(pQtWidget, SIGNAL(sig_commit(QString&, QString&, QString& )), this, SLOT(SlotAddFeeding(QString&, QString&, QString&)));
+		connect(pQtWidget, SIGNAL(sig_commit(QString&, QString&, QString&, QString&)), this, SLOT(SlotAddFeeding(QString&, QString&, QString&, QString&)));
 		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
 		pQtWidget->setWindowModality(Qt::ApplicationModal);
 		pQtWidget->show();
@@ -253,7 +253,7 @@ void FeedingManagerWidget::initTableView()
 	m_pViewModelFeedingDetail = new QStandardItemModel();
 
 	ui->feeding_detail_tableView->setModel(m_pViewModelFeedingDetail);
-	m_pViewModelFeedingDetail->setColumnCount(10);
+	m_pViewModelFeedingDetail->setColumnCount(11);
 	m_pViewModelFeedingDetail->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("ID"));
 	m_pViewModelFeedingDetail->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("时间"));
 	m_pViewModelFeedingDetail->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("区域"));
@@ -264,7 +264,8 @@ void FeedingManagerWidget::initTableView()
 	m_pViewModelFeedingDetail->setHeaderData(7, Qt::Horizontal, QString::fromLocal8Bit("数量"));
 	m_pViewModelFeedingDetail->setHeaderData(8, Qt::Horizontal, QString::fromLocal8Bit("成本单价"));
 	m_pViewModelFeedingDetail->setHeaderData(9, Qt::Horizontal, QString::fromLocal8Bit("成本总额"));
-	onSetTableAttribute(ui->feeding_detail_tableView, 10, false);
+	m_pViewModelFeedingDetail->setHeaderData(10, Qt::Horizontal, QString::fromLocal8Bit("物品类别"));
+	onSetTableAttribute(ui->feeding_detail_tableView, 11, false);
 }
 
 void FeedingManagerWidget::AddAreaFeedStoreTableView(AreaFeedStoreStruct&item)
@@ -297,14 +298,15 @@ void FeedingManagerWidget::AddAreaFeedingDetailTableViEW(AreaFeedFeedingDetailSt
 	m_pViewModelFeedingDetail->setItem(nCount, 7, new QStandardItem(item.price));
 	m_pViewModelFeedingDetail->setItem(nCount, 8, new QStandardItem(QString::number(item.number)));
 	m_pViewModelFeedingDetail->setItem(nCount, 9, new QStandardItem(QString::number(item.price.toDouble()*item.number)));
+	m_pViewModelFeedingDetail->setItem(nCount, 10, new QStandardItem(item.type));
 	ui->feeding_detail_tableView->setColumnWidth(0, 60);
 }
 
 void FeedingManagerWidget::SlotThreadAddFeeding()
 {
-	QString strParam = QString("id=%1&operat_time=%2&subject_name=%3&price=%4&number=%5&area=%6&areaitem=%7&specs=%8&unit=%9")
+	QString strParam = QString("id=%1&operat_time=%2&subject_name=%3&price=%4&number=%5&area=%6&areaitem=%7&specs=%8&unit=%9&type=%10")
 		.arg(QString::number(m_id)).arg(m_time).arg(m_subject_name).arg(m_price).arg(m_number).arg(m_area)
-		.arg(m_areaItem).arg(m_specs).arg(m_unit);
+		.arg(m_areaItem).arg(m_specs).arg(m_unit).arg(m_feedingType);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addFeeding"
 		, TempToken, strParam, responseData);
@@ -378,6 +380,7 @@ void FeedingManagerWidget::SlotThreadSearchFeeding()
 				item.unit = materialObject["unit"].toString();
 				item.price = materialObject["price"].toString();
 				item.areaitem = materialObject["areaitem"].toString();
+				item.type = materialObject["type"].toString();
 				AddAreaFeedingDetailTableViEW(item);
 			}
 			
@@ -416,11 +419,12 @@ void FeedingManagerWidget::comboBoxValueChanged()
 
 }
 
-void FeedingManagerWidget::SlotAddFeeding(QString&time, QString&number, QString&areaItem)
+void FeedingManagerWidget::SlotAddFeeding(QString&time, QString&number, QString&areaItem, QString&type)
 {
 	m_time = time;
 	m_number = number;
 	m_areaItem = areaItem;
+	m_feedingType = type;
 	m_pViewModelTotalArea->removeRows(0, m_pViewModelTotalArea->rowCount());
 
 	QThread *m_pThread = new QThread;

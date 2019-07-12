@@ -37,6 +37,9 @@ AddFeedingWidget::AddFeedingWidget(QString&subject_name, QString&price, int maxN
 	QDateTime current_date_time = QDateTime::currentDateTime();
 	ui->dateEdit->setCalendarPopup(true);
 	ui->dateEdit->setDateTime(current_date_time);
+	ui->type_comboBox->addItem(QString::fromLocal8Bit("饲料"));
+	ui->type_comboBox->addItem(QString::fromLocal8Bit("药品"));
+	ui->type_comboBox->addItem(QString::fromLocal8Bit("消毒品"));
 }
 
 
@@ -66,7 +69,7 @@ void AddFeedingWidget::SlotCommit()
 		ui->error_lab->setVisible(true);
 		return;
 	}
-	emit sig_commit(ui->dateEdit->text(), Number, ui->comboBox->currentText());
+	emit sig_commit(ui->dateEdit->text(), Number, ui->comboBox->currentText(),ui->type_comboBox->currentText());
 	emit ui->pop_close_btn->clicked();
 
 }

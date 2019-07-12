@@ -27,7 +27,7 @@ struct CostAreaStruct
 
 extern map<int, QString> g_CategoryList;
 extern map<int, QString> g_SupplierList;
-extern map<int, AreaDetailStruct> g_areaList;
+extern map<QString, AreaDetailStruct> g_areaList;
 extern map<QString, CostAreaStruct> g_CostAreaList;
 
 

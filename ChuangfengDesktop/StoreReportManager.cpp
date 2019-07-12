@@ -26,22 +26,6 @@ void StoreReportManager::InitLayout()
 	m_pViewModel->setHeaderData(8, Qt::Horizontal, QString::fromLocal8Bit("结余"));
 	onSetTableAttribute(ui->store_report_tableView, 9);
 	ui->store_report_tableView->horizontalHeader()->setStretchLastSection(false);
-	int nCount = 0;
-	for (auto i = 0; i < 10; i++)
-	{
-		m_pViewModel->setItem(i, 0, new QStandardItem(QString::fromLocal8Bit("总账号期初余额")));
-
-		m_pViewModel->setItem(i, 1, new QStandardItem(QString::number(209637.89)));
-		m_pViewModel->setItem(i, 2, new QStandardItem(QString::fromLocal8Bit("0")));
-		m_pViewModel->setItem(i, 3, new QStandardItem(QString::fromLocal8Bit("0")));
-		nCount++;
-	}
-
-	ui->store_report_tableView->setColumnWidth(0, 160);
-	ui->store_report_tableView->setColumnWidth(1, 80);
-	ui->store_report_tableView->setColumnWidth(2, 80);
-	ui->store_report_tableView->setColumnWidth(3, 80);
-
 }
 
 
@@ -58,6 +42,25 @@ StoreReportManager::StoreReportManager(QWidget *parent)
 	ui->max_restore_btn->setProperty("maximizeProperty", "maximize");
 	ui->max_restore_btn->setStyle(QApplication::style());
 	InitLayout();
+	QDateTime current_date_time = QDateTime::currentDateTime();
+	ui->storereport_startdateEdit->setCalendarPopup(true);
+	ui->storereport_startdateEdit->setDateTime(current_date_time);
+	ui->store_report_enddateEdit->setCalendarPopup(true);
+	ui->store_report_enddateEdit->setDateTime(current_date_time);
+	connect(ui->storereport_search_btn, &QPushButton::clicked, this, [this]()->void {
+		 m_initAmount = 0;
+		 m_backList.clear();
+		 m_incomeList.clear();
+		  m_returnList.clear();
+		  m_useList.clear();
+		
+		m_pViewModel->removeRows(0, m_pViewModel->rowCount());
+		QThread *m_pThread = new QThread;
+		connect(m_pThread, SIGNAL(started()), this, SLOT(SlotThreadSearchShare()));
+		connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
+		m_pThread->start();
+	});
+
 }
 
 
@@ -133,7 +136,147 @@ QWidget* StoreReportManager::getDragnWidget()
 	return ui->child_widget_title;
 }
 
+void StoreReportManager::getCurrentStore(double&value)
+{
 
+}
 
+void StoreReportManager::getCurrentBackStore(double&value)
+{
 
+}
+
+void StoreReportManager::getCurrentUse(double&value)
+{
+
+}
+
+void StoreReportManager::getCurrentInCome(double&value)
+{
+
+}
+
+void StoreReportManager::getCurrentReturn(double&value)
+{
+
+}
+
+void StoreReportManager::getBackInfo()
+{
+
+}
+
+void StoreReportManager::getIncome()
+{
+
+}
+
+void StoreReportManager::getReturn()
+{
+
+}
+
+void StoreReportManager::getUse()
+{
+
+}
+
+void StoreReportManager::getAreaUse()
+{
+
+}
+
+void StoreReportManager::AddTableView()
+{
+	int nCount = 0;
+	double inCome = 0, out = 0;
+	m_pViewModel->setItem(nCount, 0, new QStandardItem(QString::fromLocal8Bit("总仓期初总额")));
+
+	m_pViewModel->setItem(nCount, 1, new QStandardItem(QString::number(m_initAmount)));
+	m_pViewModel->setItem(nCount, 2, new QStandardItem(""));
+	m_pViewModel->setItem(nCount, 3, new QStandardItem(""));
+	inCome += m_initAmount;
+	nCount++;
+	for (auto kvp:m_backList)
+	{
+		m_pViewModel->setItem(nCount, 0, new QStandardItem(kvp.first));
+
+		m_pViewModel->setItem(nCount, 1, new QStandardItem(""));
+		m_pViewModel->setItem(nCount, 2, new QStandardItem(QString::number(kvp.second)));
+		m_pViewModel->setItem(nCount, 3, new QStandardItem(""));
+		out += kvp.second;
+		nCount++;
+	}
+	for (auto kvp : m_incomeList)
+	{
+		m_pViewModel->setItem(nCount, 0, new QStandardItem(kvp.first));
+
+		m_pViewModel->setItem(nCount, 1, new QStandardItem(QString::number(kvp.second)));
+		m_pViewModel->setItem(nCount, 2, new QStandardItem(""));
+		m_pViewModel->setItem(nCount, 3, new QStandardItem(""));
+		inCome += kvp.second;
+		nCount++;
+	}
+	for (auto kvp : m_returnList)
+	{
+		m_pViewModel->setItem(nCount, 0, new QStandardItem(kvp.first));
+
+		m_pViewModel->setItem(nCount, 1, new QStandardItem(QString::number(kvp.second)));
+		m_pViewModel->setItem(nCount, 2, new QStandardItem(""));
+		m_pViewModel->setItem(nCount, 3, new QStandardItem(""));
+		inCome += kvp.second;
+		nCount++;
+	}
+	for (auto kvp : m_useList)
+	{
+		m_pViewModel->setItem(nCount, 0, new QStandardItem(kvp.first));
+
+		m_pViewModel->setItem(nCount, 1, new QStandardItem(""));
+		m_pViewModel->setItem(nCount, 2, new QStandardItem(QString::number(kvp.second)));
+		m_pViewModel->setItem(nCount, 3, new QStandardItem(""));
+		out += kvp.second;
+		nCount++;
+	}
+	m_pViewModel->setItem(nCount, 0, new QStandardItem(QString::fromLocal8Bit("合计")));
+	m_pViewModel->setItem(nCount, 1, new QStandardItem(QString::number(inCome)));
+	m_pViewModel->setItem(nCount, 2, new QStandardItem(QString::number(out)));
+	m_pViewModel->setItem(nCount, 3, new QStandardItem(QString::number(inCome-out)));
+
+	inCome = 0; out = 0;
+	nCount = 0;
+	for (auto&kvp: m_areaUseList)
+	{
+		m_pViewModel->setItem(nCount, 5, new QStandardItem(kvp.first));
+		m_pViewModel->setItem(nCount, 6, new QStandardItem(QString::number(get<0>(kvp.second))));
+		inCome += get<0>(kvp.second);
+		m_pViewModel->setItem(nCount, 7, new QStandardItem(QString::number(get<1>(kvp.second))));
+		out += get<1>(kvp.second);
+		m_pViewModel->setItem(nCount,8, new QStandardItem(QString::number(get<0>(kvp.second)-get<1>(kvp.second) )));
+	}
+	m_pViewModel->setItem(nCount, 5, new QStandardItem(QString::fromLocal8Bit("合计")));
+	m_pViewModel->setItem(nCount, 6, new QStandardItem(QString::number(inCome)));
+	m_pViewModel->setItem(nCount, 7, new QStandardItem(QString::number(out)));
+	m_pViewModel->setItem(nCount, 8, new QStandardItem(QString::number(inCome - out)));
+	ui->store_report_tableView->setColumnWidth(0, 160);
+	ui->store_report_tableView->setColumnWidth(1, 80);
+	ui->store_report_tableView->setColumnWidth(2, 80);
+	ui->store_report_tableView->setColumnWidth(3, 80);
+}
+
+void StoreReportManager::SlotThreadSearchShare()
+{
+	double CurrentStore = 0, CurrentBackStore = 0, CurrentUse = 0, CurrentInCome = 0, CurrentReturn = 0;
+	 getCurrentStore(CurrentStore);
+	 getCurrentBackStore(CurrentBackStore);
+	 getCurrentUse(CurrentUse);
+	 getCurrentInCome(CurrentInCome);
+	 getCurrentReturn(CurrentReturn);
+
+	 getBackInfo();
+	 getIncome();
+	 getReturn();
+	 getUse();
+	 getAreaUse();
+	 AddTableView();
+}
 

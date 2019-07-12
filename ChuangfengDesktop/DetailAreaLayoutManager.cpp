@@ -50,7 +50,7 @@ void DetailAreaLayoutManager::threadAreaInfoCallBack()
 				int id = areaObject["id"].toInt();
 				QString areaName = areaObject["name"].toString();
 				QJsonArray itemarray= areaObject["items"].toArray();
-				AreaDetailStruct&item = g_areaList[id];
+				AreaDetailStruct&item = g_areaList[areaName];
 				item.areaName = areaName;
 				for (int j = 0; j < itemarray.size(); j++)
 				{
@@ -144,13 +144,13 @@ void DetailAreaLayoutManager::SlotThreadAddDetailArea()
 			QString id = rootObject["id"].toString();
 			int pid = rootObject["pid"].toInt();
 			AddTableViewItem(id.toInt(), m_addItemName, m_addParentName);
-			if (g_areaList.find(pid) != g_areaList.end())
+			if (g_areaList.find(m_addParentName) != g_areaList.end())
 			{
-				auto itor = g_areaList.find(pid);
+				auto itor = g_areaList.find(m_addParentName);
 				itor->second.areaDetailList[id.toInt()] = m_addItemName;
 			}
 			else {
-				AreaDetailStruct& item = g_areaList[pid];
+				AreaDetailStruct& item = g_areaList[m_addParentName];
 				item.areaName = m_addParentName;
 				item.areaDetailList[id.toInt()] = m_addItemName;
 				m_ptrAreaLayoutManager->AddTableViewItem(pid, m_addParentName);

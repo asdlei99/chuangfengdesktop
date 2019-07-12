@@ -11,7 +11,7 @@ public:
 	AddFeedingWidget(QString&subject_name,QString&price,int maxNumber,QString&areaName, QWidget *parent = Q_NULLPTR);
 	~AddFeedingWidget();
 signals:
-	void sig_commit(QString&time,QString&number,QString&areaItem);
+	void sig_commit(QString&time,QString&number,QString&areaItem,QString&type);
 private:
 	virtual QWidget*getDragnWidget();
 private slots:

@@ -129,6 +129,8 @@ public:
         area_combox = new QComboBox(widget_18);
         area_combox->setObjectName(QStringLiteral("area_combox"));
         area_combox->setGeometry(QRect(450, 10, 80, 28));
+        area_combox->setStyleSheet(QLatin1String("color: rgb(171, 171, 171);\n"
+"border-color: rgb(171, 171, 171);"));
 
         verticalLayout->addWidget(widget_18);
 

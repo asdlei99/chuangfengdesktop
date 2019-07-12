@@ -1,33 +1,26 @@
 #pragma once
-
-#include <QObject>
+#include <QThread>
 #include <map>
 using namespace std;
 struct singleShareStruct
 {
-	singleShareStruct() {
-
-		areaName = "";
-		dbFeed = 0;
-		dbMedicine = 0;
-	}
-	QString areaName;
-	double dbFeed;
-	double dbMedicine;
-
+	double dbFeed = 0;
+	double dbDrug = 0;
+	double dbDisinfect = 0;
+// 	double dbMateriel = 0;
+// 	double dbFixed = 0;
 };
 
-class singleAreaShare :public QObject
+class singleAreaShare :public QThread
 {
 	Q_OBJECT
 public:
-	singleAreaShare(QString _strTablePath);
+	singleAreaShare(QString _strTablePath, map<QString, singleShareStruct>&_list);
 	~singleAreaShare();
-public:
-	bool FillTableData(map<QString, singleShareStruct>_areaShare);
 private:
-	bool InitTableForm();
+	virtual void run();
 private:
 	QString m_strTablePath;
-	const int m_iDataStartRaw = 3;
+	const int m_iDataStartRaw = 4;
+	map<QString, singleShareStruct> m_list;
 };

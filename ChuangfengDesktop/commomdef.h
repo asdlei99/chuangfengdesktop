@@ -108,5 +108,6 @@ struct AreaFeedFeedingDetailStruct
 	QString supplier = "";
 	QString subject_name = "";
 	QString price = "0";
+	QString type = "À«¡œ";
 	int number = 0;
 };
