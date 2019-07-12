@@ -13,6 +13,7 @@ private slots:
 	void updateMaximize();
 	void slotCheckBoxStateChanged(bool status);
 	void SlotThreadSearchShare();
+	void finishedThreadBtnSlot();
 private:
 	virtual void mouseDoubleClickEvent(QMouseEvent *event);
 	void paintEvent(QPaintEvent *event);
@@ -30,6 +31,7 @@ private:
 
 	void getAreaUse();
 	void AddTableView();
+
 
 private:
 	virtual void InitLayout();

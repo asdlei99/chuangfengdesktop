@@ -96,7 +96,7 @@ public:
         remake_lab_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         dateEdit = new QDateEdit(widget);
         dateEdit->setObjectName(QStringLiteral("dateEdit"));
-        dateEdit->setGeometry(QRect(120, 40, 161, 28));
+        dateEdit->setGeometry(QRect(120, 40, 141, 28));
         dateEdit->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
         use_Edit = new QLineEdit(widget);
         use_Edit->setObjectName(QStringLiteral("use_Edit"));

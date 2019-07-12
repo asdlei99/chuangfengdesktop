@@ -20,21 +20,21 @@ void singleAreaShare::run()
 	CoInitializeEx(NULL, COINIT_MULTITHREADED);
 	QExcel::copyFileToPath("singleareashare.xlsx", m_strTablePath, true);
 	QExcel object(m_strTablePath);
-	object.selectSheet("Sheet1");
-	object.mergeCells("A1:D1");
-	object.mergeCells("A2:D2");
-	object.setCellString("A1", QString::fromLocal8Bit("X区X月份单塘分摊表"), EnumTextAliPos::Center, 18, true);
-	object.setCellString("A2", QString::fromLocal8Bit("单位：元"), EnumTextAliPos::Right, 14, false);
-	object.setCellString("A3", QString::fromLocal8Bit("塘号"), EnumTextAliPos::Center, 14, true);
-	object.setCellString("B3", QString::fromLocal8Bit("饲料"), EnumTextAliPos::Center, 14, true);
-	object.setCellString("C3", QString::fromLocal8Bit("药品"), EnumTextAliPos::Center, 14, true);
-	object.setCellString("D3", QString::fromLocal8Bit("消毒"), EnumTextAliPos::Center, 14, true);
-	object.setCellString("E3", QString::fromLocal8Bit("合计"), EnumTextAliPos::Center, 14, true);
+	object.selectSheet(1);
+// 	object.mergeCells("A1:D1");
+// 	object.mergeCells("A2:D2");
+// 	object.setCellString("A1", QString::fromLocal8Bit("X区X月份单塘分摊表"), EnumTextAliPos::Center, 18, true);
+// 	object.setCellString("A2", QString::fromLocal8Bit("单位：元"), EnumTextAliPos::Right, 14, false);
+// 	object.setCellString("A3", QString::fromLocal8Bit("塘号"), EnumTextAliPos::Center, 14, true);
+// 	object.setCellString("B3", QString::fromLocal8Bit("饲料"), EnumTextAliPos::Center, 14, true);
+// 	object.setCellString("C3", QString::fromLocal8Bit("药品"), EnumTextAliPos::Center, 14, true);
+// 	object.setCellString("D3", QString::fromLocal8Bit("消毒"), EnumTextAliPos::Center, 14, true);
+// 	object.setCellString("E3", QString::fromLocal8Bit("合计"), EnumTextAliPos::Center, 14, true);
 
-	object.setColumnWidth(1, 16);
-	object.setColumnWidth(3, 14);
-	object.setColumnWidth(4, 14);
-	object.setColumnWidth(2, 14);
+// 	object.setColumnWidth(1, 16);
+// 	object.setColumnWidth(3, 14);
+// 	object.setColumnWidth(4, 14);
+// 	object.setColumnWidth(2, 14);
 	int iInsertRaw = m_iDataStartRaw;
 	double a = 0, b = 0, c = 0;
 	for (auto&kvp : m_list)

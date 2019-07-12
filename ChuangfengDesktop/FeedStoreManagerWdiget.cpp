@@ -648,7 +648,7 @@ void FeedStoreManagerWdiget::SlotSearchAreaOutFeedStore()
 		{
 			m_id = m_pViewModelTotalArea->item(i, 0)->text().toInt();
 			m_subject_name = m_pViewModelTotalArea->item(i, 2)->text();
-			m_price = m_pViewModelTotalArea->item(i, 3)->text();
+			m_price = m_pViewModelTotalArea->item(i, 5)->text();
 			m_maxNumber = m_pViewModelTotalArea->item(i, 6)->text().toInt();
 			m_area = m_pViewModelTotalArea->item(i, 1)->text();
 			nCount++;

@@ -62,6 +62,17 @@ StoreReportManager::StoreReportManager(QWidget *parent)
 		connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
 		m_pThread->start();
 	});
+
+	connect(ui->storereport_export_btn, &QPushButton::clicked, this, [this]()->void {
+		QString  m_ExcelPath = QFileDialog::getSaveFileName(0, QString::fromLocal8Bit("导出表格"), ".", "Microsoft Office(*.xlsx)");//获取保存路径
+		if (!m_ExcelPath.isEmpty()) {
+			ui->storereport_export_btn->setEnabled(false);
+			WarehouseObject* pthread = new WarehouseObject(m_ExcelPath, m_initAmount, m_backList, m_incomeList,m_returnList, m_useList,m_areaUseList);
+			connect(pthread, SIGNAL(finished()), this, SLOT(finishedThreadBtnSlot()));
+			pthread->start();
+		}
+
+	});
 }
 
 StoreReportManager::~StoreReportManager()
@@ -487,6 +498,76 @@ void StoreReportManager::getUse()
 
 void StoreReportManager::getAreaUse()
 {
+	QString strParam = QString("starttime=%1&endtime=%2")
+		.arg(ui->storereport_startdateEdit->text()).arg(ui->store_report_enddateEdit->text());
+	QByteArray responseData;
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchOutFeedStoreByReport"
+		, TempToken, strParam, responseData);
+	QJsonParseError json_error;
+	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				tuple<double,double>&value = m_areaUseList[materialObject["outarea"].toString() + QString::fromLocal8Bit("领用")];
+				get<0>(value) += materialObject["price"].toString().toDouble()*materialObject["number"].toInt();
+			}
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("网络请求异常！"), errorcode);
+	}
+
+	 strParam = QString("starttime=%1&endtime=%2")
+		.arg(ui->storereport_startdateEdit->text()).arg(ui->store_report_enddateEdit->text());
+
+	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SerachFeedingAll"
+		, TempToken, strParam, responseData);
+	 parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	if (json_error.error == QJsonParseError::NoError)
+	{
+		if (parse_doucment.isArray())
+		{
+			QJsonArray array = parse_doucment.array();
+			for (int i = 0; i < array.size(); i++)
+			{
+				QJsonValue materialArray = array.at(i);
+				QJsonObject materialObject = materialArray.toObject();
+				tuple<double, double>&value = m_areaUseList[materialObject["area"].toString() + QString::fromLocal8Bit("领用")];
+				get<1>(value) += materialObject["price"].toString().toDouble()*materialObject["number"].toInt();
+			}
+		}
+		else
+		{
+			QJsonObject rootObject = parse_doucment.object();
+			if (!rootObject["error_code"].isNull())//
+			{
+				int errorcode = rootObject["error_code"].toInt();
+				QString strMsg = rootObject["msg"].toString();
+				emit sig_NotifyMsg(strMsg, errorcode);
+			}
+		}
+	}
+	else {
+		int errorcode = 404;
+		emit sig_NotifyMsg(QString::fromLocal8Bit("网络请求异常！"), errorcode);
+	}
 
 }
 
@@ -556,6 +637,7 @@ void StoreReportManager::AddTableView()
 		m_pViewModel->setItem(nCount, 7, new QStandardItem(QString::number(get<1>(kvp.second))));
 		out += get<1>(kvp.second);
 		m_pViewModel->setItem(nCount,8, new QStandardItem(QString::number(get<0>(kvp.second)-get<1>(kvp.second) )));
+		nCount++;
 	}
 	m_pViewModel->setItem(nCount, 5, new QStandardItem(QString::fromLocal8Bit("合计")));
 	m_pViewModel->setItem(nCount, 6, new QStandardItem(QString::number(inCome)));
@@ -565,6 +647,12 @@ void StoreReportManager::AddTableView()
 	ui->store_report_tableView->setColumnWidth(1, 80);
 	ui->store_report_tableView->setColumnWidth(2, 80);
 	ui->store_report_tableView->setColumnWidth(3, 80);
+}
+
+void StoreReportManager::finishedThreadBtnSlot()
+{
+	ui->storereport_export_btn->setEnabled(true);
+	emit sig_NotifyMsg(QString::fromLocal8Bit("导出成功！"), 0);
 }
 
 void StoreReportManager::SlotThreadSearchShare()
