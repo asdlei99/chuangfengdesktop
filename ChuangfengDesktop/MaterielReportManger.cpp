@@ -148,10 +148,11 @@ QWidget* MaterielReportManger::getDragnWidget()
 
 void MaterielReportManger::getMaterialTotalPrice(double&all)
 {
+	QString Url = QString(SerachMaterial).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("subject_name=%1").arg("");
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SerachMaterial"
-		, TempToken, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -174,12 +175,13 @@ void MaterielReportManger::getMaterialTotalPrice(double&all)
 
 void MaterielReportManger::getInComeMaterialSearchTime()
 {
+	QString Url = QString(SearchInMaterialDetail).arg(g_strIpAddr).arg(g_strIpPort);
 	QDateTime current_date_time = QDateTime::currentDateTime();
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->materielreport_startdateEdit->text()).arg(ui->materiel_report_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchInMaterialDetail"
-		, TempToken, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -199,12 +201,12 @@ void MaterielReportManger::getInComeMaterialSearchTime()
 
 void MaterielReportManger::getInComeMaterialCurrentTime(double&add)
 {
+	QString Url = QString(SearchInMaterialDetail).arg(g_strIpAddr).arg(g_strIpPort);
 	QDateTime current_date_time = QDateTime::currentDateTime();
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->materielreport_startdateEdit->text()).arg(current_date_time.toString("yyyy-MM-dd hh:mm:ss"));
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchInMaterialDetail"
-		, TempToken, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -229,7 +231,7 @@ void MaterielReportManger::getFixedUseCurrentTime(double&value)
 		.arg(ui->materielreport_startdateEdit->text()).arg(current_date_time.toString("yyyy-MM-dd hh:mm:ss"));
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getFixedUsetoReport"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -254,7 +256,7 @@ void MaterielReportManger::getOutMaterialCurrentTime(double&value)
 		.arg(ui->materielreport_startdateEdit->text()).arg(current_date_time.toString("yyyy-MM-dd hh:mm:ss"));
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchOutMaterialByReport"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -279,7 +281,7 @@ void MaterielReportManger::getOutMaterialUse()
 		.arg(ui->materielreport_startdateEdit->text()).arg(ui->materiel_report_enddateEdit->text());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchOutMaterialByReport"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -305,7 +307,7 @@ void MaterielReportManger::getFixedUse()
 		.arg(ui->materielreport_startdateEdit->text()).arg(ui->materiel_report_enddateEdit->text());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getFixedUsetoReport"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -351,7 +353,7 @@ void MaterielReportManger::getFixedAsset()
 	QString strParam = QString("over_time=%1").arg(maxtime);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchFixedAsset"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

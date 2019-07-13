@@ -309,7 +309,7 @@ void FeedingManagerWidget::SlotThreadAddFeeding()
 		.arg(m_areaItem).arg(m_specs).arg(m_unit).arg(m_feedingType);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addFeeding"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -357,7 +357,7 @@ void FeedingManagerWidget::SlotThreadSearchFeeding()
 		.arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text()).arg(ui->area_combox->currentText()).arg(ui->area_item_combox->currentText());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SerachFeeding"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -439,7 +439,7 @@ void FeedingManagerWidget::SlotThreadSearchAreaFeedStore()
 		.arg(ui->area_feed_edit->text()).arg(ui->area3_combox->currentText());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchAreaFeedStore"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

@@ -55,7 +55,7 @@ void AreaLayoutManager::SlotThreadAddArea()
 	QString strParam = QString("name=%1").arg(m_addName);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addAquaculture"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);

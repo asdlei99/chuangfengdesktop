@@ -76,7 +76,7 @@ void CategoryLayoutManager::SlotThreadRemoveItem()
 	QString strParam = "ids=" + itemList;
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/removeTaskItem"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -116,7 +116,7 @@ void CategoryLayoutManager::SlotThreadAddItem()
 	QString strParam = QString("name=%1").arg(m_addName);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/insertTaskItem"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -146,7 +146,7 @@ void CategoryLayoutManager::threadGetCategoryInfoCallBack()
 {
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestGet("http://127.0.0.1:80/zerg/public/index.php/getTaskItem"
-		, TempToken, responseData);
+		, g_token, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);

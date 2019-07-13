@@ -3,7 +3,7 @@
 #include <QString>
 using namespace  std;
 
-#define  TempToken "3caa763e27ab73863580f25e00ce5117"
+/*#define  TempToken "3caa763e27ab73863580f25e00ce5117"*/
 struct AreaDetailStruct
 {
 	AreaDetailStruct() {
@@ -29,6 +29,9 @@ extern map<int, QString> g_CategoryList;
 extern map<int, QString> g_SupplierList;
 extern map<QString, AreaDetailStruct> g_areaList;
 extern map<QString, CostAreaStruct> g_CostAreaList;
+extern QString g_strIpAddr;
+extern QString g_strIpPort;
+extern QString g_token;
 
 
 

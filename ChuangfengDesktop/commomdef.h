@@ -51,7 +51,6 @@ struct noPayDetailItem
 	QString strInitValue;
 	QString strSurplus;
 };
-
 enum FeedTypeEnum
 {
 	_enIncomStore = 1,
@@ -59,8 +58,6 @@ enum FeedTypeEnum
 	_enRenturnStore,
 	_enBack
 };
-
-
 struct FeedStoreStruct
 {
 	int id = 0;
@@ -71,8 +68,6 @@ struct FeedStoreStruct
 	QString price = "0";
 	int number = 0;
 };
-
-
 struct FeedStoreIn_out_return_Struct
 {
 	int id = 0;
@@ -96,7 +91,6 @@ struct AreaFeedStoreStruct
 	QString price = "0";
 	int number = 0;
 };
-
 struct AreaFeedFeedingDetailStruct
 {
 	int id = 0;
@@ -111,3 +105,13 @@ struct AreaFeedFeedingDetailStruct
 	QString type = "À«¡œ";
 	int number = 0;
 };
+
+#define LONGINURL					"http://%1:%2/zerg/public/index.php/login"
+#define INCOMEFEEDSTORE				"http://%1:%2/zerg/public/index.php/InComFeedStore"
+#define INSERTMATERIAL				"http://%1:%2/zerg/public/index.php/InsertMaterial"
+#define SEARCHFEEDINGTOREPORT		"http://%1:%2/zerg/public/index.php/SerachFeedingToReport"
+#define GETUSERLIST					"http://%1:%2/zerg/public/index.php/getUserList"
+#define SearchOutFeedStoreByReport	"http://%1:%2/zerg/public/index.php/SearchOutFeedStoreByReport"
+#define  SerachMaterial				"http://%1:%2/zerg/public/index.php/SerachMaterial"
+#define getGeneralDetail			"http://%1:%2/zerg/public/index.php/getGeneralDetail"
+#define SearchInMaterialDetail        "http://%1:%2/zerg/public/index.php/SearchInMaterialDetail"

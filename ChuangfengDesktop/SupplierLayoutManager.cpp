@@ -74,7 +74,7 @@ void SupplierLayoutManager::SlotThreadRemoveItem()
 	QString strParam = "ids=" + itemList;
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteSupplier"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -113,7 +113,7 @@ void SupplierLayoutManager::SlotThreadAddItem()
 	QString strParam = QString("name=%1&remake=%2").arg(m_addName).arg(m_addRemake);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addSupplier"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -157,7 +157,7 @@ void SupplierLayoutManager::threadGetSupplierInfoCallBack()
 {
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestGet("http://127.0.0.1:80/zerg/public/index.php/getSupplier"
-		, TempToken, responseData);
+		, g_token, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);

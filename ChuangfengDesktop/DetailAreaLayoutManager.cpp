@@ -34,7 +34,7 @@ void DetailAreaLayoutManager::threadAreaInfoCallBack()
 {
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestGet("http://127.0.0.1:80/zerg/public/index.php/getAquaculturearea"
-		, TempToken, responseData);
+		, g_token, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -130,7 +130,7 @@ void DetailAreaLayoutManager::SlotThreadAddDetailArea()
 	QString strParam = QString("name=%1&itemname=%2").arg(m_addParentName).arg(m_addItemName);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addAquacultureareaDetail"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);

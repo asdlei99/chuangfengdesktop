@@ -171,7 +171,7 @@ void ShareReportManager::GetGeneralCostsShare()
 	QString strParam = QString("starttime=%1&endtime=%2").arg(ui->share_report_startdateEdit->text()).arg(ui->share_report_enddateEdit->text());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getGeneralDetail"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -214,7 +214,7 @@ void ShareReportManager::GetGeneralCostsShare()
 	 strParam = QString("starttime=%1&endtime=%2").arg(ui->share_report_startdateEdit->dateTime().toString("yyyy-MM-dd")).arg(ui->share_report_enddateEdit->dateTime().toString("yyyy-MM-dd"));
 
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getBakDetail"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 
 
 	 parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -264,7 +264,7 @@ void ShareReportManager::GetMaterialCostsShare()
 		.arg(ui->share_report_startdateEdit->text()).arg(ui->share_report_enddateEdit->text());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchOutMaterialByReport"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -308,7 +308,7 @@ void ShareReportManager::GetFeedingCostsShare()
 	
 		strParam = QString("starttime=%1&endtime=%2").arg(ui->share_report_startdateEdit->text()).arg(ui->share_report_enddateEdit->text());
 		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchOutFeedStoreByReport"
-			, TempToken, strParam, responseData);
+			, g_token, strParam, responseData);
 	
 
 	QJsonParseError json_error;
@@ -356,7 +356,7 @@ void ShareReportManager::GetFixedAssetCostsShare()
 	QString strParam = QString("over_time=%1").arg(maxtime);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchFixedAsset"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

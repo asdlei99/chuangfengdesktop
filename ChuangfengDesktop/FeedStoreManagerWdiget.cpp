@@ -304,7 +304,7 @@ void FeedStoreManagerWdiget::SlotThreadSearchAreaFeedStore()
 		.arg(ui->feed_name_edit->text()).arg(ui->area3_combox->currentText());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchAreaFeedStore"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -354,20 +354,20 @@ void FeedStoreManagerWdiget::SlotThreadDescFeedStore()
 		QString strParam = QString("id=%1&operat_time=%2&subject_name=%3&price=%4&number=%5&outarea=%6")
 			.arg(m_id).arg(m_time).arg(m_subject_name).arg(m_price).arg(m_number).arg(m_area);
 		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/OutComFeedStore"
-			, TempToken, strParam, responseData);
+			, g_token, strParam, responseData);
 	}
 	else if (m_type == _enBack)
 	{
 		QString strParam = QString("id=%1&operat_time=%2&subject_name=%3&price=%4&number=%5&supplier=%6&unit=%7&specs=%8&account=%9")
 			.arg(m_id).arg(m_time).arg(m_subject_name).arg(m_price).arg(m_number).arg(m_suplier).arg(m_unit).arg(m_specs).arg(m_area);
 		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/BackFeedStore"
-			, TempToken, strParam, responseData);
+			, g_token, strParam, responseData);
 	}
 	else if (m_type == _enRenturnStore) {
 		QString strParam = QString("id=%1&operat_time=%2&subject_name=%3&price=%4&number=%5&area=%6")
 			.arg(m_id).arg(m_time).arg(m_subject_name).arg(m_price).arg(m_number).arg(m_area);
 		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/ReturnFeedStore"
-			, TempToken, strParam, responseData);
+			, g_token, strParam, responseData);
 	}
 
 	
@@ -445,25 +445,25 @@ void FeedStoreManagerWdiget::SlotThreadSearchFeedStore_in_out_return_back()
 	{
 		strParam = QString("starttime=%1&endtime=%2").arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text());
 		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchInComSearchFeedStore"
-			, TempToken, strParam, responseData);
+			, g_token, strParam, responseData);
 	}
 	else if (ui->storge_type_combox->currentText() == QString::fromLocal8Bit("³ö¿â"))
 	{
 		strParam = QString("starttime=%1&endtime=%2&area=%3").arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text()).arg(ui->area_combox->currentText());
 		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchOutFeedStore"
-			, TempToken, strParam, responseData);
+			, g_token, strParam, responseData);
 	}
 	else if (ui->storge_type_combox->currentText() == QString::fromLocal8Bit("ÍË»õ"))
 	{
 		strParam = QString("starttime=%1&endtime=%2").arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text());
 		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchBackFeedStore"
-			, TempToken, strParam, responseData);
+			, g_token, strParam, responseData);
 	}
 	else
 	{
 		strParam = QString("starttime=%1&endtime=%2&area=%3").arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text()).arg(ui->area_combox->currentText());
 		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchReturnFeedStore"
-			, TempToken, strParam, responseData);
+			, g_token, strParam, responseData);
 	}
 	 
 	QJsonParseError json_error;
@@ -513,7 +513,7 @@ void FeedStoreManagerWdiget::SlotThreadSearchFeedStore()
 		.arg(ui->feed_name_edit->text());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchFeedStore"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -577,7 +577,7 @@ void FeedStoreManagerWdiget::SlotThreadAddFeedStore()
 		arg(m_number);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/InComFeedStore"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

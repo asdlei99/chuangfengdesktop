@@ -38,6 +38,7 @@ public:
     QLabel *label_2;
     QLabel *label_3;
     QPushButton *login_btn;
+    QLabel *error_lab;
     QWidget *page_2;
     QLineEdit *port_Edit;
     QLineEdit *servce_ip;
@@ -88,6 +89,10 @@ public:
         login_btn = new QPushButton(page);
         login_btn->setObjectName(QStringLiteral("login_btn"));
         login_btn->setGeometry(QRect(40, 290, 180, 32));
+        error_lab = new QLabel(page);
+        error_lab->setObjectName(QStringLiteral("error_lab"));
+        error_lab->setGeometry(QRect(10, 330, 231, 28));
+        error_lab->setStyleSheet(QStringLiteral("color: rgb(255, 85, 0);"));
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
@@ -133,6 +138,7 @@ public:
         label_2->setText(QString());
         label_3->setText(QString());
         login_btn->setText(QApplication::translate("QtLoginWidget", "\347\231\273\345\275\225", Q_NULLPTR));
+        error_lab->setText(QApplication::translate("QtLoginWidget", "\347\224\250\346\210\267\345\220\215\346\210\226\350\200\205\345\257\206\347\240\201\351\224\231\350\257\257\357\274\201", Q_NULLPTR));
         label_4->setText(QString());
         label_5->setText(QString());
 #ifndef QT_NO_TOOLTIP

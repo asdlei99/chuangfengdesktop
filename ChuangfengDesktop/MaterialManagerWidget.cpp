@@ -401,7 +401,7 @@ void MaterialManagerWidget::SearchInMaterial()
 		.arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchInMaterialDetail"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -447,7 +447,7 @@ void MaterialManagerWidget::SearchOutMaterial()
 		.arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text()).arg(ui->area_comboBox->currentText());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchOutMaterialDetail"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -519,7 +519,7 @@ void MaterialManagerWidget::SlotThreadSearchFixedAsset()
 	QString strParam = QString("over_time=%1").arg(maxtime);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchFixedAsset"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -584,7 +584,7 @@ void MaterialManagerWidget::SlotThreadOutMaterialDetail()
 		.arg(m_outId).arg(m_outTime).arg(m_outSubject).arg(m_outPrice).arg(m_outNumber).arg(m_outArea);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/OutMaterial?XDEBUG_SESSION_START=17307"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -641,7 +641,7 @@ void MaterialManagerWidget::SlotThreadSearchItem()
 	QString strParam = QString("subject_name=%1").arg(ui->lineEdit->text());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SerachMaterial"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -729,7 +729,7 @@ void MaterialManagerWidget::SlotThreadAddMaterialDetail()
 		arg(m_addSpecs).arg(m_addNumber).arg(m_addFare);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/InsertMaterial?XDEBUG_SESSION_START=10903"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

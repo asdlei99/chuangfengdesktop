@@ -9,6 +9,7 @@
 #include <QJsonValue>
 #include <QByteArray>
 #include "globalVariable.h"
+#include "commomdef.h"
 
 
 using namespace  std;
@@ -86,7 +87,7 @@ void UserLayoutManger::SlotThreadRemove()
 	QString strParam = "ids=" + itemList;
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteuser"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -136,9 +137,10 @@ void UserLayoutManger::InitLayout()
 
 void UserLayoutManger::threadGetUserInfoCallBack()
 {
+	QString Url = QString(GETUSERLIST).arg(g_strIpAddr).arg(g_strIpPort);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestGet("http://127.0.0.1:80/zerg/public/index.php/getUserList"
-		, TempToken, responseData);
+	SingletonHttpRequest::getInstance()->RequestGet(Url
+		, g_token, responseData);
 	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -176,14 +178,13 @@ void UserLayoutManger::threadGetUserInfoCallBack()
 void UserLayoutManger::threadAddUserInfoCallBack()
 {
 	QString md5;
-
 	QByteArray bb;
 	bb = QCryptographicHash::hash(m_addPsd.toLocal8Bit(), QCryptographicHash::Md5);
 	md5.append(bb.toHex());
 	QString strParam = QString("username=%1&password=%2&role=%3").arg(m_addUserName).arg(md5).arg(m_addrole);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/adduser?XDEBUG_SESSION_START=17842"
-		, TempToken, strParam,responseData);
+		, g_token, strParam,responseData);
 	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);

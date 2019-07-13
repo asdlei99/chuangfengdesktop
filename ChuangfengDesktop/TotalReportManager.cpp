@@ -120,10 +120,11 @@ void TotalReportManager::SlotSearchBtnAction()
 
 void TotalReportManager::SlotThreadSearchGeneral()
 {
+	QString Url = QString(getGeneralDetail).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("starttime=%1&endtime=%2").arg(ui->totalreport_startdateEdit->text()).arg(ui->total_report_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getGeneralDetail"
-		, TempToken, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url
+		, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -164,7 +165,7 @@ void TotalReportManager::SlotThreadSearchGeneral()
 	}
 
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getBakDetail"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	 parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
 	{

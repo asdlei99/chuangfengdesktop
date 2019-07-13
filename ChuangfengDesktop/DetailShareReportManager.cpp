@@ -177,11 +177,12 @@ void DetailShareReportManager::finishedThreadBtnSlot()
 
 void DetailShareReportManager::SlotThreadSearchShare()
 {
+	QString Url = QString(SEARCHFEEDINGTOREPORT).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("starttime=%1&endtime=%2&area=%3")
 		.arg(ui->detailshare_report_startdateEdit->text()).arg(ui->detailshare_report_enddateEdit->text()).arg(ui->area_combox->currentText());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SerachFeedingToReport"
-		, TempToken, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

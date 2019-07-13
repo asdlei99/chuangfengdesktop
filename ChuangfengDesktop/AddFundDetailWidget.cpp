@@ -7,6 +7,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include "AddFeedStoreWidget.h"
+#include "commomdef.h"
 
 AddFundDetailWidget::AddFundDetailWidget(PopFundDetailEnum type, QWidget *parent)
 	:MoveableFramelessWindow(parent)
@@ -70,12 +71,13 @@ QWidget* AddFundDetailWidget::getDragnWidget()
 
 void AddFundDetailWidget::SlotThreadAddFeedStore()
 {
+	QString Url = QString(INCOMEFEEDSTORE).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("operat_time=%1&supplier=%2&subject_name=%3&specs=%4&price=%5&unit=%6&number=%7")
 		.arg(m_time).arg(m_suplier).arg(m_subject_name).arg(m_specs).arg(m_price).arg(m_unit).
 		arg(m_number);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/InComFeedStore"
-		, TempToken, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -226,12 +228,13 @@ void AddFundDetailWidget::SlotAddMaterialDetail(QString&time, QString&use, QStri
 
 void AddFundDetailWidget::SlotThreadAddMaterialDetail()
 {
+	QString Url = QString(INSERTMATERIAL).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("operat_time=%1&use=%2&subject_name=%3&category=%4&price=%5&unit=%6&specs=%7&number=%8&fare=%9")
 		.arg(m_addTime).arg(m_addUse).arg(m_addSubject_name).arg(m_addCategory).arg(m_addPrice).arg(m_addUnit).
 		arg(m_addSpecs).arg(m_addNumber).arg(m_addFare);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/InsertMaterial"
-		, TempToken, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

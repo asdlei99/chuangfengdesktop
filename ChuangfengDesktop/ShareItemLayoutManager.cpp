@@ -71,7 +71,7 @@ void ShareItemLayoutManager::SlotThreadAddShareItem()
 	QString strParam = QString("name=%1&itemname=%2").arg(m_addfromName).arg(m_addName);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addCostareas"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -121,7 +121,7 @@ void ShareItemLayoutManager::threadCostAreaInfoCallBack()
 {
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestGet("http://127.0.0.1:80/zerg/public/index.php/getCostareas"
-		, TempToken, responseData);
+		, g_token, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);

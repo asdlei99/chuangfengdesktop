@@ -154,7 +154,7 @@ void BakLayoutManager::SlotThreadSearchGeneral()
 	QString strParam = QString("starttime=%1&endtime=%2").arg(ui->bak_startdateEdit->dateTime().toString("yyyy-MM-dd")).arg(ui->bak_enddateEdit->dateTime().toString("yyyy-MM-dd"));
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getBakDetail"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -219,7 +219,7 @@ void BakLayoutManager::SlotThreadAddGeneral()
 		.arg(m_addIncom).arg(m_addPay).arg(m_addRemake).arg(m_addShare);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addbak"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -286,7 +286,7 @@ void BakLayoutManager::SlotThreadRemoveItem()
 	QString strParam = QString("id=%1&dvalue=%2").arg(id).arg(QString::number(dValue));
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteBakItem"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

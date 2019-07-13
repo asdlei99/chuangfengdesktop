@@ -10,11 +10,13 @@ public:
 	~LoginQWidget();
 public slots:
 	void SlotCloseMainWidget();
+	void SlotThreadLogin();
 private:
 	QWidget*getDragnWidget();
 
 private:
 	Ui::QtLoginWidget* ui;
 	bool m_bIsLoginLayout;
+
 };
 

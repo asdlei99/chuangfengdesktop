@@ -37,7 +37,7 @@ void NopayReportManger::SlotThreadSearchBakInfo()
 	QString strParam = QString("");
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getDuesList"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -77,7 +77,7 @@ void NopayReportManger::SlotThreadSearchBakInfo()
 	 strParam = QString("starttime=%1&endtime=%2").arg(ui->nopay_report_startdateEdit->text()).arg(ui->nopay_report_enddateEdit->text());
 	
 	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getDuesDetail"
-		, TempToken, strParam, responseData);
+		, g_token, strParam, responseData);
 
 
 	 parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
