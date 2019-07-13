@@ -33,7 +33,7 @@ DescMaterialWidget::DescMaterialWidget(QString&subject, QString&price, int&numbe
 		emit sig_commit(number, time, area);
 		emit ui->pop_close_btn->clicked();
 	});
-	for (auto&kvp:g_CostAreaList)
+	for (auto&kvp: g_areaList)
 	{
 		ui->comboBox->addItem(kvp.second.areaName);
 	}

@@ -43,7 +43,7 @@ AddFundDetailWidget::AddFundDetailWidget(PopFundDetailEnum type, QWidget *parent
 	{
 		ui->share_comboBox->addItem(kep.second.costAreaName);
 	}
-	ui->share_comboBox->addItem(QString::fromLocal8Bit("自定义"));
+	/*ui->share_comboBox->addItem(QString::fromLocal8Bit("自定义"));*/
 	ui->share_comboBox->setCurrentIndex(0);
 	ui->subject_Edit->setVisible(false);
 	ui->share_Edit->setVisible(false);

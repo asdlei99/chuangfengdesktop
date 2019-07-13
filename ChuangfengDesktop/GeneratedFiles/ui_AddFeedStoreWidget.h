@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -36,7 +37,6 @@ public:
     QPushButton *pop_commit_btn;
     QLabel *remake_lab_2;
     QDateEdit *dateEdit;
-    QLineEdit *use_Edit;
     QLabel *remake_lab_4;
     QLabel *remake_lab_5;
     QLabel *remake_lab_6;
@@ -49,6 +49,7 @@ public:
     QLabel *remake_lab_11;
     QLineEdit *norms_Edit;
     QLabel *remake_lab_12;
+    QComboBox *supiler_comboBox;
 
     void setupUi(QWidget *AddFeedStoreWidget)
     {
@@ -98,9 +99,6 @@ public:
         dateEdit->setObjectName(QStringLiteral("dateEdit"));
         dateEdit->setGeometry(QRect(120, 40, 141, 28));
         dateEdit->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
-        use_Edit = new QLineEdit(widget);
-        use_Edit->setObjectName(QStringLiteral("use_Edit"));
-        use_Edit->setGeometry(QRect(360, 40, 161, 28));
         remake_lab_4 = new QLabel(widget);
         remake_lab_4->setObjectName(QStringLiteral("remake_lab_4"));
         remake_lab_4->setGeometry(QRect(270, 40, 81, 28));
@@ -161,6 +159,9 @@ public:
         remake_lab_12->setStyleSheet(QString::fromUtf8("color: rgb(117, 117, 117);\n"
 "font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         remake_lab_12->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        supiler_comboBox = new QComboBox(widget);
+        supiler_comboBox->setObjectName(QStringLiteral("supiler_comboBox"));
+        supiler_comboBox->setGeometry(QRect(360, 40, 151, 28));
 
         verticalLayout->addWidget(widget);
 
@@ -179,7 +180,6 @@ public:
         pop_cancle_btn->setText(QString());
         pop_commit_btn->setText(QString());
         remake_lab_2->setText(QApplication::translate("AddFeedStoreWidget", "\346\227\245\346\234\237\357\274\232", Q_NULLPTR));
-        use_Edit->setText(QString());
         remake_lab_4->setText(QApplication::translate("AddFeedStoreWidget", "\344\276\233\345\272\224\345\225\206\357\274\232", Q_NULLPTR));
         remake_lab_5->setText(QApplication::translate("AddFeedStoreWidget", "\347\211\251\345\223\201\345\220\215\347\247\260\357\274\232", Q_NULLPTR));
         remake_lab_6->setText(QApplication::translate("AddFeedStoreWidget", "\345\215\225\344\275\215\357\274\232", Q_NULLPTR));

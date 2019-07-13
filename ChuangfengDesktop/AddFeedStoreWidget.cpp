@@ -1,5 +1,5 @@
 #include "AddFeedStoreWidget.h"
-
+#include "globalVariable.h"
 
 
 AddFeedStoreWidget::AddFeedStoreWidget(QWidget *parent)
@@ -22,6 +22,10 @@ AddFeedStoreWidget::AddFeedStoreWidget(QWidget *parent)
 	QRegExp regExpr("^[0-9]*[1-9][0-9]*$");
 	QRegExpValidator *patternr = new QRegExpValidator(regExpr, this);//创建了一个表达式
 	ui->Number_Edit->setValidator(patternr);
+	for (auto&kvp: g_SupplierList)
+	{
+		ui->supiler_comboBox->addItem(kvp.second);
+	}
 }
 
 
@@ -45,6 +49,6 @@ void AddFeedStoreWidget::SlotCommit()
 		ui->error_lab->setVisible(true);
 		return;
 	}
-	emit sig_commit(ui->dateEdit->text(), ui->use_Edit->text(), subject_name, price, ui->unit_Edit->text(), ui->norms_Edit->text(), number);
+	emit sig_commit(ui->dateEdit->text(), ui->supiler_comboBox->currentText(), subject_name, price, ui->unit_Edit->text(), ui->norms_Edit->text(), number);
 	emit ui->pop_close_btn->clicked();
 }

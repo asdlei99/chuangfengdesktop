@@ -33,12 +33,8 @@ DescFeedStoreWidget::DescFeedStoreWidget(FeedTypeEnum _type,QString&subject, QSt
 		emit sig_commit(m_type,number, time, area);
 		emit ui->pop_close_btn->clicked();
 	});
-	for (auto&kvp : g_CostAreaList)
-	{
-		ui->comboBox->addItem(kvp.second.areaName);
-	}
-	ui->comboBox->addItem(QString::fromLocal8Bit("自定义"));
-	ui->comboBox->setCurrentIndex(0);
+	
+	
 	ui->pice_Edit->setText(m_price);
 	ui->subject_name_Edit->setText(m_subject);
 	QDateTime current_date_time = QDateTime::currentDateTime();
@@ -50,10 +46,26 @@ DescFeedStoreWidget::DescFeedStoreWidget(FeedTypeEnum _type,QString&subject, QSt
 	QRegExpValidator *patternr = new QRegExpValidator(regExpr, this);//创建了一个表达式
 	ui->Number_Edit->setValidator(patternr);
 	ui->error_lab->setVisible(false);
-	if (m_type != _enOutStore)
+	if (m_type == _enRenturnStore)
 	{
+
 		ui->comboBox->setVisible(false);
 		ui->area_lab->setVisible(false);
+	}
+	if (m_type == _enBack)
+	{	
+		ui->area_lab->setText(QString::fromLocal8Bit("退库账目"));
+		ui->comboBox->addItem(QString::fromLocal8Bit("总账"));
+		ui->comboBox->addItem(QString::fromLocal8Bit("备用金"));
+		ui->comboBox->addItem(QString::fromLocal8Bit("应付款"));	
+	}
+	if (m_type == _enOutStore)
+	{
+		for (auto&kvp : g_areaList)
+		{
+			ui->comboBox->addItem(kvp.second.areaName);
+		}
+		ui->comboBox->setCurrentIndex(0);
 	}
 }
 

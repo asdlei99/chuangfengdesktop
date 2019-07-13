@@ -136,6 +136,7 @@ void FeedStoreManagerWdiget::SlotDescFeedStore()
 	}
 	if (nCount > 1||nCount == 0)
 	{
+		emit sig_NotifyMsg(QString::fromLocal8Bit("请选择节点且只能一个节点！"), 10086);
 		return;
 	}
 
@@ -357,8 +358,8 @@ void FeedStoreManagerWdiget::SlotThreadDescFeedStore()
 	}
 	else if (m_type == _enBack)
 	{
-		QString strParam = QString("id=%1&operat_time=%2&subject_name=%3&price=%4&number=%5&supplier=%6&unit=%7&specs=%8")
-			.arg(m_id).arg(m_time).arg(m_subject_name).arg(m_price).arg(m_number).arg(m_suplier).arg(m_unit).arg(m_specs);
+		QString strParam = QString("id=%1&operat_time=%2&subject_name=%3&price=%4&number=%5&supplier=%6&unit=%7&specs=%8&account=%9")
+			.arg(m_id).arg(m_time).arg(m_subject_name).arg(m_price).arg(m_number).arg(m_suplier).arg(m_unit).arg(m_specs).arg(m_area);
 		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/BackFeedStore"
 			, TempToken, strParam, responseData);
 	}

@@ -52,5 +52,6 @@
         <file>Resources/tuiku_btn.png</file>
         <file>Resources/msg_ico.png</file>
         <file>Resources/feeding_btn.png</file>
+        <file>Resources/tuihuo.png</file>
     </qresource>
 </RCC>

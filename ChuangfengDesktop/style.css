@@ -675,18 +675,33 @@ spacing: 1px;
 	border-image: url(:/ChuangfengDesktop/Resources/chuku_btn.png)0 0 0 160;
 }
 
-#feed_return_btn,#area_feed_return_btn
+
+
+#area_feed_return_btn
 {
 	border-image: url(:/ChuangfengDesktop/Resources/tuiku_btn.png)0 160 0 0;
 }
-#feed_return_btn:hover,#area_feed_return_btn:hover
+#area_feed_return_btn:hover
 {
 	border-image: url(:/ChuangfengDesktop/Resources/tuiku_btn.png)0 80 0 80;
 }
-#feed_return_btn:pressed,#area_feed_return_btn:pressed
+#area_feed_return_btn:pressed
 {
 	border-image: url(:/ChuangfengDesktop/Resources/tuiku_btn.png)0 0 0 160;
 }
+#feed_return_btn
+{
+	border-image: url(:/ChuangfengDesktop/Resources/tuihuo.png)0 160 0 0;
+}
+#feed_return_btn:hover
+{
+	border-image: url(:/ChuangfengDesktop/Resources/tuihuo.png)0 80 0 80;
+}
+#feed_return_btn:pressed
+{
+	border-image: url(:/ChuangfengDesktop/Resources/tuihuo.png)0 0 0 160;
+}
+
 
 #ico_lab[icoProperty="error"]{
 border-image: url(:/ChuangfengDesktop/Resources/msg_ico.png)0 50 0 0;
