@@ -33,10 +33,11 @@ void NopayReportManger::InitLayout()
 
 void NopayReportManger::SlotThreadSearchBakInfo()
 {
+	QString Url = QString(getDuesList).arg(g_strIpAddr).arg(g_strIpPort);
 	map<QString, vector<DuesStruct>> tempList;
 	QString strParam = QString("");
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getDuesList"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
@@ -73,10 +74,10 @@ void NopayReportManger::SlotThreadSearchBakInfo()
 		emit sig_NotifyMsg(QString::fromLocal8Bit("ÍøÂçÇëÇóÒì³££¡"), errorcode);
 	}
 
-
+	 Url = QString(getDuesDetail).arg(g_strIpAddr).arg(g_strIpPort);
 	 strParam = QString("starttime=%1&endtime=%2").arg(ui->nopay_report_startdateEdit->text()).arg(ui->nopay_report_enddateEdit->text());
 	
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getDuesDetail"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 
 

@@ -149,9 +149,10 @@ QWidget* StoreReportManager::getDragnWidget()
 
 void StoreReportManager::getCurrentStore(double&value)
 {
+	QString Url = QString(SearchFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("subject_name=%1").arg("");
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchFeedStore"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -186,11 +187,12 @@ void StoreReportManager::getCurrentStore(double&value)
 
 void StoreReportManager::getCurrentBackStore(double&value)
 {
+	QString Url = QString(SearchBackFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
 	QDateTime current_date_time = QDateTime::currentDateTime();
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(current_date_time.toString("yyyy-MM-dd hh:mm:ss"));
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchBackFeedStore"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -225,11 +227,12 @@ void StoreReportManager::getCurrentBackStore(double&value)
 
 void StoreReportManager::getCurrentUse(double&value)
 {
+	QString Url = QString(SearchOutFeedStoreByReport).arg(g_strIpAddr).arg(g_strIpPort);
 	QDateTime current_date_time = QDateTime::currentDateTime();
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(current_date_time.toString("yyyy-MM-dd hh:mm:ss"));
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchOutFeedStoreByReport"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -264,11 +267,12 @@ void StoreReportManager::getCurrentUse(double&value)
 
 void StoreReportManager::getCurrentInCome(double&value)
 {
+	QString Url = QString(SearchInComFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
 	QDateTime current_date_time = QDateTime::currentDateTime();
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(current_date_time.toString("yyyy-MM-dd hh:mm:ss"));
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchInComSearchFeedStore"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -303,11 +307,12 @@ void StoreReportManager::getCurrentInCome(double&value)
 
 void StoreReportManager::getCurrentReturn(double&value)
 {
+	QString Url = QString(SearchReturnfeedstoreToReport).arg(g_strIpAddr).arg(g_strIpPort);
 	QDateTime current_date_time = QDateTime::currentDateTime();
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(current_date_time.toString("yyyy-MM-dd hh:mm:ss"));
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchReturnfeedstoreToReport"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -342,10 +347,11 @@ void StoreReportManager::getCurrentReturn(double&value)
 
 void StoreReportManager::getBackInfo()
 {
+	QString Url = QString(SearchBackFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(ui->store_report_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchBackFeedStore?XDEBUG_SESSION_START=11415"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -381,10 +387,11 @@ void StoreReportManager::getBackInfo()
 
 void StoreReportManager::getIncome()
 {
+	QString Url = QString(SearchInComFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(ui->store_report_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchInComSearchFeedStore"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -420,10 +427,11 @@ void StoreReportManager::getIncome()
 
 void StoreReportManager::getReturn()
 {
+	QString Url = QString(SearchReturnfeedstoreToReport).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(ui->store_report_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchReturnfeedstoreToReport"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -459,10 +467,11 @@ void StoreReportManager::getReturn()
 
 void StoreReportManager::getUse()
 {
+	QString Url = QString(SearchOutFeedStoreByReport).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(ui->store_report_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchOutFeedStoreByReport"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -534,11 +543,11 @@ void StoreReportManager::getAreaUse()
 		int errorcode = 404;
 		emit sig_NotifyMsg(QString::fromLocal8Bit("ÍøÂçÇëÇóÒì³££¡"), errorcode);
 	}
-
+	 Url = QString(SerachFeedingAll).arg(g_strIpAddr).arg(g_strIpPort);
 	 strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(ui->store_report_enddateEdit->text());
 
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SerachFeedingAll"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 	 parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

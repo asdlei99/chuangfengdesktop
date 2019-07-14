@@ -3,6 +3,8 @@
 #include <thread>
 #include "SingletonHttpRequest.h"
 #include "globalVariable.h"
+#include "commomdef.h"
+
 ShareItemLayoutManager::ShareItemLayoutManager(Ui::ChuangfengDesktopClass*ui)
 	:BaseLayoutManager(ui)
 {
@@ -68,10 +70,10 @@ void ShareItemLayoutManager::SlotAddShareItem(QString &tagName, QString&fromName
 
 void ShareItemLayoutManager::SlotThreadAddShareItem()
 {
+	QString Url = QString(addCostareas).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("name=%1&itemname=%2").arg(m_addfromName).arg(m_addName);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addCostareas"
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -119,9 +121,9 @@ void ShareItemLayoutManager::AddTableViewItem(int id, QString shareItem, QString
 
 void ShareItemLayoutManager::threadCostAreaInfoCallBack()
 {
+	QString Url = QString(getCostareas).arg(g_strIpAddr).arg(g_strIpPort);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestGet("http://127.0.0.1:80/zerg/public/index.php/getCostareas"
-		, g_token, responseData);
+	SingletonHttpRequest::getInstance()->RequestGet(Url, g_token, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);

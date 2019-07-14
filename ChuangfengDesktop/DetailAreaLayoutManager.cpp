@@ -3,7 +3,7 @@
 #include <thread>
 #include "SingletonHttpRequest.h"
 #include "globalVariable.h"
-
+#include "commomdef.h"
 
 
 DetailAreaLayoutManager::DetailAreaLayoutManager(Ui::ChuangfengDesktopClass*ui,shared_ptr<AreaLayoutManager> ptrAreaLayoutManager)
@@ -32,9 +32,9 @@ DetailAreaLayoutManager::~DetailAreaLayoutManager()
 
 void DetailAreaLayoutManager::threadAreaInfoCallBack()
 {
+	QString Url = QString(getAquaculturearea).arg(g_strIpAddr).arg(g_strIpPort);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestGet("http://127.0.0.1:80/zerg/public/index.php/getAquaculturearea"
-		, g_token, responseData);
+	SingletonHttpRequest::getInstance()->RequestGet(Url, g_token, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -127,10 +127,10 @@ void DetailAreaLayoutManager::SlotAddDetailArea(QString &tagName, QString&fromNa
 
 void DetailAreaLayoutManager::SlotThreadAddDetailArea()
 {
+	QString Url = QString(addAquacultureareaDetail).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("name=%1&itemname=%2").arg(m_addParentName).arg(m_addItemName);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addAquacultureareaDetail"
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);

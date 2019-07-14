@@ -111,11 +111,11 @@ void NoPayLayoutManager::SlotAddNopayDetail(QString&time, QString&suplier, QStri
 
 void NoPayLayoutManager::SlothreadAddnopay()
 {
+	QString Url = QString(addDue).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("operat_time=%1&adjustment=%2&added=%3&back=%4&Payment=%5&supplier=%6&abstract=%7")
 		.arg(m_strTime).arg(m_adjust).arg(m_newadd).arg(m_returnValue).arg(m_pay).arg(m_strSuplier).arg(m_remake);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addDue"
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -162,12 +162,12 @@ void NoPayLayoutManager::SlothreadAddnopay()
 
 void NoPayLayoutManager::SlotSearchThread()
 {
+	QString Url = QString(getDuesDetail).arg(g_strIpAddr).arg(g_strIpPort);
 	m_pViewModel->removeRows(0, m_pViewModel->rowCount());
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->nopay_startdateEdit->text()).arg(ui->nopay_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getDuesDetail"
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

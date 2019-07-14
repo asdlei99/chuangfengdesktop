@@ -167,10 +167,10 @@ QWidget* ShareReportManager::getDragnWidget()
 
 void ShareReportManager::GetGeneralCostsShare()
 {
-
+	QString Url = QString(getGeneralDetail).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("starttime=%1&endtime=%2").arg(ui->share_report_startdateEdit->text()).arg(ui->share_report_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getGeneralDetail"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
@@ -211,9 +211,10 @@ void ShareReportManager::GetGeneralCostsShare()
 		//emit sig_NotifyMsg(QString::fromLocal8Bit("ÍøÂçÇëÇóÒì³££¡"), errorcode);
 	}
 
+	Url = QString(getBakDetail).arg(g_strIpAddr).arg(g_strIpPort);
 	 strParam = QString("starttime=%1&endtime=%2").arg(ui->share_report_startdateEdit->dateTime().toString("yyyy-MM-dd")).arg(ui->share_report_enddateEdit->dateTime().toString("yyyy-MM-dd"));
 
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getBakDetail"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 
 
@@ -260,10 +261,11 @@ void ShareReportManager::GetGeneralCostsShare()
 
 void ShareReportManager::GetMaterialCostsShare()
 {
+	QString Url = QString(SearchOutMaterialByReport).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->share_report_startdateEdit->text()).arg(ui->share_report_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchOutMaterialByReport"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -303,11 +305,12 @@ void ShareReportManager::GetMaterialCostsShare()
 
 void ShareReportManager::GetFeedingCostsShare()
 {
+	QString Url = QString(SearchOutFeedStoreByReport).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam;
 	QByteArray responseData;
 	
 		strParam = QString("starttime=%1&endtime=%2").arg(ui->share_report_startdateEdit->text()).arg(ui->share_report_enddateEdit->text());
-		SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchOutFeedStoreByReport"
+		SingletonHttpRequest::getInstance()->RequestPost(Url
 			, g_token, strParam, responseData);
 	
 
@@ -349,13 +352,14 @@ void ShareReportManager::GetFeedingCostsShare()
 
 void ShareReportManager::GetFixedAssetCostsShare()
 {
+	QString Url = QString(SearchFixedAsset).arg(g_strIpAddr).arg(g_strIpPort);
 	int year = ui->share_report_enddateEdit->date().year();
 	int mouth = ui->share_report_enddateEdit->date().month();
 	QString maxtime = QString("%1-%2-%3").arg(QString::number(year)).arg(QString::number(mouth)).arg(QString::number(mouthMax[mouth-1]));
 
 	QString strParam = QString("over_time=%1").arg(maxtime);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchFixedAsset"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);

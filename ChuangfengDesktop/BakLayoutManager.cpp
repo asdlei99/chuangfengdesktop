@@ -151,9 +151,10 @@ void BakLayoutManager::SlotSearchBtnAction()
 
 void BakLayoutManager::SlotThreadSearchGeneral()
 {
+	QString Url = QString(getBakDetail).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("starttime=%1&endtime=%2").arg(ui->bak_startdateEdit->dateTime().toString("yyyy-MM-dd")).arg(ui->bak_enddateEdit->dateTime().toString("yyyy-MM-dd"));
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getBakDetail"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
@@ -215,11 +216,11 @@ void BakLayoutManager::SlotAddGeneral(QString&time, QString &incom, QString&pay,
 
 void BakLayoutManager::SlotThreadAddGeneral()
 {
+	QString Url = QString(addbak).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("account_time=%1&task_name=%2&income=%3&pay=%4&remake=%5&costarea=%6").arg(m_addTime).arg(m_addTaskName)
 		.arg(m_addIncom).arg(m_addPay).arg(m_addRemake).arg(m_addShare);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addbak"
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);

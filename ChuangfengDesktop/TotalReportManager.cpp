@@ -163,8 +163,8 @@ void TotalReportManager::SlotThreadSearchGeneral()
 		int errorcode = 404;
 		emit sig_NotifyMsg(QString::fromLocal8Bit("ÍøÂçÇëÇóÒì³££¡"), errorcode);
 	}
-
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getBakDetail"
+	 Url = QString(getBakDetail).arg(g_strIpAddr).arg(g_strIpPort);
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 	 parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

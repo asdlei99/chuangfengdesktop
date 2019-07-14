@@ -177,13 +177,14 @@ void UserLayoutManger::threadGetUserInfoCallBack()
 
 void UserLayoutManger::threadAddUserInfoCallBack()
 {
+	QString Url = QString(adduser).arg(g_strIpAddr).arg(g_strIpPort);
 	QString md5;
 	QByteArray bb;
 	bb = QCryptographicHash::hash(m_addPsd.toLocal8Bit(), QCryptographicHash::Md5);
 	md5.append(bb.toHex());
 	QString strParam = QString("username=%1&password=%2&role=%3").arg(m_addUserName).arg(md5).arg(m_addrole);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/adduser?XDEBUG_SESSION_START=17842"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam,responseData);
 	
 	QJsonParseError json_error;

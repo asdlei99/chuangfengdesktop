@@ -304,12 +304,12 @@ void FeedingManagerWidget::AddAreaFeedingDetailTableViEW(AreaFeedFeedingDetailSt
 
 void FeedingManagerWidget::SlotThreadAddFeeding()
 {
+	QString Url = QString(addFeeding).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("id=%1&operat_time=%2&subject_name=%3&price=%4&number=%5&area=%6&areaitem=%7&specs=%8&unit=%9&type=%10")
 		.arg(QString::number(m_id)).arg(m_time).arg(m_subject_name).arg(m_price).arg(m_number).arg(m_area)
 		.arg(m_areaItem).arg(m_specs).arg(m_unit).arg(m_feedingType);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addFeeding"
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -353,11 +353,11 @@ void FeedingManagerWidget::SlotThreadAddFeeding()
 
 void FeedingManagerWidget::SlotThreadSearchFeeding()
 {
+	QString	Url = QString(SerachFeeding).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("starttime=%1&endtime=%2&area=%3&areaitem=%4")
 		.arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text()).arg(ui->area_combox->currentText()).arg(ui->area_item_combox->currentText());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SerachFeeding"
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -435,11 +435,11 @@ void FeedingManagerWidget::SlotAddFeeding(QString&time, QString&number, QString&
 
 void FeedingManagerWidget::SlotThreadSearchAreaFeedStore()
 {
+	QString Url = QString(SearchAreaFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("subject_name=%1&area=%2")
 		.arg(ui->area_feed_edit->text()).arg(ui->area3_combox->currentText());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/SearchAreaFeedStore"
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

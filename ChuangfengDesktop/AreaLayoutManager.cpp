@@ -3,6 +3,7 @@
 #include <thread>
 #include "SingletonHttpRequest.h"
 #include "globalVariable.h"
+#include "commomdef.h"
 
 
 
@@ -52,9 +53,10 @@ void AreaLayoutManager::SlotAddArea(QString& name, QString&remake)
 
 void AreaLayoutManager::SlotThreadAddArea()
 {
+	QString Url = QString(addAquaculture).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("name=%1").arg(m_addName);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addAquaculture"
+	SingletonHttpRequest::getInstance()->RequestPost(Url
 		, g_token, strParam, responseData);
 
 	QJsonParseError json_error;

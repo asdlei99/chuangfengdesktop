@@ -102,10 +102,10 @@ void GeneralLayoutManger::SlotSearchBtnAction()
 
 void GeneralLayoutManger::SlotThreadSearchGeneral()
 {
+	QString Url = QString(getGeneralDetail).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("starttime=%1&endtime=%2").arg(ui->general_startdateEdit->text()).arg(ui->general_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/getGeneralDetail"
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
 
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -166,12 +166,11 @@ void GeneralLayoutManger::SlotAddGeneral(QString&time, QString &incom, QString&p
 
 void GeneralLayoutManger::SlotThreadAddGeneral()
 {
+	QString Url = QString(addGeneral).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("account_time=%1&task_name=%2&income=%3&pay=%4&remake=%5&costarea=%6").arg(m_addTime).arg(m_addTaskName)
 		.arg(m_addIncom).arg(m_addPay).arg(m_addRemake).arg(m_addShare);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://127.0.0.1:80/zerg/public/index.php/addGeneral"
-		, g_token, strParam, responseData);
-
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
