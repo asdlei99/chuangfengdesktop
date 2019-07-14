@@ -35,6 +35,7 @@ public:
     QVBoxLayout *verticalLayout;
     QWidget *child_widget_title;
     QHBoxLayout *horizontalLayout_2;
+    QLabel *label_6;
     QSpacerItem *horizontalSpacer;
     QPushButton *feedstore_min_btn;
     QPushButton *feedstore_max_restore_btn;
@@ -101,6 +102,14 @@ public:
         horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        label_6 = new QLabel(child_widget_title);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setMinimumSize(QSize(100, 0));
+        label_6->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
+"font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+
+        horizontalLayout_2->addWidget(label_6);
+
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer);
@@ -342,6 +351,7 @@ public:
     void retranslateUi(QWidget *FeedStore)
     {
         FeedStore->setWindowTitle(QApplication::translate("FeedStore", "\351\245\262\346\226\231\350\215\257\345\223\201\347\256\241\347\220\206", Q_NULLPTR));
+        label_6->setText(QApplication::translate("FeedStore", "\351\245\262\346\226\231\350\215\257\345\223\201\347\256\241\347\220\206", Q_NULLPTR));
         feedstore_min_btn->setText(QString());
         feedstore_max_restore_btn->setText(QString());
         feedstore_cose_btn->setText(QString());

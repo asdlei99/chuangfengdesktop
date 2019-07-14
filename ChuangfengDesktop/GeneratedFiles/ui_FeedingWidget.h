@@ -35,6 +35,7 @@ public:
     QVBoxLayout *verticalLayout;
     QWidget *child_widget_title;
     QHBoxLayout *horizontalLayout_2;
+    QLabel *label_2;
     QSpacerItem *horizontalSpacer;
     QPushButton *feedstore_min_btn;
     QPushButton *feedstore_max_restore_btn;
@@ -87,6 +88,14 @@ public:
         horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        label_2 = new QLabel(child_widget_title);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setMinimumSize(QSize(100, 0));
+        label_2->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
+"font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+
+        horizontalLayout_2->addWidget(label_2);
+
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer);
@@ -276,6 +285,7 @@ public:
     void retranslateUi(QWidget *FeedingWidget)
     {
         FeedingWidget->setWindowTitle(QApplication::translate("FeedingWidget", "\345\226\202\346\226\231\347\256\241\347\220\206", Q_NULLPTR));
+        label_2->setText(QApplication::translate("FeedingWidget", "\345\226\202\346\226\231\347\256\241\347\220\206", Q_NULLPTR));
         feedstore_min_btn->setText(QString());
         feedstore_max_restore_btn->setText(QString());
         feedstore_cose_btn->setText(QString());

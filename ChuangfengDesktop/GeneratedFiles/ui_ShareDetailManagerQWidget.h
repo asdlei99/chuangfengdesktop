@@ -32,6 +32,7 @@ public:
     QVBoxLayout *verticalLayout;
     QWidget *child_widget_title;
     QHBoxLayout *horizontalLayout;
+    QLabel *label;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *min_btn;
     QPushButton *max_restore_btn;
@@ -55,7 +56,7 @@ public:
         verticalLayout = new QVBoxLayout(detailsharereport);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(1, 1, 1, 1);
+        verticalLayout->setContentsMargins(9, 1, 1, 1);
         child_widget_title = new QWidget(detailsharereport);
         child_widget_title->setObjectName(QStringLiteral("child_widget_title"));
         child_widget_title->setMinimumSize(QSize(0, 40));
@@ -64,6 +65,14 @@ public:
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        label = new QLabel(child_widget_title);
+        label->setObjectName(QStringLiteral("label"));
+        label->setMinimumSize(QSize(120, 0));
+        label->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
+"font: 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+
+        horizontalLayout->addWidget(label);
+
         horizontalSpacer_2 = new QSpacerItem(741, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_2);
@@ -149,7 +158,8 @@ public:
 
     void retranslateUi(QWidget *detailsharereport)
     {
-        detailsharereport->setWindowTitle(QApplication::translate("detailsharereport", "Form", Q_NULLPTR));
+        detailsharereport->setWindowTitle(QApplication::translate("detailsharereport", "\345\214\272\345\237\237\345\210\206\346\221\212\350\241\250", Q_NULLPTR));
+        label->setText(QApplication::translate("detailsharereport", "\345\214\272\345\237\237\345\210\206\346\221\212\350\241\250", Q_NULLPTR));
         min_btn->setText(QString());
         max_restore_btn->setText(QString());
         close_btn->setText(QString());
