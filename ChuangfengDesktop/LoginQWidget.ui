@@ -175,29 +175,35 @@
        <widget class="QLineEdit" name="port_Edit">
         <property name="geometry">
          <rect>
-          <x>40</x>
+          <x>100</x>
           <y>120</y>
-          <width>171</width>
+          <width>121</width>
           <height>28</height>
          </rect>
+        </property>
+        <property name="text">
+         <string>80</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="servce_ip">
         <property name="geometry">
          <rect>
-          <x>40</x>
+          <x>100</x>
           <y>60</y>
-          <width>171</width>
+          <width>121</width>
           <height>28</height>
          </rect>
+        </property>
+        <property name="text">
+         <string>127.0.0.1</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_4">
         <property name="geometry">
          <rect>
-          <x>36</x>
+          <x>95</x>
           <y>90</y>
-          <width>180</width>
+          <width>121</width>
           <height>1</height>
          </rect>
         </property>
@@ -211,9 +217,9 @@
        <widget class="QLabel" name="label_5">
         <property name="geometry">
          <rect>
-          <x>36</x>
+          <x>95</x>
           <y>150</y>
-          <width>180</width>
+          <width>121</width>
           <height>1</height>
          </rect>
         </property>
@@ -222,6 +228,44 @@
         </property>
         <property name="text">
          <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_6">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>60</y>
+          <width>71</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(94, 94, 94);</string>
+        </property>
+        <property name="text">
+         <string>服务器IP：</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_7">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>120</y>
+          <width>71</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(94, 94, 94);</string>
+        </property>
+        <property name="text">
+         <string>端口号：</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </widget>

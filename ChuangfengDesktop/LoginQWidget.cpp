@@ -47,7 +47,7 @@ LoginQWidget::LoginQWidget(QWidget *parent)
 	});
 
 	connect(ui->login_btn, &QPushButton::clicked, this, [&]()->void {
-		 g_strIpPort = ui->servce_ip->text();
+		g_strIpAddr = ui->servce_ip->text();
 		 g_strIpPort = ui->port_Edit->text();
 		 ui->login_btn->setEnabled(false);
 		QThread *m_pThread = new QThread;

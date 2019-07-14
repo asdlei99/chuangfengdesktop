@@ -44,6 +44,8 @@ public:
     QLineEdit *servce_ip;
     QLabel *label_4;
     QLabel *label_5;
+    QLabel *label_6;
+    QLabel *label_7;
     QPushButton *servce_set_btn;
 
     void setupUi(QWidget *QtLoginWidget)
@@ -98,18 +100,28 @@ public:
         page_2->setObjectName(QStringLiteral("page_2"));
         port_Edit = new QLineEdit(page_2);
         port_Edit->setObjectName(QStringLiteral("port_Edit"));
-        port_Edit->setGeometry(QRect(40, 120, 171, 28));
+        port_Edit->setGeometry(QRect(100, 120, 121, 28));
         servce_ip = new QLineEdit(page_2);
         servce_ip->setObjectName(QStringLiteral("servce_ip"));
-        servce_ip->setGeometry(QRect(40, 60, 171, 28));
+        servce_ip->setGeometry(QRect(100, 60, 121, 28));
         label_4 = new QLabel(page_2);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(36, 90, 180, 1));
+        label_4->setGeometry(QRect(95, 90, 121, 1));
         label_4->setStyleSheet(QStringLiteral("background-color: rgb(240, 240, 240);"));
         label_5 = new QLabel(page_2);
         label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(36, 150, 180, 1));
+        label_5->setGeometry(QRect(95, 150, 121, 1));
         label_5->setStyleSheet(QStringLiteral("background-color: rgb(240, 240, 240);"));
+        label_6 = new QLabel(page_2);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setGeometry(QRect(0, 60, 71, 28));
+        label_6->setStyleSheet(QStringLiteral("color: rgb(94, 94, 94);"));
+        label_6->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        label_7 = new QLabel(page_2);
+        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setGeometry(QRect(0, 120, 71, 28));
+        label_7->setStyleSheet(QStringLiteral("color: rgb(94, 94, 94);"));
+        label_7->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         stackedWidget->addWidget(page_2);
         servce_set_btn = new QPushButton(login_title);
         servce_set_btn->setObjectName(QStringLiteral("servce_set_btn"));
@@ -139,8 +151,12 @@ public:
         label_3->setText(QString());
         login_btn->setText(QApplication::translate("QtLoginWidget", "\347\231\273\345\275\225", Q_NULLPTR));
         error_lab->setText(QApplication::translate("QtLoginWidget", "\347\224\250\346\210\267\345\220\215\346\210\226\350\200\205\345\257\206\347\240\201\351\224\231\350\257\257\357\274\201", Q_NULLPTR));
+        port_Edit->setText(QApplication::translate("QtLoginWidget", "80", Q_NULLPTR));
+        servce_ip->setText(QApplication::translate("QtLoginWidget", "127.0.0.1", Q_NULLPTR));
         label_4->setText(QString());
         label_5->setText(QString());
+        label_6->setText(QApplication::translate("QtLoginWidget", "\346\234\215\345\212\241\345\231\250IP\357\274\232", Q_NULLPTR));
+        label_7->setText(QApplication::translate("QtLoginWidget", "\347\253\257\345\217\243\345\217\267\357\274\232", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
         servce_set_btn->setToolTip(QApplication::translate("QtLoginWidget", "\350\256\276\347\275\256", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
