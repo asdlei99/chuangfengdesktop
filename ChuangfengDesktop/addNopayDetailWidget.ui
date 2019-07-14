@@ -25,6 +25,10 @@
   <property name="windowTitle">
    <string>增加应付款明细</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Resources/test.png</normaloff>Resources/test.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>

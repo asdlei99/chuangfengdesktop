@@ -147,6 +147,9 @@ public:
             ChuangfengDesktopClass->setObjectName(QStringLiteral("ChuangfengDesktopClass"));
         ChuangfengDesktopClass->resize(1090, 582);
         ChuangfengDesktopClass->setMinimumSize(QSize(1090, 580));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        ChuangfengDesktopClass->setWindowIcon(icon);
         verticalLayout_4 = new QVBoxLayout(ChuangfengDesktopClass);
         verticalLayout_4->setSpacing(0);
         verticalLayout_4->setContentsMargins(11, 11, 11, 11);

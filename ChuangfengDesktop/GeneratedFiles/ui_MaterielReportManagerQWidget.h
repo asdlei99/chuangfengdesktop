@@ -53,6 +53,9 @@ public:
             materielreport->setObjectName(QStringLiteral("materielreport"));
         materielreport->resize(860, 669);
         materielreport->setMinimumSize(QSize(860, 630));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        materielreport->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(materielreport);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

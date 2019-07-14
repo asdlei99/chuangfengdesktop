@@ -53,6 +53,9 @@ public:
         if (detailsharereport->objectName().isEmpty())
             detailsharereport->setObjectName(QStringLiteral("detailsharereport"));
         detailsharereport->resize(842, 672);
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        detailsharereport->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(detailsharereport);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

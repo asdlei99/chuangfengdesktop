@@ -53,6 +53,9 @@ public:
         if (QtLoginWidget->objectName().isEmpty())
             QtLoginWidget->setObjectName(QStringLiteral("QtLoginWidget"));
         QtLoginWidget->resize(279, 405);
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QtLoginWidget->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(QtLoginWidget);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
@@ -73,7 +76,7 @@ public:
         page->setObjectName(QStringLiteral("page"));
         login_logo = new QLabel(page);
         login_logo->setObjectName(QStringLiteral("login_logo"));
-        login_logo->setGeometry(QRect(60, 10, 128, 128));
+        login_logo->setGeometry(QRect(60, 30, 128, 128));
         user_Edit = new QLineEdit(page);
         user_Edit->setObjectName(QStringLiteral("user_Edit"));
         user_Edit->setGeometry(QRect(40, 180, 171, 28));

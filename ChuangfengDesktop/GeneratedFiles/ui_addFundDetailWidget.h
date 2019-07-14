@@ -58,6 +58,9 @@ public:
         addFundDetailWidget->resize(600, 673);
         addFundDetailWidget->setMinimumSize(QSize(600, 673));
         addFundDetailWidget->setMaximumSize(QSize(600, 700));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        addFundDetailWidget->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(addFundDetailWidget);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

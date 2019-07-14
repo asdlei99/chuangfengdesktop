@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>创丰养殖</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Resources/test.png</normaloff>Resources/test.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_4">
    <property name="spacing">
     <number>0</number>

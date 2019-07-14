@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>登录</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Resources/test.png</normaloff>Resources/test.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>
@@ -80,7 +84,7 @@
         <property name="geometry">
          <rect>
           <x>60</x>
-          <y>10</y>
+          <y>30</y>
           <width>128</width>
           <height>128</height>
          </rect>

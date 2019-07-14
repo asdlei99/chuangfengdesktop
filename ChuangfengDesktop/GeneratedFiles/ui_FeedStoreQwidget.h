@@ -89,6 +89,9 @@ public:
             FeedStore->setObjectName(QStringLiteral("FeedStore"));
         FeedStore->resize(960, 640);
         FeedStore->setMinimumSize(QSize(960, 640));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        FeedStore->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(FeedStore);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

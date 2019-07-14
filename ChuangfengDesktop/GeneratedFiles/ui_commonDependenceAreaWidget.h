@@ -48,6 +48,9 @@ public:
         CommondenpendenceWidget->resize(600, 673);
         CommondenpendenceWidget->setMinimumSize(QSize(600, 673));
         CommondenpendenceWidget->setMaximumSize(QSize(600, 700));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        CommondenpendenceWidget->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(CommondenpendenceWidget);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

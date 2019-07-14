@@ -53,6 +53,9 @@ public:
             totalreportmanager->setObjectName(QStringLiteral("totalreportmanager"));
         totalreportmanager->resize(860, 650);
         totalreportmanager->setMinimumSize(QSize(860, 650));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        totalreportmanager->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(totalreportmanager);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

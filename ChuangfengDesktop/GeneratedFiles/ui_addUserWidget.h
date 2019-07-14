@@ -51,6 +51,9 @@ public:
         adduserWidget->resize(600, 673);
         adduserWidget->setMinimumSize(QSize(600, 673));
         adduserWidget->setMaximumSize(QSize(600, 700));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        adduserWidget->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(adduserWidget);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

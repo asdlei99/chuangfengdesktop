@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>物料表</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Resources/test.png</normaloff>Resources/test.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>

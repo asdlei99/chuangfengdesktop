@@ -53,6 +53,9 @@ public:
             storereport->setObjectName(QStringLiteral("storereport"));
         storereport->resize(860, 660);
         storereport->setMinimumSize(QSize(860, 630));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        storereport->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(storereport);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

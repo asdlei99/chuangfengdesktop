@@ -53,6 +53,9 @@ public:
             nopayManager->setObjectName(QStringLiteral("nopayManager"));
         nopayManager->resize(860, 630);
         nopayManager->setMinimumSize(QSize(860, 630));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        nopayManager->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(nopayManager);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

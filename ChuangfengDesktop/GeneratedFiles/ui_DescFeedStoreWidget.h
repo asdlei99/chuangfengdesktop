@@ -54,6 +54,9 @@ public:
         DescFeedStoreWidget->resize(600, 673);
         DescFeedStoreWidget->setMinimumSize(QSize(600, 673));
         DescFeedStoreWidget->setMaximumSize(QSize(600, 700));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        DescFeedStoreWidget->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(DescFeedStoreWidget);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

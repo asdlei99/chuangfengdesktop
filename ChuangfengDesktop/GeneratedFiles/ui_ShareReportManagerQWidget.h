@@ -51,6 +51,9 @@ public:
             shareReport->setObjectName(QStringLiteral("shareReport"));
         shareReport->resize(842, 628);
         shareReport->setMinimumSize(QSize(842, 628));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        shareReport->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(shareReport);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

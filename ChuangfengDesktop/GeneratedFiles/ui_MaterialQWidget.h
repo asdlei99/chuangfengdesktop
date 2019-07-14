@@ -85,6 +85,9 @@ public:
             Material->setObjectName(QStringLiteral("Material"));
         Material->resize(960, 640);
         Material->setMinimumSize(QSize(960, 640));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        Material->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(Material);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

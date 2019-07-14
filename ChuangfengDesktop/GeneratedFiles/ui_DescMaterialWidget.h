@@ -54,6 +54,9 @@ public:
         DescMaterialWidget->resize(600, 673);
         DescMaterialWidget->setMinimumSize(QSize(600, 673));
         DescMaterialWidget->setMaximumSize(QSize(600, 700));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        DescMaterialWidget->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(DescMaterialWidget);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

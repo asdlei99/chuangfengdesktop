@@ -75,6 +75,9 @@ public:
             FeedingWidget->setObjectName(QStringLiteral("FeedingWidget"));
         FeedingWidget->resize(960, 640);
         FeedingWidget->setMinimumSize(QSize(960, 640));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        FeedingWidget->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(FeedingWidget);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

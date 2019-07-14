@@ -46,6 +46,9 @@ public:
         Common2ParamWidget->resize(600, 673);
         Common2ParamWidget->setMinimumSize(QSize(600, 673));
         Common2ParamWidget->setMaximumSize(QSize(600, 700));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        Common2ParamWidget->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(Common2ParamWidget);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

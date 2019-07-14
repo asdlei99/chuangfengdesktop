@@ -41,6 +41,9 @@ public:
         MsgPopWidget->resize(439, 248);
         MsgPopWidget->setMinimumSize(QSize(439, 248));
         MsgPopWidget->setMaximumSize(QSize(439, 248));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        MsgPopWidget->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(MsgPopWidget);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

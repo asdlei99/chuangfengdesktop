@@ -59,6 +59,9 @@ public:
         addNoPayDetailWidget->resize(600, 673);
         addNoPayDetailWidget->setMinimumSize(QSize(600, 673));
         addNoPayDetailWidget->setMaximumSize(QSize(600, 700));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        addNoPayDetailWidget->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(addNoPayDetailWidget);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

@@ -25,6 +25,10 @@
   <property name="windowTitle">
    <string>饲料药品入库管理</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Resources/test.png</normaloff>Resources/test.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>

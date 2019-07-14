@@ -53,6 +53,9 @@ public:
             BakManager->setObjectName(QStringLiteral("BakManager"));
         BakManager->resize(860, 630);
         BakManager->setMinimumSize(QSize(860, 630));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        BakManager->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(BakManager);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

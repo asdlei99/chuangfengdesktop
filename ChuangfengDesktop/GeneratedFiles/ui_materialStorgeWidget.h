@@ -61,6 +61,9 @@ public:
         materialStorgeWidget->resize(600, 673);
         materialStorgeWidget->setMinimumSize(QSize(600, 673));
         materialStorgeWidget->setMaximumSize(QSize(600, 700));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        materialStorgeWidget->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(materialStorgeWidget);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

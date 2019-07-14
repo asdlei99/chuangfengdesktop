@@ -57,6 +57,9 @@ public:
         AddFeedingWidget->resize(600, 673);
         AddFeedingWidget->setMinimumSize(QSize(600, 673));
         AddFeedingWidget->setMaximumSize(QSize(600, 700));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        AddFeedingWidget->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(AddFeedingWidget);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

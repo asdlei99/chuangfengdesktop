@@ -53,6 +53,9 @@ public:
             generalManager->setObjectName(QStringLiteral("generalManager"));
         generalManager->resize(860, 630);
         generalManager->setMinimumSize(QSize(860, 630));
+        QIcon icon;
+        icon.addFile(QStringLiteral("Resources/test.png"), QSize(), QIcon::Normal, QIcon::Off);
+        generalManager->setWindowIcon(icon);
         generalManager->setStyleSheet(QStringLiteral(""));
         verticalLayout = new QVBoxLayout(generalManager);
         verticalLayout->setSpacing(1);
