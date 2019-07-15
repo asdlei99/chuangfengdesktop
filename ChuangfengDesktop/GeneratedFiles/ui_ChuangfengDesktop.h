@@ -177,7 +177,7 @@ public:
         widget_2->setMaximumSize(QSize(90, 16777215));
         label = new QLabel(widget_2);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(20, 0, 50, 50));
+        label->setGeometry(QRect(20, 10, 50, 50));
         label->setStyleSheet(QStringLiteral("border-image: url(:/ChuangfengDesktop/Resources/test.png);"));
 
         horizontalLayout_2->addWidget(widget_2);
