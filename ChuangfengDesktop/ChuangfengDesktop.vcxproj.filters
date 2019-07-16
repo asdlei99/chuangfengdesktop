@@ -183,6 +183,9 @@
     <ClCompile Include="DescFeedStoreWidget.cpp">
       <Filter>PopWidget</Filter>
     </ClCompile>
+    <ClCompile Include="yaolog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ChuangfengDesktop.h">
@@ -414,6 +417,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="yaolog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

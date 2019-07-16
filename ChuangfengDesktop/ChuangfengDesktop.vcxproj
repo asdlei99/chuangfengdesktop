@@ -161,6 +161,7 @@
     <ClCompile Include="TotalReportManager.cpp" />
     <ClCompile Include="UserLayoutManger.cpp" />
     <ClCompile Include="WarehouseObject.cpp" />
+    <ClCompile Include="yaolog.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ChuangfengDesktop.h" />
@@ -196,6 +197,7 @@
     <QtRcc Include="ChuangfengDesktop.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="yaolog.h" />
     <QtMoc Include="DetailShareReportManager.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\CustomCtrl;$(QTDIR)\include\ActiveQt</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\ActiveQt</IncludePath>

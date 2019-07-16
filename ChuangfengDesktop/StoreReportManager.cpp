@@ -1,3 +1,4 @@
+
 #include "StoreReportManager.h"
 #include <QKeyEvent>
 #include <QMouseEvent>
@@ -152,8 +153,8 @@ void StoreReportManager::getCurrentStore(double&value)
 	QString Url = QString(SearchFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("subject_name=%1").arg("");
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -192,8 +193,8 @@ void StoreReportManager::getCurrentBackStore(double&value)
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(current_date_time.toString("yyyy-MM-dd hh:mm:ss"));
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -232,8 +233,8 @@ void StoreReportManager::getCurrentUse(double&value)
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(current_date_time.toString("yyyy-MM-dd hh:mm:ss"));
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -269,11 +270,10 @@ void StoreReportManager::getCurrentInCome(double&value)
 {
 	QString Url = QString(SearchInComFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
 	QDateTime current_date_time = QDateTime::currentDateTime();
-	QString strParam = QString("starttime=%1&endtime=%2")
-		.arg(ui->storereport_startdateEdit->text()).arg(current_date_time.toString("yyyy-MM-dd hh:mm:ss"));
+	QString strParam = QString("starttime=%1&endtime=%2").arg(ui->storereport_startdateEdit->text()).arg(current_date_time.toString("yyyy-MM-dd hh:mm:ss"));
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -312,8 +312,8 @@ void StoreReportManager::getCurrentReturn(double&value)
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(current_date_time.toString("yyyy-MM-dd hh:mm:ss"));
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -351,8 +351,8 @@ void StoreReportManager::getBackInfo()
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(ui->store_report_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -391,8 +391,8 @@ void StoreReportManager::getIncome()
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(ui->store_report_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -431,8 +431,8 @@ void StoreReportManager::getReturn()
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(ui->store_report_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -471,8 +471,8 @@ void StoreReportManager::getUse()
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(ui->store_report_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -511,8 +511,8 @@ void StoreReportManager::getAreaUse()
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(ui->store_report_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -547,8 +547,8 @@ void StoreReportManager::getAreaUse()
 	 strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->storereport_startdateEdit->text()).arg(ui->store_report_enddateEdit->text());
 
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	 parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
 	{

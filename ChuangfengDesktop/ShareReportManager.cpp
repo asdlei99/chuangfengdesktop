@@ -1,3 +1,4 @@
+
 #include "ShareReportManager.h"
 #include <QKeyEvent>
 #include <QMouseEvent>
@@ -77,9 +78,7 @@ ShareReportManager::ShareReportManager(QWidget *parent)
 			connect(pthread, SIGNAL(finished()), this, SLOT(finishedThreadBtnSlot()));
 			pthread->start();
 		}
-
 	});
-
 }
 
 
@@ -132,7 +131,6 @@ void ShareReportManager::SlotThreadGetCostsShare()
 	GetMaterialCostsShare();
 	GetFixedAssetCostsShare();
 	addTableView();
-
 }
 
 void ShareReportManager::mouseDoubleClickEvent(QMouseEvent *event)
@@ -170,9 +168,8 @@ void ShareReportManager::GetGeneralCostsShare()
 	QString Url = QString(getGeneralDetail).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("starttime=%1&endtime=%2").arg(ui->share_report_startdateEdit->text()).arg(ui->share_report_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
-
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -202,23 +199,19 @@ void ShareReportManager::GetGeneralCostsShare()
 			{
 				int errorcode = rootObject["error_code"].toInt();
 				QString strMsg = rootObject["msg"].toString();
-			//	emit sig_NotifyMsg(strMsg, errorcode);
 			}
 		}
 	}
 	else {
 		int errorcode = 404;
-		//emit sig_NotifyMsg(QString::fromLocal8Bit("ÍøÂçÇëÇóÒì³££¡"), errorcode);
 	}
 
 	Url = QString(getBakDetail).arg(g_strIpAddr).arg(g_strIpPort);
 	 strParam = QString("starttime=%1&endtime=%2").arg(ui->share_report_startdateEdit->dateTime().toString("yyyy-MM-dd")).arg(ui->share_report_enddateEdit->dateTime().toString("yyyy-MM-dd"));
 
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
-
-
-	 parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
+	parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
 	{
 		if (parse_doucment.isArray())
@@ -236,8 +229,7 @@ void ShareReportManager::GetGeneralCostsShare()
 					{
 						iter->second.LogisticsCosts += userObject["pay"].toString().toDouble();
 					}
-				}
-				
+				}	
 			}
 		}
 		else
@@ -247,13 +239,11 @@ void ShareReportManager::GetGeneralCostsShare()
 			{
 				int errorcode = rootObject["error_code"].toInt();
 				QString strMsg = rootObject["msg"].toString();
-				//emit sig_NotifyMsg(strMsg, errorcode);
 			}
 		}
 	}
 	else {
 		int errorcode = 404;
-		//emit sig_NotifyMsg(QString::fromLocal8Bit("ÍøÂçÇëÇóÒì³££¡"), errorcode);
 	}
 }
 
@@ -265,8 +255,8 @@ void ShareReportManager::GetMaterialCostsShare()
 	QString strParam = QString("starttime=%1&endtime=%2")
 		.arg(ui->share_report_startdateEdit->text()).arg(ui->share_report_enddateEdit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -293,13 +283,10 @@ void ShareReportManager::GetMaterialCostsShare()
 			{
 				int errorcode = rootObject["error_code"].toInt();
 				QString strMsg = rootObject["msg"].toString();
-				//emit sig_NotifyMsg(strMsg, errorcode);
 			}
 		}
 	}
 	else {
-		int errorcode = 404;
-		//emit sig_NotifyMsg(QString::fromLocal8Bit("ÍøÂçÇëÇóÒì³££¡"), errorcode);
 	}
 }
 
@@ -309,9 +296,8 @@ void ShareReportManager::GetFeedingCostsShare()
 	QString strParam;
 	QByteArray responseData;
 	
-		strParam = QString("starttime=%1&endtime=%2").arg(ui->share_report_startdateEdit->text()).arg(ui->share_report_enddateEdit->text());
-		SingletonHttpRequest::getInstance()->RequestPost(Url
-			, g_token, strParam, responseData);
+	strParam = QString("starttime=%1&endtime=%2").arg(ui->share_report_startdateEdit->text()).arg(ui->share_report_enddateEdit->text());
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
 	
 
 	QJsonParseError json_error;
@@ -340,13 +326,11 @@ void ShareReportManager::GetFeedingCostsShare()
 			{
 				int errorcode = rootObject["error_code"].toInt();
 				QString strMsg = rootObject["msg"].toString();
-				//emit sig_NotifyMsg(strMsg, errorcode);
+			
 			}
 		}
 	}
 	else {
-		int errorcode = 404;
-		//emit sig_NotifyMsg(QString::fromLocal8Bit("ÍøÂçÇëÇóÒì³££¡"), errorcode);
 	}
 }
 
@@ -359,8 +343,8 @@ void ShareReportManager::GetFixedAssetCostsShare()
 
 	QString strParam = QString("over_time=%1").arg(maxtime);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

@@ -1,3 +1,4 @@
+
 #include "LoginQWidget.h"
 #include "ChuangfengDesktop.h"
 #include "ThreadPool.hpp"
@@ -83,7 +84,7 @@ void LoginQWidget::SlotThreadLogin()
 	QString strParam = QString("username=%1&password=%2").arg(ui->user_Edit->text()).arg(md5);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, "", strParam, responseData);
-
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

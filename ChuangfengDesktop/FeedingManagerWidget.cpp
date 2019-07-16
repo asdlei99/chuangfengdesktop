@@ -1,3 +1,4 @@
+
 #include "FeedingManagerWidget.h"
 #include <QKeyEvent>
 #include <QMouseEvent>
@@ -8,10 +9,8 @@
 #include <QPen>
 #include <QtMath>
 #include "iconhelper.h"
-
 #include "globalVariable.h"
 #include "SingletonHttpRequest.h"
-
 #include "AddFeedingWidget.h"
 
 FeedingManagerWidget::FeedingManagerWidget(QWidget *parent )
@@ -195,41 +194,33 @@ void FeedingManagerWidget::InitOption()
 	QColor hoverTextColor = QColor("#FFFFFF");
 	QColor checkTextColor = QColor("#FFFFFF");
 
-	for (int i = 0; i < m_NavButtonList.count(); i++) {
-
+	for (int i = 0; i < m_NavButtonList.count(); i++) 
+	{
 		m_NavButtonList.at(i)->setLineColor(QColor("#029FEA"));
-		///mNavButtonList.at(i)->setShowLine(true);
 		m_NavButtonList.at(i)->setTextAlign(NavButton::TextAlign_Left);
 		m_NavButtonList.at(i)->setTrianglePosition(NavButton::TrianglePosition_Right);
-		//mNavButtonList.at(i)->setLinePosition(NavButton::LinePosition_Top);
-
 		m_NavButtonList.at(i)->setPaddingLeft(5);
 		m_NavButtonList.at(i)->setLineSpace(1);
 		m_NavButtonList.at(i)->setLineWidth(5);
 		m_NavButtonList.at(i)->setLineColor(QColor(255, 107, 107));
 		m_NavButtonList.at(i)->setShowTriangle(true);
-
 		m_NavButtonList.at(i)->setShowIcon(true);
 		m_NavButtonList.at(i)->setIconSpace(ICOSPACE);
 		m_NavButtonList.at(i)->setIconSize(QSize(ICONSIZE, ICONSIZE));
-
 		//分开设置图标
 		QChar icon = pixChar.at(i);
 		QPixmap iconNormal = IconHelper::Instance()->getPixmap(normalTextColor.name(), icon, ICONFONTSIZE, PIXMAPSIZE, PIXMAPSIZE);
 		QPixmap iconHover = IconHelper::Instance()->getPixmap(hoverTextColor.name(), icon, ICONFONTSIZE, PIXMAPSIZE, PIXMAPSIZE);
 		QPixmap iconCheck = IconHelper::Instance()->getPixmap(checkTextColor.name(), icon, ICONFONTSIZE, PIXMAPSIZE, PIXMAPSIZE);
-
 		m_NavButtonList.at(i)->setIconNormal(iconNormal);
 		m_NavButtonList.at(i)->setIconHover(iconHover);
 		m_NavButtonList.at(i)->setIconCheck(iconCheck);
-
 		m_NavButtonList.at(i)->setNormalBgColor(normalBgColor);
 		m_NavButtonList.at(i)->setHoverBgColor(hoverBgColor);
 		m_NavButtonList.at(i)->setCheckBgColor(checkBgColor);
 		m_NavButtonList.at(i)->setNormalTextColor(normalTextColor);
 		m_NavButtonList.at(i)->setHoverTextColor(hoverTextColor);
 		m_NavButtonList.at(i)->setCheckTextColor(checkTextColor);
-
 		connect(m_NavButtonList.at(i), &QPushButton::clicked, this, &FeedingManagerWidget::SlotOptionClick);
 	}
 	m_NavButtonList.at(0)->setChecked(true);
@@ -310,6 +301,7 @@ void FeedingManagerWidget::SlotThreadAddFeeding()
 		.arg(m_areaItem).arg(m_specs).arg(m_unit).arg(m_feedingType);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -358,6 +350,7 @@ void FeedingManagerWidget::SlotThreadSearchFeeding()
 		.arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text()).arg(ui->area_combox->currentText()).arg(ui->area_item_combox->currentText());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -440,6 +433,7 @@ void FeedingManagerWidget::SlotThreadSearchAreaFeedStore()
 		.arg(ui->area_feed_edit->text()).arg(ui->area3_combox->currentText());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

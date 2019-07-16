@@ -1,8 +1,18 @@
 #pragma once
+
+
+
 #define  ICONSIZE   26
 #define  ICONFONTSIZE   15
 #define  PIXMAPSIZE   30
 #define  ICOSPACE   15
+
+#define APP		"app"
+#define NET		"net"
+#define DEBG	"debug"
+#define ERR		"error"
+#define SOCK	"socket"
+
 
 struct DetailItemStruct
 {
@@ -156,3 +166,10 @@ struct AreaFeedFeedingDetailStruct
 #define getSupplier						"http://%1:%2/zerg/public/index.php/getSupplier"
 #define adduser							"http://%1:%2/zerg/public/index.php/adduser"
 
+#define deleteBakItem                  "http://%1:%2/zerg/public/index.php/deleteBakItem"
+#define removeTaskItem				   "http://%1:%2/zerg/public/index.php/removeTaskItem"
+#define deleteGeneralItem             "http://%1:%2/zerg/public/index.php/deleteGeneralItem"
+
+#define deleteDuesItem				 "http://%1:%2/zerg/public/index.php/deleteDuesItem"
+#define deleteSupplier  "http://%1:%2/zerg/public/index.php/deleteSupplier"
+#define deleteuser   "http://%1:%2/zerg/public/index.php/deleteuser"

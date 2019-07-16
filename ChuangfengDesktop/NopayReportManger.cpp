@@ -1,3 +1,4 @@
+
 #include "NopayReportManger.h"
 #include <QKeyEvent>
 #include <QMouseEvent>
@@ -14,7 +15,7 @@
 
 void NopayReportManger::InitLayout()
 {
-	  	m_pViewModel = new QStandardItemModel();
+	m_pViewModel = new QStandardItemModel();
   	ui->nopayreport_tableView->setModel(m_pViewModel);
   	m_pViewModel->setColumnCount(8);
   	m_pViewModel->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("供应商"));
@@ -27,7 +28,7 @@ void NopayReportManger::InitLayout()
   	m_pViewModel->setHeaderData(7, Qt::Horizontal, QString::fromLocal8Bit("期末余额"));
   	onSetTableAttribute(ui->nopayreport_tableView, 8);
 	ui->nopayreport_tableView->horizontalHeader()->setStretchLastSection(false);
-  	
+	
 }
 
 
@@ -37,9 +38,8 @@ void NopayReportManger::SlotThreadSearchBakInfo()
 	map<QString, vector<DuesStruct>> tempList;
 	QString strParam = QString("");
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
-
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -77,11 +77,10 @@ void NopayReportManger::SlotThreadSearchBakInfo()
 	 Url = QString(getDuesDetail).arg(g_strIpAddr).arg(g_strIpPort);
 	 strParam = QString("starttime=%1&endtime=%2").arg(ui->nopay_report_startdateEdit->text()).arg(ui->nopay_report_enddateEdit->text());
 	
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 
-
-	 parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
+	parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
 	{
 		if (parse_doucment.isArray())
@@ -101,8 +100,7 @@ void NopayReportManger::SlotThreadSearchBakInfo()
 				item.initDues = userObject["initDues"].toString().toDouble();
 				item.surplus = userObject["surplus"].toString().toDouble();
 				item.supplier = userObject["supplier"].toString();
-				vec.push_back(item);
-				
+				vec.push_back(item);	
 			}
 		}
 		else
@@ -156,11 +154,8 @@ void NopayReportManger::SlotThreadSearchBakInfo()
 		m_pViewModel->setItem(nCount, 5, new QStandardItem(QString::number(kvp.second.back)));
 		m_pViewModel->setItem(nCount, 6, new QStandardItem(QString::number(kvp.second.pay)));
 		m_pViewModel->setItem(nCount, 7, new QStandardItem(QString::number(kvp.second.surplus)));
-
 		nCount++;
-	}
-	
-	
+	}	
 }
 
 NopayReportManger::NopayReportManger(QWidget *parent)
@@ -198,7 +193,6 @@ NopayReportManger::NopayReportManger(QWidget *parent)
 			connect(pthread, SIGNAL(finished()), this, SLOT(finishedThreadBtnSlot()));
 			pthread->start();
 		}
-
 	});
 }
 

@@ -1,3 +1,4 @@
+
 #include "UserLayoutManger.h"
 #include "AddUserWidget.h"
 #include <thread>
@@ -31,8 +32,6 @@ UserLayoutManger::UserLayoutManger(Ui::ChuangfengDesktopClass*ui)
 		this->threadGetUserInfoCallBack();
 	});
 	t.detach();
-
-	
 }
 
 UserLayoutManger::~UserLayoutManger()
@@ -43,8 +42,7 @@ void UserLayoutManger::SlotAddUser(QString&userName, QString &password, QString 
 {
 	 m_addPsd = password;
 	 m_addUserName = userName;
-	 m_addrole =role;
-	 
+	 m_addrole =role; 
 	QThread *m_pThread  =  new QThread;
 	connect(m_pThread, SIGNAL(started()), this, SLOT(threadAddUserInfoCallBack()));
 	connect(m_pThread, SIGNAL(finished()), m_pThread, SLOT(deleteLater()));
@@ -86,8 +84,9 @@ void UserLayoutManger::SlotThreadRemove()
 	}
 	QString strParam = "ids=" + itemList;
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteuser"
-		, g_token, strParam, responseData);
+	QString Url = QString(deleteuser).arg(g_strIpAddr).arg(g_strIpPort);
+ 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -139,8 +138,7 @@ void UserLayoutManger::threadGetUserInfoCallBack()
 {
 	QString Url = QString(GETUSERLIST).arg(g_strIpAddr).arg(g_strIpPort);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestGet(Url
-		, g_token, responseData);
+	SingletonHttpRequest::getInstance()->RequestGet(Url, g_token, responseData);
 	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
@@ -184,8 +182,7 @@ void UserLayoutManger::threadAddUserInfoCallBack()
 	md5.append(bb.toHex());
 	QString strParam = QString("username=%1&password=%2&role=%3").arg(m_addUserName).arg(md5).arg(m_addrole);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam,responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam,responseData);
 	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);

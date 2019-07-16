@@ -1,3 +1,4 @@
+
 #include "FeedStoreManagerWdiget.h"
 #include <QKeyEvent>
 #include <QMouseEvent>
@@ -305,6 +306,7 @@ void FeedStoreManagerWdiget::SlotThreadSearchAreaFeedStore()
 		.arg(ui->feed_name_edit->text()).arg(ui->area3_combox->currentText());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -440,33 +442,33 @@ void FeedStoreManagerWdiget::SlotThreadDescFeedStore()
 void FeedStoreManagerWdiget::SlotThreadSearchFeedStore_in_out_return_back()
 {
 	QString strParam;
+	QString Url;
 	QByteArray responseData;
 	if (ui->storge_type_combox->currentText() == QString::fromLocal8Bit("Èë¿â"))
 	{
-		QString Url = QString(SearchInComFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
+		 Url = QString(SearchInComFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
 		strParam = QString("starttime=%1&endtime=%2").arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text());
-		SingletonHttpRequest::getInstance()->RequestPost(Url
-			, g_token, strParam, responseData);
+		SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);	
 	}
 	else if (ui->storge_type_combox->currentText() == QString::fromLocal8Bit("³ö¿â"))
 	{
-		QString Url = QString(SearchOutFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
+		 Url = QString(SearchOutFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
 		strParam = QString("starttime=%1&endtime=%2&area=%3").arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text()).arg(ui->area_combox->currentText());
 		SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
 	}
 	else if (ui->storge_type_combox->currentText() == QString::fromLocal8Bit("ÍË»õ"))
 	{
-		QString Url = QString(SearchBackFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
+		 Url = QString(SearchBackFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
 		strParam = QString("starttime=%1&endtime=%2").arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text());
 		SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
 	}
 	else
 	{
-		QString Url = QString(SearchReturnFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
+		 Url = QString(SearchReturnFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
 		strParam = QString("starttime=%1&endtime=%2&area=%3").arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text()).arg(ui->area_combox->currentText());
 		SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
 	}
-	 
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -511,11 +513,10 @@ void FeedStoreManagerWdiget::SlotThreadSearchFeedStore_in_out_return_back()
 void FeedStoreManagerWdiget::SlotThreadSearchFeedStore()
 {
 	QString Url = QString(SearchFeedStore).arg(g_strIpAddr).arg(g_strIpPort);
-	QString strParam = QString("subject_name=%1")
-		.arg(ui->feed_name_edit->text());
+	QString strParam = QString("subject_name=%1").arg(ui->feed_name_edit->text());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -580,6 +581,7 @@ void FeedStoreManagerWdiget::SlotThreadAddFeedStore()
 		arg(m_number);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -715,11 +717,8 @@ void FeedStoreManagerWdiget::InitOption()
 	for (int i = 0; i < m_NavButtonList.count(); i++) {
 
 		m_NavButtonList.at(i)->setLineColor(QColor("#029FEA"));
-		///mNavButtonList.at(i)->setShowLine(true);
 		m_NavButtonList.at(i)->setTextAlign(NavButton::TextAlign_Left);
 		m_NavButtonList.at(i)->setTrianglePosition(NavButton::TrianglePosition_Right);
-		//mNavButtonList.at(i)->setLinePosition(NavButton::LinePosition_Top);
-
 		m_NavButtonList.at(i)->setPaddingLeft(5);
 		m_NavButtonList.at(i)->setLineSpace(1);
 		m_NavButtonList.at(i)->setLineWidth(5);

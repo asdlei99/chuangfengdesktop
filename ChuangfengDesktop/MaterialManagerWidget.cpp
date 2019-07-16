@@ -1,5 +1,5 @@
-#include "MaterialManagerWidget.h"
 
+#include "MaterialManagerWidget.h"
 #include <QKeyEvent>
 #include <QMouseEvent>
 #include <QRect>
@@ -192,14 +192,11 @@ void MaterialManagerWidget::initOption()
 	QColor hoverTextColor = QColor("#FFFFFF");
 	QColor checkTextColor = QColor("#FFFFFF");
 
-	for (int i = 0; i < m_NavButtonList.count(); i++) {
-
+	for (int i = 0; i < m_NavButtonList.count(); i++)
+	{
 		m_NavButtonList.at(i)->setLineColor(QColor("#029FEA"));
-		///mNavButtonList.at(i)->setShowLine(true);
 		m_NavButtonList.at(i)->setTextAlign(NavButton::TextAlign_Left);
 		m_NavButtonList.at(i)->setTrianglePosition(NavButton::TrianglePosition_Right);
-		//mNavButtonList.at(i)->setLinePosition(NavButton::LinePosition_Top);
-
 		m_NavButtonList.at(i)->setPaddingLeft(5);
 		m_NavButtonList.at(i)->setLineSpace(1);
 		m_NavButtonList.at(i)->setLineWidth(5);
@@ -330,11 +327,8 @@ void MaterialManagerWidget::AddInMaterial(InMaterialStruct&item)
 	m_pViewModelinout->setItem(nCount, 2, new QStandardItem(item.subject));
 	m_pViewModelinout->setItem(nCount, 3, new QStandardItem(QString::number(item.number)));
 	m_pViewModelinout->setItem(nCount, 4, new QStandardItem(item.price));
-	m_pViewModelinout->setItem(nCount, 5, new QStandardItem(item.fare));
-	
-	//ChangeDetailTableView();
+	m_pViewModelinout->setItem(nCount, 5, new QStandardItem(item.fare));	
 	ui->material_in_out_detail_tableview->setColumnWidth(0, 30);
-
 }
 
 void MaterialManagerWidget::AddMaterialTableView(MaterialStruct&item)
@@ -351,8 +345,6 @@ void MaterialManagerWidget::AddMaterialTableView(MaterialStruct&item)
 	m_pViewModelDetail->setItem(nCount, 6, new QStandardItem(item.price));
 	m_pViewModelDetail->setItem(nCount, 7, new QStandardItem(QString::number(item.number)));
 	m_pViewModelDetail->setItem(nCount, 8, new QStandardItem(QString::number(item.number*(item.price.toDouble()))));
-
-	//ChangeDetailTableView();
 	ui->material_detail_tableView->setColumnWidth(0, 30);
 }
 
@@ -370,7 +362,6 @@ void MaterialManagerWidget::AddOutMaterialTableView(OutMaterialStruct&item)
 	m_pViewModelinout->setItem(nCount, 7, new QStandardItem(item.strTotal));
 	m_pViewModelinout->setItem(nCount, 8, new QStandardItem(item.strArea));
 
-	//ChangeDetailTableView();
 	ui->material_in_out_detail_tableview->setColumnWidth(0, 30);
 }
 
@@ -385,23 +376,20 @@ void MaterialManagerWidget::AddFixAsset(FixedAssetStruct&item)
 	m_pViewModelFix->setItem(nCount, 3, new QStandardItem(item.outstorge_time.mid(0, 10)));
 	m_pViewModelFix->setItem(nCount, 4, new QStandardItem(item.unit));
 	m_pViewModelFix->setItem(nCount, 5, new QStandardItem(item.price));
-
 	m_pViewModelFix->setItem(nCount, 6, new QStandardItem(item.total));
 	m_pViewModelFix->setItem(nCount, 7, new QStandardItem(QString::number((item.total.toDouble() / item.periods)*item.suplis)));
 	m_pViewModelFix->setItem(nCount, 8, new QStandardItem(QString::number(item.total.toDouble()/ item.periods)));
 	m_pViewModelFix->setItem(nCount, 9, new QStandardItem(QString::number(item.periods)));
-
 	ui->fix_material_tableView->setColumnWidth(0, 30);
-
 }
 
 void MaterialManagerWidget::SearchInMaterial()
 {
 	QString Url = QString(SearchInMaterialDetail).arg(g_strIpAddr).arg(g_strIpPort);
-	QString strParam = QString("starttime=%1&endtime=%2")
-		.arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text());
+	QString strParam = QString("starttime=%1&endtime=%2").arg(ui->startdateEdit->text()).arg(ui->enddateEdit->text());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -422,7 +410,6 @@ void MaterialManagerWidget::SearchInMaterial()
 				item.price = materialObject["price"].toString();
 				AddInMaterial(item);
 			}
-			//emit sig_NotifyMsg(QString::fromLocal8Bit("添加成功！"), 0);
 		}
 		else
 		{
@@ -470,7 +457,6 @@ void MaterialManagerWidget::SearchOutMaterial()
 				item.strPrice = materialObject["price"].toString();
 				AddOutMaterialTableView(item);
 			}
-			//emit sig_NotifyMsg(QString::fromLocal8Bit("出库成功！"), 0);
 		}
 		else
 		{
@@ -519,8 +505,8 @@ void MaterialManagerWidget::SlotThreadSearchFixedAsset()
 	
 	QString strParam = QString("over_time=%1").arg(maxtime);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -532,7 +518,6 @@ void MaterialManagerWidget::SlotThreadSearchFixedAsset()
 			for (int i = 0; i < array.size(); i++)
 			{
 				FixedAssetStruct item;
-
 				QJsonValue materialArray = array.at(i);
 				QJsonObject materialObject = materialArray.toObject();
 				item.id = materialObject["id"].toInt();
@@ -586,6 +571,7 @@ void MaterialManagerWidget::SlotThreadOutMaterialDetail()
 		.arg(m_outId).arg(m_outTime).arg(m_outSubject).arg(m_outPrice).arg(m_outNumber).arg(m_outArea);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -595,18 +581,8 @@ void MaterialManagerWidget::SlotThreadOutMaterialDetail()
 			QJsonArray array = parse_doucment.array();
 			for (int i = 0; i < array.size(); i++)
 			{
-				/*OutMaterialStruct item;*/
 				QJsonValue materialArray = array.at(i);
 				QJsonObject materialObject = materialArray.toObject();
-// 				item.id = materialObject["id"].toInt();
-// 				item.strTime = materialObject["operat_time"].toString();
-// 				item.strSubject = materialObject["subject_name"].toString();
-// 				item.strTotal = materialObject["totalprice"].toString();
-// 				item.strArea = materialObject["outarea"].toString();
-// 				item.Surplus = materialObject["surplus"].toInt();
-// 				item.number = materialObject["number"].toInt();
-// 				item.strPrice = materialObject["price"].toString();
-// 				AddOutMaterialTableView(item);
 				MaterialStruct item;
 				item.id = materialObject["id"].toInt();
 				item.use = materialObject["use"].toString();
@@ -643,6 +619,7 @@ void MaterialManagerWidget::SlotThreadSearchItem()
 	QString strParam = QString("subject_name=%1").arg(ui->lineEdit->text());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -651,8 +628,7 @@ void MaterialManagerWidget::SlotThreadSearchItem()
 		{
 			QJsonArray array = parse_doucment.array();
 			for (int i = 0; i < array.size(); i++)
-			{
-				
+			{	
 				QJsonValue materialArray = array.at(i);
 				QJsonObject materialObject = materialArray.toObject();
 				MaterialStruct item;
@@ -730,6 +706,7 @@ void MaterialManagerWidget::SlotThreadAddMaterialDetail()
 		arg(m_addSpecs).arg(m_addNumber).arg(m_addFare);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -738,8 +715,7 @@ void MaterialManagerWidget::SlotThreadAddMaterialDetail()
 		{
 			QJsonArray array = parse_doucment.array();
 			for (int i = 0; i < array.size(); i++)
-			{
-				
+			{			
 				QJsonValue materialArray = array.at(i);
 				QJsonObject materialObject = materialArray.toObject();
 				MaterialStruct item;

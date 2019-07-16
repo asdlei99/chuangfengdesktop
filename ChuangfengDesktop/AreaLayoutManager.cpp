@@ -1,3 +1,4 @@
+
 #include "AreaLayoutManager.h"
 #include "Common2ParamWidget.h"
 #include <thread>
@@ -56,9 +57,8 @@ void AreaLayoutManager::SlotThreadAddArea()
 	QString Url = QString(addAquaculture).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("name=%1").arg(m_addName);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
-
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

@@ -1,3 +1,4 @@
+
 #include "CategoryLayoutManager.h"
 #include "Common2ParamWidget.h"
 #include "globalVariable.h"
@@ -74,10 +75,11 @@ void CategoryLayoutManager::SlotThreadRemoveItem()
 	{
 		return;
 	}
+	QString Url = QString(removeTaskItem).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = "ids=" + itemList;
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/removeTaskItem"
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -118,7 +120,7 @@ void CategoryLayoutManager::SlotThreadAddItem()
 	QString strParam = QString("name=%1").arg(m_addName);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
-
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -148,6 +150,7 @@ void CategoryLayoutManager::threadGetCategoryInfoCallBack()
 	QString Url = QString(getTaskItem).arg(g_strIpAddr).arg(g_strIpPort);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestGet(Url	, g_token, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

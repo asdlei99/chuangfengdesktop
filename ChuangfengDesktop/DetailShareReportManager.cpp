@@ -1,3 +1,4 @@
+
 #include "DetailShareReportManager.h"
 #include <QKeyEvent>
 #include <QMouseEvent>
@@ -21,8 +22,6 @@ void DetailShareReportManager::InitLayout()
 	m_pViewModel->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("饲料"));
 	m_pViewModel->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("药品"));
 	m_pViewModel->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("消毒"));
-// 	m_pViewModel->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("物料"));
-// 	m_pViewModel->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("固资分摊"));
 	onSetTableAttribute(ui->detailshare_report_tableview, 4);
 	ui->detailshare_report_tableview->horizontalHeader()->setStretchLastSection(false);
 }
@@ -181,8 +180,8 @@ void DetailShareReportManager::SlotThreadSearchShare()
 	QString strParam = QString("starttime=%1&endtime=%2&area=%3")
 		.arg(ui->detailshare_report_startdateEdit->text()).arg(ui->detailshare_report_enddateEdit->text()).arg(ui->area_combox->currentText());
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

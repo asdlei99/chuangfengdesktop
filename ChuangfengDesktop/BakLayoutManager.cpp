@@ -1,3 +1,4 @@
+
 #include "BakLayoutManager.h"
 #include <QKeyEvent>
 #include <QMouseEvent>
@@ -8,11 +9,10 @@
 #include <QPen>
 #include <QtMath>
 #include "iconhelper.h"
-
 #include "AddFundDetailWidget.h"
 #include "SingletonHttpRequest.h"
-
 #include "globalVariable.h"
+
 BakLayoutManager::BakLayoutManager(QWidget *parent)
 	:MoveableFramelessWindow(parent)
 	, ui(new Ui::BakManager)
@@ -154,9 +154,8 @@ void BakLayoutManager::SlotThreadSearchGeneral()
 	QString Url = QString(getBakDetail).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("starttime=%1&endtime=%2").arg(ui->bak_startdateEdit->dateTime().toString("yyyy-MM-dd")).arg(ui->bak_enddateEdit->dateTime().toString("yyyy-MM-dd"));
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
-
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -221,7 +220,7 @@ void BakLayoutManager::SlotThreadAddGeneral()
 		.arg(m_addIncom).arg(m_addPay).arg(m_addRemake).arg(m_addShare);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
-
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -283,11 +282,11 @@ void BakLayoutManager::SlotThreadRemoveItem()
 		emit sig_NotifyMsg(QString::fromLocal8Bit("请选择节点且只能一个节点！"), 10086);
 		return;
 	}
-
+	QString Url = QString(deleteBakItem).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("id=%1&dvalue=%2").arg(id).arg(QString::number(dValue));
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteBakItem"
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

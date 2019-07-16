@@ -1,3 +1,4 @@
+
 #include "DetailAreaLayoutManager.h"
 #include "CommonDependenceWidget.h"
 #include <thread>
@@ -35,7 +36,7 @@ void DetailAreaLayoutManager::threadAreaInfoCallBack()
 	QString Url = QString(getAquaculturearea).arg(g_strIpAddr).arg(g_strIpPort);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestGet(Url, g_token, responseData);
-
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -131,7 +132,7 @@ void DetailAreaLayoutManager::SlotThreadAddDetailArea()
 	QString strParam = QString("name=%1&itemname=%2").arg(m_addParentName).arg(m_addItemName);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
-
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

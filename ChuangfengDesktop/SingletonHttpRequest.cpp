@@ -1,9 +1,11 @@
+#include "yaolog.h"
 #include "SingletonHttpRequest.h"
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
 #include <QEventLoop>
 #include <QTextCodec>
+#include "commomdef.h"
 
 
 //外部初始化 before invoke main
@@ -24,6 +26,7 @@ void SingletonHttpRequest::RequestGet(const QString&strUrl, const QString&strTok
 	connect(pNetManager, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
 	eventLoop.exec();       //block until finish
 	retBuf = reply->readAll();
+	LOGA__(DEBG, "responseData=%s", retBuf.data());
 	delete pNetManager;
 	pNetManager = nullptr;
 }
@@ -42,6 +45,7 @@ void SingletonHttpRequest::RequestPost(const QString&strUrl, const QString&strTo
 	connect(pNetManager, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
 	eventLoop.exec();       //block until finish
 	retBuf = reply->readAll();
+	LOGA__(DEBG, "strParam=%s,responseData=%s", strParam.toStdString().c_str(), retBuf.data());
 	delete pNetManager;
 	pNetManager = nullptr;
 }

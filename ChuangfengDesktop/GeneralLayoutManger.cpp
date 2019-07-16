@@ -1,3 +1,4 @@
+
 #include "GeneralLayoutManger.h"
 #include <QKeyEvent>
 #include <QMouseEvent>
@@ -8,11 +9,10 @@
 #include <QPen>
 #include <QtMath>
 #include "iconhelper.h"
-
 #include "AddFundDetailWidget.h"
 #include "SingletonHttpRequest.h"
-
 #include "globalVariable.h"
+
 GeneralLayoutManger::GeneralLayoutManger(QWidget *parent)
 	:MoveableFramelessWindow(parent)
 	, ui(new Ui::generalManager)
@@ -106,7 +106,7 @@ void GeneralLayoutManger::SlotThreadSearchGeneral()
 	QString strParam = QString("starttime=%1&endtime=%2").arg(ui->general_startdateEdit->text()).arg(ui->general_enddateEdit->text());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
-
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -171,6 +171,7 @@ void GeneralLayoutManger::SlotThreadAddGeneral()
 		.arg(m_addIncom).arg(m_addPay).arg(m_addRemake).arg(m_addShare);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -232,11 +233,11 @@ void GeneralLayoutManger::SlotThreadRemoveItem()
 		emit sig_NotifyMsg(QString::fromLocal8Bit("请选择节点且只能一个节点！"), 10086);
 		return;
 	}
-
+	QString Url = QString(deleteGeneralItem).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("id=%1&dvalue=%2").arg(id).arg(QString::number(dValue));
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteGeneralItem"
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

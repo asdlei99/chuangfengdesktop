@@ -1,10 +1,10 @@
+
 #include "SupplierLayoutManager.h"
 #include "Common2ParamWidget.h"
 #include <thread>
 #include "SingletonHttpRequest.h"
 #include "globalVariable.h"
 #include "commomdef.h"
-
 
 SupplierLayoutManager::SupplierLayoutManager(Ui::ChuangfengDesktopClass*ui)
 	:BaseLayoutManager(ui)
@@ -73,8 +73,9 @@ void SupplierLayoutManager::SlotThreadRemoveItem()
 	}
 	QString strParam = "ids=" + itemList;
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteSupplier"
-		, g_token, strParam, responseData);
+	QString Url = QString(deleteSupplier).arg(g_strIpAddr).arg(g_strIpPort);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -114,7 +115,7 @@ void SupplierLayoutManager::SlotThreadAddItem()
 	QString strParam = QString("name=%1&remake=%2").arg(m_addName).arg(m_addRemake);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
-
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -158,7 +159,7 @@ void SupplierLayoutManager::threadGetSupplierInfoCallBack()
 	QString Url = QString(getSupplier).arg(g_strIpAddr).arg(g_strIpPort);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestGet(Url, g_token, responseData);
-
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)

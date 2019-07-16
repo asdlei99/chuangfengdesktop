@@ -1,3 +1,4 @@
+
 #include "ShareItemLayoutManager.h"
 #include "CommonDependenceWidget.h"
 #include <thread>
@@ -74,7 +75,7 @@ void ShareItemLayoutManager::SlotThreadAddShareItem()
 	QString strParam = QString("name=%1&itemname=%2").arg(m_addfromName).arg(m_addName);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
-
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -105,15 +106,11 @@ void ShareItemLayoutManager::SlotThreadAddShareItem()
 void ShareItemLayoutManager::AddTableViewItem(int id, QString shareItem, QString AreaName)
 {
 	int nCount = m_pViewModel->rowCount();
-
 	m_pViewModel->setItem(nCount, 0, new QStandardItem(""));
 	m_pViewModel->item(nCount, 0)->setCheckable(true);
-
 	m_pViewModel->setItem(nCount, 1, new QStandardItem(QString::number(id)));
 	m_pViewModel->setItem(nCount, 2, new QStandardItem(shareItem));
 	m_pViewModel->setItem(nCount, 3, new QStandardItem(AreaName));
-
-
 	m_pUi->shareitem_tableView->setColumnWidth(0, 30);
 	m_pUi->shareitem_tableView->setColumnWidth(1, 50);
 	m_pUi->shareitem_tableView->setColumnWidth(2, 180);
@@ -124,7 +121,7 @@ void ShareItemLayoutManager::threadCostAreaInfoCallBack()
 	QString Url = QString(getCostareas).arg(g_strIpAddr).arg(g_strIpPort);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestGet(Url, g_token, responseData);
-
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -159,7 +156,5 @@ void ShareItemLayoutManager::threadCostAreaInfoCallBack()
 		}
 	}
 	else {
-
 	}
-
 }

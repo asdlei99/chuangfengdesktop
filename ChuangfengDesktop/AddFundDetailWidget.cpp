@@ -1,3 +1,4 @@
+
 #include "AddFundDetailWidget.h"
 #include "globalVariable.h"
 #include <QCalendarWidget>
@@ -76,8 +77,8 @@ void AddFundDetailWidget::SlotThreadAddFeedStore()
 		.arg(m_time).arg(m_suplier).arg(m_subject_name).arg(m_specs).arg(m_price).arg(m_unit).
 		arg(m_number);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -155,7 +156,6 @@ void AddFundDetailWidget::SlotCommitAction()
 {
 	if (ui->subject_comboBox->currentText() == QString::fromLocal8Bit("ÎïÁÏ"))
 	{
-
 		AddMaterialWidget*pQtWidget = new AddMaterialWidget();
 		connect(pQtWidget, SIGNAL(sig_commit(QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&)), this, SLOT(SlotAddMaterialDetail(QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&, QString&)));
 		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
@@ -171,7 +171,6 @@ void AddFundDetailWidget::SlotCommitAction()
 		pQtWidget->setAttribute(Qt::WA_DeleteOnClose);
 		pQtWidget->setWindowModality(Qt::ApplicationModal);
 		pQtWidget->show();
-
 		return;
 	}
 	
@@ -233,15 +232,14 @@ void AddFundDetailWidget::SlotThreadAddMaterialDetail()
 		.arg(m_addTime).arg(m_addUse).arg(m_addSubject_name).arg(m_addCategory).arg(m_addPrice).arg(m_addUnit).
 		arg(m_addSpecs).arg(m_addNumber).arg(m_addFare);
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost(Url
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
 	{
 		if (parse_doucment.isArray())
-		{
-			
+		{	
 			QString time = ui->dateEdit->text();
 			QString strInCom = ui->incom_Edit->text();
 			QString strPay = ui->pay_Edit->text();

@@ -1,3 +1,4 @@
+
 #include "NoPayLayoutManager.h"
 #include <QKeyEvent>
 #include <QMouseEvent>
@@ -116,6 +117,7 @@ void NoPayLayoutManager::SlothreadAddnopay()
 		.arg(m_strTime).arg(m_adjust).arg(m_newadd).arg(m_returnValue).arg(m_pay).arg(m_strSuplier).arg(m_remake);
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -168,6 +170,7 @@ void NoPayLayoutManager::SlotSearchThread()
 		.arg(ui->nopay_startdateEdit->text()).arg(ui->nopay_enddateEdit->text());
 	QByteArray responseData;
 	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
 	if (json_error.error == QJsonParseError::NoError)
@@ -284,11 +287,11 @@ void NoPayLayoutManager::SlotThreadRemoveItem()
 		emit sig_NotifyMsg(QString::fromLocal8Bit("请选择节点且只能一个节点！"), 10086);
 		return;
 	}
-
+	QString Url = QString(deleteDuesItem).arg(g_strIpAddr).arg(g_strIpPort);
 	QString strParam = QString("id=%1&supplier=%2&dvalue=%3").arg(id).arg(strsupplier).arg(QString::number(dValue));
 	QByteArray responseData;
-	SingletonHttpRequest::getInstance()->RequestPost("http://localhost/zerg/public/index.php/deleteDuesItem?XDEBUG_SESSION_START=16141"
-		, g_token, strParam, responseData);
+	SingletonHttpRequest::getInstance()->RequestPost(Url, g_token, strParam, responseData);
+	
 	QString test = responseData;
 	QJsonParseError json_error;
 	QJsonDocument parse_doucment = QJsonDocument::fromJson(responseData, &json_error);
